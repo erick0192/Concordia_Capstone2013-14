@@ -1,0 +1,29 @@
+﻿<mui:ModernWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mui="http://firstfloorsoftware.com/ModernUI" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MRClient_ModernUIProtoss.MainWindow"
+        Title="MRCC" IsTitleVisible="True"         
+        ContentSource="/Pages/Main.xaml" d:DesignWidth="1200" d:DesignHeight="900" Width="1200" Height="900">
+
+    <mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="Mars Rover Control Center">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="Home" Source="/Pages/Main.xaml" />
+                <mui:Link DisplayName="Status" Source="/Pages/Status.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="settings">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="settings" Source="/Pages/Settings.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="help">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="help" Source="/Pages/Help.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+    </mui:ModernWindow.MenuLinkGroups>
+
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="home" Source="/Pages/Main.xaml" />
+        <mui:Link DisplayName="settings" Source="/Pages/Settings.xaml" />
+        <mui:Link DisplayName="help" Source="/Pages/Help.xaml" />
+    </mui:ModernWindow.TitleLinks>
+</mui:ModernWindow>
