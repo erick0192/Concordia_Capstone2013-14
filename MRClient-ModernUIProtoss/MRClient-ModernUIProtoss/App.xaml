@@ -1,6 +1,7 @@
-﻿<Application x:Class="MRClient_ModernUIProtoss.App"
+﻿<Application
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MRClient_ModernUIProtoss" x:Class="MRClient_ModernUIProtoss.App"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -10,4 +11,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+    <Application.MainWindow>
+        <local:MainWindow/>
+    </Application.MainWindow>
 </Application>

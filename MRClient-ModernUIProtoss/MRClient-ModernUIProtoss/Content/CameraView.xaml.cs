@@ -20,32 +20,24 @@ namespace MRClient_ModernUIProtoss.Content
     /// </summary>
     public partial class CameraView : UserControl
     {
-        public string Heading { get; set; }
-        private bool mIsActive;
-        public bool IsActive 
-        { 
-            get { return mIsActive; }
-            set
-            {
-                mIsActive = value;
-                if (mIsActive)
-                {
-                    
-                }
-            }
-        }
+        public static readonly DependencyProperty CameraNameProperty = DependencyProperty.Register
+            (
+                 "Title",
+                 typeof(string),
+                 typeof(CameraView),
+                 new PropertyMetadata(string.Empty)
+            );
 
-        public CameraView() : this("View")
+        public string Title
         {
-            
+            get { return (string)GetValue(CameraNameProperty); }
+            set { SetValue(CameraNameProperty, value); ((CameraViewModel)DataContext).CameraName = value;  }
         }
-
-        public CameraView(string iHeading)
+       
+        public CameraView() 
         {
             InitializeComponent();
-            DataContext = this;
-            Heading = iHeading;
-            IsActive = true;
-        }
+            DataContext = new CameraViewModel(); 
+        }       
     }
 }

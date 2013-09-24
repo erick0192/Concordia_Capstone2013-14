@@ -7,10 +7,15 @@
              xmlns:controls="clr-namespace:MRClient_ModernUIProtoss.Content"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1100">
-    
+    <UserControl.InputBindings>
+        <KeyBinding Key="D1" Command="{Binding ToggleUpperLeftCamera}" />
+        <KeyBinding Key="D2" Command="{Binding ToggleUpperRightCamera}" />
+        <KeyBinding Key="D3" Command="{Binding ToggleLowerLeftCamera}" />
+        <KeyBinding Key="D4" Command="{Binding ToggleLowerRightCamera}" />
+    </UserControl.InputBindings>
     <Grid>
-        <StackPanel Orientation="Horizontal">        
-            <StackPanel Margin="10,0,8,0">
+        <StackPanel Orientation="Horizontal" >        
+            <StackPanel >
                 <TextBlock Text="Camera Streams" Style="{StaticResource Title}" Margin="0,0,0,8" HorizontalAlignment="Center" />
                 <Grid>
                     <Grid.RowDefinitions>
@@ -22,10 +27,10 @@
                         <ColumnDefinition Width="330"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     
-                    <controls:CameraView Grid.Column="0" Grid.Row="0" x:Name="camFront" Heading="Front"></controls:CameraView>
-                    <controls:CameraView Grid.Column="0" Grid.Row="1" x:Name="camBack" Heading="Back"></controls:CameraView>
-                    <controls:CameraView Grid.Column="1" Grid.Row="0" x:Name="camLeft" Heading="Left"></controls:CameraView>
-                    <controls:CameraView Grid.Column="1" Grid.Row="1" x:Name="camRight" Heading="Right"></controls:CameraView>
+                    <controls:CameraView Grid.Column="0" Grid.Row="0" x:Name="camFront" Title="Front" />
+                    <controls:CameraView Grid.Column="1" Grid.Row="0" x:Name="camBack" Title="Back" />
+                    <controls:CameraView Grid.Column="0" Grid.Row="1" x:Name="camLeft" Title="Left" />
+                    <controls:CameraView Grid.Column="1" Grid.Row="1" x:Name="camRight" Title="Right" />
                 </Grid>        
             </StackPanel>
             <StackPanel Orientation="Horizontal" Width="116" Margin="0,5,0,0">

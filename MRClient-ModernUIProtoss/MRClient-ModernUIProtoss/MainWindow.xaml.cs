@@ -23,6 +23,7 @@ namespace MRClient_ModernUIProtoss
     {
         public MainWindow()
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             FirstFloor.ModernUI.Presentation.AppearanceManager.Current.AccentColor = Color.FromRgb(0xa2, 0x00, 0x25);
         }
