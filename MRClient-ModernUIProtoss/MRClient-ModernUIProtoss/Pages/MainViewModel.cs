@@ -80,5 +80,18 @@ namespace MRClient_ModernUIProtoss.Pages
         {
 
         }
+
+        public void MainIsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue == true)
+            {
+                System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
+                System.Windows.Threading.DispatcherPriority.ContextIdle,
+                new Action(delegate()
+                {
+                    ((Main)sender).Focus();
+                }));
+            }
+        }  
     }
 }

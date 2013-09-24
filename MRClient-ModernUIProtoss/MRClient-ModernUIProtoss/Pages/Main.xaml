@@ -6,7 +6,8 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"    
              xmlns:controls="clr-namespace:MRClient_ModernUIProtoss.Content"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1100">
+             d:DesignHeight="800" d:DesignWidth="1100"
+             Focusable="True">
     <UserControl.InputBindings>
         <KeyBinding Key="D1" Command="{Binding ToggleUpperLeftCamera}" />
         <KeyBinding Key="D2" Command="{Binding ToggleUpperRightCamera}" />
