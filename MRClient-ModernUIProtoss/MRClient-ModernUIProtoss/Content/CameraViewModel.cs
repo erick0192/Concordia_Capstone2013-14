@@ -26,11 +26,12 @@ namespace MRClient_ModernUIProtoss.Content
         }
 
         public string CameraName { get; set; }
-        private bool asdf;
+       
+        private bool mIsActive;
         public bool IsActive
         {
-            get { return asdf; }
-            set { asdf = value; OnPropertyChanged(""); }
+            get { return mIsActive; }
+            set { mIsActive = value; OnPropertyChanged("IsActive"); }
         }
 
         public CameraViewModel()
@@ -38,11 +39,10 @@ namespace MRClient_ModernUIProtoss.Content
             IsActive = true;
         }
 
-        public bool CanToggleCamera() { return true; }
+        private bool CanToggleCamera() { return true; }
 
-        public void ToggleCam()
-        {
-            //System.Windows.MessageBox.Show("Toggling Camera");
+        private void ToggleCam()
+        {            
             IsActive = !IsActive;
         }
 

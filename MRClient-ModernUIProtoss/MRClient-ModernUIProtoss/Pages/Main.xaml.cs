@@ -26,12 +26,14 @@ namespace MRClient_ModernUIProtoss.Pages
         public Main()
         {
             InitializeComponent();
+
             DataContext = new MainViewModel();
             ((MainViewModel)DataContext).UpperLeftCameraVM = (CameraViewModel)this.camFront.DataContext;
             ((MainViewModel)DataContext).UpperRightCameraVM = (CameraViewModel)this.camBack.DataContext;
             ((MainViewModel)DataContext).LowerLeftCameraVM = (CameraViewModel)this.camLeft.DataContext;
             ((MainViewModel)DataContext).LowerRightCameraVM = (CameraViewModel)this.camRight.DataContext;
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
+            this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused
         }
     }
 }

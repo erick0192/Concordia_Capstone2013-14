@@ -7,7 +7,7 @@
              xmlns:controls="clr-namespace:MRClient_ModernUIProtoss.Content"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1100"
-             Focusable="True">
+             Focusable="True" x:Name="MainPage">
     <UserControl.InputBindings>
         <KeyBinding Key="D1" Command="{Binding ToggleUpperLeftCamera}" />
         <KeyBinding Key="D2" Command="{Binding ToggleUpperRightCamera}" />
