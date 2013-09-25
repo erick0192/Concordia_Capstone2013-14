@@ -28,10 +28,24 @@ namespace MRClient_ModernUIProtoss.Pages
             InitializeComponent();
 
             DataContext = new MainViewModel();
-            ((MainViewModel)DataContext).UpperLeftCameraVM = (CameraViewModel)this.camFront.DataContext;
-            ((MainViewModel)DataContext).UpperRightCameraVM = (CameraViewModel)this.camBack.DataContext;
-            ((MainViewModel)DataContext).LowerLeftCameraVM = (CameraViewModel)this.camLeft.DataContext;
-            ((MainViewModel)DataContext).LowerRightCameraVM = (CameraViewModel)this.camRight.DataContext;
+
+            //Instantiate VM for camera views
+            CameraViewModel cvm = new CameraViewModel("Front");
+            this.camFront.DataContext = cvm;
+            ((MainViewModel)DataContext).UpperLeftCameraVM = cvm;
+
+            cvm = new CameraViewModel("Back");
+            this.camBack.DataContext = cvm;
+            ((MainViewModel)DataContext).UpperRightCameraVM =cvm;
+
+            cvm = new CameraViewModel("Left");
+            this.camLeft.DataContext = cvm;
+            ((MainViewModel)DataContext).LowerLeftCameraVM = cvm;
+
+            cvm = new CameraViewModel("Right");
+            this.camRight.DataContext = cvm;
+            ((MainViewModel)DataContext).LowerRightCameraVM = cvm;
+
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused
         }

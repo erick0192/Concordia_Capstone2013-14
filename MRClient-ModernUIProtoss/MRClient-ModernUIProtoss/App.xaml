@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MRClient_ModernUIProtoss" x:Name="Mars_Rover_Control_Center" x:Class="MRClient_ModernUIProtoss.App"
     StartupUri="MainWindow.xaml"
-    ShutdownMode="OnMainWindowClose">
+    ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

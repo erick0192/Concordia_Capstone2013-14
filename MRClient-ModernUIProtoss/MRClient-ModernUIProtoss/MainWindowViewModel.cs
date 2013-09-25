@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
+using MRClient_ModernUIProtoss.Log;
 
 namespace MRClient_ModernUIProtoss
 {
@@ -59,30 +60,36 @@ namespace MRClient_ModernUIProtoss
 
         public MainWindowViewModel()
         {
-
+            ApplicationLogger.Instance.LogEntryEvent += new ApplicationLogger.LogEntryHandler(WriteLogEntry);
         }
 
-        private bool CanExecute(object parameter)
+        private bool CanExecute(object iParam)
         {
             return true;
         }
 
-        private void GoToHome(object parameter)
+        private void GoToHome(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)parameter;
+            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Main.xaml", UriKind.Relative);                        
         }
 
-        private void GoToSettings(object parameter)
+        private void GoToSettings(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)parameter;
+            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Settings.xaml", UriKind.Relative);
         }
 
-        private void GoToHelp(object parameter)
+        private void GoToHelp(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)parameter;
+            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Help.xaml", UriKind.Relative);
+        }
+
+        public void WriteLogEntry(LogEntry iLogEntry)
+        {
+            //FirstFloor.ModernUI.Windows.Controls.ModernDialog.ShowMessage(iLogEntry.ToString(), "Camera toggled", MessageBoxButton.OK);
+            //MessageBox.Show(iLogEntry.ToString());
         }
     }
 }

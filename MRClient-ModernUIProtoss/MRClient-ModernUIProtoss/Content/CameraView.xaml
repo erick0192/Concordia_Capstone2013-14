@@ -10,11 +10,12 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter" />
     </UserControl.Resources>
+    
     <Grid VerticalAlignment="Top" >
         
         <StackPanel HorizontalAlignment="Left" Width="320" Height="330" Margin="0" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="txtbViewName" Text="{Binding Path=Title, ElementName=camView}" Margin="10,0" Style="{StaticResource Heading2}"></TextBlock>
+                <TextBlock x:Name="txtbViewName" Text="{Binding Path=CameraName}" Margin="10,0" Style="{StaticResource Heading2}"></TextBlock>
                 <CheckBox x:Name="chkActive" Margin="5,0,0,0" Content="Active" IsChecked="{Binding Path=IsActive, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" HorizontalAlignment="Center" Width="300" Height="300" Margin="0,5,0,0">

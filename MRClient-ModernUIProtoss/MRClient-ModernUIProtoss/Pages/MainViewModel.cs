@@ -10,16 +10,21 @@ namespace MRClient_ModernUIProtoss.Pages
 {
     class MainViewModel
     {
+        #region Properties
+
         public CameraViewModel UpperLeftCameraVM;
         public CameraViewModel UpperRightCameraVM;
         public CameraViewModel LowerLeftCameraVM;
         public CameraViewModel LowerRightCameraVM;
 
+        #endregion
+
+        #region Commands
         private ICommand mToggleUpperLeftCam;
         private ICommand mToggleUpperRightCam;
         private ICommand mToggleLowerLeftCam;
-        private ICommand mToggleLowerRightCam;
-       
+        private ICommand mToggleLowerRightCam;        
+
         public ICommand ToggleUpperLeftCamera
         {
             get
@@ -76,22 +81,32 @@ namespace MRClient_ModernUIProtoss.Pages
             }
         }
 
+        #endregion
+
+        #region Constructor
+
         public MainViewModel()
         {
 
         }
 
-        public void MainIsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        #endregion
+
+        #region Event Handlers
+
+        public void MainIsVisibleChanged(object iSender, System.Windows.DependencyPropertyChangedEventArgs iEventArgs)
         {
-            if ((bool)e.NewValue == true)
+            if ((bool)iEventArgs.NewValue == true)
             {
                 System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 System.Windows.Threading.DispatcherPriority.ContextIdle,
                 new Action(delegate()
                 {
-                    ((Main)sender).Focus();
+                    ((Main)iSender).Focus();
                 }));
             }
-        }  
+        }
+
+        #endregion
     }
 }

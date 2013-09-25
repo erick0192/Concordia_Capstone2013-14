@@ -28,10 +28,10 @@
                         <ColumnDefinition Width="330"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     
-                    <controls:CameraView Grid.Column="0" Grid.Row="0" x:Name="camFront" Title="Front" />
-                    <controls:CameraView Grid.Column="1" Grid.Row="0" x:Name="camBack" Title="Back" />
-                    <controls:CameraView Grid.Column="0" Grid.Row="1" x:Name="camLeft" Title="Left" />
-                    <controls:CameraView Grid.Column="1" Grid.Row="1" x:Name="camRight" Title="Right" />
+                    <controls:CameraView Grid.Column="0" Grid.Row="0" x:Name="camFront"  />
+                    <controls:CameraView Grid.Column="1" Grid.Row="0" x:Name="camBack"  />
+                    <controls:CameraView Grid.Column="0" Grid.Row="1" x:Name="camLeft"  />
+                    <controls:CameraView Grid.Column="1" Grid.Row="1" x:Name="camRight"  />
                 </Grid>        
             </StackPanel>
             <StackPanel Orientation="Horizontal" Width="116" Margin="0,5,0,0">

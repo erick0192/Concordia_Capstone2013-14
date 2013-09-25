@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MRClient_ModernUIProtoss.Log;
 
 namespace MRClient_ModernUIProtoss
 {
@@ -13,5 +14,9 @@ namespace MRClient_ModernUIProtoss
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            ApplicationLogger.Instance.LogLevel = LogLevel.Debug;
+        }
     }
 }

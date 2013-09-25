@@ -4,12 +4,34 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using MRClient_ModernUIProtoss.Log;
 
 namespace MRClient_ModernUIProtoss.Content
 {
-    class CameraViewModel : INotifyPropertyChanged
+    class CameraViewModel : DependencyObject, INotifyPropertyChanged
     {
+        #region Properties
+        
+        public string CameraName { get; set; }
+
+        private bool mIsActive = true;
+        public bool IsActive
+        {
+            get { return mIsActive; }
+            set 
+            { 
+                mIsActive = value; 
+                OnPropertyChanged("IsActive");
+                ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsActive ? "actived": "de-activated"), LogLevel.Essential);
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
         private ICommand mToggleCamera;
         public ICommand ToggleCamera
         {
@@ -25,19 +47,29 @@ namespace MRClient_ModernUIProtoss.Content
             }
         }
 
-        public string CameraName { get; set; }
+        #endregion        
        
-        private bool mIsActive;
-        public bool IsActive
-        {
-            get { return mIsActive; }
-            set { mIsActive = value; OnPropertyChanged("IsActive"); }
-        }
+        #region Delegates and Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Constructor
 
         public CameraViewModel()
         {
-            IsActive = true;
+           
         }
+
+        public CameraViewModel(string iCameraName)
+        {
+            CameraName = iCameraName;
+        }
+
+        #endregion
+
+        #region Command Methods
 
         private bool CanToggleCamera() { return true; }
 
@@ -46,14 +78,18 @@ namespace MRClient_ModernUIProtoss.Content
             IsActive = !IsActive;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
-        protected void OnPropertyChanged(string propertyName)
+        #region Event Handlers
+
+        protected void OnPropertyChanged(string iPropertyName)
         {            
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(iPropertyName));
             }
         }
+
+        #endregion
     }
 }
