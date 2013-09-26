@@ -10,7 +10,7 @@ using MRClient_ModernUIProtoss.Log;
 
 namespace MRClient_ModernUIProtoss.Content
 {
-    class CameraViewModel : DependencyObject, INotifyPropertyChanged
+    class CameraViewModel : INotifyPropertyChanged
     {
         #region Properties
         

@@ -16,7 +16,20 @@ namespace MRClient_ModernUIProtoss
     {
         public App()
         {
-            ApplicationLogger.Instance.LogLevel = LogLevel.Debug;
+            Initialize();           
         }
+
+        private void Initialize()
+        {
+            ApplicationLogger.Instance.LogLevel = LogLevel.Debug;
+            ApplicationLogger.Instance.LogToDebugConsole = true;
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            ApplicationLogger.Instance.Log("Application started.", LogLevel.Info);
+        }
+
     }
 }

@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MRClient_ModernUIProtoss.Log
 {
-    public enum LogLevel
-    {
-        Critical = 0,
-        Essential = 1,
-        Information = 2,
-        Debug = 3
-    }
-
     public class ApplicationLogger
     {
         #region Private Members
@@ -25,7 +18,8 @@ namespace MRClient_ModernUIProtoss.Log
         #region Properties
 
         public LogLevel LogLevel { get; set; }
-        public bool LogToSystemConsole { get; set; }
+        public bool LogToDebugConsole { get; set; }
+        public ObservableCollection<LogEntry> LogList {get; private set;}
 
         public static ApplicationLogger Instance
         {
@@ -53,7 +47,8 @@ namespace MRClient_ModernUIProtoss.Log
         private ApplicationLogger()
         {
             LogLevel = LogLevel.Essential;
-            LogToSystemConsole = false;
+            LogToDebugConsole = false;
+            LogList = new ObservableCollection<LogEntry>();
         }
 
         #endregion
@@ -67,19 +62,25 @@ namespace MRClient_ModernUIProtoss.Log
             if (iLevel <= LogLevel)
             {
                 le = new LogEntry(iMessage, DateTime.Now, iLevel);
+                LogList.Insert(0,le); //Need to monitor performance of this. Might need to implement our own observable stack
                 if (LogEntryEvent != null)
                 {
                     //Fire event to notify a log entry has been made
                     LogEntryEvent(le);
                 }
 
-                if (LogToSystemConsole)
+                if(LogToDebugConsole)
                 {
-                    System.Console.WriteLine(le.ToString());
+                    System.Diagnostics.Debug.WriteLine(le.ToString());
                 }
             }
 
             return le;
+        }
+
+        public void ClearLog()
+        {
+            LogList.Clear();
         }
 
         #endregion

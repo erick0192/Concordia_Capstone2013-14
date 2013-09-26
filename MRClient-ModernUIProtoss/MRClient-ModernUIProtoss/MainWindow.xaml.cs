@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MRClient_ModernUIProtoss.Content;
+using MRClient_ModernUIProtoss.Log;
 
 namespace MRClient_ModernUIProtoss
 {
@@ -27,7 +29,7 @@ namespace MRClient_ModernUIProtoss
             InitializeComponent();
             FirstFloor.ModernUI.Presentation.AppearanceManager.Current.AccentColor = Color.FromRgb(0xa2, 0x00, 0x25);
 
-            DataContext = new MainWindowViewModel();
+            DataContext = new MainWindowViewModel();            
         }
 
         protected override void OnClosed(EventArgs e)

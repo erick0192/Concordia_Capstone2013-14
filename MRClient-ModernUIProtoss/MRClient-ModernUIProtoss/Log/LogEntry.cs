@@ -19,6 +19,13 @@ namespace MRClient_ModernUIProtoss.Log
             Level = iLevel;
         }
 
+        public LogEntry(string iMessage, LogLevel iLevel)
+        {
+            Message = iMessage;
+            Time = DateTime.Now;
+            Level = iLevel;
+        }
+
         public override string ToString()
         {
             string format = "dd/mm/yy HH:mm";
