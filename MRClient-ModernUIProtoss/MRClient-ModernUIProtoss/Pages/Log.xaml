@@ -5,18 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:controls="clr-namespace:MRClient_ModernUIProtoss.Content"
+             xmlns:log="clr-namespace:MRClient_ModernUIProtoss.Log"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300">
-    <Grid Style="{StaticResource ContentRoot}" >
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="logLevels" MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="log:LogLevel"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+        <Grid Style="{StaticResource ContentRoot}" >
         <ScrollViewer>
-            <StackPanel>                
-                <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="Log Levels" Style="{StaticResource Heading2}" Margin="0,0,20,0"></TextBlock>
-                    <CheckBox Content="Critical" Margin="0,0,20,0"  />
-                    <CheckBox Content="Essential" Margin="0,0,20,0"  />
-                    <CheckBox Content="Information" Margin="0,0,20,0"  />
-                    <CheckBox Content="Debug" Margin="0,0,20,0"  />
-                </StackPanel>
+            <StackPanel>
+                <DockPanel LastChildFill="True">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">                    
+                        <TextBlock Text="Filters" Style="{StaticResource Heading2}" Margin="0,0,20,0"></TextBlock>
+                        <CheckBox Content="Critical" Margin="0,0,20,0" x:Name="chkCritical" IsChecked="{Binding Path=LogListVM.CriticalFilterOn}"
+                                  Command="{Binding Path=LogListVM.ToggleCriticalFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkCritical}" />
+                        <CheckBox Content="Essential" Margin="0,0,20,0" x:Name="chkEssential" IsChecked="{Binding Path=LogListVM.EssentialFilterOn}"
+                                  Command="{Binding Path=LogListVM.ToggleEssentialFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkEssential}"/>
+                        <CheckBox Content="Info" Margin="0,0,20,0" x:Name="chkInfo" IsChecked="{Binding Path=LogListVM.InfoFilterOn}"
+                                  Command="{Binding Path=LogListVM.ToggleInfoFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkInfo}" />
+                        <CheckBox Content="Debug" Margin="0,0,20,0" x:Name="chkDebug" IsChecked="{Binding Path=LogListVM.DebugFilterOn}"
+                                  Command="{Binding Path=LogListVM.ToggleDebugFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkDebug}" />
+                    
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="50,0,20,0">                        
+                        <Button Command="{Binding Path=LogListVM.ClearLogCommand}">Clear Log</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" >
+                        <TextBlock Text="Log Level" Style="{StaticResource Heading2}" Margin="0,0,20,0" />
+                        <ComboBox ItemsSource="{Binding Source={StaticResource logLevels}}" SelectedItem="{Binding Path=LogLevel}"
+                            IsEditable="false" Margin="0,0,0,0" HorizontalAlignment="Left" MinWidth="100">
+                        </ComboBox>
+                    </StackPanel>
+                </DockPanel>
                 <controls:LogList x:Name="logList" Margin="0,20,0,0"></controls:LogList>
             </StackPanel>
         </ScrollViewer>

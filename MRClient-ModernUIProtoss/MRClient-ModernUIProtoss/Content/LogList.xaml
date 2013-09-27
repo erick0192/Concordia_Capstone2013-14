@@ -7,10 +7,7 @@
              mc:Ignorable="d" 
              >
     <Grid>
-        <ListView x:Name="logListView" Margin="0,0,0,0" ItemsSource="{Binding LogList, UpdateSourceTrigger=PropertyChanged}" IsTabStop="True" SourceUpdated="logListView_SourceUpdated" >
-            <ListView.Effect>
-                <DropShadowEffect/>
-            </ListView.Effect>
+        <ListView x:Name="logListView" Margin="0,0,0,0" ItemsSource="{Binding LogEntryFilteredList, UpdateSourceTrigger=PropertyChanged}" IsTabStop="True" >
             <ListView.View>
                 <GridView x:Name="logListGridView">
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time}" />                    

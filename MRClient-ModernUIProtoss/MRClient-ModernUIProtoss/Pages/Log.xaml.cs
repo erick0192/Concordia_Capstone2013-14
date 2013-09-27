@@ -20,7 +20,7 @@ namespace MRClient_ModernUIProtoss.Pages
     /// <summary>
     /// Interaction logic for Log.xaml
     /// </summary>
-    public partial class Log : UserControl, IContent
+    public partial class Log : UserControl
     {
         public Log()
         {
@@ -30,26 +30,6 @@ namespace MRClient_ModernUIProtoss.Pages
 
             lvm.LogListVM = new LogListViewModel();
             this.logList.DataContext = lvm.LogListVM;
-        }
-
-        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
-        {
-            // throw new NotImplementedException();
-        }
-
-        public void OnNavigatedTo(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
-        {
-            this.logList.UpdateColumnWidths();
-        }
-
-        public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
-        {
-            //throw new NotImplementedException();
         }
     }
 }

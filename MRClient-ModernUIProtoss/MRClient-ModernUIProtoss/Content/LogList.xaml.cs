@@ -25,9 +25,13 @@ namespace MRClient_ModernUIProtoss.Content
         {
             InitializeComponent();
             DataContext = new LogListViewModel();
+
+            //Need to resize list columns cause this is not done automatically
+            CollectionView myCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(this.logListView.Items);
+            ((System.Collections.Specialized.INotifyCollectionChanged)myCollectionView).CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(logListView_SourceUpdated);
         }
 
-        private void logListView_SourceUpdated(object sender, DataTransferEventArgs e)
+        private void logListView_SourceUpdated(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UpdateColumnWidths();
         }
