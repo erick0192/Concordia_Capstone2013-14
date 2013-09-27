@@ -28,6 +28,18 @@ namespace MRClient_ModernUIProtoss.Content
             }
         }
 
+        private bool mIsExpanded = false;
+        public bool IsExpanded
+        {
+            get { return mIsExpanded; }
+            protected set
+            {
+                mIsExpanded = value;
+                OnPropertyChanged("IsExpanded");
+                ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsExpanded ? "expanded" : "collapsed"), LogLevel.Debug);
+            }
+        }
+      
         #endregion
 
         #region Commands
@@ -44,6 +56,36 @@ namespace MRClient_ModernUIProtoss.Content
                         p => this.CanToggleCamera());
                 }
                 return mToggleCamera;
+            }
+        }
+
+        private ICommand mExpandViewCommand;
+        public ICommand ExpandViewCommand
+        {
+            get
+            {
+                if (mExpandViewCommand == null)
+                {
+                    mExpandViewCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => this.ExpandView(),
+                        p => this.CanExpandView());
+                }
+                return mExpandViewCommand;
+            }
+        }
+
+        private ICommand mCollapseViewCommand;
+        public ICommand CollapseViewCommand
+        {
+            get
+            {
+                if (mCollapseViewCommand == null)
+                {
+                    mCollapseViewCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => this.CollapseView(),
+                        p => this.CanCollapseView());
+                }
+                return mCollapseViewCommand;
             }
         }
 
@@ -64,7 +106,7 @@ namespace MRClient_ModernUIProtoss.Content
 
         public CameraViewModel(string iCameraName)
         {
-            CameraName = iCameraName;
+            CameraName = iCameraName;            
         }
 
         #endregion
@@ -72,10 +114,22 @@ namespace MRClient_ModernUIProtoss.Content
         #region Command Methods
 
         private bool CanToggleCamera() { return true; }
+        private bool CanExpandView() { return !IsExpanded; }
+        private bool CanCollapseView() { return IsExpanded; }
 
         private void ToggleCam()
         {            
             IsActive = !IsActive;
+        }
+
+        private void ExpandView()
+        {
+            IsExpanded = true;
+        }
+
+        private void CollapseView()
+        {
+            IsExpanded = false;
         }
 
         #endregion

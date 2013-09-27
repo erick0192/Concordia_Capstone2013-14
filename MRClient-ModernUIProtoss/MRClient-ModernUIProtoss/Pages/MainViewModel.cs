@@ -13,10 +13,12 @@ namespace MRClient_ModernUIProtoss.Pages
     {
         #region Properties
 
-        public CameraViewModel UpperLeftCameraVM;
-        public CameraViewModel UpperRightCameraVM;
-        public CameraViewModel LowerLeftCameraVM;
-        public CameraViewModel LowerRightCameraVM;
+        public CameraViewModel UpperLeftCameraVM { get; set; }
+        public CameraViewModel UpperRightCameraVM { get; set; }
+        public CameraViewModel LowerLeftCameraVM { get; set; }
+        public CameraViewModel LowerRightCameraVM { get; set; }
+
+        public bool IsViewExpanded { get; set; }
 
         #endregion
 
