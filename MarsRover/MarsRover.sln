@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstFloor.ModernUI", "C:\Users\Sako\Desktop\ModernUIExpander-master\FirstFloor.ModernUI\FirstFloor.ModernUI.csproj", "{9A653A28-FE46-40E8-A14F-48B0E325165D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstFloor.ModernUI", "FirstFloor.ModernUI\FirstFloor.ModernUI.csproj", "{9A653A28-FE46-40E8-A14F-48B0E325165D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverClient", "MarsRover\MarsRoverClient.csproj", "{5F2880E4-71BA-4B95-9A09-0368872DAEDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverClient", "MarsRoverClient\MarsRoverClient.csproj", "{5F2880E4-71BA-4B95-9A09-0368872DAEDA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9A653A28-FE46-40E8-A14F-48B0E325165D} = {9A653A28-FE46-40E8-A14F-48B0E325165D}
 	EndProjectSection
