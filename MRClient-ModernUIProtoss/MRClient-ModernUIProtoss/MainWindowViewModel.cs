@@ -7,10 +7,10 @@ using System.Windows;
 using System.Windows.Input;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
-using MRClient_ModernUIProtoss.Content;
-using MRClient_ModernUIProtoss.Log;
+using MarsRoverClient.Content;
+using MarsRoverClient.Log;
 
-namespace MRClient_ModernUIProtoss
+namespace MarsRoverClient
 {
     public class MainWindowViewModel
     {

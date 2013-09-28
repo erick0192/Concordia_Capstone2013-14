@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 
-namespace MRClient_ModernUIProtoss.Content
+namespace MarsRoverClient.Content
 {
     /// <summary>
     /// Interaction logic for LogList.xaml

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MRClient_ModernUIProtoss.Content;
-using MRClient_ModernUIProtoss.Log;
+using MarsRoverClient.Content;
+using MarsRoverClient.Log;
 
-namespace MRClient_ModernUIProtoss.Pages
+namespace MarsRoverClient.Pages
 {
     public class LogViewModel : INotifyPropertyChanged
     {

@@ -14,9 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
-using MRClient_ModernUIProtoss.Content;
+using MarsRoverClient.Content;
 
-namespace MRClient_ModernUIProtoss.Pages
+namespace MarsRoverClient.Pages
 {
     /// <summary>
     /// Interaction logic for Main.xaml

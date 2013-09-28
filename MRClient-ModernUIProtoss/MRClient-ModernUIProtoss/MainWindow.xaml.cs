@@ -13,10 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MRClient_ModernUIProtoss.Content;
-using MRClient_ModernUIProtoss.Log;
+using MarsRoverClient.Content;
+using MarsRoverClient.Log;
 
-namespace MRClient_ModernUIProtoss
+namespace MarsRoverClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

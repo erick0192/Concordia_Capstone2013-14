@@ -5,9 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MRClient_ModernUIProtoss.Log;
+using MarsRoverClient.Log;
 
-namespace MRClient_ModernUIProtoss
+namespace MarsRoverClient
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
-namespace MRClient_ModernUIProtoss.Content
+namespace MarsRoverClient.Content
 {    
     /// <summary>
     /// Interaction logic for CameraView.xaml

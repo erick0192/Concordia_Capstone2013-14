@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MRClient_ModernUIProtoss.Pages
+namespace MarsRoverClient.Pages
 {
     /// <summary>
     /// Interaction logic for Status.xaml

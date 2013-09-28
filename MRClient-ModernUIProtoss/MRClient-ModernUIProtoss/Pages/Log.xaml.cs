@@ -13,9 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
-using MRClient_ModernUIProtoss.Content;
+using MarsRoverClient.Content;
 
-namespace MRClient_ModernUIProtoss.Pages
+namespace MarsRoverClient.Pages
 {
     /// <summary>
     /// Interaction logic for Log.xaml

@@ -8,7 +8,7 @@
     <ProjectGuid>{5F2880E4-71BA-4B95-9A09-0368872DAEDA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MRClient_ModernUIProtoss</RootNamespace>
+    <RootNamespace>MarsRoverClient</RootNamespace>
     <AssemblyName>MRClient-ModernUIProtoss</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

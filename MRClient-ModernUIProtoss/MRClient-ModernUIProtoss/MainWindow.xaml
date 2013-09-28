@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" 
-    x:Class="MRClient_ModernUIProtoss.MainWindow"
+    x:Class="MarsRoverClient.MainWindow"
     Title="MRCC" IsTitleVisible="True" ContentSource="/Pages/Main.xaml" x:Name="MainWin"
     d:DesignWidth="1200" d:DesignHeight="900" Width="1200" Height="900">
     <mui:ModernWindow.InputBindings>

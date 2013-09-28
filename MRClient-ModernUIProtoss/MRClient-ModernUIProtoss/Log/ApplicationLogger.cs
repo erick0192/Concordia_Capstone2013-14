@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MRClient_ModernUIProtoss.Log
+namespace MarsRoverClient.Log
 {
     public class ApplicationLogger
     {

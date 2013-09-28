@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace MRClient_ModernUIProtoss.Content
+namespace MarsRoverClient.Content
 {
     /// <summary>
     /// A simple view model for configuring theme, font and accent colors.

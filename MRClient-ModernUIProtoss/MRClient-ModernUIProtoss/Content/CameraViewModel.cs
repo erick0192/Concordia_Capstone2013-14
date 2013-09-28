@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using MRClient_ModernUIProtoss.Log;
+using MarsRoverClient.Log;
 
-namespace MRClient_ModernUIProtoss.Content
+namespace MarsRoverClient.Content
 {
     class CameraViewModel : INotifyPropertyChanged
     {
