@@ -30,24 +30,24 @@ namespace MRClient_ModernUIProtoss.Pages
             DataContext = new MainViewModel();
 
             //Instantiate VM for camera views
-            CameraViewModel cvm = new CameraViewModel("Front");
+            CameraViewModel cvm = this.camFront.DataContext as CameraViewModel;
+            cvm.CameraName = "Front";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleFrontExpanded);
-            this.camFront.DataContext = cvm;
             ((MainViewModel)DataContext).UpperLeftCameraVM = cvm;
 
-            cvm = new CameraViewModel("Back");
+            cvm = this.camBack.DataContext as CameraViewModel;
+            cvm.CameraName = "Back";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleBackExpanded);
-            this.camBack.DataContext = cvm;
             ((MainViewModel)DataContext).UpperRightCameraVM =cvm;
 
-            cvm = new CameraViewModel("Left");
-            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleLeftExpanded);
-            this.camLeft.DataContext = cvm;
+            cvm = this.camLeft.DataContext as CameraViewModel;
+            cvm.CameraName = "Left";
+            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleLeftExpanded);            
             ((MainViewModel)DataContext).LowerLeftCameraVM = cvm;
 
-            cvm = new CameraViewModel("Right");
+            cvm = this.camRight.DataContext as CameraViewModel;
+            cvm.CameraName = "Right";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleRightExpanded);
-            this.camRight.DataContext = cvm;
             ((MainViewModel)DataContext).LowerRightCameraVM = cvm;
 
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);

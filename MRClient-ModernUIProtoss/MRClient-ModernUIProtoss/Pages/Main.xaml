@@ -9,10 +9,15 @@
              d:DesignWidth="1100" d:DesignHeight="800"
              Focusable="True" x:Name="MainPage">
     <UserControl.InputBindings>
-        <KeyBinding Key="D1" Command="{Binding ToggleUpperLeftCamera}" />
-        <KeyBinding Key="D2" Command="{Binding ToggleUpperRightCamera}" />
-        <KeyBinding Key="D3" Command="{Binding ToggleLowerLeftCamera}" />
-        <KeyBinding Key="D4" Command="{Binding ToggleLowerRightCamera}" />
+        <KeyBinding Key="D1" Modifiers="Control" Command="{Binding ToggleUpperLeftCamera}" />
+        <KeyBinding Key="D2" Modifiers="Control" Command="{Binding ToggleUpperRightCamera}" />
+        <KeyBinding Key="D3" Modifiers="Control" Command="{Binding ToggleLowerLeftCamera}" />
+        <KeyBinding Key="D4" Modifiers="Control" Command="{Binding ToggleLowerRightCamera}" />
+
+        <KeyBinding Key="D1" Modifiers="Alt" Command="{Binding ExpandCameraViewCommand}" CommandParameter="front"/>
+        <KeyBinding Key="D2" Modifiers="Alt" Command="{Binding ExpandCameraViewCommand}" CommandParameter="back"/>
+        <KeyBinding Key="D3" Modifiers="Alt" Command="{Binding ExpandCameraViewCommand}" CommandParameter="left"/>
+        <KeyBinding Key="D4" Modifiers="Alt" Command="{Binding ExpandCameraViewCommand}" CommandParameter="right"/>
     </UserControl.InputBindings>
     <Grid>
         <StackPanel Orientation="Horizontal" >

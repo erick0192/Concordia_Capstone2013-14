@@ -41,39 +41,70 @@ namespace MRClient_ModernUIProtoss.Content
             ControlExtraWidth = 10;
             
             InitializeComponent();
-            DataContext = new CameraViewModel("Camera");            
+            DataContext = new CameraViewModel("Camera");
+            ((CameraViewModel)DataContext).PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleViewExpanded);
+        }
+
+        private void HandleViewExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsExpanded")
+            {
+                if (((CameraViewModel)DataContext).IsExpanded)
+                {
+                    ExpandView();
+                }
+                else
+                {
+                    CollapseView();
+                }
+
+            }
         }
 
         private void btnCollapse_Click(object sender, RoutedEventArgs e)
         {
+           
             if (((CameraViewModel)DataContext).CollapseViewCommand.CanExecute(null))
             {
                 ((CameraViewModel)DataContext).CollapseViewCommand.Execute(null);
-                this.btnCollapse.Visibility = System.Windows.Visibility.Collapsed;
-                this.btnExpand.Visibility = System.Windows.Visibility.Visible;
-
-                this.Width = CollapsedWidth + ControlExtraWidth;
-                this.Height = CollapsedHeight + ControlExtraHeight;
-
-                this.panelStream.Width = CollapsedWidth;
-                this.panelStream.Height = CollapsedHeight;
+                CollapseView();
             }
+           
         }
 
         private void btnExpand_Click(object sender, RoutedEventArgs e)
         {
+           
             if (((CameraViewModel)DataContext).ExpandViewCommand.CanExecute(null))
             {
                 ((CameraViewModel)DataContext).ExpandViewCommand.Execute(null);
-                this.btnExpand.Visibility = System.Windows.Visibility.Collapsed;
-                this.btnCollapse.Visibility = System.Windows.Visibility.Visible;
-
-                this.Width = ExpandedWidth + ControlExtraWidth * 2;
-                this.Height = ExpandedHeight + ControlExtraHeight;
-
-                this.panelStream.Width = ExpandedWidth;
-                this.panelStream.Height = ExpandedHeight;
+                ExpandView();
             }
+            
+        }
+
+        private void ExpandView()
+        {
+            this.btnExpand.Visibility = System.Windows.Visibility.Collapsed;
+            this.btnCollapse.Visibility = System.Windows.Visibility.Visible;
+
+            this.Width = ExpandedWidth + ControlExtraWidth * 2;
+            this.Height = ExpandedHeight + ControlExtraHeight;
+
+            this.panelStream.Width = ExpandedWidth;
+            this.panelStream.Height = ExpandedHeight;
+        }
+
+        private void CollapseView()
+        {
+            this.btnCollapse.Visibility = System.Windows.Visibility.Collapsed;
+            this.btnExpand.Visibility = System.Windows.Visibility.Visible;
+
+            this.Width = CollapsedWidth + ControlExtraWidth;
+            this.Height = CollapsedHeight + ControlExtraHeight;
+
+            this.panelStream.Width = CollapsedWidth;
+            this.panelStream.Height = CollapsedHeight;
         }
           
     }

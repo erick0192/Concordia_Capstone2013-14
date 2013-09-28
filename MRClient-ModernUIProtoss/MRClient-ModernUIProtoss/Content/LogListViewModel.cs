@@ -57,7 +57,7 @@ namespace MRClient_ModernUIProtoss.Content
             }
         }
 
-        private bool mDebugFilterOn = true;
+        private bool mDebugFilterOn = false;
         public bool DebugFilterOn
         {
             get { return mDebugFilterOn; }

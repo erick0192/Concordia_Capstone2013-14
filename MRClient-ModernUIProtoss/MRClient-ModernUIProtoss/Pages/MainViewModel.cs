@@ -23,11 +23,8 @@ namespace MRClient_ModernUIProtoss.Pages
         #endregion
 
         #region Commands
-        private ICommand mToggleUpperLeftCam;
-        private ICommand mToggleUpperRightCam;
-        private ICommand mToggleLowerLeftCam;
-        private ICommand mToggleLowerRightCam;        
 
+        private ICommand mToggleUpperLeftCam;        
         public ICommand ToggleUpperLeftCamera
         {
             get
@@ -42,6 +39,7 @@ namespace MRClient_ModernUIProtoss.Pages
             }
         }
 
+        private ICommand mToggleUpperRightCam;
         public ICommand ToggleUpperRightCamera
         {
             get
@@ -56,6 +54,7 @@ namespace MRClient_ModernUIProtoss.Pages
             }
         }
 
+        private ICommand mToggleLowerLeftCam;
         public ICommand ToggleLowerLeftCamera
         {
             get
@@ -70,6 +69,7 @@ namespace MRClient_ModernUIProtoss.Pages
             }
         }
 
+        private ICommand mToggleLowerRightCam;        
         public ICommand ToggleLowerRightCamera
         {
             get
@@ -84,6 +84,21 @@ namespace MRClient_ModernUIProtoss.Pages
             }
         }
 
+        private ICommand mExpandCameraViewCommand;
+        public ICommand ExpandCameraViewCommand
+        {
+            get
+            {
+                if (mExpandCameraViewCommand == null)
+                {
+                    mExpandCameraViewCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => ExpandCameraView(p),
+                        p => CanExpandCameraView(p));
+                }
+                return mExpandCameraViewCommand;
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -94,6 +109,64 @@ namespace MRClient_ModernUIProtoss.Pages
         }
 
         #endregion
+
+        #region Command Methods
+
+        protected bool CanExpandCameraView(object iParam)
+        {
+            CameraViewModel cvm = null;
+            bool canExecute = false;
+
+            if ("front" == (string)iParam)
+            {
+                cvm = UpperLeftCameraVM;
+            }
+            else if ("back" == (string)iParam)
+            {
+                cvm = UpperRightCameraVM;
+            }
+            else if ("left" == (string)iParam)
+            {
+                cvm = LowerLeftCameraVM;
+            }
+            else if ("right" == (string)iParam)
+            {
+                cvm = LowerRightCameraVM;
+            }
+
+            canExecute = cvm.IsExpanded? cvm.CollapseViewCommand.CanExecute(null): cvm.ExpandViewCommand.CanExecute(null);
+
+            return canExecute;
+        }
+
+        protected void ExpandCameraView(object iParam)
+        {
+            CameraViewModel cvm = null ;
+
+            if ("front" == (string)iParam)
+            {
+                cvm = UpperLeftCameraVM;
+            }
+            else if ("back" == (string)iParam)
+            {
+                cvm = UpperRightCameraVM;
+            }
+            else if ("left" == (string)iParam)
+            {
+                cvm = LowerLeftCameraVM;
+            }
+            else if ("right" == (string)iParam)
+            {
+                cvm = LowerRightCameraVM;
+            }
+
+            if (cvm.IsExpanded)
+                cvm.CollapseViewCommand.Execute(null);
+            else
+                cvm.ExpandViewCommand.Execute(null);
+        }
+
+        #endregion 
 
         #region Event Handlers
 

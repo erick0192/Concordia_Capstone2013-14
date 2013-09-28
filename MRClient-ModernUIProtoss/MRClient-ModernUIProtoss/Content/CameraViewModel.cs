@@ -14,13 +14,13 @@ namespace MRClient_ModernUIProtoss.Content
     {
         #region Properties
         
-        public string CameraName { get; protected set; }
+        public string CameraName { get; set; }
 
         private bool mIsActive = true;
         public bool IsActive
         {
             get { return mIsActive; }
-            protected set 
+            set 
             { 
                 mIsActive = value; 
                 OnPropertyChanged("IsActive");
