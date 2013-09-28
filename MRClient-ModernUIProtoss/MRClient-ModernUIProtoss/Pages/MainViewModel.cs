@@ -18,69 +18,22 @@ namespace MRClient_ModernUIProtoss.Pages
         public CameraViewModel LowerLeftCameraVM { get; set; }
         public CameraViewModel LowerRightCameraVM { get; set; }
 
-        public bool IsViewExpanded { get; set; }
-
         #endregion
 
         #region Commands
 
-        private ICommand mToggleUpperLeftCam;        
-        public ICommand ToggleUpperLeftCamera
+        private ICommand mToggleCameraCommand;        
+        public ICommand ToggleCameraCommand
         {
             get
             {
-                if (mToggleUpperLeftCam == null)
+                if (mToggleCameraCommand == null)
                 {
-                    mToggleUpperLeftCam = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => this.UpperLeftCameraVM.ToggleCamera.Execute(null),
-                        p => this.UpperLeftCameraVM.ToggleCamera.CanExecute(null));
+                    mToggleCameraCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => this.ToggleCamera(p),
+                        p => this.CanToggleCamera(p));
                 }
-                return mToggleUpperLeftCam;
-            }
-        }
-
-        private ICommand mToggleUpperRightCam;
-        public ICommand ToggleUpperRightCamera
-        {
-            get
-            {
-                if (mToggleUpperRightCam == null)
-                {
-                    mToggleUpperRightCam = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => this.UpperRightCameraVM.ToggleCamera.Execute(null),
-                        p => this.UpperRightCameraVM.ToggleCamera.CanExecute(null));
-                }
-                return mToggleUpperRightCam;
-            }
-        }
-
-        private ICommand mToggleLowerLeftCam;
-        public ICommand ToggleLowerLeftCamera
-        {
-            get
-            {
-                if (mToggleLowerLeftCam == null)
-                {
-                    mToggleLowerLeftCam = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => this.LowerLeftCameraVM.ToggleCamera.Execute(null),
-                        p => this.LowerLeftCameraVM.ToggleCamera.CanExecute(null));
-                }
-                return mToggleLowerLeftCam;
-            }
-        }
-
-        private ICommand mToggleLowerRightCam;        
-        public ICommand ToggleLowerRightCamera
-        {
-            get
-            {
-                if (mToggleLowerRightCam == null)
-                {
-                    mToggleLowerRightCam = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                       p => this.LowerRightCameraVM.ToggleCamera.Execute(null),
-                        p => this.LowerRightCameraVM.ToggleCamera.CanExecute(null));
-                }
-                return mToggleLowerRightCam;
+                return mToggleCameraCommand;
             }
         }
 
@@ -111,6 +64,54 @@ namespace MRClient_ModernUIProtoss.Pages
         #endregion
 
         #region Command Methods
+
+        protected bool CanToggleCamera(object iParam)
+        {
+            CameraViewModel cvm = null;
+
+            if ("front" == (string)iParam)
+            {
+                cvm = UpperLeftCameraVM;
+            }
+            else if ("back" == (string)iParam)
+            {
+                cvm = UpperRightCameraVM;
+            }
+            else if ("left" == (string)iParam)
+            {
+                cvm = LowerLeftCameraVM;
+            }
+            else if ("right" == (string)iParam)
+            {
+                cvm = LowerRightCameraVM;
+            }
+
+            return cvm.ToggleCamera.CanExecute(null) ;
+        }
+
+        protected void ToggleCamera(object iParam)
+        {
+            CameraViewModel cvm = null;
+
+            if ("front" == (string)iParam)
+            {
+                cvm = UpperLeftCameraVM;
+            }
+            else if ("back" == (string)iParam)
+            {
+                cvm = UpperRightCameraVM;
+            }
+            else if ("left" == (string)iParam)
+            {
+                cvm = LowerLeftCameraVM;
+            }
+            else if ("right" == (string)iParam)
+            {
+                cvm = LowerRightCameraVM;
+            }
+
+            cvm.ToggleCamera.Execute(null);
+        }
 
         protected bool CanExpandCameraView(object iParam)
         {
@@ -161,9 +162,23 @@ namespace MRClient_ModernUIProtoss.Pages
             }
 
             if (cvm.IsExpanded)
+            {
                 cvm.CollapseViewCommand.Execute(null);
+            }
             else
+            {
+                //If another view is expanded, collapse it before expanding the desired one.
+                if (cvm != UpperLeftCameraVM && UpperLeftCameraVM.IsExpanded)
+                    UpperLeftCameraVM.CollapseViewCommand.Execute(null);
+                else if (cvm != UpperRightCameraVM && UpperRightCameraVM.IsExpanded)
+                    UpperRightCameraVM.CollapseViewCommand.Execute(null);
+                else if (cvm != LowerLeftCameraVM && LowerLeftCameraVM.IsExpanded)
+                    LowerLeftCameraVM.CollapseViewCommand.Execute(null);
+                else if (cvm != LowerRightCameraVM && LowerRightCameraVM.IsExpanded)
+                    LowerRightCameraVM.CollapseViewCommand.Execute(null);
+
                 cvm.ExpandViewCommand.Execute(null);
+            }
         }
 
         #endregion 
