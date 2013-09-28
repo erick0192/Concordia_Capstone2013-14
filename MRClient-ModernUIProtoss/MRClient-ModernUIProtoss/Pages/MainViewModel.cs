@@ -22,6 +22,7 @@ namespace MRClient_ModernUIProtoss.Pages
 
         #region Commands
 
+        //Command to hide and turn off / show and turn on camera
         private ICommand mToggleCameraCommand;        
         public ICommand ToggleCameraCommand
         {
