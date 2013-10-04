@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
+using MarsRover.Streams;
 using MarsRoverClient.Content;
 
 namespace MarsRoverClient.Pages
@@ -30,21 +31,25 @@ namespace MarsRoverClient.Pages
             DataContext = new MainViewModel();
 
             //Instantiate VM for camera views
+            WebCamStreamManager.Instance.GetFrontCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camFront.video_NewFrame);
             CameraViewModel cvm = this.camFront.DataContext as CameraViewModel;
             cvm.CameraName = "Front";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleFrontExpanded);
             ((MainViewModel)DataContext).UpperLeftCameraVM = cvm;
 
+            WebCamStreamManager.Instance.GetBackCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camBack.video_NewFrame);
             cvm = this.camBack.DataContext as CameraViewModel;
             cvm.CameraName = "Back";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleBackExpanded);
             ((MainViewModel)DataContext).UpperRightCameraVM =cvm;
 
+            WebCamStreamManager.Instance.GetLeftCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camLeft.video_NewFrame);
             cvm = this.camLeft.DataContext as CameraViewModel;
             cvm.CameraName = "Left";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleLeftExpanded);            
             ((MainViewModel)DataContext).LowerLeftCameraVM = cvm;
 
+            WebCamStreamManager.Instance.GetRightCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camRight.video_NewFrame);
             cvm = this.camRight.DataContext as CameraViewModel;
             cvm.CameraName = "Right";
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleRightExpanded);
@@ -52,6 +57,8 @@ namespace MarsRoverClient.Pages
 
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused
+
+            WebCamStreamManager.Instance.GetFrontCameraStream().Start();
         }
 
         private void HandleFrontExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)

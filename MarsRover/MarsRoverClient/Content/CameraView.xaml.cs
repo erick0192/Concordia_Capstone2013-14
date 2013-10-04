@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using AForge.Video;
+using MarsRover.Streams;
 
 namespace MarsRoverClient.Content
 {    
@@ -42,6 +48,7 @@ namespace MarsRoverClient.Content
             
             InitializeComponent();
             DataContext = new CameraViewModel("Camera");
+            
             ((CameraViewModel)DataContext).PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleViewExpanded);
         }
 
@@ -105,6 +112,31 @@ namespace MarsRoverClient.Content
 
             this.panelStream.Width = CollapsedWidth;
             this.panelStream.Height = CollapsedHeight;
+        }
+
+        public void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            try
+            {
+                System.Drawing.Image img = (Bitmap)eventArgs.Frame.Clone();
+
+                MemoryStream ms = new MemoryStream();
+                img.Save(ms, ImageFormat.Bmp);
+                ms.Seek(0, SeekOrigin.Begin);
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = ms;
+                bi.EndInit();
+
+                bi.Freeze();
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    this.camStream.Source = bi;
+                }));
+            }
+            catch (Exception ex)
+            {
+            }
         }
           
     }

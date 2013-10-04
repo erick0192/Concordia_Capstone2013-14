@@ -6,15 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using AForge.Video;
 using MarsRoverClient.Log;
 
 namespace MarsRoverClient.Content
 {
     class CameraViewModel : INotifyPropertyChanged
     {
+        private IVideoSource mSource;
+
         #region Properties
         
         public string CameraName { get; set; }
+        public bool IsLoading { get; set; }
 
         private bool mIsActive = true;
         public bool IsActive
@@ -106,7 +110,8 @@ namespace MarsRoverClient.Content
 
         public CameraViewModel(string iCameraName)
         {
-            CameraName = iCameraName;            
+            CameraName = iCameraName;
+            IsLoading = false;
         }
 
         #endregion
