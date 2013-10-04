@@ -233,6 +233,8 @@ namespace MarsRoverClient.Content
                 {
                     Image = bi;
                 }));
+                //Other method, however, if the application is called, exceptions are thrown due to aborting threads
+                //mUIFactory.StartNew(() => Image = bi).Wait();            
             }
             catch (Exception ex)
             {

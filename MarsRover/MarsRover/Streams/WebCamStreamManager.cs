@@ -80,7 +80,7 @@ namespace MarsRover.Streams
         {
             IVideoSource cam = GetFrontCameraStream();
             if (cam.IsRunning)
-                cam.Stop();
+                cam.SignalToStop();
         }
     }
 }
