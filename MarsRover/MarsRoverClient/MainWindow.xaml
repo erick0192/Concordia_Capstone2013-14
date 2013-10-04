@@ -10,10 +10,9 @@
     d:DesignWidth="1200" d:DesignHeight="900" Width="1200" Height="900">
     <mui:ModernWindow.InputBindings>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding GoToHomeCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
-        <KeyBinding Key="K" Modifiers="Control" Command="{Binding GoToStatusCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
         <KeyBinding Key="L" Modifiers="Control" Command="{Binding GoToLogCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
         <KeyBinding Key="T" Modifiers="Control" Command="{Binding GoToSettingsCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
-        <KeyBinding Key="F1" Command="{Binding GoToHelpCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
+        <KeyBinding Key="F12" Command="{Binding GoToHelpCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
     </mui:ModernWindow.InputBindings>
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="home">

@@ -29,6 +29,8 @@ namespace MarsRoverClient.Pages
 
             DataContext = new MainViewModel();
 
+            ((MainViewModel)DataContext).DockingManager = dockingManager;
+
             //Instantiate VM for camera views
             CameraViewModel cvm = this.camFront.DataContext as CameraViewModel;
             cvm.CameraName = "Front";

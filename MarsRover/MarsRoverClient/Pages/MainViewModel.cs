@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MarsRoverClient.Content;
 using MarsRoverClient.Log;
+using System.IO;
+using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
 namespace MarsRoverClient.Pages
 {
@@ -13,6 +15,7 @@ namespace MarsRoverClient.Pages
     {
         #region Properties
 
+        public Xceed.Wpf.AvalonDock.DockingManager DockingManager { get; set; }
         public CameraViewModel UpperLeftCameraVM { get; set; }
         public CameraViewModel UpperRightCameraVM { get; set; }
         public CameraViewModel LowerLeftCameraVM { get; set; }
@@ -50,6 +53,36 @@ namespace MarsRoverClient.Pages
                         p => CanExpandCameraView(p));
                 }
                 return mExpandCameraViewCommand;
+            }
+        }
+
+        private ICommand mLoadLayoutCommand;
+        public ICommand LoadLayoutCommand
+        {
+            get
+            {
+                if (mLoadLayoutCommand == null)
+                {
+                    mLoadLayoutCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => LoadLayout(p),
+                        p => CanLoadLayout(p));
+                }
+                return mLoadLayoutCommand;
+            }
+        }
+
+        private ICommand mSaveLayoutCommand;
+        public ICommand SaveLayoutCommand
+        {
+            get
+            {
+                if (mSaveLayoutCommand == null)
+                {
+                    mSaveLayoutCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => SaveLayout(p),
+                        p => CanSaveLayout(p));
+                }
+                return mSaveLayoutCommand;
             }
         }
 
@@ -180,6 +213,28 @@ namespace MarsRoverClient.Pages
 
                 cvm.ExpandViewCommand.Execute(null);
             }
+        }
+
+        protected bool CanLoadLayout(object iParam)
+        {
+            return File.Exists(@".\AvalonDock." + iParam + ".Layout.config");
+        }
+
+        protected void LoadLayout(object iParam)
+        {
+            var layoutSerializer = new XmlLayoutSerializer(DockingManager);
+            layoutSerializer.Deserialize(@".\AvalonDock." + iParam + ".Layout.config");
+        }
+
+        protected bool CanSaveLayout(object iParam)
+        {
+            return true;
+        }
+
+        protected void SaveLayout(object iParam)
+        {
+            var layoutSerializer = new XmlLayoutSerializer(DockingManager);
+            layoutSerializer.Serialize(@".\AvalonDock." + iParam + ".Layout.config");
         }
 
         #endregion 
