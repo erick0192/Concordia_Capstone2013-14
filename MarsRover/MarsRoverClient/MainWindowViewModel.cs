@@ -80,21 +80,6 @@ namespace MarsRoverClient
             }
         }
 
-        private ICommand mGoToStatusCommand;
-        public ICommand GoToStatusCommand
-        {
-            get
-            {
-                if (mGoToStatusCommand == null)
-                {
-                    mGoToStatusCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => this.GoToStatus(p),
-                        p => this.CanExecute(p));
-                }
-                return mGoToStatusCommand;
-            }
-        }
-
         #endregion
 
         #region Constructor
@@ -135,12 +120,6 @@ namespace MarsRoverClient
         {
             FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Log.xaml", UriKind.Relative);
-        }
-
-        private void GoToStatus(object iParam)
-        {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
-            mainWindow.ContentSource = new Uri(@"/Pages/Status.xaml", UriKind.Relative);
         }
 
         #endregion 

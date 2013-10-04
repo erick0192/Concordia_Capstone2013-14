@@ -19,7 +19,6 @@
         <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="home">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Home" Source="/Pages/Main.xaml" />
-                <mui:Link DisplayName="Status" Source="/Pages/Status.xaml" />
                 <mui:Link DisplayName="Log" Source="/Pages/Log.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
