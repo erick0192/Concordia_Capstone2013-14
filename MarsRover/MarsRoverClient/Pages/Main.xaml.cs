@@ -32,35 +32,35 @@ namespace MarsRoverClient.Pages
 
             ((MainViewModel)DataContext).DockingManager = dockingManager;
 
-            //Instantiate VM for camera views
-            WebCamStreamManager.Instance.GetFrontCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camFront.video_NewFrame);
+            //Instantiate VM for camera views            
             CameraViewModel cvm = this.camFront.DataContext as CameraViewModel;
             cvm.CameraName = "Front";
+            cvm.VideoSource = WebCamStreamManager.Instance.GetFrontCameraStream();
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleFrontExpanded);
             ((MainViewModel)DataContext).UpperLeftCameraVM = cvm;
-
-            WebCamStreamManager.Instance.GetBackCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camBack.video_NewFrame);
+            
             cvm = this.camBack.DataContext as CameraViewModel;
             cvm.CameraName = "Back";
+            cvm.VideoSource = WebCamStreamManager.Instance.GetBackCameraStream();
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleBackExpanded);
             ((MainViewModel)DataContext).UpperRightCameraVM =cvm;
-
-            WebCamStreamManager.Instance.GetLeftCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camLeft.video_NewFrame);
+            
             cvm = this.camLeft.DataContext as CameraViewModel;
             cvm.CameraName = "Left";
+            cvm.VideoSource = WebCamStreamManager.Instance.GetLeftCameraStream();
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleLeftExpanded);            
             ((MainViewModel)DataContext).LowerLeftCameraVM = cvm;
-
-            WebCamStreamManager.Instance.GetRightCameraStream().NewFrame += new AForge.Video.NewFrameEventHandler(this.camRight.video_NewFrame);
+            
             cvm = this.camRight.DataContext as CameraViewModel;
             cvm.CameraName = "Right";
+            cvm.VideoSource = WebCamStreamManager.Instance.GetRightCameraStream();
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleRightExpanded);
             ((MainViewModel)DataContext).LowerRightCameraVM = cvm;
 
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused
 
-            WebCamStreamManager.Instance.GetFrontCameraStream().Start();
+            //WebCamStreamManager.Instance.GetFrontCameraStream().Start();
         }
 
         private void HandleFrontExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)

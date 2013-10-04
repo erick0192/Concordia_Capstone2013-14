@@ -38,7 +38,7 @@ namespace MarsRoverClient.Content
         {
 
             CollapsedWidth = 300;
-            CollapsedHeight = 300;
+            CollapsedHeight = 200;
 
             ExpandedWidth = CollapsedWidth * 2;
             ExpandedHeight = CollapsedHeight * 2;
@@ -47,7 +47,7 @@ namespace MarsRoverClient.Content
             ControlExtraWidth = 10;
             
             InitializeComponent();
-            DataContext = new CameraViewModel("Camera");
+            DataContext = new CameraViewModel();
             
             ((CameraViewModel)DataContext).PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleViewExpanded);
         }
@@ -112,32 +112,6 @@ namespace MarsRoverClient.Content
 
             this.panelStream.Width = CollapsedWidth;
             this.panelStream.Height = CollapsedHeight;
-        }
-
-        public void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
-        {
-            try
-            {
-                System.Drawing.Image img = (Bitmap)eventArgs.Frame.Clone();
-
-                MemoryStream ms = new MemoryStream();
-                img.Save(ms, ImageFormat.Bmp);
-                ms.Seek(0, SeekOrigin.Begin);
-                BitmapImage bi = new BitmapImage();
-                bi.BeginInit();
-                bi.StreamSource = ms;
-                bi.EndInit();
-
-                bi.Freeze();
-                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                {
-                    this.camStream.Source = bi;
-                }));
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-          
+        }                  
     }
 }

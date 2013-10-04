@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using AForge.Video;
 using MarsRoverClient.Log;
 
@@ -13,23 +19,42 @@ namespace MarsRoverClient.Content
 {
     class CameraViewModel : INotifyPropertyChanged
     {
-        private IVideoSource mSource;
+        TaskFactory mUIFactory;
 
         #region Properties
         
         public string CameraName { get; set; }
-        public bool IsLoading { get; set; }
 
-        private bool mIsActive = true;
+        private BitmapImage mImage;
+        public BitmapImage Image 
+        {
+            get
+            {
+                return mImage;
+            }
+            set
+            {
+                mImage = value;
+                OnPropertyChanged("Image");
+            }
+        }
+
+        private bool mIsActive;
         public bool IsActive
         {
-            get { return mIsActive; }
-            set 
-            { 
-                mIsActive = value; 
-                OnPropertyChanged("IsActive");
-                ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsActive ? "actived": "de-activated"), LogLevel.Essential);
+            get 
+            {
+                if (null != mVideoSource)
+                    return mVideoSource.IsRunning;
+                else
+                    return false;
             }
+            //set 
+            //{ 
+            //    mIsActive = value; 
+            //    OnPropertyChanged("IsActive");
+            //    ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsActive ? "actived": "de-activated"), LogLevel.Essential);
+            //}
         }
 
         private bool mIsExpanded = false;
@@ -43,7 +68,29 @@ namespace MarsRoverClient.Content
                 ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsExpanded ? "expanded" : "collapsed"), LogLevel.Debug);
             }
         }
-      
+
+        private IVideoSource mVideoSource;
+        public IVideoSource VideoSource
+        {
+            get
+            {
+                return mVideoSource;
+            }
+            set
+            {
+                if (null != mVideoSource)
+                {
+                    mVideoSource.NewFrame -= new NewFrameEventHandler(HandleNewVideoFrame);
+                    mVideoSource.PlayingFinished -= new PlayingFinishedEventHandler(HandleFinishedPlaying);
+                }
+
+                mVideoSource = value;
+                mVideoSource.NewFrame += new NewFrameEventHandler(HandleNewVideoFrame);
+                mVideoSource.PlayingFinished += new PlayingFinishedEventHandler(HandleFinishedPlaying);
+                OnPropertyChanged("VideoSource");                
+            }
+        }
+        
         #endregion
 
         #region Commands
@@ -103,7 +150,7 @@ namespace MarsRoverClient.Content
 
         #region Constructor
 
-        public CameraViewModel()
+        public CameraViewModel() : this("Camera")
         {
            
         }
@@ -111,7 +158,8 @@ namespace MarsRoverClient.Content
         public CameraViewModel(string iCameraName)
         {
             CameraName = iCameraName;
-            IsLoading = false;
+            
+            mUIFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         #endregion
@@ -123,8 +171,20 @@ namespace MarsRoverClient.Content
         private bool CanCollapseView() { return IsExpanded; }
 
         private void ToggleCam()
-        {            
-            IsActive = !IsActive;
+        {
+            //if (mIsActive)
+            if(mVideoSource.IsRunning)
+            {
+                mVideoSource.SignalToStop();
+                //Image = null;
+            }
+            else
+            {             
+                mVideoSource.Start();
+            }
+           
+            //IsActive = !mIsActive;
+            
         }
 
         private void ExpandView()
@@ -141,6 +201,11 @@ namespace MarsRoverClient.Content
 
         #region Event Handlers
 
+        private void HandleFinishedPlaying(object sender, ReasonToFinishPlaying reason)
+        {
+            Image = null;
+        }
+
         protected void OnPropertyChanged(string iPropertyName)
         {            
             if (PropertyChanged != null)
@@ -149,6 +214,32 @@ namespace MarsRoverClient.Content
             }
         }
 
+        private void HandleNewVideoFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            try
+            {
+                System.Drawing.Image img = (Bitmap)eventArgs.Frame.Clone();
+
+                MemoryStream ms = new MemoryStream();
+                img.Save(ms, ImageFormat.Bmp);
+                ms.Seek(0, SeekOrigin.Begin);
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = ms;
+                bi.EndInit();
+
+                bi.Freeze();
+                App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    Image = bi;
+                }));
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
         #endregion
+
     }
 }

@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"             
-             mc:Ignorable="d" Width="310" Height="330" VerticalAlignment="Top" Margin="0,0,0,0"
+             mc:Ignorable="d" Width="310" Height="230" VerticalAlignment="Top" Margin="0,0,0,0"
              >
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter" />
@@ -25,11 +25,9 @@
             </DockPanel>
         
         <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" HorizontalAlignment="Center"  Margin="0,5,0,0">
-                <StackPanel x:Name="panelStream" MinWidth="300" MinHeight="300" >
-                    <ProgressBar x:Name="progLoading" Minimum="0" Maximum="1" Height="16" IsIndeterminate="True" Margin="5,5,5,10" VerticalAlignment="Center" 
-                    Visibility="{Binding Path=IsLoading, Converter={StaticResource  BoolVisibilityConverter}, Mode=TwoWay}"/>
-                    <Image x:Name="camStream" MinWidth="300" MinHeight="300"></Image>
-            </StackPanel>
+                <StackPanel x:Name="panelStream" MinWidth="300" MinHeight="200" >                   
+                    <Image x:Name="camStream" MinWidth="300" MinHeight="200" Source="{Binding Path=Image}"/>
+                </StackPanel>
         </Border>
         </StackPanel>
     </Grid>
