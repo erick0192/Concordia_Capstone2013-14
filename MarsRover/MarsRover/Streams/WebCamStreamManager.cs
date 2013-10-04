@@ -73,5 +73,14 @@ namespace MarsRover.Streams
             return GetFrontCameraStream();
             //return mRightCameraStream;
         }
+
+        //Make sure to call this method when the application is closing.
+        //Otherwise, streams will be left open and the appliction will not be shut down, even though the GUI has
+        public void StopAllStreams()
+        {
+            IVideoSource cam = GetFrontCameraStream();
+            if (cam.IsRunning)
+                cam.Stop();
+        }
     }
 }

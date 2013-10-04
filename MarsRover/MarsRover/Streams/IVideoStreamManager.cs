@@ -12,5 +12,6 @@ namespace MarsRover.Streams
         T GetBackCameraStream();
         T GetLeftCameraStream();
         T GetRightCameraStream();
+        void StopAllStreams();
     }
 }

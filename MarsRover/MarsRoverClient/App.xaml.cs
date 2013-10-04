@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using MarsRover.Streams;
 using MarsRoverClient.Log;
 
 namespace MarsRoverClient
@@ -31,5 +32,10 @@ namespace MarsRoverClient
             ApplicationLogger.Instance.Log("Application started.", LogLevel.Info);
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            WebCamStreamManager.Instance.StopAllStreams();
+            base.OnExit(e);
+        }
     }
 }

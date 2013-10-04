@@ -34,7 +34,7 @@ namespace MarsRoverClient
 
         protected override void OnClosed(EventArgs e)
         {
-            base.OnClosed(e);
+            base.OnClosed(e);            
             Application.Current.Shutdown();
         }
     }
