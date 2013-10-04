@@ -26,25 +26,29 @@
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutAnchorablePane DockWidth="6*">
                         <avalonDock:LayoutAnchorable Title="Camera Streams" CanHide="False" CanAutoHide="False" CanClose="False">
-                            <StackPanel x:Name="panelCameraStreams" Margin="0,0,20,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:CameraView x:Name="camFront" />
-                                    <controls:CameraView  x:Name="camBack"  />
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                <StackPanel x:Name="panelCameraStreams" Margin="0,0,20,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <controls:CameraView x:Name="camFront" />
+                                        <controls:CameraView  x:Name="camBack"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <controls:CameraView  x:Name="camLeft" />
+                                        <controls:CameraView  x:Name="camRight"  />
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:CameraView  x:Name="camLeft" />
-                                    <controls:CameraView  x:Name="camRight"  />
-                                </StackPanel>
-                            </StackPanel>
+                            </ScrollViewer>
                         </avalonDock:LayoutAnchorable>
                     </avalonDock:LayoutAnchorablePane>
 
                     <avalonDock:LayoutAnchorablePane DockWidth="4*">
-                        <avalonDock:LayoutAnchorable Title="Status" CanAutoHide="True" CanClose="False">
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                <TextBlock Text="Battery: " />
-                                <ProgressBar Minimum="0" Maximum="1" Value=".7" Height="16" IsIndeterminate="False" Margin="10,0,0,16" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                            </StackPanel>
+                        <avalonDock:LayoutAnchorable Title="Status" CanAutoHide="True" CanClose="False" CanHide="False">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <TextBlock Text="Battery: " />
+                                    <ProgressBar Minimum="0" Maximum="1" Value=".7" Height="16" IsIndeterminate="False" Margin="10,0,0,16" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                </StackPanel>
+                            </ScrollViewer>
                         </avalonDock:LayoutAnchorable>
                     </avalonDock:LayoutAnchorablePane>
                 </avalonDock:LayoutPanel>
