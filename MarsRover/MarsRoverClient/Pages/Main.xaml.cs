@@ -16,6 +16,7 @@ using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using MarsRover.Streams;
 using MarsRoverClient.Content;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace MarsRoverClient.Pages
 {
@@ -36,108 +37,28 @@ namespace MarsRoverClient.Pages
             CameraViewModel cvm = this.camFront.DataContext as CameraViewModel;
             cvm.CameraName = "Front";
             cvm.VideoSource = WebCamStreamManager.Instance.GetFrontCameraStream();
-            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleFrontExpanded);
             ((MainViewModel)DataContext).UpperLeftCameraVM = cvm;
             
             cvm = this.camBack.DataContext as CameraViewModel;
             cvm.CameraName = "Back";
             cvm.VideoSource = WebCamStreamManager.Instance.GetBackCameraStream();
-            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleBackExpanded);
             ((MainViewModel)DataContext).UpperRightCameraVM =cvm;
             
             cvm = this.camLeft.DataContext as CameraViewModel;
             cvm.CameraName = "Left";
-            cvm.VideoSource = WebCamStreamManager.Instance.GetLeftCameraStream();
-            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleLeftExpanded);            
+            cvm.VideoSource = WebCamStreamManager.Instance.GetLeftCameraStream();       
             ((MainViewModel)DataContext).LowerLeftCameraVM = cvm;
             
             cvm = this.camRight.DataContext as CameraViewModel;
             cvm.CameraName = "Right";
             cvm.VideoSource = WebCamStreamManager.Instance.GetRightCameraStream();
-            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(HandleRightExpanded);
             ((MainViewModel)DataContext).LowerRightCameraVM = cvm;
 
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
-            this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused
+            this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused    
 
-            //WebCamStreamManager.Instance.GetFrontCameraStream().Start();
-        }
-
-        private void HandleFrontExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsExpanded")
-            {
-                if (((MainViewModel)DataContext).UpperLeftCameraVM.IsExpanded)
-                {
-                    this.camBack.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camLeft.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camRight.Visibility = System.Windows.Visibility.Collapsed;
-                }
-                else
-                {
-                    this.camBack.Visibility = System.Windows.Visibility.Visible;
-                    this.camLeft.Visibility = System.Windows.Visibility.Visible;
-                    this.camRight.Visibility = System.Windows.Visibility.Visible;
-                }
-            }
-           
-        }
-
-        private void HandleBackExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsExpanded")
-            {
-                if (((MainViewModel)DataContext).UpperRightCameraVM.IsExpanded)
-                {
-                    this.camFront.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camLeft.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camRight.Visibility = System.Windows.Visibility.Collapsed;
-                }
-                else
-                {
-                    this.camFront.Visibility = System.Windows.Visibility.Visible;
-                    this.camLeft.Visibility = System.Windows.Visibility.Visible;
-                    this.camRight.Visibility = System.Windows.Visibility.Visible;
-                }
-            }
-        }
-
-        private void HandleLeftExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsExpanded")
-            {
-                if (((MainViewModel)DataContext).LowerLeftCameraVM.IsExpanded)
-                {
-                    this.camBack.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camFront.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camRight.Visibility = System.Windows.Visibility.Collapsed;
-                }
-                else
-                {
-                    this.camBack.Visibility = System.Windows.Visibility.Visible;
-                    this.camFront.Visibility = System.Windows.Visibility.Visible;
-                    this.camRight.Visibility = System.Windows.Visibility.Visible;
-                }
-            }
-        }
-
-        private void HandleRightExpanded(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsExpanded")
-            {
-                if (((MainViewModel)DataContext).LowerRightCameraVM.IsExpanded)
-                {
-                    this.camBack.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camLeft.Visibility = System.Windows.Visibility.Collapsed;
-                    this.camFront.Visibility = System.Windows.Visibility.Collapsed;
-                }
-                else
-                {
-                    this.camBack.Visibility = System.Windows.Visibility.Visible;
-                    this.camLeft.Visibility = System.Windows.Visibility.Visible;
-                    this.camFront.Visibility = System.Windows.Visibility.Visible;
-                }
-            }
-        }
+            this.layoutRightCam.Hide();
+            this.layoutLeftCam.Hide();
+        }       
     }
 }

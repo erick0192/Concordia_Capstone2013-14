@@ -19,7 +19,7 @@ namespace MarsRoverClient.Content
 {
     class CameraViewModel : INotifyPropertyChanged
     {
-        TaskFactory mUIFactory;
+        //TaskFactory mUIFactory;
 
         #region Properties
         
@@ -36,36 +36,6 @@ namespace MarsRoverClient.Content
             {
                 mImage = value;
                 OnPropertyChanged("Image");
-            }
-        }
-
-        private bool mIsActive;
-        public bool IsActive
-        {
-            get 
-            {
-                if (null != mVideoSource)
-                    return mVideoSource.IsRunning;
-                else
-                    return false;
-            }
-            //set 
-            //{ 
-            //    mIsActive = value; 
-            //    OnPropertyChanged("IsActive");
-            //    ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsActive ? "actived": "de-activated"), LogLevel.Essential);
-            //}
-        }
-
-        private bool mIsExpanded = false;
-        public bool IsExpanded
-        {
-            get { return mIsExpanded; }
-            protected set
-            {
-                mIsExpanded = value;
-                OnPropertyChanged("IsExpanded");
-                ApplicationLogger.Instance.Log(String.Format("Camera \"{0}\" has been {1}", CameraName, IsExpanded ? "expanded" : "collapsed"), LogLevel.Debug);
             }
         }
 
@@ -110,36 +80,6 @@ namespace MarsRoverClient.Content
             }
         }
 
-        private ICommand mExpandViewCommand;
-        public ICommand ExpandViewCommand
-        {
-            get
-            {
-                if (mExpandViewCommand == null)
-                {
-                    mExpandViewCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => this.ExpandView(),
-                        p => this.CanExpandView());
-                }
-                return mExpandViewCommand;
-            }
-        }
-
-        private ICommand mCollapseViewCommand;
-        public ICommand CollapseViewCommand
-        {
-            get
-            {
-                if (mCollapseViewCommand == null)
-                {
-                    mCollapseViewCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => this.CollapseView(),
-                        p => this.CanCollapseView());
-                }
-                return mCollapseViewCommand;
-            }
-        }
-
         #endregion        
        
         #region Delegates and Events
@@ -159,7 +99,7 @@ namespace MarsRoverClient.Content
         {
             CameraName = iCameraName;
             
-            mUIFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
+            //mUIFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         #endregion
@@ -167,8 +107,6 @@ namespace MarsRoverClient.Content
         #region Command Methods
 
         private bool CanToggleCamera() { return true; }
-        private bool CanExpandView() { return !IsExpanded; }
-        private bool CanCollapseView() { return IsExpanded; }
 
         private void ToggleCam()
         {
@@ -185,16 +123,6 @@ namespace MarsRoverClient.Content
            
             //IsActive = !mIsActive;
             
-        }
-
-        private void ExpandView()
-        {
-            IsExpanded = true;
-        }
-
-        private void CollapseView()
-        {
-            IsExpanded = false;
         }
 
         #endregion
@@ -233,11 +161,12 @@ namespace MarsRoverClient.Content
                 {
                     Image = bi;
                 }));
-                //Other method, however, if the application is called, exceptions are thrown due to aborting threads
+                //Other method, however, if the application is close, exceptions are thrown due to aborting threads
                 //mUIFactory.StartNew(() => Image = bi).Wait();            
             }
             catch (Exception ex)
             {
+
             }
         }
 

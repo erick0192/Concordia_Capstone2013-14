@@ -41,21 +41,6 @@ namespace MarsRoverClient.Pages
             }
         }
 
-        private ICommand mExpandCameraViewCommand;
-        public ICommand ExpandCameraViewCommand
-        {
-            get
-            {
-                if (mExpandCameraViewCommand == null)
-                {
-                    mExpandCameraViewCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
-                        p => ExpandCameraView(p),
-                        p => CanExpandCameraView(p));
-                }
-                return mExpandCameraViewCommand;
-            }
-        }
-
         private ICommand mLoadLayoutCommand;
         public ICommand LoadLayoutCommand
         {
@@ -92,7 +77,7 @@ namespace MarsRoverClient.Pages
 
         public MainViewModel()
         {
-            //ApplicationLogger.Instance.LogEntryEvent += new ApplicationLogger.LogEntryHandler(AddLogEntry);
+
         }
 
         #endregion
@@ -104,7 +89,7 @@ namespace MarsRoverClient.Pages
             CameraViewModel cvm = null;
 
             if ("front" == (string)iParam)
-            {
+            {                
                 cvm = UpperLeftCameraVM;
             }
             else if ("back" == (string)iParam)
@@ -145,74 +130,6 @@ namespace MarsRoverClient.Pages
             }
 
             cvm.ToggleCamera.Execute(null);
-        }
-
-        protected bool CanExpandCameraView(object iParam)
-        {
-            CameraViewModel cvm = null;
-            bool canExecute = false;
-
-            if ("front" == (string)iParam)
-            {
-                cvm = UpperLeftCameraVM;
-            }
-            else if ("back" == (string)iParam)
-            {
-                cvm = UpperRightCameraVM;
-            }
-            else if ("left" == (string)iParam)
-            {
-                cvm = LowerLeftCameraVM;
-            }
-            else if ("right" == (string)iParam)
-            {
-                cvm = LowerRightCameraVM;
-            }
-
-            canExecute = cvm.IsExpanded? cvm.CollapseViewCommand.CanExecute(null): cvm.ExpandViewCommand.CanExecute(null);
-
-            return canExecute;
-        }
-
-        protected void ExpandCameraView(object iParam)
-        {
-            CameraViewModel cvm = null ;
-
-            if ("front" == (string)iParam)
-            {
-                cvm = UpperLeftCameraVM;
-            }
-            else if ("back" == (string)iParam)
-            {
-                cvm = UpperRightCameraVM;
-            }
-            else if ("left" == (string)iParam)
-            {
-                cvm = LowerLeftCameraVM;
-            }
-            else if ("right" == (string)iParam)
-            {
-                cvm = LowerRightCameraVM;
-            }
-
-            if (cvm.IsExpanded)
-            {
-                cvm.CollapseViewCommand.Execute(null);
-            }
-            else
-            {
-                //If another view is expanded, collapse it before expanding the desired one.
-                if (cvm != UpperLeftCameraVM && UpperLeftCameraVM.IsExpanded)
-                    UpperLeftCameraVM.CollapseViewCommand.Execute(null);
-                else if (cvm != UpperRightCameraVM && UpperRightCameraVM.IsExpanded)
-                    UpperRightCameraVM.CollapseViewCommand.Execute(null);
-                else if (cvm != LowerLeftCameraVM && LowerLeftCameraVM.IsExpanded)
-                    LowerLeftCameraVM.CollapseViewCommand.Execute(null);
-                else if (cvm != LowerRightCameraVM && LowerRightCameraVM.IsExpanded)
-                    LowerRightCameraVM.CollapseViewCommand.Execute(null);
-
-                cvm.ExpandViewCommand.Execute(null);
-            }
         }
 
         protected bool CanLoadLayout(object iParam)
