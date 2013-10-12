@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:MarsRoverClient.Content"
              mc:Ignorable="d" 
              d:DesignWidth="1100" d:DesignHeight="800"
-             Focusable="True" x:Name="MainPage">
+             Focusable="True" x:Name="MainPage" Loaded="MainPage_Loaded">
     <UserControl.InputBindings>
         <KeyBinding Key="F1" Command="{Binding LoadLayoutCommand}" CommandParameter="F1"/>
         <KeyBinding Key="F2" Command="{Binding LoadLayoutCommand}" CommandParameter="F2"/>
@@ -36,28 +36,28 @@
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutPanel Orientation="Vertical" >
                         <avalonDock:LayoutAnchorablePane x:Name="paneFrontCam" >
-                                <avalonDock:LayoutAnchorable CanHide="True" CanAutoHide="False" CanClose="True" Title="Front">
+                            <avalonDock:LayoutAnchorable x:Name="layoutFrontCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Front">
                                     <StackPanel>
                                         <controls:CameraView x:Name="camFront" />
                                     </StackPanel>
                                 </avalonDock:LayoutAnchorable>
                             </avalonDock:LayoutAnchorablePane>
                             <avalonDock:LayoutAnchorablePane x:Name="paneBackCam" >
-                                <avalonDock:LayoutAnchorable CanHide="True" CanAutoHide="False" CanClose="True" Title="Back">
+                            <avalonDock:LayoutAnchorable x:Name="layoutBackCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Back">
                                     <StackPanel>
                                         <controls:CameraView  x:Name="camBack"  />
                                     </StackPanel>
                                 </avalonDock:LayoutAnchorable>
                             </avalonDock:LayoutAnchorablePane>
                         <avalonDock:LayoutAnchorablePane x:Name="paneLeftCam">
-                            <avalonDock:LayoutAnchorable x:Name="layoutLeftCam" CanHide="True" CanAutoHide="False" CanClose="True" Title="Left">
+                            <avalonDock:LayoutAnchorable x:Name="layoutLeftCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Left">
                                 <StackPanel>
                                     <controls:CameraView  x:Name="camLeft" />
                                 </StackPanel>
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>
                         <avalonDock:LayoutAnchorablePane x:Name="paneRightCam">
-                            <avalonDock:LayoutAnchorable x:Name="layoutRightCam" CanHide="True" CanAutoHide="False" CanClose="True" Title="Right">
+                            <avalonDock:LayoutAnchorable x:Name="layoutRightCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Right">
                                 <StackPanel>
                                     <controls:CameraView  x:Name="camRight"  />
                                 </StackPanel>

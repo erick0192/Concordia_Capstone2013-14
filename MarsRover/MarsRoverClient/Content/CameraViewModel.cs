@@ -25,6 +25,27 @@ namespace MarsRoverClient.Content
         
         public string CameraName { get; set; }
 
+        public bool mIsActive = false;
+        public bool IsActive
+        {
+            get
+            {
+                return mIsActive;
+                //if (null != mVideoSource)
+                //    return mVideoSource.IsRunning;
+                //else
+                //    return false;
+            }
+            set
+            {
+                mIsActive = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("IsActive"));
+                }
+            }
+        }
+
         private BitmapImage mImage;
         public BitmapImage Image 
         {
@@ -110,19 +131,16 @@ namespace MarsRoverClient.Content
 
         private void ToggleCam()
         {
-            //if (mIsActive)
             if(mVideoSource.IsRunning)
             {
                 mVideoSource.SignalToStop();
-                //Image = null;
+                IsActive = false;
             }
             else
             {             
                 mVideoSource.Start();
-            }
-           
-            //IsActive = !mIsActive;
-            
+                IsActive = true;
+            }          
         }
 
         #endregion
@@ -161,7 +179,7 @@ namespace MarsRoverClient.Content
                 {
                     Image = bi;
                 }));
-                //Other method, however, if the application is close, exceptions are thrown due to aborting threads
+                //Other method, however, if the application is closed, exceptions are thrown due to aborting threads
                 //mUIFactory.StartNew(() => Image = bi).Wait();            
             }
             catch (Exception ex)

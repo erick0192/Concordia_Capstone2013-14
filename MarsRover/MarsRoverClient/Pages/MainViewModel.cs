@@ -16,10 +16,10 @@ namespace MarsRoverClient.Pages
         #region Properties
 
         public Xceed.Wpf.AvalonDock.DockingManager DockingManager { get; set; }
-        public CameraViewModel UpperLeftCameraVM { get; set; }
-        public CameraViewModel UpperRightCameraVM { get; set; }
-        public CameraViewModel LowerLeftCameraVM { get; set; }
-        public CameraViewModel LowerRightCameraVM { get; set; }
+        public CameraViewModel VMFrontCamera { get; set; }
+        public CameraViewModel VMBackCamera { get; set; }
+        public CameraViewModel VMLeftCamera { get; set; }
+        public CameraViewModel VMRightCamera { get; set; }
 
         #endregion
 
@@ -90,19 +90,19 @@ namespace MarsRoverClient.Pages
 
             if ("front" == (string)iParam)
             {                
-                cvm = UpperLeftCameraVM;
+                cvm = VMFrontCamera;
             }
             else if ("back" == (string)iParam)
             {
-                cvm = UpperRightCameraVM;
+                cvm = VMBackCamera;
             }
             else if ("left" == (string)iParam)
             {
-                cvm = LowerLeftCameraVM;
+                cvm = VMLeftCamera;
             }
             else if ("right" == (string)iParam)
             {
-                cvm = LowerRightCameraVM;
+                cvm = VMRightCamera;
             }
 
             return cvm.ToggleCamera.CanExecute(null) ;
@@ -114,19 +114,19 @@ namespace MarsRoverClient.Pages
 
             if ("front" == (string)iParam)
             {
-                cvm = UpperLeftCameraVM;
+                cvm = VMFrontCamera;
             }
             else if ("back" == (string)iParam)
             {
-                cvm = UpperRightCameraVM;
+                cvm = VMBackCamera;
             }
             else if ("left" == (string)iParam)
             {
-                cvm = LowerLeftCameraVM;
+                cvm = VMLeftCamera;
             }
             else if ("right" == (string)iParam)
             {
-                cvm = LowerRightCameraVM;
+                cvm = VMRightCamera;
             }
 
             cvm.ToggleCamera.Execute(null);

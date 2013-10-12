@@ -55,32 +55,49 @@ namespace MarsRover.Streams
 
         public IVideoSource GetBackCameraStream()
         {
-            //For now we return the fron
-            return GetFrontCameraStream();
-            //return mBackCameraStream;
+            if (null == mBackCameraStream)
+            {
+                mBackCameraStream = new DummyVideoSource();
+            }
+
+            return mBackCameraStream;
         }
 
         public IVideoSource GetLeftCameraStream()
         {
-            //For now we return the fron
-            return GetFrontCameraStream();
-            //return mLeftCameraStream;
+            if (null == mLeftCameraStream)
+            {
+                mLeftCameraStream = new DummyVideoSource();
+            }
+
+            return mLeftCameraStream;
         }
 
         public IVideoSource GetRightCameraStream()
         {
-            //For now we return the fron
-            return GetFrontCameraStream();
-            //return mRightCameraStream;
+            if(null == mRightCameraStream)
+            {
+                mRightCameraStream = new DummyVideoSource();
+            }
+
+            return mRightCameraStream;
         }
 
         //Make sure to call this method when the application is closing.
         //Otherwise, streams will be left open and the appliction will not be shut down, even though the GUI has
         public void StopAllStreams()
         {
-            IVideoSource cam = GetFrontCameraStream();
-            if (cam.IsRunning)
-                cam.SignalToStop();
+            if (null != mFrontCameraStream && mFrontCameraStream.IsRunning)
+                mFrontCameraStream.SignalToStop();
+
+            if (null != mBackCameraStream && mBackCameraStream.IsRunning)
+                mBackCameraStream.SignalToStop();
+
+            if (null != mLeftCameraStream && mLeftCameraStream.IsRunning)
+                mLeftCameraStream.SignalToStop();
+
+            if (null != mRightCameraStream && mRightCameraStream.IsRunning)
+                mRightCameraStream.SignalToStop();
         }
     }
 }
