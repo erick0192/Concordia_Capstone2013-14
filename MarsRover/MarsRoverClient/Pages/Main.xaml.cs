@@ -45,7 +45,6 @@ namespace MarsRoverClient.Pages
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "Back";
             cvm.VideoSource = WebCamStreamManager.Instance.GetBackCameraStream();
-            cvm.VideoSource.Start();
             ((MainViewModel)DataContext).VMBackCamera = cvm;
             
             cvm = this.camLeft.DataContext as CameraViewModel;
@@ -64,8 +63,8 @@ namespace MarsRoverClient.Pages
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused    
 
             //Start or hide the cameras depending on configuration
-            ((MainViewModel)DataContext).VMFrontCamera.VideoSource.Start();
-            //this.layoutFrontCam.Hide();
+            //((MainViewModel)DataContext).VMFrontCamera.VideoSource.Start();
+            this.layoutFrontCam.Hide();
             ((MainViewModel)DataContext).VMBackCamera.VideoSource.Start();
             //this.layoutBackCam.Hide();
             this.layoutLeftCam.Hide();
