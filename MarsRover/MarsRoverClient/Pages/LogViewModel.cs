@@ -6,59 +6,52 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MarsRoverClient.Content;
+using NLog;
 using MarsRoverClient.Log;
+using System.Windows.Controls;
 
 namespace MarsRoverClient.Pages
 {
-    public class LogViewModel : INotifyPropertyChanged
+    public class LogViewModel : LogEventObserver
     {
         #region Properties
 
-        public LogListViewModel LogListVM { get; set; }
-        public LogLevel LogLevel 
-        {
-            get { return ApplicationLogger.Instance.LogLevel; }
-            protected set
-            { 
-                ApplicationLogger.Instance.LogLevel = (LogLevel)value;
-                OnPropertyChanged("LogLevel");
-                ApplicationLogger.Instance.Log(String.Format("Log Level has been changed to {0}", ApplicationLogger.Instance.LogLevel), LogLevel.Essential);
-            }
-        }
+        public System.Windows.Controls.ListView LogMessagesControl;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         #endregion
-        
+
         #region Commands
 
         #endregion
 
         #region Delegates and Events
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
         public LogViewModel()
         {
-            
+            LogEventSubject.Attach(this);
+            logger.Debug("LOL");
         }
 
         #region Command Methods
-        
+
 
         #endregion
 
-        #region Event Handlers
+        #region Methods
 
-        protected void OnPropertyChanged(string iPropertyName)
+        public void UpdateLogList(string longdate, string level, string callsite, string message)
         {
-            if (PropertyChanged != null)
+            if (LogMessagesControl != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(iPropertyName));
+                LogMessagesControl.Items.Add(new { Date = longdate, Level = level, Callsite = callsite, Message = message });
             }
         }
 
         #endregion
     }
-    
+
 }

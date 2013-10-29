@@ -5,39 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:controls="clr-namespace:MarsRoverClient.Content"
-             xmlns:log="clr-namespace:MarsRoverClient.Log"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="300">
     <UserControl.Resources>
-        <ObjectDataProvider x:Key="logLevels" MethodName="GetValues"
-                            ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="log:LogLevel"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
     </UserControl.Resources>
-        <Grid Style="{StaticResource ContentRoot}" >
+    <Grid Style="{StaticResource ContentRoot}" >
         <ScrollViewer>
             <StackPanel>
                 <DockPanel LastChildFill="True">
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">                    
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                         <TextBlock Text="Filters" Style="{StaticResource Heading2}" Margin="0,0,20,0"></TextBlock>
-                        <CheckBox Content="Critical" Margin="0,0,20,0" x:Name="chkCritical" IsChecked="{Binding Path=LogListVM.CriticalFilterOn}"
+                        <CheckBox Content="Info" Margin="0,0,20,0" x:Name="chkCritical"
                                   Command="{Binding Path=LogListVM.ToggleCriticalFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkCritical}" />
-                        <CheckBox Content="Essential" Margin="0,0,20,0" x:Name="chkEssential" IsChecked="{Binding Path=LogListVM.EssentialFilterOn}"
+                        <CheckBox Content="Warn" Margin="0,0,20,0" x:Name="chkEssential"
                                   Command="{Binding Path=LogListVM.ToggleEssentialFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkEssential}"/>
-                        <CheckBox Content="Info" Margin="0,0,20,0" x:Name="chkInfo" IsChecked="{Binding Path=LogListVM.InfoFilterOn}"
+                        <CheckBox Content="Trace" Margin="0,0,20,0" x:Name="chkInfo"
                                   Command="{Binding Path=LogListVM.ToggleInfoFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkInfo}" />
-                        <CheckBox Content="Debug" Margin="0,0,20,0" x:Name="chkDebug" IsChecked="{Binding Path=LogListVM.DebugFilterOn}"
+                        <CheckBox Content="Debug" Margin="0,0,20,0" x:Name="chkDebug"
                                   Command="{Binding Path=LogListVM.ToggleDebugFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkDebug}" />
-                    
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="50,0,20,0">                        
-                        <Button Command="{Binding Path=LogListVM.ClearLogCommand}">Clear Log</Button>
-                    </StackPanel>                   
+                    <StackPanel Orientation="Horizontal" Margin="50,0,20,0">
+                        <Button Command="">Clear Log</Button>
+                    </StackPanel>
                 </DockPanel>
-                <controls:LogList x:Name="logList" Margin="0,20,0,0"></controls:LogList>
+
+                <ListView x:Name="LogMessages">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"></GridViewColumn>
+                            <GridViewColumn Header="Level" DisplayMemberBinding="{Binding Level}"></GridViewColumn>
+                            <GridViewColumn Header="Callsite" DisplayMemberBinding="{Binding Callsite}"></GridViewColumn>
+                            <GridViewColumn Header="Message" DisplayMemberBinding="{Binding Message}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </ScrollViewer>
     </Grid>

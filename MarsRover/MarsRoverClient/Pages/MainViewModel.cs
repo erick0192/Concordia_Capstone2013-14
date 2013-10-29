@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MarsRoverClient.Content;
-using MarsRoverClient.Log;
 using System.IO;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
@@ -169,12 +168,6 @@ namespace MarsRoverClient.Pages
                     ((Main)iSender).Focus();
                 }));
             }
-        }
-
-        public void AddLogEntry(LogEntry iLogEntry)
-        {
-            //FirstFloor.ModernUI.Windows.Controls.ModernDialog.ShowMessage(iLogEntry.ToString(), "", System.Windows.MessageBoxButton.OK);
-            //System.Windows.MessageBox.Show(iLogEntry.ToString());
         }
 
         #endregion

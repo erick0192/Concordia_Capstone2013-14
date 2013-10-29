@@ -25,11 +25,10 @@ namespace MarsRoverClient.Pages
         public Log()
         {
             InitializeComponent();
-            LogViewModel lvm = new LogViewModel();            
+            LogViewModel lvm = new LogViewModel();
             DataContext = lvm;
 
-            lvm.LogListVM = new LogListViewModel();
-            this.logList.DataContext = lvm.LogListVM;
+            lvm.LogMessagesControl = this.LogMessages;
         }
     }
 }

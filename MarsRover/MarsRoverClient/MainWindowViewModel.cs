@@ -8,7 +8,7 @@ using System.Windows.Input;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using MarsRoverClient.Content;
-using MarsRoverClient.Log;
+using NLog;
 
 namespace MarsRoverClient
 {

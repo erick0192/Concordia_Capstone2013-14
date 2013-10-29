@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MarsRover.Streams;
-using MarsRoverClient.Log;
 
 namespace MarsRoverClient
 {
@@ -22,14 +21,11 @@ namespace MarsRoverClient
 
         private void Initialize()
         {
-            ApplicationLogger.Instance.LogLevel = LogLevel.Debug;
-            ApplicationLogger.Instance.LogToDebugConsole = true;
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            ApplicationLogger.Instance.Log("Application started.", LogLevel.Info);
         }
 
         protected override void OnExit(ExitEventArgs e)
