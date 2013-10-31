@@ -57,7 +57,8 @@ namespace MarsRover.Streams
         {
             if (null == mBackCameraStream)
             {
-                mBackCameraStream = new DummyVideoSource();
+                mBackCameraStream = new VideoCaptureDevice(
+                    mVideoDevices[1].MonikerString);
             }
 
             return mBackCameraStream;
