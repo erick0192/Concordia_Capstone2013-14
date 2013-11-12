@@ -148,7 +148,8 @@ namespace MarsRoverClient.Content
 
         private void HandleFinishedPlaying(object sender, ReasonToFinishPlaying reason)
         {
-            Image = null;
+            if(reason == ReasonToFinishPlaying.StoppedByUser)
+                Image = null;
         }
 
         protected void OnPropertyChanged(string iPropertyName)
