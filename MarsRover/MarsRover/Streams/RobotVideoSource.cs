@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AForge.Video;
+using NLog;
 
 namespace MarsRover.Streams
 {    
@@ -30,6 +31,7 @@ namespace MarsRover.Streams
         private List<byte[]> entireJPEG = new List<byte[]>();
 
         private bool listen = false;
+        private Logger logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -89,18 +91,49 @@ namespace MarsRover.Streams
             byte[] data = new byte[512];
             udp_ep = new IPEndPoint(IPAddress.Any, this.port);
             udpClient = new UdpClient(this.port);
-            listen = true;            
+            //udpClient.Connect(udp_ep);
+            listen = true;
 
-            while (listen)
+            try
             {
-                data = udpClient.Receive(ref udp_ep);
-                ReceiveData(data);
-            }
-            
-            if (PlayingFinished != null)
-                PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
+                while (listen)
+                {                  
+                    data = udpClient.Receive(ref udp_ep);
+                    bytesReceived += data.LongLength;
+                    ReceiveData(data);
+                }
 
-            isRunning = false;
+                if (PlayingFinished != null)
+                {
+                    PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
+                    //if (!listen)
+                    //{
+                    //    PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
+                    //}
+                    //else if (data.LongLength == 0)
+                    //{                        
+                    //    PlayingFinished(this, ReasonToFinishPlaying.DeviceLost);
+                    //    if (VideoSourceError != null)
+                    //    {
+                    //        VideoSourceError(this, new VideoSourceErrorEventArgs("Lost connection to UDP stream."));
+                    //    }
+                    //}
+                }
+            }
+            catch (SocketException se)
+            {
+                //Log error
+                logger.Log(LogLevel.Error, se.Message);
+                if (VideoSourceError != null)
+                {
+                    VideoSourceError(this, new VideoSourceErrorEventArgs(se.Message));
+                }
+            }
+            finally
+            {                
+                udpClient.Close();
+                isRunning = false;
+            }
         }
 
         private void ReceiveData(byte[] data)
@@ -148,7 +181,8 @@ namespace MarsRover.Streams
                     {
                         NewFrame(this, args);
                     }
-                   
+
+                    framesReceived++;
                     entireJPEG.Clear();      
                 }
 
