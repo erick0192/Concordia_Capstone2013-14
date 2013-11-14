@@ -17,23 +17,42 @@ namespace MarsRoverClient.Pages
         #region Properties
 
         public System.Windows.Controls.ListView LogMessagesControl;
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private Dictionary<string, bool> filteringList;
 
         #endregion
 
         #region Commands
 
+        private ICommand mToggleFilterCommand;
+        public ICommand ToggleFilterCommand
+        {
+            get
+            {
+                if (mToggleFilterCommand == null)
+                {
+                    mToggleFilterCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        c => this.ToggleFilter(c));
+                }
+                return mToggleFilterCommand;
+            }
+        }
+
         #endregion
 
         #region Delegates and Events
 
-
         #endregion
 
-        public LogViewModel()
+        public LogViewModel(Log view)
         {
-            LogEventSubject.Attach(this);
-            logger.Debug("LOL");
+            filteringList = new Dictionary<string, bool>(6);
+            filteringList["Trace"] = true;
+            filteringList["Debug"] = true;
+            filteringList["Info"] = true;
+            filteringList["Warn"] = true;
+            filteringList["Error"] = true;
+            filteringList["Fatal"] = true;
+            view.Loaded += view_Loaded;
         }
 
         #region Command Methods
@@ -43,12 +62,26 @@ namespace MarsRoverClient.Pages
 
         #region Methods
 
-        public void UpdateLogList(string longdate, string level, string callsite, string message)
+        public void RefreshLogList()
         {
-            if (LogMessagesControl != null)
-            {
-                LogMessagesControl.Items.Add(new { Date = longdate, Level = level, Callsite = callsite, Message = message });
-            }
+            ApplyFiltering();
+        }
+
+        private void ToggleFilter(object p)
+        {
+            CheckBox chk = (CheckBox)p;
+            filteringList[chk.Content.ToString()] = (bool)chk.IsChecked;
+            ApplyFiltering();
+        }
+
+        private void ApplyFiltering()
+        {
+            LogMessagesControl.ItemsSource = LogEventSubject.Events.Where(ev => filteringList[ev.Level]);
+        }
+
+        private void view_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            LogMessagesControl.ItemsSource = LogEventSubject.Events;
         }
 
         #endregion

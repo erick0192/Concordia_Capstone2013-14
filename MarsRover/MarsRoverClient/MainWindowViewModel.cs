@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
+using FirstFloor.ModernUI.Windows.Controls;
 using MarsRoverClient.Content;
 using NLog;
 
@@ -84,10 +85,7 @@ namespace MarsRoverClient
 
         #region Constructor
 
-        public MainWindowViewModel()
-        {
-            
-        }
+        public MainWindowViewModel() { }
 
         #endregion
 
@@ -100,25 +98,25 @@ namespace MarsRoverClient
 
         private void GoToHome(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
+            ModernWindow mainWindow = (ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Main.xaml", UriKind.Relative);                        
         }
 
         private void GoToSettings(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
+            ModernWindow mainWindow = (ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Settings.xaml", UriKind.Relative);
         }
 
         private void GoToHelp(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
+            ModernWindow mainWindow = (ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Help.xaml", UriKind.Relative);
         }
 
         private void GoToLog(object iParam)
         {
-            FirstFloor.ModernUI.Windows.Controls.ModernWindow mainWindow = (FirstFloor.ModernUI.Windows.Controls.ModernWindow)iParam;
+            ModernWindow mainWindow = (ModernWindow)iParam;
             mainWindow.ContentSource = new Uri(@"/Pages/Log.xaml", UriKind.Relative);
         }
 

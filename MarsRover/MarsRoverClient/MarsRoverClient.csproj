@@ -125,6 +125,7 @@
     <Compile Include="Content\GPSView.xaml.cs">
       <DependentUpon>GPSView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Log\LogEvent.cs" />
     <Compile Include="Log\LogEventObserver.cs" />
     <Compile Include="Log\LogEventSubject.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -182,6 +183,7 @@
   <ItemGroup>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

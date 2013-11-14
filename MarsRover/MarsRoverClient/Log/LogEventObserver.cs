@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MarsRoverClient.Log;
 
 namespace MarsRoverClient.Log
 {
     public interface LogEventObserver
     {
-        void UpdateLogList(string longdate, string level, string callsite, string message);
+        void RefreshLogList();
     }
 }

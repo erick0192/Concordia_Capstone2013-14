@@ -16,15 +16,15 @@
                 <DockPanel LastChildFill="True">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                         <TextBlock Text="Filters" Style="{StaticResource Heading2}" Margin="0,0,20,0"></TextBlock>
-                        <CheckBox Content="Info" Margin="0,0,20,0" x:Name="chkCritical"
-                                  Command="{Binding Path=LogListVM.ToggleCriticalFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkCritical}" />
-                        <CheckBox Content="Warn" Margin="0,0,20,0" x:Name="chkEssential"
-                                  Command="{Binding Path=LogListVM.ToggleEssentialFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkEssential}"/>
-                        <CheckBox Content="Trace" Margin="0,0,20,0" x:Name="chkInfo"
-                                  Command="{Binding Path=LogListVM.ToggleInfoFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkInfo}" />
-                        <CheckBox Content="Debug" Margin="0,0,20,0" x:Name="chkDebug"
-                                  Command="{Binding Path=LogListVM.ToggleDebugFilterCommand}" CommandParameter="{Binding Path=IsChecked, ElementName=chkDebug}" />
+                        
+                        <CheckBox Content="Trace" Margin="0,0,20,0" x:Name="chkTrace" Command="{Binding Path=ToggleFilterCommand}" CommandParameter="{Binding ElementName=chkTrace}" IsChecked="True" />
+                        <CheckBox Content="Debug" Margin="0,0,20,0" x:Name="chkDebug" Command="{Binding Path=ToggleFilterCommand}" CommandParameter="{Binding ElementName=chkDebug}" IsChecked="True" />
+                        <CheckBox Content="Info" Margin="0,0,20,0" x:Name="chkInfo" Command="{Binding Path=ToggleFilterCommand}" CommandParameter="{Binding ElementName=chkInfo}" IsChecked="True" />
+                        <CheckBox Content="Warn" Margin="0,0,20,0" x:Name="chkWarn" Command="{Binding Path=ToggleFilterCommand}" CommandParameter="{Binding ElementName=chkWarn}" IsChecked="True" />
+                        <CheckBox Content="Error" Margin="0,0,20,0" x:Name="chkError" Command="{Binding Path=ToggleFilterCommand}" CommandParameter="{Binding ElementName=chkError}" IsChecked="True" />
+                        <CheckBox Content="Fatal" Margin="0,0,20,0" x:Name="chkFatal" Command="{Binding Path=ToggleFilterCommand}" CommandParameter="{Binding ElementName=chkFatal}" IsChecked="True" />
                     </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal" Margin="50,0,20,0">
                         <Button Command="">Clear Log</Button>
                     </StackPanel>
