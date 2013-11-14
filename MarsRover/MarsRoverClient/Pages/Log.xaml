@@ -26,7 +26,7 @@
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal" Margin="50,0,20,0">
-                        <Button Command="">Clear Log</Button>
+                        <Button Command="{Binding Path=ClearLogCommand}">Clear Log</Button>
                     </StackPanel>
                 </DockPanel>
 

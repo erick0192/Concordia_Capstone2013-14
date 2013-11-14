@@ -9,7 +9,7 @@ namespace MarsRoverClient.Log
 {
     public class LogEventSubject
     {
-        public static ObservableCollection<LogEvent> Events;
+        public static ObservableCollection<LogEvent> Events = new ObservableCollection<LogEvent>();
         private static object _lock = new object();
         private static ArrayList observers = new ArrayList();
         private static bool Initialized { get; set; }
@@ -28,7 +28,6 @@ namespace MarsRoverClient.Log
         {
             if (!Initialized)
             {
-                Events = new ObservableCollection<LogEvent>();
                 BindingOperations.EnableCollectionSynchronization(Events, _lock);
                 Initialized = true;
             }
