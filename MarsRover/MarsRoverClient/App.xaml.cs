@@ -16,7 +16,7 @@ namespace MarsRoverClient
     {
         public App()
         {
-            Initialize();           
+            Initialize();
         }
 
         private void Initialize()
