@@ -21,8 +21,20 @@ namespace UDP_Receive
         static int commandSize;
         static void Main(string[] args)
         {
-            receiveThreadContinue = true;
             int port = 5000;
+            if (args.Length != 1 || (!(int.TryParse(args[0], out port))) )
+            {
+                Console.WriteLine("What're you doing? These are the arguments that need be passed:");
+                Console.WriteLine("1. Port (int)\n");
+                Console.WriteLine("Press enter to exit and try again (don't give up!)");
+                Console.ReadLine();
+
+                return;
+            }
+
+            
+            receiveThreadContinue = true;
+            
             udpEp = new IPEndPoint(IPAddress.Any, port);
 
             
