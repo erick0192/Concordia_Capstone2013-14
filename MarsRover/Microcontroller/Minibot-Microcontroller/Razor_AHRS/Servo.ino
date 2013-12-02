@@ -13,6 +13,8 @@ int yawMicrosec;
 int pitchMicrosec;
 int rollMicrosec;
 int stateTest = 1;
+int servoArmState = 2; // 1:Normal Arm Mode 2: Stabilization Mode
+
 unsigned long servoUpdateTiming = millis();
 
 void Servo_Init()
@@ -30,56 +32,30 @@ void Update_Servos()
    if((millis() - servoUpdateTiming) >= UPDATE_SERVO_INTERVAL)
    {
     servoUpdateTiming = millis();
-    /*
-    if (yaw < 0) yawMicrosec = 2100-(662*TO_DEG(yaw))/-179;
-    if (yaw >= 0) yawMicrosec = 775+(662*TO_DEG(yaw))/179;
-    if (pitch < 0) pitchMicrosec = 2100-(662*TO_DEG(pitch))/-90;
-    if (pitch >= 0) pitchMicrosec = 775+(662*TO_DEG(pitch))/90;
-    if (roll < 0) rollMicrosec = 2100-(662*TO_DEG(roll))/-179;
-    if (roll >= 0) rollMicrosec = 775+(662*TO_DEG(roll))/179;
-    */
-    
-    if (yaw < 0) yawMicrosec = map(TO_DEG(yaw),-90, -179,1437,2100);
+    if(servoArmState == 1)
+    {
+    if (yaw < 0) yawMicrosec = map(TO_DEG(yaw),-90, -179,2100,1437);
     if (yaw >= 0) yawMicrosec = map(TO_DEG(yaw),179, 90,1437,775);
     if (pitch < 0) pitchMicrosec = map(TO_DEG(pitch),0, -90,1437,775);
     if (pitch >= 0) pitchMicrosec = map(TO_DEG(pitch),0, 90,1437,2100);
     if (roll < 0) rollMicrosec = map(TO_DEG(roll),0, -90,1437,775);
     if (roll >= 0) rollMicrosec = map(TO_DEG(roll),0, 90,1437,2100);
-    
+    }
+    else if(servoArmState == 2)
+   {
+    if (yaw < 0) yawMicrosec = map(TO_DEG(yaw),-90, -179,775,1437);
+    if (yaw >= 0) yawMicrosec = map(TO_DEG(yaw),179,90,1437,2100);
+    if (pitch < 0) pitchMicrosec = map(TO_DEG(pitch),0, -90,1437,2100);
+    if (pitch >= 0) pitchMicrosec = map(TO_DEG(pitch),0, 90,1437,775);
+    if (roll < 0) rollMicrosec = map(TO_DEG(roll),0, -90,1437,2100);
+    if (roll >= 0) rollMicrosec = map(TO_DEG(roll),0, 90,1437,775);
+   } 
     yawServo.writeMicroseconds(yawMicrosec);
     pitchServo.writeMicroseconds(pitchMicrosec);
     rollServo.writeMicroseconds(rollMicrosec);
-/*    
-    yawMicrosec = 1500;
-    yawServo.writeMicroseconds(yawMicrosec);
-    if(yawMicrosec == 1500)
-    {
-      
-    }*/
-      /*
-        if(stateTest == 1)
-        {
-        yawServo.writeMicroseconds(900);
-        yawServo.writeMicroseconds(900);
-        yawServo.writeMicroseconds(900);
-        stateTest = 2;
-        }
-        if(stateTest == 2)
-        {
-        yawServo.writeMicroseconds(1200);
-        yawServo.writeMicroseconds(1200);
-        yawServo.writeMicroseconds(1200);
-        stateTest = 1;
-        }
-        servoUpdateTiming = millis();
-        */
-        servoUpdateTiming = millis();
+    servoUpdateTiming = millis();
    }
       Serial.println(yawMicrosec);
       Serial.println(pitchMicrosec);
       Serial.println(rollMicrosec);
-   /*
-   Serial.println("SERVO UPDATING...");
-   Serial.println(millis() - servoUpdateTiming);
-   */
 }
