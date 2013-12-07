@@ -62,8 +62,6 @@ namespace UDP_Send
             //setting up UDP client; UDP client sends to server
             udpClient = new UdpClient(serverIP, port);
 
-
-
             //---------------------
 
             Console.WriteLine("Press enter to stop the sending and see some stats\n");
