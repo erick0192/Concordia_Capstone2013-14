@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>18b84b56-9f9c-4af4-80e1-b11fac1e9eda</ProjectGuid>
+    <ProjectGuid>{BFE59B26-37FD-405A-B199-F4E2A3FE46B6}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TCP_UDP_client_server_test</RootNamespace>

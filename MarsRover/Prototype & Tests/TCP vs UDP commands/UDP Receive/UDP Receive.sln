@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDP Receive", "UDP Receive\UDP Receive.csproj", "{C68C486F-346F-4FB0-8EAC-086538A8B927}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCP_UDP_client_server_test", "..\TCP_UDP_client_server_test\TCP_UDP_client_server_test.csproj", "{BFE59B26-37FD-405A-B199-F4E2A3FE46B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{C68C486F-346F-4FB0-8EAC-086538A8B927}.Debug|x86.Build.0 = Debug|x86
 		{C68C486F-346F-4FB0-8EAC-086538A8B927}.Release|x86.ActiveCfg = Release|x86
 		{C68C486F-346F-4FB0-8EAC-086538A8B927}.Release|x86.Build.0 = Release|x86
+		{BFE59B26-37FD-405A-B199-F4E2A3FE46B6}.Debug|x86.ActiveCfg = Debug|x86
+		{BFE59B26-37FD-405A-B199-F4E2A3FE46B6}.Debug|x86.Build.0 = Debug|x86
+		{BFE59B26-37FD-405A-B199-F4E2A3FE46B6}.Release|x86.ActiveCfg = Release|x86
+		{BFE59B26-37FD-405A-B199-F4E2A3FE46B6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
