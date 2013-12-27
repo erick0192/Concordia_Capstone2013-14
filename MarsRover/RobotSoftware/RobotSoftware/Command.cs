@@ -7,7 +7,6 @@ namespace RobotSoftware
 {
     public interface ICommand
     {
-        //Todo: add error checking on string-based instantiation
 
         //Expected commands to be implemented:
         //Movement commands
@@ -21,10 +20,34 @@ namespace RobotSoftware
         void UnExecute();
     }
 
+    public class NullCommand : ICommand
+    {
+        public NullCommand(string unparsedText)
+        {
+            return; //do nothing
+        }
+
+        public NullCommand()
+        {
+            return;
+        }
+
+        public void Execute()
+        {
+            return;
+        }
+
+        public void UnExecute()
+        {
+            return;
+        }
+    }
 
     public class MovementCommand : ICommand
     {
-        //This class intentionally assumes that the caller will create a whole new command should they wish to send a new message command to the receiver
+        //Todo: add error checking on string-based instantiation
+        //It is assumed that new commands will be created each time rather than the caller re-using a previously existing one.
+
         private char rightDirection;
         private char leftDirection;
         private int rightSpeed;
