@@ -65,8 +65,8 @@ namespace MarsRoverClient.Pages
             //Start or hide the cameras depending on configuration
             //((MainViewModel)DataContext).VMFrontCamera.VideoSource.Start();
             this.layoutFrontCam.Hide();
-            ((MainViewModel)DataContext).VMBackCamera.VideoSource.Start();
-            //this.layoutBackCam.Hide();
+            //((MainViewModel)DataContext).VMBackCamera.VideoSource.Start();
+            this.layoutBackCam.Hide();
             this.layoutLeftCam.Hide();
             this.layoutRightCam.Hide();            
         }

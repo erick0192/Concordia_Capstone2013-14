@@ -89,7 +89,7 @@ namespace MarsRover.Streams
         private void StartListening()
         {
             byte[] data = new byte[512];
-            udp_ep = new IPEndPoint(IPAddress.Any, this.port);
+            udp_ep = new IPEndPoint(IPAddress.Parse("10.10.10.10"), this.port);
             udpClient = new UdpClient(this.port);
             //udpClient.Connect(udp_ep);
             listen = true;
@@ -106,18 +106,18 @@ namespace MarsRover.Streams
                 if (PlayingFinished != null)
                 {
                     PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
-                    //if (!listen)
-                    //{
-                    //    PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
-                    //}
-                    //else if (data.LongLength == 0)
-                    //{                        
-                    //    PlayingFinished(this, ReasonToFinishPlaying.DeviceLost);
-                    //    if (VideoSourceError != null)
-                    //    {
-                    //        VideoSourceError(this, new VideoSourceErrorEventArgs("Lost connection to UDP stream."));
-                    //    }
-                    //}
+                    if (!listen)
+                    {
+                        PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
+                    }
+                    else
+                    {
+                        PlayingFinished(this, ReasonToFinishPlaying.DeviceLost);
+                        if (VideoSourceError != null)
+                        {
+                            VideoSourceError(this, new VideoSourceErrorEventArgs("Lost connection to UDP stream."));
+                        }
+                    }
                 }
             }
             catch (SocketException se)

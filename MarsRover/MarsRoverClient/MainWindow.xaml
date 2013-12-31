@@ -15,20 +15,20 @@
         <KeyBinding Key="F12" Command="{Binding GoToHelpCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
     </mui:ModernWindow.InputBindings>
     <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="home">
+        <mui:LinkGroup DisplayName="Home" GroupName="home">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Home" Source="/Pages/Main.xaml" />
+                <mui:Link DisplayName="Main" Source="/Pages/Main.xaml" />
                 <mui:Link DisplayName="Log" Source="/Pages/Log.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="settings">
+        <mui:LinkGroup DisplayName="Settings" GroupName="settings">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="settings" Source="/Pages/Settings.xaml" />
+                <mui:Link DisplayName="" Source="/Pages/Settings.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Mars Rover Control Center" GroupName="help">
+        <mui:LinkGroup DisplayName="Help" GroupName="help">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="help" Source="/Pages/Help.xaml" />
+                <mui:Link DisplayName="" Source="/Pages/Help.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>

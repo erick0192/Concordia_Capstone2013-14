@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Content\KeyboardShortcuts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,6 +137,10 @@
     <Compile Include="Content\GPSView.xaml.cs">
       <DependentUpon>GPSView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\KeyboardShortcuts.xaml.cs">
+      <DependentUpon>KeyboardShortcuts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\KeyboardShortcutsViewModel.cs" />
     <Compile Include="Gamepad\GamepadController.cs" />
     <Compile Include="Log\LogEvent.cs" />
     <Compile Include="Log\LogEventObserver.cs" />

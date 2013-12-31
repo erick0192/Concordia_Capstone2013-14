@@ -58,7 +58,8 @@ namespace MarsRover.Streams
             if (null == mBackCameraStream)
             {
                 //mBackCameraStream = new VideoCaptureDevice(mVideoDevices[1].MonikerString);
-                mBackCameraStream = new DummyVideoSource();
+                //mBackCameraStream = new DummyVideoSource();
+                mBackCameraStream = new RobotVideoSource(5001);
             }
 
             return mBackCameraStream;
@@ -68,7 +69,8 @@ namespace MarsRover.Streams
         {
             if (null == mLeftCameraStream)
             {
-                mLeftCameraStream = new DummyVideoSource();
+                //mLeftCameraStream = new DummyVideoSource();
+                mLeftCameraStream = new RobotVideoSource(5002);
             }
 
             return mLeftCameraStream;
