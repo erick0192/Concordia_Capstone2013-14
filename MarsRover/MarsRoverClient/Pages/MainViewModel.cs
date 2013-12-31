@@ -10,7 +10,7 @@ using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
 namespace MarsRoverClient.Pages
 {
-    class MainViewModel
+    public class MainViewModel
     {
         #region Properties
 

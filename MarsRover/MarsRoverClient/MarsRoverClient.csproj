@@ -126,6 +126,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Content\MotorStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\MotorsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -141,6 +149,14 @@
       <DependentUpon>KeyboardShortcuts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\KeyboardShortcutsViewModel.cs" />
+    <Compile Include="Content\MotorStatusView.xaml.cs">
+      <DependentUpon>MotorStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\MotorStatusViewModel.cs" />
+    <Compile Include="Content\MotorsView.xaml.cs">
+      <DependentUpon>MotorsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\MotorsViewModel.cs" />
     <Compile Include="Gamepad\GamepadController.cs" />
     <Compile Include="Log\LogEvent.cs" />
     <Compile Include="Log\LogEventObserver.cs" />

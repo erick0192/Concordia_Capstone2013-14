@@ -16,7 +16,7 @@ using AForge.Video;
 
 namespace MarsRoverClient.Content
 {
-    class CameraViewModel : INotifyPropertyChanged
+    public class CameraViewModel : INotifyPropertyChanged
     {
         //TaskFactory mUIFactory;
 
@@ -55,7 +55,10 @@ namespace MarsRoverClient.Content
             set
             {
                 mImage = value;
-                OnPropertyChanged("Image");
+                if (PropertyChanged != null)
+                {
+                    OnPropertyChanged("Image");
+                }
             }
         }
 
@@ -77,7 +80,10 @@ namespace MarsRoverClient.Content
                 mVideoSource = value;
                 mVideoSource.NewFrame += new NewFrameEventHandler(HandleNewVideoFrame);
                 mVideoSource.PlayingFinished += new PlayingFinishedEventHandler(HandleFinishedPlaying);
-                OnPropertyChanged("VideoSource");                
+                if (PropertyChanged != null)
+                {
+                    OnPropertyChanged("VideoSource");
+                }
             }
         }
         
