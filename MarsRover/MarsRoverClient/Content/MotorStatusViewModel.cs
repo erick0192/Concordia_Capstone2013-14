@@ -40,6 +40,10 @@ namespace MarsRoverClient.Content
             }
         }
 
+        public int Current { get { return Motor.Current; } }
+        public int Temperature { get { return Motor.Temperature; } }
+        
+
         #endregion
 
         #region Delegates and Events
@@ -54,6 +58,7 @@ namespace MarsRoverClient.Content
         {
             title = "";
             motorKey = motorKeyString;
+            motor = new Motor();
             StatusUpdater.Instance.MotorsStatusUpdated += new StatusUpdater.MotorsStatusUpdatedEventHandler(UpdateMotor);
         }
 
