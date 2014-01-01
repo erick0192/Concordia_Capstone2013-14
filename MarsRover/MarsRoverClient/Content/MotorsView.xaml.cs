@@ -25,10 +25,10 @@ namespace MarsRoverClient.Content
             InitializeComponent();
 
             var mvm = new MotorsViewModel();
-            FrontLeftMotor.DataContext = new MotorStatusViewModel("FrontLeft") { Title = "Front Left" };
-            FrontRightMotor.DataContext = new MotorStatusViewModel("FrontRight") { Title = "Front Right" };
-            BackLeftMotor.DataContext = new MotorStatusViewModel("BackLeft") { Title = "Back Left" };
-            BackRightMotor.DataContext = new MotorStatusViewModel("BackRight") { Title = "Back Right" };
+            FrontLeftMotor.DataContext = new MotorStatusViewModel("FrontLeft");
+            FrontRightMotor.DataContext = new MotorStatusViewModel("FrontRight");
+            BackLeftMotor.DataContext = new MotorStatusViewModel("BackLeft");
+            BackRightMotor.DataContext = new MotorStatusViewModel("BackRight");
         }
     }
 }

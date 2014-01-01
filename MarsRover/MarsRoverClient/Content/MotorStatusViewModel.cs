@@ -52,7 +52,7 @@ namespace MarsRoverClient.Content
 
         public MotorStatusViewModel(String motorKeyString)
         {
-            title = "Motor";
+            title = "";
             motorKey = motorKeyString;
             StatusUpdater.Instance.MotorsStatusUpdated += new StatusUpdater.MotorsStatusUpdatedEventHandler(UpdateMotor);
         }

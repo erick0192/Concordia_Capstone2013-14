@@ -8,12 +8,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-            <controls:MotorStatusView x:Name="FrontLeftMotor"/>
-            <controls:MotorStatusView x:Name="FrontRightMotor"/>
+            <controls:MotorStatusView x:Name="FrontLeftMotor" Margin="10,0,10,10" />
+            <controls:MotorStatusView x:Name="FrontRightMotor" Margin="0,0,10,10"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <controls:MotorStatusView x:Name="BackLeftMotor"/>
-            <controls:MotorStatusView x:Name="BackRightMotor"/>
+            <controls:MotorStatusView x:Name="BackLeftMotor" Margin="10,0,10,10"/>
+            <controls:MotorStatusView x:Name="BackRightMotor" Margin="0,0,10,10"/>
         </StackPanel>
     </DockPanel>
 </UserControl>

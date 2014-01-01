@@ -4,10 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <TextBlock Name="Title" Text="{Binding Title}"/>
-        <TextBlock Name="Current" Text="{Binding Motor.Current}"/>
-        <TextBlock Name="Temperature" Text="{Binding Motor.Temperature}"/>
+             d:DesignHeight="300" d:DesignWidth="300" FontSize="14">
+    <StackPanel>        
+        <StackPanel Orientation="Horizontal">
+            <Image Source="../Assets/icons/mechanicalwheel.png" Width="64" Height="64" HorizontalAlignment="Left"/>        
+            <StackPanel Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Current: "/>
+                    <TextBlock Name="Current" Text="23"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Temperature: "/>
+                    <TextBlock Name="Temperature" Text="15"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
