@@ -21,6 +21,7 @@ namespace MarsRoverClient
 
         private void Initialize()
         {
+            StatusUpdater.Instance.StartUpdating();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -31,7 +32,9 @@ namespace MarsRoverClient
         protected override void OnExit(ExitEventArgs e)
         {
             WebCamStreamManager.Instance.StopAllStreams();
+            StatusUpdater.Instance.StopUpdating();
             base.OnExit(e);
         }
+
     }
 }

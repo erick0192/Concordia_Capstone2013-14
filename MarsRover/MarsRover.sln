@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRover", "MarsRover\MarsRover.csproj", "{CAC3EDAA-C9D0-4E7C-849A-D86B81E545DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverServer", "MarsRoverServer\MarsRoverServer.csproj", "{339AB271-4275-4380-B1D3-6B0907928456}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CAC3EDAA-C9D0-4E7C-849A-D86B81E545DA} = {CAC3EDAA-C9D0-4E7C-849A-D86B81E545DA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

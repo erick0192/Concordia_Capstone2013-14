@@ -23,9 +23,9 @@ namespace MarsRover
 
         #region Constructor
 
-        public Battery()
+        public Battery(int maxCharge)
         {
-            
+            MaxCharge = maxCharge;
         }
 
         #endregion
