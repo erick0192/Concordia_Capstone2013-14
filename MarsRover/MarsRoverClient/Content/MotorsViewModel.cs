@@ -8,5 +8,6 @@ namespace MarsRoverClient.Content
 {
     public class MotorsViewModel
     {
+
     }
 }

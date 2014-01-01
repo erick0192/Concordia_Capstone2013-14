@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MarsRover;
 
 namespace MarsRoverClient.Content
 {
     public class MotorStatusViewModel: INotifyPropertyChanged
     {
+        private String motorKey;
+        
         #region Properties
 
         private String title;
@@ -27,11 +30,49 @@ namespace MarsRoverClient.Content
                 }
             }
         }
+
+        private Motor motor;
+        public Motor Motor
+        {
+            get
+            {
+                return motor;
+            }
+        }
+
         #endregion
 
         #region Delegates and Events
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Constructor
+
+        public MotorStatusViewModel(String motorKeyString)
+        {
+            title = "Motor";
+            motorKey = motorKeyString;
+            StatusUpdater.Instance.MotorsStatusUpdated += new StatusUpdater.MotorsStatusUpdatedEventHandler(UpdateMotor);
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void UpdateMotor(Dictionary<String, Motor> motors)
+        {
+            Motor m = motors[motorKey];
+            motor.Current = m.Current;
+            motor.Temperature = m.Temperature;
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("Motor"));
+                //, UpdateSourceTrigger=PropertyChanged
+            }
+        }
 
         #endregion
     }     

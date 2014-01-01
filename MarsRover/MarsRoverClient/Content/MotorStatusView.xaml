@@ -7,5 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <TextBlock Name="Title" Text="{Binding Title}"/>
+        <TextBlock Name="Current" Text="{Binding Motor.Current}"/>
+        <TextBlock Name="Temperature" Text="{Binding Motor.Temperature}"/>
     </StackPanel>
 </UserControl>

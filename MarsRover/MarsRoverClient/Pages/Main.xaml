@@ -75,13 +75,18 @@
                     </avalonDock:LayoutPanel>
 
                     <avalonDock:LayoutAnchorablePane x:Name="paneStatus">
-                        <avalonDock:LayoutAnchorable Title="Status" CanAutoHide="False" CanClose="False" CanHide="False" CanFloat="False">
-                            <Expander Style="{DynamicResource MuiExpander}" Header="Status">                                                            
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Battery: (70%)" />
-                                <ProgressBar Minimum="0" Maximum="1" Value=".7" Height="16" IsIndeterminate="False" Margin="10,0,0,16" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <avalonDock:LayoutAnchorable CanAutoHide="False" CanClose="False" CanHide="False" CanFloat="False">
+                            <StackPanel>
+                                <Expander Style="{DynamicResource MuiExpander}" Header="Motors">
+                                    <controls:MotorsView />
+                                </Expander>
+                                <Expander Style="{DynamicResource MuiExpander}" Header="Status">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Battery: (70%)" />
+                                        <ProgressBar Minimum="0" Maximum="1" Value=".7" Height="16" IsIndeterminate="False" Margin="10,0,0,16" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                    </StackPanel>
+                                </Expander>
                             </StackPanel>
-                            </Expander>
                         </avalonDock:LayoutAnchorable>
                     </avalonDock:LayoutAnchorablePane>
 
