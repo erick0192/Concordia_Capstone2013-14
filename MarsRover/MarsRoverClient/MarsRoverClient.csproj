@@ -111,6 +111,10 @@
       <DependentUpon>BatteryStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\BatteryStatusViewModel.cs" />
+    <Compile Include="Content\GeneralSettings.xaml.cs">
+      <DependentUpon>GeneralSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\GeneralSettingsViewModel.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -131,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\CameraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\GeneralSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

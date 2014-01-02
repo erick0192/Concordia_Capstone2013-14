@@ -27,7 +27,7 @@
 
     </UserControl.InputBindings>
     <Grid>
-        <avalonDock:DockingManager x:Name="dockingManager">
+        <avalonDock:DockingManager x:Name="dockingManager" Margin="10,0,0,0">
             <avalonDock:DockingManager.Theme>
                 <avalonDock:GenericTheme/>
             </avalonDock:DockingManager.Theme>

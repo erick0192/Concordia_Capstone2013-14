@@ -33,7 +33,7 @@ namespace MarsRoverClient.Content
 
         public BatteryStatusViewModel()
         {
-            battery = new Battery(StatusUpdater.Instance.Battery.MaxCharge);
+            battery = (Battery)StatusUpdater.Instance.Battery.Clone();
             StatusUpdater.Instance.BatteryStatusUpdated += new StatusUpdater.BatteryStatusUpdatedEventHandler(UpdateBattery);
         }
 

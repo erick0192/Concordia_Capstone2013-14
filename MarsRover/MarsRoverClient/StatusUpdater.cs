@@ -136,7 +136,7 @@ namespace MarsRoverClient
 
         private void UpdateBattery(object source, ElapsedEventArgs e)
         {
-            battery.CurrentCharge += 10;
+            battery.CurrentCharge -= 10;
             battery.Temperature += 1;
 
             if (BatteryStatusUpdated != null)
