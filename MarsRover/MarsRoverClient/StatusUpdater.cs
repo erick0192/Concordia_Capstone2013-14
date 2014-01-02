@@ -65,6 +65,8 @@ namespace MarsRoverClient
             }
         }
 
+        public Battery Battery { get { return battery; } }
+
         #endregion
 
         #region Delegates and Events

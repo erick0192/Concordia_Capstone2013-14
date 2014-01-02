@@ -14,9 +14,14 @@ namespace MarsRover
         public int MaxCharge { get; set; }
         public int Temperature { get; set; }
 
+        public float ChargeRatio
+        {
+            get { return (float)Math.Round(((float)CurrentCharge / MaxCharge), 2); }
+        }
+
         public float ChargePercentage
         {
-            get { return (float)Math.Round(((float)CurrentCharge / MaxCharge) * 100, 1); }
+            get { return (float)Math.Round(((float)CurrentCharge / MaxCharge) * 100, 2); }
         }
 
         #endregion

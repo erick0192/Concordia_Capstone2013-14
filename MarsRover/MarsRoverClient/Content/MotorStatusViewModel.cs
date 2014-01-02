@@ -40,10 +40,6 @@ namespace MarsRoverClient.Content
             }
         }
 
-        public int Current { get { return Motor.Current; } }
-        public int Temperature { get { return Motor.Temperature; } }
-        
-
         #endregion
 
         #region Delegates and Events
@@ -75,7 +71,6 @@ namespace MarsRoverClient.Content
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Motor"));
-                //, UpdateSourceTrigger=PropertyChanged
             }
         }
 

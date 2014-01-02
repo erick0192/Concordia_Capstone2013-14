@@ -79,17 +79,20 @@
                             <StackPanel Margin="0,-20,0,0">
                                 <Expander Style="{DynamicResource MuiExpander}" 
                                           Template="{DynamicResource ExpandTheTemplate}"
+                                          Header="Sensors" FontWeight="Bold" FontSize="16" >
+                                    
+                                </Expander>
+                                <Expander Style="{DynamicResource MuiExpander}" 
+                                          Template="{DynamicResource ExpandTheTemplate}"
                                           Header="Motors" FontSize="16" FontWeight="Bold"
                                           IsExpanded="True">
                                     <controls:MotorsView />
                                 </Expander>
                                 <Expander Style="{DynamicResource MuiExpander}" 
                                           Template="{DynamicResource ExpandTheTemplate}"
-                                          Header="Status" FontWeight="Bold" FontSize="16" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Battery: (70%)" />
-                                        <ProgressBar Minimum="0" Maximum="1" Value=".7" Height="16" IsIndeterminate="False" Margin="10,0,0,16" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                                    </StackPanel>
+                                          Header="Battery" FontWeight="Bold" FontSize="16" 
+                                          IsExpanded="True">
+                                    <controls:BatteryStatusView/>                                    
                                 </Expander>
                             </StackPanel>
                         </avalonDock:LayoutAnchorable>

@@ -10,12 +10,10 @@
             <Image Source="../Assets/icons/mechanicalwheel.png" Width="64" Height="64" HorizontalAlignment="Left"/>        
             <StackPanel Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Current: "/>
-                    <TextBlock Name="Current" Text="{Binding Path=Motor.Current, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Name="Current" Text="{Binding StringFormat='Current: {0}', Path=Motor.Current, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temperature: "/>
-                    <TextBlock Name="Temperature" Text="{Binding Path=Motor.Temperature, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Name="Temperature" Text="{Binding StringFormat='Temperature: {0}', Path=Motor.Temperature, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
