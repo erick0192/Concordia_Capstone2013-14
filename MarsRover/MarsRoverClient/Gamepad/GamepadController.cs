@@ -28,6 +28,7 @@ namespace MarsRoverClient.Gamepad
                 {
                     logger.Debug("Found a XInput controller available");
                     Thread t = new Thread(() => Poll(controller));
+                    t.IsBackground = true;
                     t.Start();
                 }
             }

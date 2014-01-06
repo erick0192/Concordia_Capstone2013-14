@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battery.cs" />
+    <Compile Include="Communication\UDPClient.cs" />
+    <Compile Include="Communication\UDPListener.cs" />
     <Compile Include="Motor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Streams\DummyVideoSource.cs" />
@@ -59,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Communication\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
