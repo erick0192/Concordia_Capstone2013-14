@@ -45,7 +45,7 @@ namespace MarsRoverClient.Gamepad
                 double RY = state.Gamepad.RightThumbY;
 
                 StringBuilder command = new StringBuilder();
-                command.Append("<");
+                command.Append("<M");
 
                 string leftDirection = LY > 0 ? "F" : "B";
                 command.Append(leftDirection);
