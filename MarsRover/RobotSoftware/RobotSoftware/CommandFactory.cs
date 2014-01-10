@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Concurrent;
 
 namespace RobotSoftware
 {
@@ -9,10 +10,13 @@ namespace RobotSoftware
     {
 
         // Used to keep track of the previous commands we've received. Keeps track of the raw string of for each type of command.
-        private Dictionary<string, string> commandHistory; 
+        private Dictionary<string, string> commandHistory;
+
+       // private ConcurrentQueue<string> toMicrocontroller; //shared queue between microcontroller and dispatcher
+       // private ConcurrentQueue<string> toCameraManager; //shared queue between CameraManager and dispatcher
         
 
-        public CommandFactory()
+        public CommandFactory( )//ConcurrentQueue<string> toMicrocontroller, ConcurrentQueue)
         {
             commandHistory = new Dictionary <string, string>();
 
@@ -22,21 +26,39 @@ namespace RobotSoftware
         {
             string ID = getCommandID(unparsedCommand);
 
-            if (repeatedCommand(unparsedCommand, ID))
+            try
             {
-                return new NullCommand();
+                if (repeatedCommand(unparsedCommand, ID))
+                {
+                    return new NullCommand();
+                }
+
+                else if (ID == CommandMetadata.Movement.Identifier)
+                {
+
+                    return new MovementCommand(unparsedCommand);
+
+                }
+
+                else if (ID == CommandMetadata.Camera.Identifier)
+                {
+                    return new CameraCommand(unparsedCommand);
+                }
+
+
+                //...Add other commands here
+
+                else
+                {
+                    //If logging is implemented, log what was received here.
+                    return new NullCommand();
+                }
             }
-
-            else if (ID == CommandMetadata.Movement.IdentifierCharacter)
+            catch (Exception e)
             {
-                return new MovementCommand(unparsedCommand);
-            }
+                //log error here
+                Console.WriteLine(e.Message);
 
-            //...Add other commands here
-
-            else
-            {
-                //If logging is implemented, log what was received here.
                 return new NullCommand();
             }
 
@@ -50,6 +72,13 @@ namespace RobotSoftware
         private bool repeatedCommand(string unparsedCommand, string ID)
         {
             string lastCommand = "";
+
+            //Special case needed for camera on/off commands since we want to remember the last command sent to each camera.
+            //This means that we want to store the previous command for each camera as opposed 
+            if (ID == CommandMetadata.Camera.Identifier)
+            {
+                ID = ID + unparsedCommand.Substring(CommandMetadata.Camera.NumberIndex, CommandMetadata.Camera.NumberLength);
+            }
 
             if (commandHistory.ContainsKey(ID))
             {

@@ -28,5 +28,25 @@ namespace RobotSoftwareUnitTests
             Assert.AreEqual(command.GetLeftDirection(), 'F', "Should be 'F'");
             Assert.AreEqual(command.GetRightDirection(), 'F', "Should be 'F'");
         }
+
+        [Test]
+        public void InitializeCameraCommand_ValidCam1OffString_InitializesProperly()
+        {
+            string rawCommand = "<C1F>";
+            CameraCommand command = new CameraCommand(rawCommand);
+
+            Assert.AreEqual(command.getCamIndex(), 1);
+            Assert.AreEqual(command.getCamStatus(), false);
+        }
+
+        [Test]
+        public void InitializeCameraCommand_ValidCam2OffString_InitializesProperly()
+        {
+            string rawCommand = "<C2O>";
+            CameraCommand command = new CameraCommand(rawCommand);
+
+            Assert.AreEqual(command.getCamIndex(), 2);
+            Assert.AreEqual(command.getCamStatus(), true);
+        }
     }
 }

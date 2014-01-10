@@ -25,7 +25,7 @@ namespace RobotSoftwareUnitTests
             CommandFactory factory = new CommandFactory();
             ICommand command = factory.CreateCommand(commandString);
 
-            Assert.IsInstanceOf(typeof(MovementCommand), command, "Should return movement command");
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
 
            
         }
@@ -38,25 +38,56 @@ namespace RobotSoftwareUnitTests
             ICommand command = factory.CreateCommand(commandString);
 
             Assert.IsNotInstanceOf(typeof(NullCommand), command, "Valid string inputted, should return a non-null command");
-
+             
             command = factory.CreateCommand(commandString);
 
-            Assert.IsInstanceOf(typeof(NullCommand), command, "Should return a null command");
+            Assert.IsInstanceOf(typeof(NullCommand), command);
         }
 
         [Test]
-        public void CreateCommand_DifferentValidCommandStrings_ReturnsTwoMovementCommands()
+        public void CreateCommand_DifferentValidMovementCommandStrings_ReturnsTwoMovementCommands()
         {
             string commandString = "<MF255F255>";
+            string commandString2 = "<MF000F000>";
             CommandFactory factory = new CommandFactory();
+
             ICommand command = factory.CreateCommand(commandString);
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
 
-            Assert.IsInstanceOf(typeof(MovementCommand), command, "Should return movement command");
+            command = factory.CreateCommand(commandString2);
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
+        }
 
-            commandString = "<MF000F000>";
-            command = factory.CreateCommand(commandString);
+        [Test]
+        public void CreateCommand_DifferentValidCameraCommandStrings_ReturnsTwoCameraCommands()
+        {
+            string commandString = "<C1O>";
+            string commandString2 = "<C1F>";
+            CommandFactory factory = new CommandFactory();
 
-            Assert.IsInstanceOf(typeof(MovementCommand), command, "Should return new movement command");
+            ICommand command = factory.CreateCommand(commandString);
+            Assert.IsInstanceOf(typeof(CameraCommand), command);
+
+            command = factory.CreateCommand(commandString2);
+            Assert.IsInstanceOf(typeof(CameraCommand), command);
+        }
+
+        [Test] 
+        public void CreateCommand_SeperatedDuplicateCommands_ReturnsNullCommandOnThirdInstantiation()
+        {
+            string commandString1 = "<MF255F255>";
+            string commandString2 = "<C1F>";
+            CommandFactory factory = new CommandFactory();
+
+            ICommand command = factory.CreateCommand(commandString1);
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
+
+            command = factory.CreateCommand(commandString2);
+            Assert.IsInstanceOf(typeof(CameraCommand), command);
+
+            command = factory.CreateCommand(commandString1);
+            Assert.IsInstanceOf(typeof(NullCommand), command, "Duplicate commands should return a null command");
+            
         }
     }
 }

@@ -43,6 +43,79 @@ namespace RobotSoftware
         }
     }
 
+    public class CameraCommand : ICommand
+    {
+        private int camIndex;
+        private bool status;
+
+        public CameraCommand(string unparsedCommand)
+        {
+            try
+            {
+                camIndex = getCamIndex(unparsedCommand);
+                status = getCamStatus(unparsedCommand);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                throw e;
+            }
+        }
+
+        public void Execute()
+        {
+            Console.WriteLine("Turning Camera {0} {1}", this.camIndex, this.status == true ? "On" : "Off");
+        }
+
+        public void UnExecute()
+        {
+            throw new NotImplementedException("There is no unexecute for camera commands");
+        }
+
+        private int getCamIndex(string unparsedCommand)
+        {
+            string rawCamIndex = unparsedCommand.Substring(CommandMetadata.Camera.NumberIndex, CommandMetadata.Camera.NumberLength);
+            int index;
+            try
+            {
+                index = Convert.ToInt32(rawCamIndex);
+            }
+            catch(Exception)
+            {
+                throw new ArgumentOutOfRangeException("Invalid camera index " + rawCamIndex + " received for command " + unparsedCommand);
+            }
+
+            return index;
+        }
+
+        private bool getCamStatus(string unparsedCommand)
+        {
+            string rawStatus = unparsedCommand.Substring(CommandMetadata.Camera.StatusIndex, CommandMetadata.Camera.StatusLength);
+
+            if (rawStatus == CommandMetadata.Camera.On)
+            {
+                return true;
+            }
+            else if (rawStatus == CommandMetadata.Camera.Off)
+            {
+                return false;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Invalid camera status " + rawStatus + " received for command " + unparsedCommand);
+            }
+        }
+
+        public int getCamIndex()
+        {
+            return this.camIndex;
+        }
+
+        public bool getCamStatus()
+        {
+            return this.status;
+        }
+    }
+
     public class MovementCommand : ICommand
     {
         //Todo: add error checking on string-based instantiation
@@ -102,14 +175,6 @@ namespace RobotSoftware
             leftSpeed = ParseLeftSpeed(unparsedText);
         }
 
-        public MovementCommand()
-        {
-            rightDirection = 'F';
-            rightSpeed = 0;
-            leftDirection = 'F';
-            leftSpeed = 0;
-
-        }
 
          public void Execute()
         {
@@ -129,8 +194,9 @@ namespace RobotSoftware
             this.leftDirection = ReverseDirection(this.leftDirection);
             this.rightDirection = ReverseDirection(this.rightDirection);
 
-            string message = CreateMessage();
-            SendMessage(message);
+            this.Execute();
+
+
         }
 
         public char GetLeftDirection()
@@ -159,12 +225,12 @@ namespace RobotSoftware
             //Messages should be of the format "<LeftDirection LeftValue RightDirection RightValue>" (no spaces)
             //Ex: <F255F255> for full speed ahead
 
-            return "<" + leftDirection.ToString() + leftSpeed.ToString() + rightDirection.ToString() + rightSpeed.ToString() + ">";
+            return "<M" + leftDirection.ToString() + leftSpeed.ToString("D3") + rightDirection.ToString() + rightSpeed.ToString("D3") + ">";
         }
 
         private void SendMessage(string message)
         {
-            Console.Write(message);
+            Console.WriteLine(message);
         }
 
         private char ReverseDirection(char direction)
