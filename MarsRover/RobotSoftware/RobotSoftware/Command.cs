@@ -125,54 +125,16 @@ namespace RobotSoftware
         private char leftDirection;
         private int rightSpeed;
         private int leftSpeed;
+        private MicrocontrollerSingleton microcontroller;
 
-        public MovementCommand(char leftDirection, int leftValue, char rightDirection, int rightValue)
-        {
-            if (leftDirection == 'F' || leftDirection == 'B')
-            {
-                this.leftDirection = leftDirection;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(leftDirection.ToString(), leftDirection, leftDirection.ToString() + " is not a valid direction");
-            }
-
-            if (leftValue >= 0 && leftValue <= 255)
-            {
-                this.leftSpeed = leftValue;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(leftValue.ToString(), leftValue, leftValue.ToString() + "Received invalid left speed value: " + leftValue.ToString());
-            }
-
-            if (rightDirection == 'F' || rightDirection == 'B')
-            {
-                this.rightDirection = rightDirection;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(rightDirection.ToString(), rightDirection, rightDirection.ToString() + " is not a valid direction");
-            }
-
-            if (rightValue >= 0 && rightValue <= 255)
-            {
-                this.rightSpeed = rightValue;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(rightValue.ToString(), rightValue, "Received invalid right speed value: " + rightValue.ToString());
-            }
-
-
-        }
-
-        public MovementCommand(string unparsedText)
+        public MovementCommand(string unparsedText) //Error handling needed here
         {
             rightDirection = ParseRightDirection(unparsedText);
             rightSpeed = ParseRightSpeed(unparsedText);
             leftDirection = ParseLeftDirection(unparsedText);
             leftSpeed = ParseLeftSpeed(unparsedText);
+
+            microcontroller = MicrocontrollerSingleton.Instance;
         }
 
 
@@ -183,7 +145,14 @@ namespace RobotSoftware
 
 
             //Send message to serial port / serial handler
-            SendMessage(message); //stub
+            if (microcontroller.IsInitialized)
+            {
+                microcontroller.WriteMessage(message);
+            }
+            else
+            {
+                SendMessage(message); //Stub. Remove for final version.
+            }
         }
 
          public void UnExecute()

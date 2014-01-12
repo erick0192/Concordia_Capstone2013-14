@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Collections.Concurrent;
+using RobotSoftware.Shared;
 
 namespace RobotSoftware
 {
@@ -13,13 +14,19 @@ namespace RobotSoftware
     class Program
     {
         static void Main(string[] args)
-        {
-            ConcurrentQueue<string> CommanderDispatcherMessageQueue = new ConcurrentQueue<string>();
+        {            
+           // ConcurrentQueue<string> CommanderDispatcherMessageQueue = new ConcurrentQueue<string>();
+           // ConcurrentQueue<string> DispatcherSerialMessageQueue = new ConcurrentQueue<string>();
+            IQueue CommanderDispatcherMessageQueue = new PriorityQueue(30);
+            IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
 
             Thread dispatcher = new Thread(() => Dispatcher(CommanderDispatcherMessageQueue));
-            dispatcher.Start();
+            Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
 
-            int TimeBetweenCommands = 200;
+            dispatcher.Start();
+            serialManager.Start();
+
+            int TimeBetweenCommands = 100;
 
             
             //Dummy for the commander. Consider building a full test program which communicates fake data over UDP to better simulate
@@ -94,7 +101,7 @@ namespace RobotSoftware
   
         }
 
-        static void Dispatcher(ConcurrentQueue<string> MessageBox)
+        static void Dispatcher(IQueue MessageBox)
         {
             int sleepPeriod = 100;
             CommandFactory factory = new CommandFactory();
@@ -116,9 +123,27 @@ namespace RobotSoftware
             }
         }
 
-        static void SerialManager(ConcurrentQueue<string> DispatcherMessageBox)
+        static void SerialManager(IQueue DispatcherMessageBox)
         {
+            MicrocontrollerSingleton microcontroller = MicrocontrollerSingleton.Instance;
+            bool success = false;
 
+            while (microcontroller.IsInitialized == false)
+            {
+                microcontroller.Initialize();
+                if (microcontroller.IsInitialized == true)
+                {
+                    Console.WriteLine("Connected to microcontroller");
+                    success = microcontroller.WriteMessage("test \n");
+                    Console.WriteLine(success.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("Could not connect to microcontroller");
+                }
+            }
+
+            Thread.Sleep(5000);
         }
 
 
