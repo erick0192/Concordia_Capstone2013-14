@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections.Concurrent;
+
+namespace Rover
+{
+    public class CommandFactory
+    {
+
+        // Used to keep track of the previous commands we've received. Keeps track of the raw string of for each type of command.
+        private Dictionary<string, string> commandHistory;
+
+       // private ConcurrentQueue<string> toMicrocontroller; //shared queue between microcontroller and dispatcher
+       // private ConcurrentQueue<string> toCameraManager; //shared queue between CameraManager and dispatcher
+        
+
+        public CommandFactory( )//ConcurrentQueue<string> toMicrocontroller, ConcurrentQueue)
+        {
+            commandHistory = new Dictionary <string, string>();
+
+        }
+
+        public ICommand CreateCommand(string unparsedCommand)
+        {
+            string ID = getCommandID(unparsedCommand);
+
+            try
+            {
+                if (repeatedCommand(unparsedCommand, ID))
+                {
+                    return new NullCommand();
+                }
+
+                else if (ID == CommandMetadata.Movement.Identifier)
+                {
+
+                    return new MovementCommand(unparsedCommand);
+
+                }
+
+                else if (ID == CommandMetadata.Camera.Identifier)
+                {
+                    return new CameraCommand(unparsedCommand);
+                }
+
+
+                //...Add other commands here
+
+                else
+                {
+                    //If logging is implemented, log what was received here.
+                    return new NullCommand();
+                }
+            }
+            catch (Exception e)
+            {
+                //log error here
+                Console.WriteLine(e.Message);
+
+                return new NullCommand();
+            }
+
+        }
+
+        private string getCommandID(string unparsedCommanmd)
+        {
+            return unparsedCommanmd.Substring(CommandMetadata.IdIndex, CommandMetadata.IdLength);
+        }
+
+        private bool repeatedCommand(string unparsedCommand, string ID)
+        {
+            string lastCommand = "";
+
+            //Special case needed for camera on/off commands since we want to remember the last command sent to each camera.
+            //This means that we want to store the previous command for each camera as opposed 
+            if (ID == CommandMetadata.Camera.Identifier)
+            {
+                ID = ID + unparsedCommand.Substring(CommandMetadata.Camera.NumberIndex, CommandMetadata.Camera.NumberLength);
+            }
+
+            if (commandHistory.ContainsKey(ID))
+            {
+                lastCommand = commandHistory[ID];
+                if (unparsedCommand == lastCommand)
+                {
+                    return true;
+                }
+                else
+                {
+                    commandHistory[ID] = unparsedCommand;
+                    return false;
+                }
+            }
+            else
+            {
+                commandHistory.Add(ID, unparsedCommand);
+                return false;
+            }
+
+        }
+
+    }
+}
