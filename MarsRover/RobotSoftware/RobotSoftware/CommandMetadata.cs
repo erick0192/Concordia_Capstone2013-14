@@ -9,6 +9,8 @@ namespace RobotSoftware
     {
         public const int IdIndex = 1;
         public const int IdLength = 1; //Perhaps we will have to set the ID length to 2 in the future.
+        public const string StartDelimiter = "<";
+        public const string EndDelimiter = ">";
 
         public static class Movement
         {

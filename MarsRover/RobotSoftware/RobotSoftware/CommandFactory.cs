@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.Concurrent;
 
 namespace RobotSoftware
 {
@@ -11,12 +10,9 @@ namespace RobotSoftware
 
         // Used to keep track of the previous commands we've received. Keeps track of the raw string of for each type of command.
         private Dictionary<string, string> commandHistory;
-
-       // private ConcurrentQueue<string> toMicrocontroller; //shared queue between microcontroller and dispatcher
-       // private ConcurrentQueue<string> toCameraManager; //shared queue between CameraManager and dispatcher
         
 
-        public CommandFactory( )//ConcurrentQueue<string> toMicrocontroller, ConcurrentQueue)
+        public CommandFactory()
         {
             commandHistory = new Dictionary <string, string>();
 
