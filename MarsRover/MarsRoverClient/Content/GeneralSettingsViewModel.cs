@@ -11,15 +11,6 @@ namespace MarsRoverClient.Content
     {
         #region Properties
 
-        public int BatteryStatusUpdateInterval
-        {
-            get { return StatusUpdater.Instance.BatteryUpdateInterval; }
-        }
-
-        public int MotorsStatusUpdateInterval
-        {
-            get { return StatusUpdater.Instance.MotorsUpdateInterval; }
-        }
 
         #endregion
 

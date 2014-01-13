@@ -26,7 +26,7 @@ namespace MarsRoverClient
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+            base.OnStartup(e);            
         }
 
         protected override void OnExit(ExitEventArgs e)

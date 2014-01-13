@@ -8,6 +8,16 @@ namespace MarsRover
 {
     public class Motor
     {
+        public enum Location
+        {
+            FrontLeft,
+            FrontRight,
+            MiddleLeft,
+            MiddleRight,
+            BackLeft,
+            BackRight
+        }
+
         #region Properties
 
         public int Current { get; set; }

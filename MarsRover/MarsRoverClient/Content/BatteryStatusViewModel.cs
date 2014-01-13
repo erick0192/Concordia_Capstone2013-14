@@ -33,18 +33,18 @@ namespace MarsRoverClient.Content
 
         public BatteryStatusViewModel()
         {
-            battery = (Battery)StatusUpdater.Instance.Battery.Clone();
-            StatusUpdater.Instance.BatteryStatusUpdated += new StatusUpdater.BatteryStatusUpdatedEventHandler(UpdateBattery);
+            battery = (Battery)StatusUpdater.Instance.RoverStatus.Battery.Clone();
+            StatusUpdater.Instance.RoverStatusUpdated += new StatusUpdater.RoverStatusUpdatedEventHandler(UpdateBattery);
         }
 
         #endregion
 
         #region Event Handlers
 
-        private void UpdateBattery(Battery battery)
+        private void UpdateBattery(RoverStatus roverStatus)
         {
-            this.battery.CurrentCharge = battery.CurrentCharge;
-            this.battery.Temperature = battery.Temperature;
+            this.battery.CurrentCharge = roverStatus.Battery.CurrentCharge;
+            this.battery.Temperature = roverStatus.Battery.Temperature;
 
             if (PropertyChanged != null)
             {

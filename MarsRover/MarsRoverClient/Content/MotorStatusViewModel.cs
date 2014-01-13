@@ -10,7 +10,7 @@ namespace MarsRoverClient.Content
 {
     public class MotorStatusViewModel: INotifyPropertyChanged
     {
-        private String motorKey;
+        private Motor.Location motorKey;
         
         #region Properties
 
@@ -50,21 +50,21 @@ namespace MarsRoverClient.Content
 
         #region Constructor
 
-        public MotorStatusViewModel(String motorKeyString)
+        public MotorStatusViewModel(Motor.Location motorKey)
         {
             title = "";
-            motorKey = motorKeyString;
+            this.motorKey = motorKey;
             motor = new Motor();
-            StatusUpdater.Instance.MotorsStatusUpdated += new StatusUpdater.MotorsStatusUpdatedEventHandler(UpdateMotor);
+            StatusUpdater.Instance.RoverStatusUpdated += new StatusUpdater.RoverStatusUpdatedEventHandler(UpdateMotor);
         }
 
         #endregion
 
         #region Event Handlers
 
-        private void UpdateMotor(Dictionary<String, Motor> motors)
+        private void UpdateMotor(RoverStatus roverStatus)
         {
-            Motor m = motors[motorKey];
+            Motor m = roverStatus.Motors[motorKey];
             motor.Current = m.Current;
             motor.Temperature = m.Temperature;
 
