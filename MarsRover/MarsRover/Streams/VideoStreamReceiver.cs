@@ -13,7 +13,7 @@ using NLog;
 
 namespace MarsRover.Streams
 {    
-    public class RobotVideoSource: IVideoSource
+    public class VideoStreamReceiver: IVideoSource
     {
         #region Members
 
@@ -30,8 +30,8 @@ namespace MarsRover.Streams
         private int jpegNumber_expected;
         private List<byte[]> entireJPEG = new List<byte[]>();
 
-        private bool listen = false;
         private Logger logger = LogManager.GetCurrentClassLogger();
+        private Timer sendCommandTimer;
 
         #endregion
 
@@ -59,7 +59,7 @@ namespace MarsRover.Streams
             }
         }
 
-        private bool isRunning = false;
+        private volatile bool isRunning = false;
         public bool IsRunning
         {
             get { return isRunning; }
@@ -77,9 +77,10 @@ namespace MarsRover.Streams
 
         #region Constructor
 
-        public RobotVideoSource(int port)
+        public VideoStreamReceiver(int port)
         {
-            this.port = port;
+            this.port = port;           
+            sendCommandTimer = new Timer(new TimerCallback(this.SendCommand), null, 0, 1000);
         }
 
         #endregion
@@ -91,13 +92,12 @@ namespace MarsRover.Streams
             byte[] data = new byte[512];
             udp_ep = new IPEndPoint(IPAddress.Parse("10.10.10.10"), this.port);
             udpClient = new UdpClient(this.port);
-            //udpClient.Connect(udp_ep);
-            listen = true;
+            //udpClient.Connect(udp_ep);            
 
             try
             {
-                while (listen)
-                {                  
+                while (isRunning)
+                {
                     data = udpClient.Receive(ref udp_ep);
                     bytesReceived += data.LongLength;
                     ReceiveData(data);
@@ -105,8 +105,7 @@ namespace MarsRover.Streams
 
                 if (PlayingFinished != null)
                 {
-                    PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
-                    if (!listen)
+                    if (!isRunning)
                     {
                         PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
                     }
@@ -130,7 +129,7 @@ namespace MarsRover.Streams
                 }
             }
             finally
-            {                
+            {
                 udpClient.Close();
                 isRunning = false;
             }
@@ -198,7 +197,6 @@ namespace MarsRover.Streams
 
         public void SignalToStop()
         {
-            //here we should send a command to stop the stream to avoid using up bandwith
             Stop();
         }
 
@@ -209,17 +207,29 @@ namespace MarsRover.Streams
 
         public void Start()
         {
-            if (!IsRunning)
-            {
-                isRunning = true;
-                Thread t = new Thread(new ThreadStart(StartListening));
-                t.Start();
-            }
+            isRunning = true;
+            
+            Thread t = new Thread(new ThreadStart(StartListening));
+            t.Start();
+            
+        }
+
+        private void SendCommand(Object o)
+        {
+           if(isRunning)
+           {
+                //spam start command
+           }
+           else
+           {
+                //spam stop command
+           }
         }
 
         public void Stop()
         {
-            listen = false;
+            isRunning = false;
+            udpClient.Close();
         }
 
         public event VideoSourceErrorEventHandler VideoSourceError;
