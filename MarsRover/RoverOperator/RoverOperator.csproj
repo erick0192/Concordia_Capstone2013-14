@@ -107,6 +107,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommandBase.cs" />
     <Compile Include="Content\BatteryStatusView.xaml.cs">
       <DependentUpon>BatteryStatusView.xaml</DependentUpon>
     </Compile>
@@ -115,11 +116,17 @@
       <DependentUpon>GeneralSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\GeneralSettingsViewModel.cs" />
+    <Compile Include="Content\NetworkSettings.xaml.cs">
+      <DependentUpon>NetworkSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\NetworkSettingsViewModel.cs" />
+    <Compile Include="NetworkSettings.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StatusUpdater.cs" />
     <Resource Include="Assets\icons\appbar.arrow.collapsed.xaml">
@@ -155,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\MotorsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\NetworkSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

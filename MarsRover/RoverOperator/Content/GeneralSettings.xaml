@@ -15,8 +15,8 @@
         <ScrollViewer DockPanel.Dock="Bottom">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label >Battery Status Update Interval</Label>
-                    <TextBox x:Name="txtBatteryStatus" Width="50" Height="22"
+                    <Label >Test</Label>
+                    <TextBox x:Name="bla" Width="50" Height="22"
                              Text="{Binding Path=BatteryStatusUpdateInterval, Mode=OneWay}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

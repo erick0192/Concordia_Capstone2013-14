@@ -98,7 +98,7 @@ namespace RoverOperator.Content
             {
                 if (mToggleCamera == null)
                 {
-                    mToggleCamera = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                    mToggleCamera = new RelayCommand(
                         p => this.ToggleCam(),
                         p => this.CanToggleCamera());
                 }

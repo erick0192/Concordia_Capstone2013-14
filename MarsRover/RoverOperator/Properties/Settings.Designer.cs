@@ -25,25 +25,49 @@ namespace RoverOperator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
-        public int MotorsUpdateInterval {
+        [global::System.Configuration.DefaultSettingValueAttribute("10.10.10.10")]
+        public string RoverIPAddress {
             get {
-                return ((int)(this["MotorsUpdateInterval"]));
+                return ((string)(this["RoverIPAddress"]));
             }
             set {
-                this["MotorsUpdateInterval"] = value;
+                this["RoverIPAddress"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
-        public int BatteryUpdateInterval {
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int CameraPort1 {
             get {
-                return ((int)(this["BatteryUpdateInterval"]));
+                return ((int)(this["CameraPort1"]));
             }
             set {
-                this["BatteryUpdateInterval"] = value;
+                this["CameraPort1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3001")]
+        public int CameraPort2 {
+            get {
+                return ((int)(this["CameraPort2"]));
+            }
+            set {
+                this["CameraPort2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3002")]
+        public int CameraPort3 {
+            get {
+                return ((int)(this["CameraPort3"]));
+            }
+            set {
+                this["CameraPort3"] = value;
             }
         }
     }
