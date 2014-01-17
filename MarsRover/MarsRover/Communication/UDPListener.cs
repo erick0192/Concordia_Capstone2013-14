@@ -4,21 +4,34 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using NLog;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace MarsRover.Communication
 {
     public class UDPListener
     {
+        #region Attributes
         private int port;
         private Logger logger;
 
         private UdpClient listener;
         private IPEndPoint groupEP;
+        private BlockingCollection<string> messagesQueue;
+        #endregion
+
+        #region Properties
+        public IEnumerable<string> MessagesQueue
+        {
+            get { return messagesQueue.GetConsumingEnumerable(); }
+        }
+        #endregion
 
         public UDPListener(int port)
         {
             this.port = port;
             logger = NLog.LogManager.GetCurrentClassLogger();
+            messagesQueue = new BlockingCollection<string>(); //uses ConcurrentQueue by default
         }
 
         public void Initialize()
@@ -27,6 +40,7 @@ namespace MarsRover.Communication
             t.IsBackground = true;
             t.Start();
         }
+
 
         private void StartListening()
         {
@@ -41,6 +55,7 @@ namespace MarsRover.Communication
                     byte[] bytes = listener.Receive(ref groupEP);
                     string message = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
                     logger.Trace("Received broadcast from " + groupEP.ToString() + ". Message: " + message);
+                    messagesQueue.Add(message);
                 }
 
             }
