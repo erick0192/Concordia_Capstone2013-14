@@ -34,41 +34,34 @@ namespace RoverOperator.Pages
             ((MainViewModel)DataContext).DockingManager = dockingManager;
 
             //Instantiate VM for camera views            
-            CameraViewModel cvm = this.camFront.DataContext as CameraViewModel;
+            CameraViewModel cvm = this.Cam1.DataContext as CameraViewModel;
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "Front";
-            cvm.VideoSource = WebCamStreamManager.Instance.GetFrontCameraStream();
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera1;
             
-            ((MainViewModel)DataContext).VMFrontCamera = cvm;
+            ((MainViewModel)DataContext).VMCamera1 = cvm;
             
-            cvm = this.camBack.DataContext as CameraViewModel;
+            cvm = this.Cam2.DataContext as CameraViewModel;
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "Back";
-            cvm.VideoSource = WebCamStreamManager.Instance.GetBackCameraStream();
-            ((MainViewModel)DataContext).VMBackCamera = cvm;
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera2;
+            ((MainViewModel)DataContext).VMCamera2 = cvm;
             
-            cvm = this.camLeft.DataContext as CameraViewModel;
+            cvm = this.Cam3.DataContext as CameraViewModel;
             cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "Left";
-            cvm.VideoSource = WebCamStreamManager.Instance.GetLeftCameraStream();       
-            ((MainViewModel)DataContext).VMLeftCamera = cvm;
-            
-            cvm = this.camRight.DataContext as CameraViewModel;
-            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
-            cvm.CameraName = "Right";
-            cvm.VideoSource = WebCamStreamManager.Instance.GetRightCameraStream();
-            ((MainViewModel)DataContext).VMRightCamera = cvm;
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera3;       
+            ((MainViewModel)DataContext).VMCamera3 = cvm;          
 
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused    
 
             //Start or hide the cameras depending on configuration
             //((MainViewModel)DataContext).VMFrontCamera.VideoSource.Start();
-            this.layoutFrontCam.Hide();
+            this.LayoutCam1.Hide();
             //((MainViewModel)DataContext).VMBackCamera.VideoSource.Start();
-            this.layoutBackCam.Hide();
-            this.layoutLeftCam.Hide();
-            this.layoutRightCam.Hide();            
+            this.LayoutCam2.Hide();
+            this.LayoutCam3.Hide();
         }
 
         private void ShowHideCamera(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -78,21 +71,17 @@ namespace RoverOperator.Pages
                 this.Dispatcher.Invoke((Action)(() =>
                 {
                     var cvm = sender as CameraViewModel;
-                    if (cvm == ((MainViewModel)DataContext).VMFrontCamera)
+                    if (cvm == ((MainViewModel)DataContext).VMCamera1)
                     {
-                        ShowHideCamera(this.layoutFrontCam, ((MainViewModel)DataContext).VMFrontCamera, e);
+                        ShowHideCamera(this.LayoutCam1, ((MainViewModel)DataContext).VMCamera1, e);
                     }
-                    else if (cvm == ((MainViewModel)DataContext).VMBackCamera)
+                    else if (cvm == ((MainViewModel)DataContext).VMCamera2)
                     {
-                        ShowHideCamera(this.layoutBackCam, ((MainViewModel)DataContext).VMBackCamera, e);
+                        ShowHideCamera(this.LayoutCam2, ((MainViewModel)DataContext).VMCamera2, e);
                     }
-                    else if (cvm == ((MainViewModel)DataContext).VMLeftCamera)
+                    else if (cvm == ((MainViewModel)DataContext).VMCamera3)
                     {
-                        ShowHideCamera(this.layoutLeftCam, ((MainViewModel)DataContext).VMLeftCamera, e);
-                    }
-                    else if (cvm == ((MainViewModel)DataContext).VMRightCamera)
-                    {
-                        ShowHideCamera(this.layoutRightCam, ((MainViewModel)DataContext).VMRightCamera, e);
+                        ShowHideCamera(this.LayoutCam3, ((MainViewModel)DataContext).VMCamera3, e);
                     }
                 }));
             }

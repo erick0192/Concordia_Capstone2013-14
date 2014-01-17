@@ -23,7 +23,6 @@
         <KeyBinding Key="D1" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="front"/>
         <KeyBinding Key="D2" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="back"/>
         <KeyBinding Key="D3" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="left"/>
-        <KeyBinding Key="D4" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="right"/>
 
     </UserControl.InputBindings>
     <Grid>
@@ -35,34 +34,27 @@
 
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutPanel Orientation="Vertical" >
-                        <avalonDock:LayoutAnchorablePane x:Name="paneFrontCam" >
-                            <avalonDock:LayoutAnchorable x:Name="layoutFrontCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Front">
+                        <avalonDock:LayoutAnchorablePane x:Name="PaneCam1" >
+                            <avalonDock:LayoutAnchorable x:Name="LayoutCam1" CanHide="False" CanAutoHide="False" CanClose="True" Title="Camera 1">
                                     <StackPanel>
-                                        <controls:CameraView x:Name="camFront" />
+                                        <controls:CameraView x:Name="Cam1" />
                                     </StackPanel>
                                 </avalonDock:LayoutAnchorable>
                             </avalonDock:LayoutAnchorablePane>
-                            <avalonDock:LayoutAnchorablePane x:Name="paneBackCam" >
-                            <avalonDock:LayoutAnchorable x:Name="layoutBackCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Back">
+                            <avalonDock:LayoutAnchorablePane x:Name="PaneCam2" >
+                            <avalonDock:LayoutAnchorable x:Name="LayoutCam2" CanHide="False" CanAutoHide="False" CanClose="True" Title="Camera 2">
                                     <StackPanel>
-                                        <controls:CameraView  x:Name="camBack"  />
+                                        <controls:CameraView  x:Name="Cam2"  />
                                     </StackPanel>
                                 </avalonDock:LayoutAnchorable>
                             </avalonDock:LayoutAnchorablePane>
-                        <avalonDock:LayoutAnchorablePane x:Name="paneLeftCam">
-                            <avalonDock:LayoutAnchorable x:Name="layoutLeftCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Left">
+                        <avalonDock:LayoutAnchorablePane x:Name="PaneCam3">
+                            <avalonDock:LayoutAnchorable x:Name="LayoutCam3" CanHide="False" CanAutoHide="False" CanClose="True" Title="Camera 3">
                                 <StackPanel>
-                                    <controls:CameraView  x:Name="camLeft" />
+                                    <controls:CameraView  x:Name="Cam3" />
                                 </StackPanel>
                             </avalonDock:LayoutAnchorable>
-                        </avalonDock:LayoutAnchorablePane>
-                        <avalonDock:LayoutAnchorablePane x:Name="paneRightCam">
-                            <avalonDock:LayoutAnchorable x:Name="layoutRightCam" CanHide="False" CanAutoHide="False" CanClose="True" Title="Right">
-                                <StackPanel>
-                                    <controls:CameraView  x:Name="camRight"  />
-                                </StackPanel>
-                            </avalonDock:LayoutAnchorable>
-                        </avalonDock:LayoutAnchorablePane>
+                        </avalonDock:LayoutAnchorablePane>                        
 
                         <avalonDock:LayoutAnchorablePane x:Name="paneGPS" >
                             <avalonDock:LayoutAnchorable CanHide="True" CanAutoHide="False" CanClose="False" CanFloat="True" Title="GPS">

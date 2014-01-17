@@ -15,9 +15,9 @@ namespace RoverOperator.Pages
         #region Properties
 
         public Xceed.Wpf.AvalonDock.DockingManager DockingManager { get; set; }
-        public CameraViewModel VMFrontCamera { get; set; }
-        public CameraViewModel VMBackCamera { get; set; }
-        public CameraViewModel VMLeftCamera { get; set; }
+        public CameraViewModel VMCamera1 { get; set; }
+        public CameraViewModel VMCamera2 { get; set; }
+        public CameraViewModel VMCamera3 { get; set; }
         public CameraViewModel VMRightCamera { get; set; }
 
         #endregion
@@ -89,15 +89,15 @@ namespace RoverOperator.Pages
 
             if ("front" == (string)iParam)
             {                
-                cvm = VMFrontCamera;
+                cvm = VMCamera1;
             }
             else if ("back" == (string)iParam)
             {
-                cvm = VMBackCamera;
+                cvm = VMCamera2;
             }
             else if ("left" == (string)iParam)
             {
-                cvm = VMLeftCamera;
+                cvm = VMCamera3;
             }
             else if ("right" == (string)iParam)
             {
@@ -113,15 +113,15 @@ namespace RoverOperator.Pages
 
             if ("front" == (string)iParam)
             {
-                cvm = VMFrontCamera;
+                cvm = VMCamera1;
             }
             else if ("back" == (string)iParam)
             {
-                cvm = VMBackCamera;
+                cvm = VMCamera2;
             }
             else if ("left" == (string)iParam)
             {
-                cvm = VMLeftCamera;
+                cvm = VMCamera3;
             }
             else if ("right" == (string)iParam)
             {

@@ -52,6 +52,10 @@
     <Reference Include="AForge.Video">
       <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.dll</HintPath>
     </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\FirstFloor.ModernUI\bin\Debug\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
@@ -129,6 +133,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StatusUpdater.cs" />
+    <Compile Include="VideoStreamReceiverManager.cs" />
     <Resource Include="Assets\icons\appbar.arrow.collapsed.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -31,7 +31,7 @@ namespace RoverOperator
 
         protected override void OnExit(ExitEventArgs e)
         {
-            WebCamStreamManager.Instance.StopAllStreams();
+            VideoStreamReceiverManager.Instance.StopAllStreams();
             StatusUpdater.Instance.StopUpdating();
             base.OnExit(e);
         }

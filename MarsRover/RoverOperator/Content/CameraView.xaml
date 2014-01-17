@@ -13,7 +13,7 @@
     
     <Grid VerticalAlignment="Top" >
         <StackPanel >                    
-        <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="1" HorizontalAlignment="Center" >
+        <Border BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="0" HorizontalAlignment="Center" >
                 <StackPanel x:Name="panelStream" MinWidth="300" MinHeight="200" >                   
                     <Image x:Name="camStream" MinWidth="300" MinHeight="200" Source="{Binding Path=Image}"/>
                 </StackPanel>
