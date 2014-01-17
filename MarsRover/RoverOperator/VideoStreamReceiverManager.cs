@@ -40,7 +40,9 @@ namespace MarsRover.Streams
                 if (null == camera1)
                 {
                     //mFrontCameraStream = new VideoCaptureDevice(mVideoDevices[0].MonikerString);
-                    camera1 = new VideoStreamReceiver(RoverOperator.NetworkSettings.Instance.CameraPort1);
+                    camera1 = new VideoStreamReceiver(
+                        RoverOperator.NetworkSettings.Instance.RoverIPAddress,
+                        RoverOperator.NetworkSettings.Instance.CameraPort1);
                 }
 
                 return camera1;
@@ -53,7 +55,9 @@ namespace MarsRover.Streams
             {
                 if (null == camera2)
                 {
-                    camera2 = new VideoStreamReceiver(RoverOperator.NetworkSettings.Instance.CameraPort2);
+                    camera2 = new VideoStreamReceiver(
+                        RoverOperator.NetworkSettings.Instance.RoverIPAddress,
+                        RoverOperator.NetworkSettings.Instance.CameraPort2);
                 }
 
                 return camera2;
@@ -66,7 +70,9 @@ namespace MarsRover.Streams
             {
                 if (null == camera3)
                 {
-                    camera3 = new VideoStreamReceiver(RoverOperator.NetworkSettings.Instance.CameraPort3);
+                    camera3 = new VideoStreamReceiver(
+                        RoverOperator.NetworkSettings.Instance.RoverIPAddress, 
+                        RoverOperator.NetworkSettings.Instance.CameraPort3);
                 }
 
                 return camera3;

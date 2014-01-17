@@ -18,6 +18,7 @@ namespace MarsRover.Streams
         #region Members
 
         private int port;
+        private IPAddress sourceIPAddress;
         private UdpClient udpClient;
         private IPEndPoint udp_ep;
 
@@ -77,8 +78,9 @@ namespace MarsRover.Streams
 
         #region Constructor
 
-        public VideoStreamReceiver(int port)
+        public VideoStreamReceiver(String sourceIPAddress, int port)
         {
+            this.sourceIPAddress = IPAddress.Parse(sourceIPAddress);
             this.port = port;           
             sendCommandTimer = new Timer(new TimerCallback(this.SendCommand), null, 0, 1000);
         }
@@ -90,7 +92,7 @@ namespace MarsRover.Streams
         private void StartListening()
         {
             byte[] data = new byte[512];
-            udp_ep = new IPEndPoint(IPAddress.Parse("10.10.10.10"), this.port);
+            udp_ep = new IPEndPoint(sourceIPAddress, this.port);
             udpClient = new UdpClient(this.port);
             //udpClient.Connect(udp_ep);            
 
