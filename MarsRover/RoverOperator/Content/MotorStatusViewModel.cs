@@ -55,16 +55,16 @@ namespace RoverOperator.Content
             title = "";
             this.motorKey = motorKey;
             motor = new Motor();
-            StatusUpdater.Instance.RoverStatusUpdated += new StatusUpdater.RoverStatusUpdatedEventHandler(UpdateMotor);
+            StatusUpdater.Instance.MotorsUpdated += new StatusUpdater.MotorsUpdatedDelegate(UpdateMotor);
         }
 
         #endregion
 
         #region Event Handlers
 
-        private void UpdateMotor(RoverStatus roverStatus)
+        private void UpdateMotor(Dictionary<Motor.Location, Motor> motors)
         {
-            Motor m = roverStatus.Motors[motorKey];
+            Motor m = motors[motorKey];
             motor.Current = m.Current;
             motor.Temperature = m.Temperature;
 

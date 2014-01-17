@@ -18,7 +18,7 @@ namespace RoverOperator
     {
         #region Private fields
         
-        private RoverStatus roverStatus;
+        private RoverStatus roverStatus;//We might not need this class anymore, as component updates are sent separately
         private volatile bool update;
 
         //temporary until we get communication going
@@ -47,8 +47,15 @@ namespace RoverOperator
 
         #region Delegates and Events
 
-        public delegate void RoverStatusUpdatedEventHandler(RoverStatus roverStatus);
-        public event RoverStatusUpdatedEventHandler RoverStatusUpdated;        
+        public delegate void MotorsUpdatedDelegate(Dictionary<Motor.Location, Motor> updateString);
+        public event  MotorsUpdatedDelegate MotorsUpdated;        
+
+        public delegate void BatteryUpdatedDelegate(Battery battery);
+        public event BatteryUpdatedDelegate BatteryUpdated;        
+
+        public delegate void GPSCoordinatesUpdatedDelegate (GPSCoordinates gpsCoordinates);
+        public event GPSCoordinatesUpdatedDelegate GPSCoordinatesUpdated;        
+
 
         #endregion
 
@@ -92,10 +99,12 @@ namespace RoverOperator
 
         private void TemporaryHandler(object sender, ElapsedEventArgs e)
         {
-            UpdateRoverStatus("");
+            UpdateGPS("");
+            UpdateBattery("");
+            UpdateMotors("");
         }
 
-        private void UpdateRoverStatus(String statusString)
+        private void UpdateMotors(String updateString)
         {
             //Parse all data from the other class that gets the data from the server
             Motor motor = roverStatus.Motors[Motor.Location.FrontLeft];
@@ -114,11 +123,29 @@ namespace RoverOperator
             motor.Current += 8;
             motor.Temperature += 2;
 
+            if(MotorsUpdated != null)
+            {
+                MotorsUpdated(roverStatus.Motors);
+            }
+        }
+
+        private void UpdateBattery(String updateString)
+        {
             roverStatus.Battery.CurrentCharge -= 10;
             roverStatus.Battery.Temperature += 1;
 
-            if (RoverStatusUpdated != null)
-                RoverStatusUpdated(roverStatus);
+            if(BatteryUpdated != null)
+            {
+                BatteryUpdated(roverStatus.Battery);
+            }
+        }
+
+        private void UpdateGPS(String updateString)
+        {
+            if(GPSCoordinatesUpdated != null)
+            {
+                GPSCoordinatesUpdated(roverStatus.GPSCoordinates);
+            }
         }
 
         #endregion
