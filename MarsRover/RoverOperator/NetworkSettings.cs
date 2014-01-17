@@ -12,7 +12,7 @@ namespace RoverOperator
 
         #region Properties
 
-        private string roverIPAddress;
+        //private string roverIPAddress;
         public string RoverIPAddress
         {
             get
@@ -29,7 +29,7 @@ namespace RoverOperator
             }
         }
 
-        private int cameraPort1;
+        //private int cameraPort1;
         public int CameraPort1
         {
             get
@@ -46,7 +46,7 @@ namespace RoverOperator
             }
         }
 
-        private int cameraPort2;
+        //private int cameraPort2;
         public int CameraPort2
         {
             get
@@ -63,7 +63,7 @@ namespace RoverOperator
             }
         }
 
-        private int cameraPort3;
+        //private int cameraPort3;
         public int CameraPort3
         {
             get
@@ -109,6 +109,11 @@ namespace RoverOperator
         public void Save()
         {
             Properties.Settings.Default.Save();
+        }
+
+        public void ResetToDefault()
+        {
+            Properties.Settings.Default.Reset();
         }
     }
 }

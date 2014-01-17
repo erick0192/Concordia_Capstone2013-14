@@ -22,10 +22,10 @@ namespace RoverOperator.Content
             set
             {
                 roverIPAddress = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("RoverIPAddress"));
-                }
+                //if (PropertyChanged != null)
+                //{
+                //    PropertyChanged(this, new PropertyChangedEventArgs("RoverIPAddress"));
+                //}
             }
         }
 
@@ -39,10 +39,10 @@ namespace RoverOperator.Content
             set
             {
                 cameraPort1 = value;
-                if(PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort1"));
-                }
+                //if(PropertyChanged != null)
+                //{
+                //    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort1"));
+                //}
             }
         }
 
@@ -56,10 +56,10 @@ namespace RoverOperator.Content
             set
             {
                 cameraPort2 = value;
-                if(PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
-                }
+                //if(PropertyChanged != null)
+                //{
+                //    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
+                //}
             }
         }
 
@@ -73,10 +73,10 @@ namespace RoverOperator.Content
             set
             {
                 cameraPort3 = value;
-                if(PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
-                }
+                //if(PropertyChanged != null)
+                //{
+                //    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
+                //}
             }
         }
 
@@ -131,6 +131,15 @@ namespace RoverOperator.Content
 
         #endregion
 
+        #region Constructor
+
+        public NetworkSettingsViewModel()
+        {
+            Reset();
+        }
+
+        #endregion
+
         #region Command Methods
 
         private void Save()
@@ -145,12 +154,30 @@ namespace RoverOperator.Content
 
         private void Reset()
         {
-            
+            roverIPAddress = RoverOperator.NetworkSettings.Instance.RoverIPAddress;
+            cameraPort1 = RoverOperator.NetworkSettings.Instance.CameraPort1;
+            cameraPort2 = RoverOperator.NetworkSettings.Instance.CameraPort2;
+            cameraPort3 = RoverOperator.NetworkSettings.Instance.CameraPort3;
+
+            FirePropertiesChanged();
         }
 
         private void Default()
         {
+            RoverOperator.NetworkSettings.Instance.ResetToDefault();            
+            RoverOperator.NetworkSettings.Instance.Save();
+            Reset();
+        }
 
+        private void FirePropertiesChanged()
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("RoverIPAddress"));
+                PropertyChanged(this, new PropertyChangedEventArgs("CameraPort1"));
+                PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
+                PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
+            }
         }
 
         #endregion

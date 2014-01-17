@@ -23,6 +23,7 @@ namespace RoverOperator.Content
         public NetworkSettings()
         {
             InitializeComponent();
+            DataContext = new NetworkSettingsViewModel();
         }
     }
 }
