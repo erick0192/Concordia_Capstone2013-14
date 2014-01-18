@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class Battery : ICloneable
+    public class Battery
     {
         #region Properties
 
@@ -24,7 +24,11 @@ namespace MarsRover
             get { return (float)Math.Round(((float)CurrentCharge / MaxCharge) * 100, 2); }
         }
 
+        private List<BatteryCell> cells = new List<BatteryCell>(7);
+        public List<BatteryCell> Cells { get { return cells; } }
+
         #endregion
+       
 
         #region Constructor
 
@@ -32,16 +36,14 @@ namespace MarsRover
         {
             MaxCharge = maxCharge;
             CurrentCharge = maxCharge;
+            for(int i = 0; i < cells.Capacity; i++)
+            {
+                cells.Add(new BatteryCell(i + 1) { Voltage = 1.5f});                
+            }
         }
 
         #endregion
 
-        public Object Clone()
-        {
-            Battery clone = new Battery(MaxCharge);
-            clone.CurrentCharge = CurrentCharge;
-            clone.Temperature = Temperature;
-            return clone;
-        }
+       
     }
 }

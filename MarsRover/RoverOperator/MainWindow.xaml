@@ -7,7 +7,7 @@
     mc:Ignorable="d" 
     x:Class="RoverOperator.MainWindow"
     Title="MRCC" IsTitleVisible="True" ContentSource="/Pages/Main.xaml" x:Name="MainWin"
-    d:DesignWidth="1200" d:DesignHeight="900" Width="1200" Height="900">
+    d:DesignWidth="900" d:DesignHeight="600" Width="900" Height="600">
     <mui:ModernWindow.InputBindings>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding GoToHomeCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
         <KeyBinding Key="L" Modifiers="Control" Command="{Binding GoToLogCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>

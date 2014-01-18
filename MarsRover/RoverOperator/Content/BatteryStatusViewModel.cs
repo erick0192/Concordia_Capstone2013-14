@@ -33,7 +33,7 @@ namespace RoverOperator.Content
 
         public BatteryStatusViewModel()
         {
-            battery = (Battery)StatusUpdater.Instance.RoverStatus.Battery.Clone();
+            battery = (Battery)StatusUpdater.Instance.RoverStatus.Battery;
             StatusUpdater.Instance.BatteryUpdated += new StatusUpdater.BatteryUpdatedDelegate(UpdateBattery);
         }
 
@@ -42,10 +42,7 @@ namespace RoverOperator.Content
         #region Event Handlers
 
         private void UpdateBattery(Battery battery)
-        {
-            this.battery.CurrentCharge = battery.CurrentCharge;
-            this.battery.Temperature = battery.Temperature;
-
+        {            
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Battery"));
@@ -54,4 +51,5 @@ namespace RoverOperator.Content
 
         #endregion
     }
+
 }

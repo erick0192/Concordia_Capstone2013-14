@@ -134,6 +134,10 @@ namespace RoverOperator
             roverStatus.Battery.CurrentCharge -= 10;
             roverStatus.Battery.Temperature += 1;
 
+            roverStatus.Battery.Cells.ForEach(cell => {
+                cell.Voltage += 0.1f;
+            });
+
             if(BatteryUpdated != null)
             {
                 BatteryUpdated(roverStatus.Battery);

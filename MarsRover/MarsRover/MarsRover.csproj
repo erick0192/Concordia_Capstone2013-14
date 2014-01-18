@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battery.cs" />
+    <Compile Include="BatteryCell.cs" />
     <Compile Include="Communication\UDPClient.cs" />
     <Compile Include="Communication\UDPListener.cs" />
     <Compile Include="GPSCoordinates.cs" />

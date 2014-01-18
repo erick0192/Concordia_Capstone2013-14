@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MarsRover;
 
 namespace RoverOperator.Content
 {
@@ -24,6 +25,60 @@ namespace RoverOperator.Content
         {
             InitializeComponent();
             DataContext = new BatteryStatusViewModel();
+            RegisterForBatteryCellsStatusChanges();
+        }
+
+        private void RegisterForBatteryCellsStatusChanges()
+        {
+            var vm = DataContext as BatteryStatusViewModel;
+            vm.Battery.Cells.ForEach(cell =>
+            {
+                cell.NormalVoltageDetected += new BatteryCell.NormalVoltageDetectedDelegate(HandleBatteryCellNormalVoltage);
+                cell.OverVoltageDetected += new BatteryCell.OverVoltageDetectedDelegate(HandleBatteryCellOverVoltage);
+                cell.UnderVoltageDetected += new BatteryCell.UnderVoltageDetectedDelegate(HandleBatteryCellUnderVoltage);
+            });
+        }   
+  
+        private void HandleBatteryCellNormalVoltage(BatteryCell cell)
+        {
+            if (!this.Dispatcher.HasShutdownStarted && !this.Dispatcher.HasShutdownFinished)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    var cellBar = this.FindName("cellBar" + cell.CellID) as ProgressBar;
+                    cellBar.Foreground = Brushes.Lime;
+                    var cellPanel = this.FindName("cellPanel" + cell.CellID) as StackPanel;
+                    cellPanel.ToolTip = null;
+                }));
+            }
+        }
+
+        private void HandleBatteryCellOverVoltage(BatteryCell cell)
+        {
+            if (!this.Dispatcher.HasShutdownStarted && !this.Dispatcher.HasShutdownFinished)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    var cellBar = this.FindName("cellBar" + cell.CellID) as ProgressBar;
+                    cellBar.Foreground = Brushes.Red;
+                    var cellPanel = this.FindName("cellPanel" + cell.CellID) as StackPanel;
+                    cellPanel.ToolTip = "This battery cell is currently experiencing over voltage.";
+                }));
+            }
+        }
+
+        private void HandleBatteryCellUnderVoltage(BatteryCell cell)
+        {
+            if (!this.Dispatcher.HasShutdownStarted && !this.Dispatcher.HasShutdownFinished)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    var cellBar = this.FindName("cellBar" + cell.CellID) as ProgressBar;
+                    cellBar.Foreground = Brushes.Orange;
+                    var cellPanel = this.FindName("cellPanel" + cell.CellID) as StackPanel;
+                    cellPanel.ToolTip = "This battery cell is currently experiencing under voltage.";
+                }));
+            }
         }
     }
 }

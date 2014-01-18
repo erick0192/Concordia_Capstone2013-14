@@ -116,12 +116,12 @@
       <DependentUpon>BatteryStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\BatteryStatusViewModel.cs" />
-    <Compile Include="Content\GeneralSettings.xaml.cs">
-      <DependentUpon>GeneralSettings.xaml</DependentUpon>
+    <Compile Include="Content\GeneralSettingsView.xaml.cs">
+      <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\GeneralSettingsViewModel.cs" />
-    <Compile Include="Content\NetworkSettings.xaml.cs">
-      <DependentUpon>NetworkSettings.xaml</DependentUpon>
+    <Compile Include="Content\NetworkSettingsView.xaml.cs">
+      <DependentUpon>NetworkSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\NetworkSettingsViewModel.cs" />
     <Compile Include="NetworkSettings.cs" />
@@ -150,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\GeneralSettings.xaml">
+    <Page Include="Content\GeneralSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\NetworkSettings.xaml">
+    <Page Include="Content\NetworkSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
