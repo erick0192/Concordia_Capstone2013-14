@@ -32,6 +32,7 @@ namespace RoverOperator.Pages
             DataContext = new MainViewModel();
 
             ((MainViewModel)DataContext).DockingManager = dockingManager;
+            
 
             //Instantiate VM for camera views            
             CameraViewModel cvm = this.Cam1.DataContext as CameraViewModel;
@@ -55,13 +56,15 @@ namespace RoverOperator.Pages
 
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused    
-
-            //Start or hide the cameras depending on configuration
-            //((MainViewModel)DataContext).VMFrontCamera.VideoSource.Start();
+            
             this.LayoutCam1.Hide();
-            //((MainViewModel)DataContext).VMBackCamera.VideoSource.Start();
             this.LayoutCam2.Hide();
-            this.LayoutCam3.Hide();
+            this.LayoutCam3.Hide();            
+        }
+
+        private void HandleUIHide()
+        {
+            
         }
 
         private void ShowHideCamera(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -96,7 +99,7 @@ namespace RoverOperator.Pages
                     iCameraLayoutControl.Show();
                 }
                 else
-                {
+                {                    
                     iCameraLayoutControl.Hide();
                 }
             }

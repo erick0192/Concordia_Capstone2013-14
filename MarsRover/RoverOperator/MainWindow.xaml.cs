@@ -22,19 +22,64 @@ namespace RoverOperator
     /// </summary>
     public partial class MainWindow : ModernWindow
     {
+        private ICommand goToPageCommand;
+        public ICommand GoToPageCommand
+        {
+            get
+            {
+                if(goToPageCommand == null)
+                {
+                    goToPageCommand = new FirstFloor.ModernUI.Presentation.RelayCommand(
+                        p => this.GoToPage(p));
+                }
+
+                return goToPageCommand;
+            }
+        }
+
         public MainWindow()
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             FirstFloor.ModernUI.Presentation.AppearanceManager.Current.AccentColor = Color.FromRgb(0xa2, 0x00, 0x25);
+            AddKeyBoardShortcuts();
+            DataContext = new MainWindowViewModel(); 
+           
+        }
 
-            DataContext = new MainWindowViewModel();
+        private void AddKeyBoardShortcuts()
+        {
+            //Settings
+            var kb = new KeyBinding(GoToPageCommand, Key.F12, ModifierKeys.None);
+            kb.CommandParameter = @"/Pages/Help.xaml";
+            this.InputBindings.Add(kb);
+
+            //Help
+            kb = new KeyBinding(GoToPageCommand, Key.F11, ModifierKeys.None);
+            kb.CommandParameter = @"/Pages/Settings.xaml";
+            this.InputBindings.Add(kb);
+
+            //Home
+            kb = new KeyBinding(GoToPageCommand, Key.H, ModifierKeys.Control);
+            kb.CommandParameter = @"/Pages/Main.xaml";
+            this.InputBindings.Add(kb);            
+
+            //Log
+            kb = new KeyBinding(GoToPageCommand, Key.L, ModifierKeys.Control);
+            kb.CommandParameter = @"/Pages/Log.xaml";
+            this.InputBindings.Add(kb);
         }
 
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);            
             Application.Current.Shutdown();
+        }
+
+        private void GoToPage(object relativeURI)
+        {
+            var targetURI = relativeURI as String;
+            this.ContentSource = new Uri(targetURI, UriKind.Relative);
         }
     }
 }
