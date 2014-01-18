@@ -27,6 +27,8 @@ namespace RoverOperator.Content
             var mvm = new MotorsViewModel();
             FrontLeftMotor.DataContext = new MotorStatusViewModel(MarsRover.Motor.Location.FrontLeft);
             FrontRightMotor.DataContext = new MotorStatusViewModel(MarsRover.Motor.Location.FrontRight);
+            MiddleLeftMotor.DataContext = new MotorStatusViewModel(MarsRover.Motor.Location.MiddleLeft);
+            MiddleRightMotor.DataContext = new MotorStatusViewModel(MarsRover.Motor.Location.MiddleRight);
             BackLeftMotor.DataContext = new MotorStatusViewModel(MarsRover.Motor.Location.BackLeft);
             BackRightMotor.DataContext = new MotorStatusViewModel(MarsRover.Motor.Location.BackRight);
         }

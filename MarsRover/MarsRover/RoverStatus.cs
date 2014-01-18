@@ -15,12 +15,12 @@ namespace MarsRover
         public RoverStatus()
         {
             Motors = new Dictionary<Motor.Location, Motor>(6);
-            Motors.Add(Motor.Location.FrontLeft, new Motor());
-            Motors.Add(Motor.Location.FrontRight, new Motor());            
-            Motors.Add(Motor.Location.BackLeft, new Motor());
-            Motors.Add(Motor.Location.BackRight, new Motor());
-            Motors.Add(Motor.Location.MiddleLeft, new Motor());
-            Motors.Add(Motor.Location.MiddleRight, new Motor());
+            Motors.Add(Motor.Location.FrontLeft, new Motor(Motor.Location.FrontLeft));
+            Motors.Add(Motor.Location.FrontRight, new Motor(Motor.Location.FrontRight));
+            Motors.Add(Motor.Location.BackLeft, new Motor(Motor.Location.BackLeft));
+            Motors.Add(Motor.Location.BackRight, new Motor(Motor.Location.BackRight));
+            Motors.Add(Motor.Location.MiddleLeft, new Motor(Motor.Location.MiddleLeft));
+            Motors.Add(Motor.Location.MiddleRight, new Motor(Motor.Location.MiddleRight));
 
             Battery = new Battery(2000);
             GPSCoordinates = new GPSCoordinates();

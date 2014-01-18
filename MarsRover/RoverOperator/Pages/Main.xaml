@@ -20,13 +20,13 @@
         <KeyBinding Key="F3" Modifiers="Control" Command="{Binding SaveLayoutCommand}" CommandParameter="F3"/>
         <KeyBinding Key="F4" Modifiers="Control" Command="{Binding SaveLayoutCommand}" CommandParameter="F4"/>
 
-        <KeyBinding Key="D1" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="front"/>
-        <KeyBinding Key="D2" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="back"/>
-        <KeyBinding Key="D3" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="left"/>
+        <KeyBinding Key="D1" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="1"/>
+        <KeyBinding Key="D2" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="2"/>
+        <KeyBinding Key="D3" Modifiers="Control" Command="{Binding ToggleCameraCommand}" CommandParameter="3"/>
 
     </UserControl.InputBindings>
     <Grid>
-        <avalonDock:DockingManager x:Name="dockingManager" Margin="10,0,0,0">
+        <avalonDock:DockingManager x:Name="dockingManager" Margin="0,10,0,0">
             <avalonDock:DockingManager.Theme>
                 <avalonDock:GenericTheme/>
             </avalonDock:DockingManager.Theme>
@@ -84,7 +84,7 @@
                                           Template="{DynamicResource ExpandTheTemplate}"
                                           Header="Battery" FontWeight="Bold" FontSize="16" 
                                           IsExpanded="True">
-                                    <controls:BatteryStatusView/>                                    
+                                    <controls:BatteryStatusView Margin="10,0,0,0"/>                                    
                                 </Expander>
                             </StackPanel>
                         </avalonDock:LayoutAnchorable>

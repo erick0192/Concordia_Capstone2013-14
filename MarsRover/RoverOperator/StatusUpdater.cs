@@ -115,6 +115,14 @@ namespace RoverOperator
             motor.Current += 5;
             motor.Temperature += 4;
 
+            motor = roverStatus.Motors[Motor.Location.MiddleLeft];
+            motor.Current += 7;
+            motor.Temperature += 3;
+
+            motor = roverStatus.Motors[Motor.Location.MiddleRight];
+            motor.Current += 7;
+            motor.Temperature += 3;
+
             motor = roverStatus.Motors[Motor.Location.BackLeft];
             motor.Current += 7;
             motor.Temperature += 3;

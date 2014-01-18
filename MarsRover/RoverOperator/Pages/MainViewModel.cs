@@ -18,7 +18,6 @@ namespace RoverOperator.Pages
         public CameraViewModel VMCamera1 { get; set; }
         public CameraViewModel VMCamera2 { get; set; }
         public CameraViewModel VMCamera3 { get; set; }
-        public CameraViewModel VMRightCamera { get; set; }
 
         #endregion
 
@@ -87,21 +86,17 @@ namespace RoverOperator.Pages
         {
             CameraViewModel cvm = null;
 
-            if ("front" == (string)iParam)
+            if ("1" == (string)iParam)
             {                
                 cvm = VMCamera1;
             }
-            else if ("back" == (string)iParam)
+            else if ("2" == (string)iParam)
             {
                 cvm = VMCamera2;
             }
-            else if ("left" == (string)iParam)
+            else if ("3" == (string)iParam)
             {
                 cvm = VMCamera3;
-            }
-            else if ("right" == (string)iParam)
-            {
-                cvm = VMRightCamera;
             }
 
             return cvm.ToggleCamera.CanExecute(null) ;
@@ -111,21 +106,17 @@ namespace RoverOperator.Pages
         {
             CameraViewModel cvm = null;
 
-            if ("front" == (string)iParam)
+            if ("1" == (string)iParam)
             {
                 cvm = VMCamera1;
             }
-            else if ("back" == (string)iParam)
+            else if ("2" == (string)iParam)
             {
                 cvm = VMCamera2;
             }
-            else if ("left" == (string)iParam)
+            else if ("3" == (string)iParam)
             {
                 cvm = VMCamera3;
-            }
-            else if ("right" == (string)iParam)
-            {
-                cvm = VMRightCamera;
             }
 
             cvm.ToggleCamera.Execute(null);

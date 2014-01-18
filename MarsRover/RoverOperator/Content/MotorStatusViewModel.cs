@@ -14,21 +14,13 @@ namespace RoverOperator.Content
         
         #region Properties
 
-        private String title;
         public String Title
         {
             get
             {
-                return title;
+                return MarsRover.Motor.GetLocationFriendlyString(this.motorKey);
             }
-            set
-            {
-                title = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Title"));
-                }
-            }
+           
         }
 
         private Motor motor;
@@ -52,9 +44,8 @@ namespace RoverOperator.Content
 
         public MotorStatusViewModel(Motor.Location motorKey)
         {
-            title = "";
             this.motorKey = motorKey;
-            motor = new Motor();
+            motor = StatusUpdater.Instance.RoverStatus.Motors[motorKey];
             StatusUpdater.Instance.MotorsUpdated += new StatusUpdater.MotorsUpdatedDelegate(UpdateMotor);
         }
 
@@ -64,10 +55,6 @@ namespace RoverOperator.Content
 
         private void UpdateMotor(Dictionary<Motor.Location, Motor> motors)
         {
-            Motor m = motors[motorKey];
-            motor.Current = m.Current;
-            motor.Temperature = m.Temperature;
-
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Motor"));
