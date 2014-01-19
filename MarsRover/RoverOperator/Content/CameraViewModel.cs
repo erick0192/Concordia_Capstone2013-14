@@ -20,8 +20,16 @@ namespace RoverOperator.Content
     {
         //TaskFactory mUIFactory;
 
+        #region Private attributes
+
+        System.Timers.Timer toggleTimer;
+        private volatile bool canToggle = true;
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Properties
-        
+
         public string CameraName { get; set; }
 
         public bool mIsActive = false;
@@ -30,14 +38,11 @@ namespace RoverOperator.Content
             get
             {
                 return mIsActive;
-                //if (null != mVideoSource)
-                //    return mVideoSource.IsRunning;
-                //else
-                //    return false;
             }
             set
             {
-                mIsActive = value;
+                mIsActive = value;                
+                logger.Debug("Camera {0} is now {1}.", CameraName, IsActive ? "active": "inactive");                
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("IsActive"));
@@ -124,15 +129,23 @@ namespace RoverOperator.Content
         public CameraViewModel(string iCameraName)
         {
             CameraName = iCameraName;
-            
+            toggleTimer = new System.Timers.Timer(3000);
+            toggleTimer.AutoReset = false;
+            toggleTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.EnableToggle);
             //mUIFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
+            
+            //logger = NLog.LogManager.GetLogger("Console");
+            
         }
 
         #endregion
 
         #region Command Methods
 
-        private bool CanToggleCamera() { return true; }
+        private bool CanToggleCamera() 
+        {
+            return canToggle;
+        }
 
         private void ToggleCam()
         {
@@ -145,12 +158,20 @@ namespace RoverOperator.Content
             {             
                 mVideoSource.Start();
                 IsActive = true;
-            }          
+            }
+
+            canToggle = false;
+            toggleTimer.Start();
         }
 
         #endregion
 
         #region Event Handlers
+
+        private void EnableToggle(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            canToggle = true;
+        }
 
         private void HandleFinishedPlaying(object sender, ReasonToFinishPlaying reason)
         {

@@ -8,12 +8,6 @@
     x:Class="RoverOperator.MainWindow"
     Title="MRCC" IsTitleVisible="True" ContentSource="/Pages/Main.xaml" x:Name="MainWin"
     d:DesignWidth="900" d:DesignHeight="600" Width="900" Height="600">
-    <mui:ModernWindow.InputBindings>
-        <KeyBinding Key="H" Modifiers="Control" Command="{Binding GoToHomeCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
-        <KeyBinding Key="L" Modifiers="Control" Command="{Binding GoToLogCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
-        <KeyBinding Key="T" Modifiers="Control" Command="{Binding GoToSettingsCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
-        <KeyBinding Key="F12" Command="{Binding GoToHelpCommand}"  CommandParameter="{Binding ElementName=MainWin}"/>
-    </mui:ModernWindow.InputBindings>
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Home" GroupName="home">
             <mui:LinkGroup.Links>
