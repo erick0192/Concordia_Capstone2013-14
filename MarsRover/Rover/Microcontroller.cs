@@ -150,12 +150,12 @@ namespace Rover
                     {
                         isInitialized = false;
                         Console.WriteLine("{0}: " + e.Message, DateTime.Now); //Log error here
-                        throw e;
+                        throw;
                     }
                     catch (TimeoutException e)
                     {
                         Console.WriteLine("{0}: " + e.Message, DateTime.Now); //Log error here
-                        throw e;
+                        throw;
                     }
                 }
 

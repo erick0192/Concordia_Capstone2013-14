@@ -121,22 +121,45 @@ namespace Rover
         //Todo: add error checking on string-based instantiation
         //It is assumed that new commands will be created each time rather than the caller re-using a previously existing one.
 
-        private char rightDirection;
-        private char leftDirection;
+        private string rightDirection;
+        private string leftDirection;
         private int rightSpeed;
         private int leftSpeed;
+        private string rawCommand;
+
+        public string RightDirection { get { return rightDirection; } }
+        public string LeftDirection { get { return leftDirection; } }
+        public int RightSpeed { get { return rightSpeed; } }
+        public int LeftSpeed { get { return leftSpeed; } }
+        public string RawCommand {get { return rawCommand; } }
         private MicrocontrollerSingleton microcontroller;
 
-        public MovementCommand(string unparsedText) //Error handling needed here
+        public MovementCommand(string unparsedText) 
         {
-            rightDirection = ParseRightDirection(unparsedText);
-            rightSpeed = ParseRightSpeed(unparsedText);
-            leftDirection = ParseLeftDirection(unparsedText);
-            leftSpeed = ParseLeftSpeed(unparsedText);
+            if (unparsedText == null)
+            {
+                throw new ArgumentNullException("Null string received");
+            }
+            if (IsValidIdentifier(unparsedText) == false)
+            {
+                throw new ArgumentException("Invalid command identifier");
+            }
 
+            rawCommand = unparsedText;
+            try
+            {
+                rightDirection = ParseRightDirection(rawCommand);
+                rightSpeed = ParseRightSpeed(rawCommand);
+                leftDirection = ParseLeftDirection(rawCommand);
+                leftSpeed = ParseLeftSpeed(rawCommand);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
             microcontroller = MicrocontrollerSingleton.Instance;
-        }
 
+        }
 
          public void Execute()
         {
@@ -164,28 +187,6 @@ namespace Rover
             this.rightDirection = ReverseDirection(this.rightDirection);
 
             this.Execute();
-
-
-        }
-
-        public char GetLeftDirection()
-        {
-            return this.leftDirection;
-        }
-
-        public char GetRightDirection()
-        {
-            return this.rightDirection;
-        }
-
-        public int GetLeftSpeed()
-        {
-            return this.leftSpeed;
-        }
-
-        public int GetRightSpeed()
-        {
-            return this.rightSpeed;
         }
 
 
@@ -194,7 +195,7 @@ namespace Rover
             //Messages should be of the format "<LeftDirection LeftValue RightDirection RightValue>" (no spaces)
             //Ex: <F255F255> for full speed ahead
 
-            return "<M" + leftDirection.ToString() + leftSpeed.ToString("D3") + rightDirection.ToString() + rightSpeed.ToString("D3") + ">";
+            return CommandMetadata.StartDelimiter + CommandMetadata.Movement.Identifier + leftDirection.ToString() + leftSpeed.ToString("D3") + rightDirection.ToString() + rightSpeed.ToString("D3") + CommandMetadata.EndDelimiter;
         }
 
         private void SendMessage(string message)
@@ -202,22 +203,52 @@ namespace Rover
             Console.WriteLine(message);
         }
 
-        private char ReverseDirection(char direction)
+        private string ReverseDirection(string direction)
         {
-            if (direction == 'F')
-                return 'B';
+            if (direction == CommandMetadata.Movement.Forward)
+                return CommandMetadata.Movement.Backward;
             else
-                return 'F';
+                return CommandMetadata.Movement.Forward;
         }
 
-        private char ParseRightDirection(string text)
+        private bool IsValidIdentifier(string text)
         {
-            return text[CommandMetadata.Movement.RightDirectionIndex];
+            string identifier = text.Substring(CommandMetadata.IdIndex, CommandMetadata.IdLength);
+            if (identifier == CommandMetadata.Movement.Identifier)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
-        private char ParseLeftDirection(string text)
+        private string ParseRightDirection(string text)
         {
-            return text[CommandMetadata.Movement.LeftDirectionIndex];
+            string direction = text.Substring(CommandMetadata.Movement.RightDirectionIndex, CommandMetadata.Movement.DirectionLength);
+            if (direction == CommandMetadata.Movement.Forward || direction == CommandMetadata.Movement.Backward)
+            {
+                return direction;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid Right Movement Direction Received");
+            }
+        }
+
+        private string ParseLeftDirection(string text)
+        {
+            string direction = text.Substring(CommandMetadata.Movement.LeftDirectionIndex, CommandMetadata.Movement.DirectionLength);
+            if (direction == CommandMetadata.Movement.Forward || direction == CommandMetadata.Movement.Backward)
+            {
+                return direction;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid Left Movement Direction Received");
+            }
         }
 
         private int ParseRightSpeed(string text)
@@ -225,12 +256,13 @@ namespace Rover
             string rightSpeedStr = "";
             int rightSpeedNum;
 
-            for (int i = CommandMetadata.Movement.RightSpeedStartIndex; i <= CommandMetadata.Movement.RightSpeedEndIndex; i++)
-            {
-                rightSpeedStr += text[i];
-            }
-
+            rightSpeedStr = text.Substring(CommandMetadata.Movement.RightSpeedStartIndex, CommandMetadata.Movement.MaxSpeed.ToString().Length);
             rightSpeedNum = Convert.ToInt32(rightSpeedStr);
+
+            if (rightSpeedNum > CommandMetadata.Movement.MaxSpeed)
+            {
+                throw new ArgumentException("Speed received higher than expected maximum");
+            }
 
             return rightSpeedNum;
 
@@ -241,12 +273,13 @@ namespace Rover
             string leftSpeedStr = "";
             int leftSpeedNum;
 
-            for (int i = CommandMetadata.Movement.LeftSpeedStartIndex; i <= CommandMetadata.Movement.LeftSpeedEndIndex; i++)
-            {
-                leftSpeedStr += text[i];
-            }
-
+            leftSpeedStr = text.Substring(CommandMetadata.Movement.LeftSpeedStartIndex, CommandMetadata.Movement.MaxSpeed.ToString().Length);
             leftSpeedNum = Convert.ToInt32(leftSpeedStr);
+
+            if (leftSpeedNum > CommandMetadata.Movement.MaxSpeed)
+            {
+                throw new ArgumentException("Speed received higher than expected maximum");
+            }
 
             return leftSpeedNum;
         }

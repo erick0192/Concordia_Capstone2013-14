@@ -17,6 +17,13 @@ namespace Rover
             //Example of assumed movement command format: <MF255F255>
 
             public const string Identifier = "M";
+            public const string Forward = "F";
+            public const string Backward = "B";
+
+            public const int MaxSpeed = 255;
+
+            public const int DirectionLength = 1;
+            public const int IdentifierLength = 1;
 
             public const int LeftDirectionIndex = 2;
             public const int RightDirectionIndex = 6;

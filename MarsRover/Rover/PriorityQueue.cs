@@ -18,11 +18,11 @@ namespace Rover.Shared
         }
 
         public uint Count { 
-            get { return (uint)(m_last + 1); }            
+            get { return (uint)(lastElement + 1); }            
         }
 
         private Node[] queue;
-        private int m_last = -1;
+        private int lastElement = -1;
         private const int RootIndex = 0;
         private readonly int MaxCapacity = 0;
         private static object WriteLock = new Object();
@@ -40,9 +40,9 @@ namespace Rover.Shared
             {
                 if (Count > 0) {               
                     result = queue[RootIndex].Value;
-                    queue[RootIndex] = queue[m_last];
-                    queue[m_last] = null;
-                    m_last -= 1;
+                    queue[RootIndex] = queue[lastElement];
+                    queue[lastElement] = null;
+                    lastElement -= 1;
 
                     BubbleDown(RootIndex);                                        
                 }
@@ -63,9 +63,9 @@ namespace Rover.Shared
                 if (Count + 1 > MaxCapacity) {
                     ClearQueue();
                 }
-                m_last += 1;
-                queue[m_last] = new Node(priority, value);
-                BubbleUp(m_last);
+                lastElement += 1;
+                queue[lastElement] = new Node(priority, value);
+                BubbleUp(lastElement);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Rover.Shared
             lock (WriteLock)
             {
                 Array.Clear(queue, 0, MaxCapacity);
-                m_last = -1;
+                lastElement = -1;
                 Console.WriteLine("***Queue Cleared***");
             }
         }
