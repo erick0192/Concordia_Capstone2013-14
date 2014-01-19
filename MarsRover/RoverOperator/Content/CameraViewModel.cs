@@ -24,6 +24,7 @@ namespace RoverOperator.Content
 
         System.Timers.Timer toggleTimer;
         private volatile bool canToggle = true;
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -37,14 +38,11 @@ namespace RoverOperator.Content
             get
             {
                 return mIsActive;
-                //if (null != mVideoSource)
-                //    return mVideoSource.IsRunning;
-                //else
-                //    return false;
             }
             set
             {
-                mIsActive = value;
+                mIsActive = value;                
+                logger.Debug("Camera {0} is now {1}.", CameraName, IsActive ? "active": "inactive");                
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("IsActive"));
@@ -135,6 +133,9 @@ namespace RoverOperator.Content
             toggleTimer.AutoReset = false;
             toggleTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.EnableToggle);
             //mUIFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
+            
+            //logger = NLog.LogManager.GetLogger("Console");
+            
         }
 
         #endregion
