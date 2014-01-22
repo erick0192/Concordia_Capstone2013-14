@@ -50,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcurrentQueueAdapter.cs" />
+    <Compile Include="GPSLog.cs" />
     <Compile Include="IQueue.cs" />
+    <Compile Include="ISensor.cs" />
     <Compile Include="Microcontroller.cs" />
     <Compile Include="CommandFactory.cs" />
     <Compile Include="CommandMetadata.cs" />

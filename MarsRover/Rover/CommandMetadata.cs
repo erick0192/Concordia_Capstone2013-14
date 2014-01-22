@@ -47,5 +47,33 @@ namespace Rover
             public const int StatusIndex = 3;
             public const int StatusLength = 1;
         }
+
+        public static class Pan
+        {
+            //Example command: <P0359>
+            public const int MaxPanAngle = 359;
+            public const int MinPanAngle = 0;
+
+            public const int NumberIdentifierIndex = 2;
+            public const int NumberIdentifierLength = 1;
+
+            public const int AngleStartIndex = 3;
+            public const int AngleEndIndex = 5;
+        }
+
+        public static class Tilt
+        {
+            //Example command: <T1000>
+            public const int MaxTiltAngle = 90;
+            public const int MinTiltAngle = 0;
+
+            public const int NumberIdentifierIndex = 2;
+            public const int NumberIdentifierLength = 1;
+
+            public const int AngleStartIndex = 3;
+            public const int AngleEndIndex = 5;
+
+
+        }
     }
 }

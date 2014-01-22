@@ -43,19 +43,209 @@ namespace Rover
         }
     }
 
+    public class PanCommand : ICommand
+    {
+        private int camIndex;
+        private int panAngle;
+
+        private string rawCommand;
+        private MicrocontrollerSingleton microcontroller;
+
+        public int CameraIndex { get { return camIndex; } }
+        public int Angle { get { return panAngle; } }
+        public string RawCommand { get { return rawCommand; } }
+
+        public PanCommand(string unparsedCommand)
+        {
+            //Extra error handling might be needed on a per-servo basis (ex: some servos are expected to do 360 degrees while others arent)
+            if (unparsedCommand == null)
+            {
+                throw new ArgumentNullException("Null string received");
+            }
+
+            rawCommand = unparsedCommand;
+            try
+            {
+                camIndex = ParseCamIndex(unparsedCommand);
+                panAngle = ParsePanAngle(unparsedCommand);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
+            microcontroller = MicrocontrollerSingleton.Instance;
+        }
+
+        private int ParseCamIndex(string unparsedCommand)
+        {
+            string rawCamIndex; 
+            int index;
+
+            rawCamIndex = unparsedCommand.Substring(CommandMetadata.Pan.NumberIdentifierIndex, CommandMetadata.Pan.NumberIdentifierLength);
+
+            try
+            {
+                index = Convert.ToInt32(rawCamIndex);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Invalid camera index " + rawCamIndex + " received for command " + unparsedCommand);
+            }
+
+            return index;
+            
+        }
+
+        private int ParsePanAngle(string unparsedText)
+        {
+            string panAngleStr;
+            int panAngleNum;
+
+            int readLength = CommandMetadata.Pan.AngleEndIndex - CommandMetadata.Pan.AngleStartIndex + 1;
+
+            panAngleStr = unparsedText.Substring(CommandMetadata.Pan.AngleStartIndex, readLength);
+
+            try
+            {
+                panAngleNum = Convert.ToInt32(panAngleStr);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Invalid Pan angle received in " + rawCommand);
+            }
+
+            if (panAngleNum > CommandMetadata.Pan.MaxPanAngle)
+            {
+                throw new ArgumentException("Pan angle received higher than expected maximum in " + rawCommand);
+            }
+            else if (panAngleNum < CommandMetadata.Pan.MinPanAngle)
+            {
+                throw new ArgumentException("Pan angle received lower than expected minimum in" + rawCommand);
+            }
+
+            return panAngleNum;
+        }
+
+        public void Execute()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UnExecute()
+        {
+            throw new NotImplementedException("There is no unexecute for pan commands");
+        }
+    }
+
+    public class TiltCommand : ICommand
+    {
+        private int camIndex;
+        private int tiltAngle;
+        private string rawCommand;
+        private MicrocontrollerSingleton microcontroller;
+
+        public int CameraIndex { get { return camIndex; } }
+        public int Angle { get { return tiltAngle; } }
+        public string RawCommand { get { return rawCommand; } }
+
+        public TiltCommand(string unparsedCommand)
+        {
+            if (unparsedCommand == null)
+            {
+                throw new ArgumentNullException("Null string received");
+            }
+
+            rawCommand = unparsedCommand;
+            try
+            {
+                camIndex = ParseCamIndex(unparsedCommand);
+                tiltAngle = ParseTiltAngle(unparsedCommand);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
+            microcontroller = MicrocontrollerSingleton.Instance;
+        }
+
+        public void Execute()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UnExecute()
+        {
+            throw new NotImplementedException("There is no unexecute for tilt commands");
+        }
+
+        private int ParseCamIndex(string unparsedCommand)
+        {
+            string rawCamIndex;
+            int index;
+
+            rawCamIndex = unparsedCommand.Substring(CommandMetadata.Tilt.NumberIdentifierIndex, CommandMetadata.Tilt.NumberIdentifierLength);
+
+            try
+            {
+                index = Convert.ToInt32(rawCamIndex);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Invalid camera index " + rawCamIndex + " received for command " + unparsedCommand);
+            }
+
+            return index;
+
+        }
+
+        private int ParseTiltAngle(string unparsedText)
+        {
+            string tiltAngleStr;
+            int tiltAngleNum;
+
+            int readLength = CommandMetadata.Tilt.AngleEndIndex - CommandMetadata.Tilt.AngleStartIndex +1;
+
+            tiltAngleStr = unparsedText.Substring(CommandMetadata.Tilt.AngleStartIndex, readLength);
+
+            try
+            {
+                tiltAngleNum = Convert.ToInt32(tiltAngleStr);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Invalid Pan angle received in " + rawCommand);
+            }
+
+            if (tiltAngleNum > CommandMetadata.Tilt.MaxTiltAngle)
+            {
+                throw new ArgumentException("Pan angle received higher than expected maximum in " + rawCommand);
+            }
+            else if (tiltAngleNum < CommandMetadata.Tilt.MinTiltAngle)
+            {
+                throw new ArgumentException("Pan angle received lower than expected minimum in" + rawCommand);
+            }
+
+            return tiltAngleNum;
+        }
+    }
+
     public class CameraCommand : ICommand
     {
         private int camIndex;
         private bool status;
+        public bool CameraStatus { get { return status; } }
+        public int CameraIndex { get { return camIndex; } }
+
+        private MicrocontrollerSingleton microcontroller;
 
         public CameraCommand(string unparsedCommand)
         {
             try
             {
-                camIndex = getCamIndex(unparsedCommand);
-                status = getCamStatus(unparsedCommand);
+                camIndex = ParseCameraIndex(unparsedCommand);
+                status = ParseCameraStatus(unparsedCommand);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentException e)
             {
                 throw e;
             }
@@ -71,7 +261,7 @@ namespace Rover
             throw new NotImplementedException("There is no unexecute for camera commands");
         }
 
-        private int getCamIndex(string unparsedCommand)
+        private int ParseCameraIndex(string unparsedCommand)
         {
             string rawCamIndex = unparsedCommand.Substring(CommandMetadata.Camera.NumberIndex, CommandMetadata.Camera.NumberLength);
             int index;
@@ -81,13 +271,13 @@ namespace Rover
             }
             catch(Exception)
             {
-                throw new ArgumentOutOfRangeException("Invalid camera index " + rawCamIndex + " received for command " + unparsedCommand);
+                throw new ArgumentException("Invalid camera index " + rawCamIndex + " received for command " + unparsedCommand);
             }
 
             return index;
         }
 
-        private bool getCamStatus(string unparsedCommand)
+        private bool ParseCameraStatus(string unparsedCommand)
         {
             string rawStatus = unparsedCommand.Substring(CommandMetadata.Camera.StatusIndex, CommandMetadata.Camera.StatusLength);
 
@@ -105,15 +295,6 @@ namespace Rover
             }
         }
 
-        public int getCamIndex()
-        {
-            return this.camIndex;
-        }
-
-        public bool getCamStatus()
-        {
-            return this.status;
-        }
     }
 
     public class MovementCommand : ICommand

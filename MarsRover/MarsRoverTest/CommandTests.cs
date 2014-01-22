@@ -8,7 +8,7 @@ using Rover;
 namespace MarsRoverTest
 {
      /* 
-     * Unit tests for the CommandFactory Class
+     * Unit tests for commands
      * 
      * Naming Convention: MethodName_StateUnderTest_ExpectedResults
      * 
@@ -132,8 +132,8 @@ namespace MarsRoverTest
             string rawCommand = "<C1F>";
             CameraCommand command = new CameraCommand(rawCommand);
 
-            Assert.AreEqual(command.getCamIndex(), 1);
-            Assert.AreEqual(command.getCamStatus(), false);
+            Assert.AreEqual(command.CameraIndex, 1);
+            Assert.AreEqual(command.CameraStatus, false);
         }
 
         [Test]
@@ -142,8 +142,65 @@ namespace MarsRoverTest
             string rawCommand = "<C2O>";
             CameraCommand command = new CameraCommand(rawCommand);
 
-            Assert.AreEqual(command.getCamIndex(), 2);
-            Assert.AreEqual(command.getCamStatus(), true);
+            Assert.AreEqual(command.CameraIndex, 2);
+            Assert.AreEqual(command.CameraStatus, true);
+        }
+    }
+
+    [TestFixture, Category("PanCommandTests")]
+    class PanCommandTests
+    {
+        [Test]
+        public void CreatePanCommand_ValidInputString_InitializesProperly()
+        {
+            string rawCommand = "<P1000>";
+            int actualCamIndex = 1;
+            int actualPanAngle = 0;
+
+            PanCommand command = new PanCommand(rawCommand);
+            Assert.AreEqual(command.CameraIndex, actualCamIndex);
+            Assert.AreEqual(command.Angle, actualPanAngle);
+        }
+
+        [Test]
+        public void CreatePanCommand_PanAngleGreaterThan359_ThrowsArgumentException()
+        {
+            string rawCommand = "<P1360>";
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    PanCommand command = new PanCommand(rawCommand);
+                }
+            );
+        }
+
+    }
+
+    [TestFixture, Category("TiltCommandTests")]
+    class TiltCommandTests
+    {
+        [Test]
+        public void CreateTiltCommand_ValidInputString_InitializesProperly()
+        {
+            string rawCommand = "<T1090>";
+            int expectedCameraIndex = 1;
+            int expectedTiltAngle = 90;
+
+            TiltCommand command = new TiltCommand(rawCommand);
+            Assert.AreEqual(expectedCameraIndex, command.CameraIndex);
+            Assert.AreEqual(expectedTiltAngle, command.Angle);
+        }
+
+        [Test]
+        public void CreateTiltCommand_TiltAngleMoreThan90_ThrowsArgumentException()
+        {
+            string rawCommand = "<T0091>";
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    TiltCommand command = new TiltCommand(rawCommand);
+                }
+            );
         }
     }
 }

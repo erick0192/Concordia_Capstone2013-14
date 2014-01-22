@@ -146,34 +146,6 @@ namespace Rover
             Thread.Sleep(5000);
         }
 
-
-
-
-
-        //public class CommunicationMediator
-        //{
-        //    ConcurrentQueue<string> ToDispatcher;
-        //    ConcurrentQueue<string> ToRouter;
-        //    ConcurrentQueue<string> ToMicrocontroller;
-        //    ConcurrentQueue<string> ToStatus;
-            
-        //    public CommunicationAgents bazinga;
-
-            
-
-        //    //CommunicationMediator()
-        //    //{
-        //    //    ToDispatcher = new ConcurrentQueue<string>();
-        //    //    ToRouter = new ConcurrentQueue<string>();
-        //    //    ToMicrocontroller = new ConcurrentQueue<string>();
-        //    //    ToStatus = new ConcurrentQueue<string>(); 
-        //    //}
-
-        //    public void 
-
-        //}
-
-
     }
 
 }
