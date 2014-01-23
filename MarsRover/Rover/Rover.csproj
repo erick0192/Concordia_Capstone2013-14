@@ -49,20 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CameraCommand.cs" />
+    <Compile Include="Commands\MovementCommand.cs" />
+    <Compile Include="Commands\PanCommand.cs" />
+    <Compile Include="Commands\TiltCommand.cs" />
     <Compile Include="ConcurrentQueueAdapter.cs" />
-    <Compile Include="GPSLog.cs" />
-    <Compile Include="IQueue.cs" />
-    <Compile Include="ISensor.cs" />
     <Compile Include="Microcontroller.cs" />
-    <Compile Include="CommandFactory.cs" />
-    <Compile Include="CommandMetadata.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="PriorityQueue.cs" />
+    <Compile Include="Commands\CommandFactory.cs" />
+    <Compile Include="Commands\CommandMetadata.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MarsRover\MarsRover.csproj">
+      <Project>{cac3edaa-c9d0-4e7c-849a-d86b81e545da}</Project>
+      <Name>MarsRover</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

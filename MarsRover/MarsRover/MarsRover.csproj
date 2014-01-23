@@ -51,18 +51,20 @@
   <ItemGroup>
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCell.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandMetadata.cs" />
     <Compile Include="Communication\UDPClient.cs" />
     <Compile Include="Communication\UDPListener.cs" />
     <Compile Include="GPSCoordinates.cs" />
+    <Compile Include="IQueue.cs" />
     <Compile Include="Motor.cs" />
+    <Compile Include="PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoverStatus.cs" />
     <Compile Include="Streams\DummyVideoSource.cs" />
     <Compile Include="Streams\VideoStreamReceiver.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

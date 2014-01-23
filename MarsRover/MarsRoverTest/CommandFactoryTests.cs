@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Rover;
+using Rover.Commands;
+using MarsRover.Commands;
 
 namespace MarsRoverTest
 {
