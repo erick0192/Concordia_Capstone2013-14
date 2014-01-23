@@ -19,12 +19,15 @@ namespace Rover
            // ConcurrentQueue<string> DispatcherSerialMessageQueue = new ConcurrentQueue<string>();
             IQueue CommanderDispatcherMessageQueue = new PriorityQueue(30);
             IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
+            IQueue SerialStatusMessageQueue = new PriorityQueue(30);
 
             Thread dispatcher = new Thread(() => Dispatcher(CommanderDispatcherMessageQueue));
             Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
+            Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
 
-            dispatcher.Start();
-            serialManager.Start();
+          //  dispatcher.Start();
+          //  serialManager.Start();
+            statusUpdater.Start();
 
             int TimeBetweenCommands = 100;
 
@@ -144,6 +147,25 @@ namespace Rover
             }
 
             Thread.Sleep(5000);
+        }
+
+        static void StatusUpdater(IQueue SerialStatusUpdaterMessageBox)
+        {
+            GPSLog gps = new GPSLog("G123,456,789");
+            string banana = gps.RawCommand;
+
+            while (true)
+            {
+                Console.WriteLine(banana);
+                gps.UpdateValues();
+                gps.ReconstructCommand();
+
+                Thread.Sleep(500);
+            }
+            //read values from microcontroller
+            //store in dictionary
+            //display data
+            //unupdate sensor readings
         }
 
     }
