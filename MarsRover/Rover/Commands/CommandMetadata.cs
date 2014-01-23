@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Rover
+namespace Rover.Commands
 {
     static class CommandMetadata
     {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Collections.Concurrent;
-using Rover.Shared;
+using Rover.Commands;
+using MarsRover;
 
 namespace Rover
 {
