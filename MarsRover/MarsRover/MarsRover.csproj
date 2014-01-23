@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCell.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Communication\UDPClient.cs" />
     <Compile Include="Communication\UDPListener.cs" />
     <Compile Include="GPSCoordinates.cs" />
@@ -62,9 +63,7 @@
     <Compile Include="Streams\DummyVideoSource.cs" />
     <Compile Include="Streams\VideoStreamReceiver.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

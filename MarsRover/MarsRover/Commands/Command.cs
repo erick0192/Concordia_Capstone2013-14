@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Rover.Commands
+namespace MarsRover.Commands
 {
     public interface ICommand
     {
@@ -24,12 +24,12 @@ namespace Rover.Commands
     {
         public NullCommand(string unparsedText)
         {
-            return; //do nothing
+            //return; //do nothing
         }
 
         public NullCommand()
         {
-            return;
+            //return;
         }
 
         public void Execute()

@@ -57,7 +57,6 @@
     <Compile Include="Microcontroller.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\CommandMetadata.cs" />
-    <Compile Include="Commands\Command.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
