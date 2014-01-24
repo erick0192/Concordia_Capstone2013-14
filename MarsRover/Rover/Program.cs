@@ -7,6 +7,7 @@ using System.Collections.Concurrent;
 using Rover.Commands;
 using MarsRover;
 using MarsRover.Commands;
+using MarsRover.Communication;
 
 namespace Rover
 {
@@ -100,6 +101,10 @@ namespace Rover
                 CommanderDispatcherMessageQueue.Enqueue(camera3Command);
                 CommanderDispatcherMessageQueue.Enqueue(camera4Command);
                 CommanderDispatcherMessageQueue.Enqueue(camera5Command);
+
+                //Start the commands listener
+                //CommandsListener.Instance.StartListening();
+                    
                 
                 Thread.Sleep(TimeBetweenCommands);
             }

@@ -13,6 +13,7 @@ namespace MarsRover.Communication
     {
         #region Attributes
         private int port;
+        private IPAddress ipAddress;
         private Logger logger;
 
         private UdpClient listener;
@@ -27,9 +28,15 @@ namespace MarsRover.Communication
         }
         #endregion
 
-        public UDPListener(int port)
+        public UDPListener(int port) : this (port, IPAddress.Any)
+        {
+            
+        }
+
+        public UDPListener(int port, IPAddress ipAddress)
         {
             this.port = port;
+            this.ipAddress = ipAddress;
             logger = NLog.LogManager.GetCurrentClassLogger();
             messagesQueue = new BlockingCollection<string>(); //uses ConcurrentQueue by default
         }
@@ -45,7 +52,8 @@ namespace MarsRover.Communication
         private void StartListening()
         {
             listener = new UdpClient(port);
-            groupEP = new IPEndPoint(IPAddress.Any, port);
+            groupEP = new IPEndPoint(ipAddress, port);
+            
 
             try
             {

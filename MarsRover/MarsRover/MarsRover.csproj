@@ -53,6 +53,7 @@
     <Compile Include="BatteryCell.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandMetadata.cs" />
+    <Compile Include="Communication\CommandsListener.cs" />
     <Compile Include="Communication\UDPClient.cs" />
     <Compile Include="Communication\UDPListener.cs" />
     <Compile Include="GPSCoordinates.cs" />
