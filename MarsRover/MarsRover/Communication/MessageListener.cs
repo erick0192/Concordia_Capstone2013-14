@@ -41,8 +41,7 @@ namespace MarsRover.Communication
         #region Methods
 
         public void StartListening()
-        {
-            messageQueue = messageQueue;
+        {            
             listener = new UDPListener(port, this.ipAddress == "" ? IPAddress.Any : IPAddress.Parse(this.ipAddress));
             listener.Initialize();
 

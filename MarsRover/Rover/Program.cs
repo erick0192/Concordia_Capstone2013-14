@@ -58,7 +58,7 @@ namespace Rover
                 else
                 {
 
-                    Thread.Sleep(sleepPeriod); //Sleep for a bit and wait for data to fill up
+                    
                 }
                 
             }

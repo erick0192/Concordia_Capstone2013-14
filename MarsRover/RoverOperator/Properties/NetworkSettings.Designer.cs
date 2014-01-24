@@ -70,5 +70,17 @@ namespace RoverOperator.Properties {
                 this["CameraPort3"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5001")]
+        public int StatusUpdatePort {
+            get {
+                return ((int)(this["StatusUpdatePort"]));
+            }
+            set {
+                this["StatusUpdatePort"] = value;
+            }
+        }
     }
 }

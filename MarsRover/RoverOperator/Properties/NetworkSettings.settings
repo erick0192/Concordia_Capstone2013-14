@@ -14,5 +14,8 @@
     <Setting Name="CameraPort3" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3002</Value>
     </Setting>
+    <Setting Name="StatusUpdatePort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5001</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

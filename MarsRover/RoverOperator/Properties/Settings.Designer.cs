@@ -26,9 +26,9 @@ namespace RoverOperator.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public string StatusUpdateInterval {
+        public int StatusUpdateInterval {
             get {
-                return ((string)(this["StatusUpdateInterval"]));
+                return ((int)(this["StatusUpdateInterval"]));
             }
             set {
                 this["StatusUpdateInterval"] = value;
