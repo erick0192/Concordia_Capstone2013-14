@@ -9,6 +9,7 @@ namespace Rover
     public interface ISensorLog //change RawCommand to RawData.
     {
         string RawCommand { get; }
+        string Identifier { get; }
         bool IsUpdated { get; }
 
         void LogData();

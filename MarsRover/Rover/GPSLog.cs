@@ -15,11 +15,13 @@ namespace Rover
         private string altitude;
         private bool isUpdated;
         private string rawData;
+        private string identifier = "G";
 
         public string RawCommand { get { return rawCommand; } }
         public string Latitude { get { return latitude; } }
         public string Longitude { get { return longitude; } }
         public string Altitude { get { return altitude; } }
+        public string Identifier { get { return Identifier; } }
         public bool IsUpdated { get { return isUpdated; } }
 
         public GPSLog(string unparsedText)
@@ -55,6 +57,7 @@ namespace Rover
         {
             //implementation
             isUpdated = true;
+            ReconstructCommand();
         }
 
 

@@ -27,11 +27,11 @@ namespace Rover
             Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
             Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
 
-          //  dispatcher.Start();
-          //  serialManager.Start();
-            statusUpdater.Start();
+            dispatcher.Start();
+            serialManager.Start();
+           // statusUpdater.Start();
 
-            int TimeBetweenCommands = 100;
+            int TimeBetweenCommands = 200;
 
             
             //Dummy for the commander. Consider building a full test program which communicates fake data over UDP to better simulate
@@ -153,23 +153,48 @@ namespace Rover
 
         static void StatusUpdater(IQueue SerialStatusUpdaterMessageBox)
         {
-            GPSLog gps = new GPSLog("G123,456,789");
-            string banana = gps.RawCommand;
+            Dictionary<string, ISensorLog> latestSensorData = new Dictionary<string, ISensorLog>();
+            Initialize(latestSensorData); // initialize dictionary to set expected values
+
+            //GPSLog gps = new GPSLog("G123,456,789");
+            string banana;
+            ISensorLog sensorlog;
+
 
             while (true)
             {
-                Console.WriteLine(banana);
-                gps.UpdateValues();
-                gps.ReconstructCommand();
+                while (SerialStatusUpdaterMessageBox.TryDequeue(out banana))
+                {
 
-                Thread.Sleep(500);
+                    if (banana[0] == 'G') //perhaps put all of this into a factory
+                    {
+                        sensorlog = new GPSLog(banana);
+                    }
+                    else
+                    {
+                        sensorlog = new GPSLog("G9,999,999");
+                        //do nothing for now
+                    }
+                    latestSensorData[sensorlog.Identifier] = sensorlog;
+                }
+              //  Console.WriteLine(banana);
+               // gps.UpdateValues();
+
+                Thread.Sleep(50);
             }
+
+
             //read values from microcontroller
             //store in dictionary
             //display data
             //unupdate sensor readings
         }
 
+        public static void Initialize(Dictionary<string, ISensorLog> dict)
+        {
+            GPSLog garbage = new GPSLog("G000,000,000");
+            dict.Add("G", garbage);
+        }
     }
 
 }
