@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RoverIPAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">10.10.10.10</Value>
+      <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
     <Setting Name="CameraPort1" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3000</Value>

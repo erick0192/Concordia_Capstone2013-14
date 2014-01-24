@@ -30,8 +30,7 @@ namespace RoverOperator
         }
 
         protected override void OnExit(ExitEventArgs e)
-        {
-            VideoStreamReceiverManager.Instance.StopAllStreams();
+        {            
             StatusUpdater.Instance.StopUpdating();
             base.OnExit(e);
         }

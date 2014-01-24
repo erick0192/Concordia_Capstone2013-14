@@ -13,13 +13,13 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using AForge.Video;
+using MarsRover;
 
 namespace RoverOperator.Content
 {
     public class CameraViewModel : INotifyPropertyChanged
     {
-        //TaskFactory mUIFactory;
-
+      
         #region Private attributes
 
         System.Timers.Timer toggleTimer;
@@ -67,8 +67,8 @@ namespace RoverOperator.Content
             }
         }
 
-        private IVideoSource mVideoSource;
-        public IVideoSource VideoSource
+        private UDPListenerCameraDevice mVideoSource;
+        public UDPListenerCameraDevice VideoSource
         {
             get
             {
@@ -77,14 +77,12 @@ namespace RoverOperator.Content
             set
             {
                 if (null != mVideoSource)
-                {
-                    mVideoSource.NewFrame -= new NewFrameEventHandler(HandleNewVideoFrame);
-                    mVideoSource.PlayingFinished -= new PlayingFinishedEventHandler(HandleFinishedPlaying);
+                {                    
+                                    
                 }
 
                 mVideoSource = value;
-                mVideoSource.NewFrame += new NewFrameEventHandler(HandleNewVideoFrame);
-                mVideoSource.PlayingFinished += new PlayingFinishedEventHandler(HandleFinishedPlaying);
+               
                 if (PropertyChanged != null)
                 {
                     OnPropertyChanged("VideoSource");
@@ -129,11 +127,7 @@ namespace RoverOperator.Content
         public CameraViewModel(string iCameraName)
         {
             CameraName = iCameraName;
-            toggleTimer = new System.Timers.Timer(3000);
-            toggleTimer.AutoReset = false;
-            toggleTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.EnableToggle);
-            //mUIFactory = new TaskFactory(TaskScheduler.FromCurrentSynchronizationContext());
-            
+             
             //logger = NLog.LogManager.GetLogger("Console");
             
         }
@@ -149,19 +143,19 @@ namespace RoverOperator.Content
 
         private void ToggleCam()
         {
-            if(mVideoSource.IsRunning)
+            if(IsActive == true)
             {
-                mVideoSource.SignalToStop();
+                //remove the event
+                mVideoSource.aNewBitmapReceivedEvent -= new UDPListenerCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
                 IsActive = false;
             }
             else
-            {             
-                mVideoSource.Start();
+            {
+                //add the event
+                mVideoSource.aNewBitmapReceivedEvent += new UDPListenerCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
                 IsActive = true;
             }
-
-            canToggle = false;
-            toggleTimer.Start();
+           
         }
 
         #endregion
@@ -172,12 +166,7 @@ namespace RoverOperator.Content
         {
             canToggle = true;
         }
-
-        private void HandleFinishedPlaying(object sender, ReasonToFinishPlaying reason)
-        {
-            if(reason == ReasonToFinishPlaying.StoppedByUser)
-                Image = null;
-        }
+      
 
         protected void OnPropertyChanged(string iPropertyName)
         {            
@@ -187,11 +176,12 @@ namespace RoverOperator.Content
             }
         }
 
-        private void HandleNewVideoFrame(object sender, NewFrameEventArgs eventArgs)
+        private void HandleNewVideoFrame(Bitmap aBitmap)
         {
             try
             {
-                System.Drawing.Image img = (Bitmap)eventArgs.Frame.Clone();
+                
+                System.Drawing.Image img = (Bitmap)aBitmap.Clone();
 
                 MemoryStream ms = new MemoryStream();
                 img.Save(ms, ImageFormat.Bmp);
@@ -206,12 +196,12 @@ namespace RoverOperator.Content
                 {
                     Image = bi;
                 }));
-                //Other method, however, if the application is closed, exceptions are thrown due to aborting threads
-                //mUIFactory.StartNew(() => Image = bi).Wait();            
+                
+                
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
         }
 

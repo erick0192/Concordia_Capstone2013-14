@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using MarsRover;
 
 namespace Rover
 {
@@ -235,9 +237,7 @@ namespace Rover
         private bool status;
         public bool CameraStatus { get { return status; } }
         public int CameraIndex { get { return camIndex; } }
-
-        private MicrocontrollerSingleton microcontroller;
-
+      
         public CameraCommand(string unparsedCommand)
         {
             try
@@ -254,6 +254,22 @@ namespace Rover
         public void Execute()
         {
             Console.WriteLine("Turning Camera {0} {1}", this.camIndex, this.status == true ? "On" : "Off");
+
+            if (this.camIndex <= LocalCameraFactory.GetInstance().GetCameras().Count - 1)
+            {
+                LocalCameraDevice c = LocalCameraFactory.GetInstance().GetCameras().ElementAt(this.camIndex);
+
+                if (this.status == true)
+                {
+                    //c.Start(c.GetCapabilities(new Size(176, 144)));
+                    c.Start(c.GetCapabilities(new Size(320, 240)));
+                }
+                else
+                {
+                    c.Stop();
+                }
+            }
+
         }
 
         public void UnExecute()

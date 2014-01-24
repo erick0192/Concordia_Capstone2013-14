@@ -43,7 +43,14 @@ namespace Rover
 
             string movementCommand, camera1Command, camera2Command, camera3Command, camera4Command, camera5Command;
             var r = new Random();
-           
+
+            //Start Camera 0
+            camera1Command = "<C0" + "O" + ">";
+            CommanderDispatcherMessageQueue.Enqueue(camera1Command);
+
+            //Start Camera 1
+            camera2Command = "<C1" + "O" + ">";
+            CommanderDispatcherMessageQueue.Enqueue(camera2Command);
 
             while (true)
             {
@@ -81,20 +88,20 @@ namespace Rover
 
                 //Build commands
                 movementCommand = "<MF" + movementLeft.ToString("D3") + "F" + movementRight.ToString("D3") + ">";
-                camera1Command = "<C1" + (cam1Status == false ? "F" : "O") + ">";
-                camera2Command = "<C2" + (cam2Status == false ? "F" : "O") + ">";
-                camera3Command = "<C3" + (cam3Status == false ? "F" : "O") + ">";
-                camera4Command = "<C4" + (cam4Status == false ? "F" : "O") + ">";
-                camera5Command = "<C5" + (cam5Status == false ? "F" : "O") + ">";
+                //camera1Command = "<C1" + (cam1Status == false ? "F" : "O") + ">";
+                //camera2Command = "<C2" + (cam2Status == false ? "F" : "O") + ">";
+                //camera3Command = "<C3" + (cam3Status == false ? "F" : "O") + ">";
+                //camera4Command = "<C4" + (cam4Status == false ? "F" : "O") + ">";
+                //camera5Command = "<C5" + (cam5Status == false ? "F" : "O") + ">";
 
 
                 //SendCommands to Dispatcher
                 CommanderDispatcherMessageQueue.Enqueue(movementCommand);   
-                CommanderDispatcherMessageQueue.Enqueue(camera1Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera2Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera3Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera4Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera5Command);
+                //CommanderDispatcherMessageQueue.Enqueue(camera1Command);
+                //CommanderDispatcherMessageQueue.Enqueue(camera2Command);
+                //CommanderDispatcherMessageQueue.Enqueue(camera3Command);
+                //CommanderDispatcherMessageQueue.Enqueue(camera4Command);
+                //CommanderDispatcherMessageQueue.Enqueue(camera5Command);
                 
                 Thread.Sleep(TimeBetweenCommands);
             }
