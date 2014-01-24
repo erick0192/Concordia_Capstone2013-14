@@ -103,7 +103,10 @@ namespace Rover
                 CommanderDispatcherMessageQueue.Enqueue(camera5Command);
 
                 //Start the commands listener
-                //CommandsListener.Instance.StartListening();
+                CommandsListener.Instance.StartListening(
+                    Properties.Settings.Default.CommandsPort, 
+                    CommanderDispatcherMessageQueue, 
+                    Properties.Settings.Default.OperatorIPAddress);
                     
                 
                 Thread.Sleep(TimeBetweenCommands);

@@ -51,12 +51,11 @@ namespace MarsRover.Communication
 
         private void StartListening()
         {
-            listener = new UdpClient(port);
-            groupEP = new IPEndPoint(ipAddress, port);
-            
-
             try
             {
+                listener = new UdpClient(port);
+                groupEP = new IPEndPoint(ipAddress, port);
+
                 while (true)
                 {
                     logger.Trace("Starting UDPListener on port " + port);

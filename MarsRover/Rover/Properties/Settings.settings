@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="CommandsPort" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="OperatorIPAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">10.10.10.11</Value>
     </Setting>
   </Settings>
 </SettingsFile>
