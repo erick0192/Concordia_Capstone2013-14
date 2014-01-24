@@ -25,49 +25,13 @@ namespace RoverOperator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10.10.10.10")]
-        public string RoverIPAddress {
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public string StatusUpdateInterval {
             get {
-                return ((string)(this["RoverIPAddress"]));
+                return ((string)(this["StatusUpdateInterval"]));
             }
             set {
-                this["RoverIPAddress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
-        public int CameraPort1 {
-            get {
-                return ((int)(this["CameraPort1"]));
-            }
-            set {
-                this["CameraPort1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3001")]
-        public int CameraPort2 {
-            get {
-                return ((int)(this["CameraPort2"]));
-            }
-            set {
-                this["CameraPort2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3002")]
-        public int CameraPort3 {
-            get {
-                return ((int)(this["CameraPort3"]));
-            }
-            set {
-                this["CameraPort3"] = value;
+                this["StatusUpdateInterval"] = value;
             }
         }
     }

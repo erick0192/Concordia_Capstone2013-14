@@ -2,17 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RoverOperator.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="RoverIPAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">10.10.10.10</Value>
-    </Setting>
-    <Setting Name="CameraPort1" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3000</Value>
-    </Setting>
-    <Setting Name="CameraPort2" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3001</Value>
-    </Setting>
-    <Setting Name="CameraPort3" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3002</Value>
+    <Setting Name="StatusUpdateInterval" Type="System.String" Scope="User">
+      <Value Profile="(Default)">500</Value>
     </Setting>
   </Settings>
 </SettingsFile>
