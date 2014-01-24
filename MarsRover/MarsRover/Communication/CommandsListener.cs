@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NLog;
 
 namespace MarsRover.Communication
 {
@@ -18,6 +19,7 @@ namespace MarsRover.Communication
         private UDPListener listener;
         private IQueue commanderDispatcherMessageQueue;
         private volatile bool listen;
+        private Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -68,6 +70,7 @@ namespace MarsRover.Communication
                 IEnumerable<string> messages = listener.MessagesQueue;
                 foreach(string m in messages)
                 {
+                    logger.Debug(m);
                     commanderDispatcherMessageQueue.Enqueue(m);
                 }
             }
