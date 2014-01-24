@@ -11,7 +11,7 @@ namespace RoverOperator.Gamepad
     class GamepadController
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
-        private const int POLLING_RATE = 100; //milliseconds
+        private const int POLLING_RATE = 1000; //milliseconds
 
         public GamepadController()
         {
@@ -60,8 +60,8 @@ namespace RoverOperator.Gamepad
 
                 command.Append(">");
                 
-                //logger.Debug(command);
                 //TODO: Send command
+                MarsRover.Communication.UDPClient.Instance.SendCommand(command.ToString(), 5000);
 
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);

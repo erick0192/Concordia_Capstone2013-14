@@ -11,7 +11,6 @@ namespace MarsRover.Communication
         #region Attributes
 
         private const string REMOTE_IP = "127.0.0.1";
-        private const int COMMANDS_PORT_OUT = 5500;
 
         #endregion
 
@@ -45,20 +44,20 @@ namespace MarsRover.Communication
 
         #region Methods
 
-        public void SendCommand(string command)
+        public void SendCommand(string command, int port)
         {
-            Thread t = new Thread(() => SendCommandUdp(command));
+            Thread t = new Thread(() => SendCommandUdp(command, port));
             t.Start();
         }
 
-        private void SendCommandUdp(string command)
+        private void SendCommandUdp(string command, int port)
         {
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
             IPAddress broadcast = IPAddress.Parse(REMOTE_IP);
 
             byte[] sendbuf = Encoding.ASCII.GetBytes(command);
-            IPEndPoint ep = new IPEndPoint(broadcast, COMMANDS_PORT_OUT);
+            IPEndPoint ep = new IPEndPoint(broadcast, port);
 
             s.SendTo(sendbuf, ep);
         }
