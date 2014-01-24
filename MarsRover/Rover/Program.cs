@@ -29,89 +29,15 @@ namespace Rover
             Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
 
             dispatcher.Start();
-            serialManager.Start();
-           // statusUpdater.Start();
+            //serialManager.Start();
+            //statusUpdater.Start();
 
-            int TimeBetweenCommands = 200;
-
-            
-            //Dummy for the commander. Consider building a full test program which communicates fake data over UDP to better simulate
-            //The operating environment. This will also allow us to test out the watchdog.
-
-
-            //Simulate User Input
-            int movementLeft = 0, movementRight = 0;
-            bool cam1Status = false,
-                 cam2Status = false,
-                 cam3Status = false,
-                 cam4Status = false,
-                 cam5Status = false;
-
-            string movementCommand, camera1Command, camera2Command, camera3Command, camera4Command, camera5Command;
-            var r = new Random();
            
-
-            while (true)
-            {
-
-                //Randomize data to make it seem as if user is actually doing stuff
-                movementLeft += r.Next(-10, 11);
-
-                if (movementLeft > 255) 
-                    movementLeft = 255;
-                else if (movementLeft < 0) 
-                    movementLeft = 0;
-
-                movementRight += r.Next(-10, 11);
-                if (movementRight > 255)
-                    movementRight = 255;
-                else if (movementRight < 0)
-                    movementRight = 0;
-
-                if (r.Next(0, 101) == 5) //Randomize camera actions
-                    cam1Status = (r.Next(0, 2) == 0 ? false : true);
-                
-                if (r.Next(0, 101) == 5) //Randomize camera actions
-                    cam2Status = (r.Next(0, 2) == 0 ? false : true);
-
-                if (r.Next(0, 101) == 5)
-                    cam3Status = (r.Next(0, 2) == 0 ? false : true);
-
-                if (r.Next(0, 101) == 5)
-                    cam4Status = (r.Next(0, 2) == 0 ? false : true);
-
-                if (r.Next(0, 101) == 5)
-                    cam5Status = (r.Next(0, 2) == 0 ? false : true);
-                
-                 //Smooth data to make it seem like theyre moving the controller as opposed to putting in random values
-
-                //Build commands
-                movementCommand = "<MF" + movementLeft.ToString("D3") + "F" + movementRight.ToString("D3") + ">";
-                camera1Command = "<C1" + (cam1Status == false ? "F" : "O") + ">";
-                camera2Command = "<C2" + (cam2Status == false ? "F" : "O") + ">";
-                camera3Command = "<C3" + (cam3Status == false ? "F" : "O") + ">";
-                camera4Command = "<C4" + (cam4Status == false ? "F" : "O") + ">";
-                camera5Command = "<C5" + (cam5Status == false ? "F" : "O") + ">";
-
-
-                //SendCommands to Dispatcher
-                CommanderDispatcherMessageQueue.Enqueue(movementCommand);   
-                CommanderDispatcherMessageQueue.Enqueue(camera1Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera2Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera3Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera4Command);
-                CommanderDispatcherMessageQueue.Enqueue(camera5Command);
-
-                //Start the commands listener
-                CommandsListener.Instance.StartListening(
-                    Properties.Settings.Default.CommandsPort, 
-                    CommanderDispatcherMessageQueue, 
-                    Properties.Settings.Default.OperatorIPAddress);
-                    
-                
-                Thread.Sleep(TimeBetweenCommands);
-            }
-  
+            //Start the commands listener
+            CommandsListener.Instance.StartListening(
+            Properties.Settings.Default.CommandsPort,
+            CommanderDispatcherMessageQueue,
+            Properties.Settings.Default.OperatorIPAddress);         
         }
 
         static void Dispatcher(IQueue MessageBox)
