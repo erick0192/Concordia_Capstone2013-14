@@ -16,6 +16,7 @@ namespace Rover
     //Also, the commander should probably remove the command headers instead of keep them there.
     class Program
     {
+        
         static void Main(string[] args)
         {            
            // ConcurrentQueue<string> CommanderDispatcherMessageQueue = new ConcurrentQueue<string>();
@@ -34,10 +35,11 @@ namespace Rover
 
            
             //Start the commands listener
-            CommandsListener.Instance.StartListening(
-            Properties.Settings.Default.CommandsPort,
-            CommanderDispatcherMessageQueue,
-            Properties.Settings.Default.OperatorIPAddress);         
+            var commandsListener = new MessageListener(
+                Properties.Settings.Default.CommandsPort,
+                CommanderDispatcherMessageQueue,
+                Properties.Settings.Default.OperatorIPAddress);
+            commandsListener.StartListening();
         }
 
         static void Dispatcher(IQueue MessageBox)
