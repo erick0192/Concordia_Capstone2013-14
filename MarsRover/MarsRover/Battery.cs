@@ -8,6 +8,14 @@ namespace MarsRover
 {
     public class Battery
     {
+        //Amperes
+        public const float MIN_CURRENT = 0.0F;
+        public const float MAX_CURRENT = 300.0f;
+
+        //Celsius
+        public const float MIN_TEMPERATURE = 0.0f;
+        public const float MAX_TEMPERATYRE = 120.0f;
+
         #region Properties
 
         public int CurrentCharge { get; set; }

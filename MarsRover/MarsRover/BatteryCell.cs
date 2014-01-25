@@ -17,10 +17,11 @@ namespace MarsRover
             OverVoltage
         }
 
-        public static float MIN_VOLTAGE = 3.0f;
-        public static float MIN_WARNING_VOLTAGE = 3.2f;
-        public static float MAX_VOLTAGE = 4.2f;
-        public static float MAX_WARNING_VOLTAGE = 4.0f;
+        //Volts
+        public const float MIN_VOLTAGE = 3.0f;
+        public const float MIN_WARNING_VOLTAGE = 3.2f;
+        public const float MAX_VOLTAGE = 4.2f;
+        public const float MAX_WARNING_VOLTAGE = 4.0f;
 
         #region Properties
 
