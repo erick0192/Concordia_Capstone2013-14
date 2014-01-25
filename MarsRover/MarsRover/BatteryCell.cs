@@ -1,13 +1,15 @@
-﻿using System;
+﻿using MarsRover.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class BatteryCell : INotifyPropertyChanged
+    public class BatteryCell : IUpdateable
     {
         public enum CellStatus
         {
@@ -42,6 +44,19 @@ namespace MarsRover
             }
         }
 
+        private string regex;
+        public string RegEx
+        {
+            get
+            {
+                return regex;
+            }
+            set
+            {
+                regex = value;
+            }
+        }
+
         #endregion
 
         #region Delegates and Events      
@@ -57,8 +72,6 @@ namespace MarsRover
 
         public delegate void WarningVoltageDetectedDelegate(BatteryCell batteryCell);
         public event WarningVoltageDetectedDelegate WarningVoltageDetected;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -113,6 +126,41 @@ namespace MarsRover
                     }
                 }
             }
+        }
+
+        public int GetCellIDFromUpdateString(string updateString)
+        {
+            var updateArray = updateString.Substring(2).Split(',');
+            int id;
+            if(!int.TryParse(updateArray[0], out id))
+            {
+                throw new InvalidUpdateStringException(updateString);
+            }
+
+            return id;
+        }
+
+        public bool IsMatch(string input)
+        {
+            return Regex.IsMatch(input, RegEx);
+        }
+
+        public void UpdateFromString(string updateString)
+        {
+            if (IsMatch(updateString))
+            {
+                var updateArray = updateString.Substring(2).Split(',');
+                this.voltage = float.Parse(updateArray[1]);
+            }
+            else
+            {
+                throw new InvalidUpdateStringException(updateString);
+            }
+        }
+
+        public string GetUpdateString()
+        {
+            return String.Format("BC;{0},{1}", CellID, Voltage);
         }
     }
 }

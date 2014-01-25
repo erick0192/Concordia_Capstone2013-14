@@ -133,7 +133,7 @@ namespace RoverOperator
 
             motor = roverStatus.Motors[Motor.Location.BackRight];
             motor.Current += 8;
-            motor.Temperature += 2;
+            motor.Temperature += 2;            
 
             if(MotorsUpdated != null)
             {

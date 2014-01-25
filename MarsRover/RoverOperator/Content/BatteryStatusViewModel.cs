@@ -33,7 +33,7 @@ namespace RoverOperator.Content
 
         public BatteryStatusViewModel()
         {
-            battery = (Battery)StatusUpdater.Instance.RoverStatus.Battery;
+            battery = StatusUpdater.Instance.RoverStatus.Battery;
             StatusUpdater.Instance.BatteryUpdated += new StatusUpdater.BatteryUpdatedDelegate(UpdateBattery);
         }
 
