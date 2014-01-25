@@ -13,11 +13,14 @@ namespace MarsRover
         {
             UnderVoltage,
             Normal,
+            Warning,
             OverVoltage
         }
 
-        public static float MIN_VOLTAGE = 0.5f;
-        public static float MAX_VOLTAGE = 2.0f;
+        public static float MIN_VOLTAGE = 3.0f;
+        public static float MIN_WARNING_VOLTAGE = 3.2f;
+        public static float MAX_VOLTAGE = 4.2f;
+        public static float MAX_WARNING_VOLTAGE = 4.0f;
 
         #region Properties
 
@@ -51,6 +54,9 @@ namespace MarsRover
         public delegate void NormalVoltageDetectedDelegate(BatteryCell batteryCell);
         public event NormalVoltageDetectedDelegate NormalVoltageDetected;
 
+        public delegate void WarningVoltageDetectedDelegate(BatteryCell batteryCell);
+        public event WarningVoltageDetectedDelegate WarningVoltageDetected;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
@@ -83,6 +89,17 @@ namespace MarsRover
                         UnderVoltageDetected(this);
                     }
                 }                
+            }
+            else if(voltage <= MIN_WARNING_VOLTAGE || voltage >= MAX_WARNING_VOLTAGE)
+            {
+                if (Status != CellStatus.Warning)
+                {                    
+                    Status = CellStatus.Warning;
+                    if (WarningVoltageDetected != null)
+                    {
+                        WarningVoltageDetected(this);
+                    }
+                }
             }
             else
             {

@@ -1,10 +1,4 @@
-﻿/** 
- * This singleton class will be in charge of using the class responsible for requesting
- * data from the server and update each of the robots components, i.e., battery, motors, etc.
- * 
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

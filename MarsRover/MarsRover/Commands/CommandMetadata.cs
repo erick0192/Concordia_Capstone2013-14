@@ -51,6 +51,7 @@ namespace MarsRover.Commands
         public static class Pan
         {
             //Example command: <P0359>
+            public const string Identifier = "P";
             public const int MaxPanAngle = 359;
             public const int MinPanAngle = 0;
 
@@ -64,6 +65,7 @@ namespace MarsRover.Commands
         public static class Tilt
         {
             //Example command: <T1000>
+            public const string Identifier = "T";
             public const int MaxTiltAngle = 90;
             public const int MinTiltAngle = 0;
 
@@ -72,8 +74,6 @@ namespace MarsRover.Commands
 
             public const int AngleStartIndex = 3;
             public const int AngleEndIndex = 5;
-
-
         }
     }
 }

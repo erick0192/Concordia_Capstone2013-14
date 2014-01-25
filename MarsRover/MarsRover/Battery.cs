@@ -38,7 +38,7 @@ namespace MarsRover
             CurrentCharge = maxCharge;
             for(int i = 0; i < cells.Capacity; i++)
             {
-                cells.Add(new BatteryCell(i + 1) { Voltage = 1.5f});                
+                cells.Add(new BatteryCell(i + 1) { Voltage = 3.5f});                
             }
         }
 
