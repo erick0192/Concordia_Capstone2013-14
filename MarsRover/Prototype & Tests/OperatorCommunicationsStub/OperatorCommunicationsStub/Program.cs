@@ -23,10 +23,19 @@ namespace UDPMessageSender
             Console.WriteLine("IP: ");
             ipAddrStr = Console.ReadLine();
 
+           if (ipAddrStr == "localhost")
+            {
+                ipAddrStr = "127.0.0.1";
+            }
+
             while (IPAddress.TryParse(ipAddrStr, out ipAddr) == false)
             {
                 Console.WriteLine("Invalid IP Address. Please Input a new one: ");
                 ipAddrStr = Console.ReadLine();
+                if (ipAddrStr == "localhost")
+                {
+                    ipAddrStr = "127.0.0.1";
+                }
             }
 
             Console.Write("Port: ");
