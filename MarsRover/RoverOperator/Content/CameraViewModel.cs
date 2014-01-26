@@ -25,7 +25,8 @@ namespace RoverOperator.Content
         System.Timers.Timer toggleTimer;
         private volatile bool canToggle = true;
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
+        private volatile bool IsUpdating = false;
+        
         #endregion
 
         #region Properties
@@ -180,23 +181,34 @@ namespace RoverOperator.Content
         {
             try
             {
-                
-                System.Drawing.Image img = (Bitmap)aBitmap.Clone();
 
-                MemoryStream ms = new MemoryStream();
-                img.Save(ms, ImageFormat.Bmp);
-                ms.Seek(0, SeekOrigin.Begin);
-                BitmapImage bi = new BitmapImage();
-                bi.BeginInit();
-                bi.StreamSource = ms;
-                bi.EndInit();
-
-                bi.Freeze();
-                App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate
+                if (IsUpdating == false)
                 {
-                    Image = bi;
-                }));
-                
+                    IsUpdating = true;
+                    System.Drawing.Image img = (Bitmap)aBitmap.Clone();
+
+                    MemoryStream ms = new MemoryStream();
+                    img.Save(ms, ImageFormat.Bmp);
+                    ms.Seek(0, SeekOrigin.Begin);
+                    BitmapImage bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.StreamSource = ms;
+                    bi.EndInit();
+                    bi.Freeze();
+                   
+
+                    App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        if (IsUpdating == false)
+                        {
+                            IsUpdating = true;
+                            Image = bi;
+                            IsUpdating = false;
+                        }
+                    }));
+
+                    IsUpdating = false;
+                }
                 
             }
             catch (Exception ex)

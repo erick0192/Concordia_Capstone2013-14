@@ -18,15 +18,15 @@ namespace Rover
            // ConcurrentQueue<string> CommanderDispatcherMessageQueue = new ConcurrentQueue<string>();
            // ConcurrentQueue<string> DispatcherSerialMessageQueue = new ConcurrentQueue<string>();
             IQueue CommanderDispatcherMessageQueue = new PriorityQueue(30);
-            IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
+            //IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
 
             Thread dispatcher = new Thread(() => Dispatcher(CommanderDispatcherMessageQueue));
-            Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
+           // Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
 
             dispatcher.Start();
-            serialManager.Start();
+           // serialManager.Start();
 
-            int TimeBetweenCommands = 100;
+            int TimeBetweenCommands = 1000;
 
             
             //Dummy for the commander. Consider building a full test program which communicates fake data over UDP to better simulate
@@ -56,7 +56,7 @@ namespace Rover
             {
 
                 //Randomize data to make it seem as if user is actually doing stuff
-                movementLeft += r.Next(-10, 11);
+               /* movementLeft += r.Next(-10, 11);
 
                 if (movementLeft > 255) 
                     movementLeft = 255;
@@ -82,12 +82,12 @@ namespace Rover
                     cam4Status = (r.Next(0, 2) == 0 ? false : true);
 
                 if (r.Next(0, 101) == 5)
-                    cam5Status = (r.Next(0, 2) == 0 ? false : true);
+                    cam5Status = (r.Next(0, 2) == 0 ? false : true);*/
                 
                  //Smooth data to make it seem like theyre moving the controller as opposed to putting in random values
 
                 //Build commands
-                movementCommand = "<MF" + movementLeft.ToString("D3") + "F" + movementRight.ToString("D3") + ">";
+                //movementCommand = "<MF" + movementLeft.ToString("D3") + "F" + movementRight.ToString("D3") + ">";
                 //camera1Command = "<C1" + (cam1Status == false ? "F" : "O") + ">";
                 //camera2Command = "<C2" + (cam2Status == false ? "F" : "O") + ">";
                 //camera3Command = "<C3" + (cam3Status == false ? "F" : "O") + ">";
@@ -96,7 +96,7 @@ namespace Rover
 
 
                 //SendCommands to Dispatcher
-                CommanderDispatcherMessageQueue.Enqueue(movementCommand);   
+                //CommanderDispatcherMessageQueue.Enqueue(movementCommand);   
                 //CommanderDispatcherMessageQueue.Enqueue(camera1Command);
                 //CommanderDispatcherMessageQueue.Enqueue(camera2Command);
                 //CommanderDispatcherMessageQueue.Enqueue(camera3Command);
@@ -110,7 +110,7 @@ namespace Rover
 
         static void Dispatcher(IQueue MessageBox)
         {
-            int sleepPeriod = 100;
+            int sleepPeriod = 1000;
             CommandFactory factory = new CommandFactory();
             string unparsedCommand = "";
 
@@ -148,9 +148,12 @@ namespace Rover
                 {
                     Console.WriteLine("Could not connect to microcontroller");
                 }
+
+                Thread.Sleep(5000);
             }
 
-            Thread.Sleep(5000);
+
+            
         }
 
     }

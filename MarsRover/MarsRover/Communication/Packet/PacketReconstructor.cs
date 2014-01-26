@@ -47,13 +47,17 @@ namespace MarsRover
         public void ReconstructFile(Packet newPacket)
         {
             ReconstructedPackets.Add(newPacket);
-
-            //last packet
+          
+            //Console.WriteLine("Reconstruct Packet ID " + newPacket.aFrame.aHeader.FileID);
+          
+            //last packet, and we received all the packets.
             if (newPacket.aFrame.aHeader.PacketNumber == newPacket.aFrame.aHeader.TotalNbPackets - 1 &&
                 ReconstructedPackets.Count >= newPacket.aFrame.aHeader.TotalNbPackets)
             {
-                d = new byte[newPacket.aFrame.aHeader.TotalNbPackets * Packet.DEFAULT_PACKET_SIZE];
+               // Console.WriteLine("Number of packet received:" + ReconstructedPackets.Count);
 
+                d = new byte[newPacket.aFrame.aHeader.TotalNbPackets * Packet.DEFAULT_PACKET_SIZE];
+                
                 for (int i = 0; i < newPacket.aFrame.aHeader.TotalNbPackets; i++)
                 {
                     Buffer.BlockCopy(((Packet)ReconstructedPackets[i]).aFrame.Data,

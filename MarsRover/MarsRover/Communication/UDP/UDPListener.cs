@@ -91,7 +91,6 @@ namespace MarsRover
                         ReceivingQueue.Enqueue(bytes[i]);                        
                     }
                    
-
                     if(ReceivedDataCB != null)
                     {
                         ReceivedDataCB(ReceivingQueue.Count);

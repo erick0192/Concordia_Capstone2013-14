@@ -13,7 +13,7 @@ using AForge.Video.DirectShow;
 namespace MarsRover
 {
     
-    public class LocalCameraDevice : AbstractCameraDevice
+    public class RoverCameraDevice : AbstractCameraDevice
     {
       
         public delegate void NewBitmapAcquiredCBType(Bitmap aNewBitmap);
@@ -43,7 +43,7 @@ namespace MarsRover
             
         }
 
-        public LocalCameraDevice(string aCameraName, string MonikerString, int aCameraID)
+        public RoverCameraDevice(string aCameraName, string MonikerString, int aCameraID)
         {            
             CameraName = aCameraName;
             CameraID = aCameraID;
@@ -53,7 +53,7 @@ namespace MarsRover
 
             videoDevice.NewFrame += new NewFrameEventHandler(NewFrameAcquired);
 
-            Statistics = new LocalCameraDeviceStatistics(this, 1000);
+            Statistics = new RoverCameraDeviceStatistics(this, 1000);
 
             State = CameraState.CAMERA_STOPPED;
         }

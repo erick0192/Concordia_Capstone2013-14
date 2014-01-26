@@ -255,13 +255,12 @@ namespace Rover
         {
             Console.WriteLine("Turning Camera {0} {1}", this.camIndex, this.status == true ? "On" : "Off");
 
-            if (this.camIndex <= LocalCameraFactory.GetInstance().GetCameras().Count - 1)
+            if (this.camIndex <= RoverCameraFactory.GetInstance().GetCameras().Count - 1)
             {
-                LocalCameraDevice c = LocalCameraFactory.GetInstance().GetCameras().ElementAt(this.camIndex);
+                RoverCameraDevice c = RoverCameraFactory.GetInstance().GetCameras().ElementAt(this.camIndex);
 
                 if (this.status == true)
                 {
-                    //c.Start(c.GetCapabilities(new Size(176, 144)));
                     c.Start(c.GetCapabilities(new Size(320, 240)));
                 }
                 else

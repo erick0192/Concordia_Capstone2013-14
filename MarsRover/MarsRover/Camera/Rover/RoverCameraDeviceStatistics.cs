@@ -6,15 +6,15 @@ using System.Timers;
 
 namespace MarsRover
 {
-    public class LocalCameraDeviceStatistics
+    public class RoverCameraDeviceStatistics
     {
         private System.Timers.Timer FpsTimer;
-        private LocalCameraDevice theCameraDevice;
+        private RoverCameraDevice theCameraDevice;
         private float FPS;
         private int PreviousNumberOfFrames;
         private int TimerResolutionMiliSec;
 
-        public LocalCameraDeviceStatistics(LocalCameraDevice aCameraDevice, int aTimerResolutionMiliSec)
+        public RoverCameraDeviceStatistics(RoverCameraDevice aCameraDevice, int aTimerResolutionMiliSec)
         {
             theCameraDevice = aCameraDevice;
             TimerResolutionMiliSec = aTimerResolutionMiliSec;

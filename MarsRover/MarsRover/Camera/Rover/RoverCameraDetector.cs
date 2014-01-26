@@ -20,25 +20,25 @@ using AForge.Video.DirectShow;
 namespace MarsRover
 {
 
-    public class LocalCameraDetector
+    public class RoverCameraDetector
     {
-        private static LocalCameraDetector SingletonCameraManager;
+        private static RoverCameraDetector SingletonCameraManager;
 
         private FilterInfoCollection VideoDevices;
         private ArrayList AvailableCameraDevices;
 
-        public static LocalCameraDetector GetInstance()
+        public static RoverCameraDetector GetInstance()
         {
             if (SingletonCameraManager == null)
             {
-                SingletonCameraManager = new LocalCameraDetector();
+                SingletonCameraManager = new RoverCameraDetector();
             }
 
             return SingletonCameraManager;
         }
 
 
-        private LocalCameraDetector()
+        private RoverCameraDetector()
         {
             AvailableCameraDevices = new ArrayList();
 

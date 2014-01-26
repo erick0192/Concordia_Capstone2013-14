@@ -29,7 +29,7 @@ namespace MarsRover
 
     public class Packet
     {
-        public const int DEFAULT_PACKET_SIZE = 4 * 1024;
+        public const int DEFAULT_PACKET_SIZE = 512;
 
         public Frame aFrame;
 

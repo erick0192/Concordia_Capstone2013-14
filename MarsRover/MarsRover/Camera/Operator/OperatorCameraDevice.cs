@@ -6,10 +6,10 @@ using System.Text;
 
 namespace MarsRover
 {
-    public class RemoteCameraDevice : AbstractCameraDevice
+    public class OperatorCameraDevice : AbstractCameraDevice
     {
 
-        public RemoteCameraDevice()
+        public OperatorCameraDevice()
         {                                  
             State = CameraState.CAMERA_STOPPED;
         }

@@ -16,7 +16,7 @@ namespace MarsRover
     {
         protected CameraState State;
 
-        protected LocalCameraDeviceStatistics Statistics;
+        protected RoverCameraDeviceStatistics Statistics;
 
         protected Bitmap LatestFrame;
 

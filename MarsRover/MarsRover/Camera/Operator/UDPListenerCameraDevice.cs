@@ -15,7 +15,7 @@ using System.Threading;
 namespace MarsRover
 {
 
-    public class UDPListenerCameraDevice : RemoteCameraDevice
+    public class UDPListenerCameraDevice : OperatorCameraDevice
     {
       
         public delegate void NewBitmapReceivedCBType(Bitmap aBitmap);
@@ -77,9 +77,7 @@ namespace MarsRover
             if (aNewBitmapReceivedEvent != null)
             {
                 aNewBitmapReceivedEvent(LatestFrame);
-            }
-
-            PacketReconstructors.GetReconstructedPackets().Clear();
+            }           
 
         }
 
