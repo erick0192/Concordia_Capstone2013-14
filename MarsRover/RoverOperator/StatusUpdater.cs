@@ -1,16 +1,11 @@
-﻿/** 
- * This singleton class will be in charge of using the class responsible for requesting
- * data from the server and update each of the robots components, i.e., battery, motors, etc.
- * 
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Timers;
 using MarsRover;
+using MarsRover.Communication;
 
 namespace RoverOperator
 {
@@ -20,9 +15,10 @@ namespace RoverOperator
         
         private RoverStatus roverStatus;//We might not need this class anymore, as component updates are sent separately
         private volatile bool update;
-
-        //temporary until we get communication going
+        
         private volatile System.Timers.Timer timer;
+        private IQueue updatesQueue;
+        private MessageListener listener;
 
         #endregion
 
@@ -62,7 +58,9 @@ namespace RoverOperator
         private StatusUpdater()
         {
             roverStatus = new RoverStatus();
-            timer = new System.Timers.Timer(1000) { Enabled = false };
+            //timer = new System.Timers.Timer(Properties.Settings.Default.StatusUpdateInterval) { Enabled = false };
+            updatesQueue = new PriorityQueue(100);
+            listener = new MessageListener(Properties.NetworkSettings.Default.StatusUpdatePort, updatesQueue, NetworkSettings.Instance.RoverIPAddress);
         }       
 
         #region Update Methods
@@ -72,7 +70,10 @@ namespace RoverOperator
             if (!IsUpdating)
             {
                 update = true;
-                timer.Enabled = true;
+                //timer.Elapsed += new ElapsedEventHandler(this.Update);
+                //timer.Enabled = true;
+                listener.StartListening();
+                
                 Thread thread = new Thread(new ThreadStart(this.Update));
                 thread.Start();
             }
@@ -80,28 +81,31 @@ namespace RoverOperator
 
         public void StopUpdating()
         {            
-            update = false;
+            //update = false;
+            //timer.Enabled = false;
+            //timer.Elapsed -= new ElapsedEventHandler(this.Update);
         }
 
         private void Update()
         {
-            //temporary until we get communication going
-            timer.Elapsed += new ElapsedEventHandler(TemporaryHandler);
+            int sleepPeriod = 100;           
+            string updateData = "";
 
             while(update)
             {
-                //Here we would listen for incoming data on a udp port
+                if(updatesQueue.TryDequeue(out updateData))
+                {
+                    UpdateGPS("");
+                    UpdateBattery("");
+                    UpdateMotors("");    
+                }
+                else
+                {
+                    Thread.Sleep(sleepPeriod); //Sleep for a bit and wait for data to fill up
+                }
+                
             }
-
-            timer.Enabled = false;
-            timer.Elapsed -= new ElapsedEventHandler(TemporaryHandler);
-        }
-
-        private void TemporaryHandler(object sender, ElapsedEventArgs e)
-        {
-            UpdateGPS("");
-            UpdateBattery("");
-            UpdateMotors("");
+            
         }
 
         private void UpdateMotors(String updateString)
@@ -129,7 +133,7 @@ namespace RoverOperator
 
             motor = roverStatus.Motors[Motor.Location.BackRight];
             motor.Current += 8;
-            motor.Temperature += 2;
+            motor.Temperature += 2;            
 
             if(MotorsUpdated != null)
             {

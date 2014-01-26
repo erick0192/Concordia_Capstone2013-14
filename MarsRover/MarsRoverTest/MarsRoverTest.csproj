@@ -52,9 +52,16 @@
     <Compile Include="CommandTests.cs" />
     <Compile Include="PriorityQueueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SensorTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MarsRover\MarsRover.csproj">
+      <Project>{cac3edaa-c9d0-4e7c-849a-d86b81e545da}</Project>
+      <Name>MarsRover</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoverOperator\RoverOperator.csproj">
+      <Project>{5f2880e4-71ba-4b95-9a09-0368872daeda}</Project>
+      <Name>RoverOperator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rover\Rover.csproj">
       <Project>{BD58C609-5025-4FD1-B183-277BF0583173}</Project>
       <Name>Rover</Name>

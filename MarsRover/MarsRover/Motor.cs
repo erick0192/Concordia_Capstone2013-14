@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MarsRover.Exceptions;
+using System.Text.RegularExpressions;
 
 namespace MarsRover
 {
-    public class Motor
+    public class Motor : IUpdateable
     {
         public enum Location
         {
@@ -19,11 +21,32 @@ namespace MarsRover
             BackRight
         }        
 
+        //Amperes
+        public const float MIN_CURRENT = 0.0f;
+        public const float MAX_CURRENT = 20.0f;
+
+        //Celsius
+        public const float MIN_TEMPERATURE = 0.0f;
+        public const float MAX_TEMPERATYRE = 120.0f;
+
         #region Properties
 
-        public int Current { get; set; }
-        public int Temperature { get; set; }
+        public float Current { get; set; }
+        public float Temperature { get; set; }
         public Motor.Location LocationOnRover { get; set; }
+
+        private string regex;
+        public string RegEx
+        {
+            get
+            {
+                return regex;
+            }
+            set
+            {
+                regex = value;
+            }
+        }
 
         #endregion
 
@@ -35,6 +58,8 @@ namespace MarsRover
         }
 
         #endregion
+
+        #region Methods
 
         public static string GetLocationFriendlyString(Motor.Location location)
         {
@@ -56,5 +81,104 @@ namespace MarsRover
 
             return "";
         }
+
+        public Motor.Location GetLocationFromUpdateString(string updateString)
+        {           
+            var updateArray = updateString.Substring(2).Split(',');
+
+            if(updateArray[0] == "F")
+            {
+                if(updateArray[1] == "L")
+                {
+                    return Motor.Location.FrontLeft;
+                }
+                else if(updateArray[1] == "R")
+                {
+                    return Motor.Location.FrontRight;
+                }              
+            }
+            else if(updateArray[0] == "M")
+            {
+                if (updateArray[1] == "L")
+                {
+                    return Motor.Location.MiddleLeft;
+                }
+                else if (updateArray[1] == "R")
+                {
+                    return Motor.Location.MiddleRight;
+                }               
+            }
+            else if(updateArray[0] == "B")
+            {
+                if (updateArray[1] == "L")
+                {
+                    return Motor.Location.BackLeft;
+                }
+                else if (updateArray[1] == "R")
+                {
+                    return Motor.Location.BackRight;
+                }               
+            }
+            
+            throw new InvalidUpdateStringException(updateString);
+            
+        }
+
+        public bool IsMatch(string input)
+        {
+            return Regex.IsMatch(input, RegEx);
+        }
+
+        public void UpdateFromString(string updateString)
+        {
+            if(IsMatch(updateString))
+            {
+                var updateArray = updateString.Substring(2).Split(',');
+                this.Current = float.Parse(updateArray[2]);
+                this.Temperature = float.Parse(updateArray[3]);
+            }
+            else
+            {
+                throw new InvalidUpdateStringException(updateString);
+            }
+        }
+
+        public string GetUpdateString()
+        {
+            string motorBodyLocation = string.Empty, motorSideLocation = string.Empty;
+
+            switch (this.LocationOnRover)
+            {
+                case Motor.Location.FrontLeft:
+                    motorBodyLocation = "F";
+                    motorSideLocation = "L";
+                    break;
+                case Motor.Location.FrontRight:
+                    motorBodyLocation = "F";
+                    motorSideLocation = "R";
+                    break;
+                case Motor.Location.MiddleLeft:
+                    motorBodyLocation = "M";
+                    motorSideLocation = "L";
+                    break;
+                case Motor.Location.MiddleRight:
+                    motorBodyLocation = "M";
+                    motorSideLocation = "R";
+                    break;
+                case Motor.Location.BackLeft:
+                    motorBodyLocation = "B";
+                    motorSideLocation = "L";
+                    break;
+                case Motor.Location.BackRight:
+                    motorBodyLocation = "B";
+                    motorSideLocation = "R";
+                    break;
+            }
+
+            return String.Format("MR;{0},{1},{2},{3}", 
+                motorBodyLocation, motorSideLocation, Current, Temperature);
+        }
+
+        #endregion                    
     }
 }

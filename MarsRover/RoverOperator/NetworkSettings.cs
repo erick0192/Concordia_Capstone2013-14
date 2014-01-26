@@ -17,11 +17,11 @@ namespace RoverOperator
         {
             get
             {
-                return Properties.Settings.Default.RoverIPAddress;
+                return Properties.NetworkSettings.Default.RoverIPAddress;
             }
             set
             {
-                Properties.Settings.Default.RoverIPAddress = value;
+                Properties.NetworkSettings.Default.RoverIPAddress = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("RoverIPAddress"));
@@ -34,11 +34,11 @@ namespace RoverOperator
         {
             get
             {
-                return Properties.Settings.Default.CameraPort1;
+                return Properties.NetworkSettings.Default.CameraPort1;
             }
             set
             {
-                Properties.Settings.Default.CameraPort1 = value;
+                Properties.NetworkSettings.Default.CameraPort1 = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("CameraPort1"));
@@ -51,11 +51,11 @@ namespace RoverOperator
         {
             get
             {
-                return Properties.Settings.Default.CameraPort2;
+                return Properties.NetworkSettings.Default.CameraPort2;
             }
             set
             {
-                Properties.Settings.Default.CameraPort2 = value;
+                Properties.NetworkSettings.Default.CameraPort2 = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
@@ -68,11 +68,11 @@ namespace RoverOperator
         {
             get
             {
-                return Properties.Settings.Default.CameraPort3;
+                return Properties.NetworkSettings.Default.CameraPort3;
             }
             set
             {
-                Properties.Settings.Default.CameraPort3 = value;
+                Properties.NetworkSettings.Default.CameraPort3 = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
@@ -108,12 +108,12 @@ namespace RoverOperator
 
         public void Save()
         {
-            Properties.Settings.Default.Save();
+            Properties.NetworkSettings.Default.Save();
         }
 
         public void ResetToDefault()
         {
-            Properties.Settings.Default.Reset();
+            Properties.NetworkSettings.Default.Reset();
         }
     }
 }

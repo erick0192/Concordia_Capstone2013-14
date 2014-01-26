@@ -1,23 +1,29 @@
-﻿using System;
+﻿using MarsRover.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class BatteryCell : INotifyPropertyChanged
+    public class BatteryCell : IUpdateable
     {
         public enum CellStatus
         {
             UnderVoltage,
             Normal,
+            Warning,
             OverVoltage
         }
 
-        public static float MIN_VOLTAGE = 0.5f;
-        public static float MAX_VOLTAGE = 2.0f;
+        //Volts
+        public const float MIN_VOLTAGE = 3.0f;
+        public const float MIN_WARNING_VOLTAGE = 3.2f;
+        public const float MAX_VOLTAGE = 4.2f;
+        public const float MAX_WARNING_VOLTAGE = 4.0f;
 
         #region Properties
 
@@ -38,6 +44,19 @@ namespace MarsRover
             }
         }
 
+        private string regex;
+        public string RegEx
+        {
+            get
+            {
+                return regex;
+            }
+            set
+            {
+                regex = value;
+            }
+        }
+
         #endregion
 
         #region Delegates and Events      
@@ -51,7 +70,8 @@ namespace MarsRover
         public delegate void NormalVoltageDetectedDelegate(BatteryCell batteryCell);
         public event NormalVoltageDetectedDelegate NormalVoltageDetected;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public delegate void WarningVoltageDetectedDelegate(BatteryCell batteryCell);
+        public event WarningVoltageDetectedDelegate WarningVoltageDetected;
 
         #endregion
 
@@ -84,6 +104,17 @@ namespace MarsRover
                     }
                 }                
             }
+            else if(voltage <= MIN_WARNING_VOLTAGE || voltage >= MAX_WARNING_VOLTAGE)
+            {
+                if (Status != CellStatus.Warning)
+                {                    
+                    Status = CellStatus.Warning;
+                    if (WarningVoltageDetected != null)
+                    {
+                        WarningVoltageDetected(this);
+                    }
+                }
+            }
             else
             {
                 if (Status != CellStatus.Normal)
@@ -95,6 +126,41 @@ namespace MarsRover
                     }
                 }
             }
+        }
+
+        public int GetCellIDFromUpdateString(string updateString)
+        {
+            var updateArray = updateString.Substring(2).Split(',');
+            int id;
+            if(!int.TryParse(updateArray[0], out id))
+            {
+                throw new InvalidUpdateStringException(updateString);
+            }
+
+            return id;
+        }
+
+        public bool IsMatch(string input)
+        {
+            return Regex.IsMatch(input, RegEx);
+        }
+
+        public void UpdateFromString(string updateString)
+        {
+            if (IsMatch(updateString))
+            {
+                var updateArray = updateString.Substring(2).Split(',');
+                this.voltage = float.Parse(updateArray[1]);
+            }
+            else
+            {
+                throw new InvalidUpdateStringException(updateString);
+            }
+        }
+
+        public string GetUpdateString()
+        {
+            return String.Format("BC;{0},{1}", CellID, Voltage);
         }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RoverOperator.Properties {
+namespace Rover.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -23,15 +23,21 @@ namespace RoverOperator.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public int StatusUpdateInterval {
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int CommandsPort {
             get {
-                return ((int)(this["StatusUpdateInterval"]));
+                return ((int)(this["CommandsPort"]));
             }
-            set {
-                this["StatusUpdateInterval"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.10.10.11")]
+        public string OperatorIPAddress {
+            get {
+                return ((string)(this["OperatorIPAddress"]));
             }
         }
     }

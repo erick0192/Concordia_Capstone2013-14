@@ -22,6 +22,7 @@ namespace RoverOperator
         private void Initialize()
         {
             StatusUpdater.Instance.StartUpdating();
+            Gamepad.GamepadController gamepadController = new Gamepad.GamepadController();
         }
 
         protected override void OnStartup(StartupEventArgs e)

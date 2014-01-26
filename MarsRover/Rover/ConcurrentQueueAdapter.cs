@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.Concurrent;
+using MarsRover;
 
-namespace Rover.Shared
+namespace Rover
 {
-    class ConcurrentQueueAdapter : IQueue
+    public class ConcurrentQueueAdapter : IQueue
     {
         public uint Count { get { return m_count; } }
         private uint m_count = 0;
