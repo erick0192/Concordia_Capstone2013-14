@@ -26,8 +26,8 @@ namespace MarsRover
 
         public void Start()
         {
-            FrameNumber = 0;
-          
+            FrameNumber = 0;                     
+
             State = CameraState.CAMERA_STARTED;
         }
 

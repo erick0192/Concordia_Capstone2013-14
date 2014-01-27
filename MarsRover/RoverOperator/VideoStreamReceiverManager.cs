@@ -13,9 +13,9 @@ namespace MarsRover.Streams
         #region Private Members
         
         //private FilterInfoCollection mVideoDevices;
-        private UDPListenerCameraDevice camera1;
-        private UDPListenerCameraDevice camera2;
-        private UDPListenerCameraDevice camera3;
+        private UDPOperatorCameraDevice camera1;
+        private UDPOperatorCameraDevice camera2;
+        private UDPOperatorCameraDevice camera3;
 
         #endregion
 
@@ -33,26 +33,26 @@ namespace MarsRover.Streams
             }
         }
 
-        public UDPListenerCameraDevice Camera1
+        public UDPOperatorCameraDevice Camera1
         {
             get
             {
                 if (null == camera1)
                 {
-                  camera1 = new UDPListenerCameraDevice(RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort1);                  
+                  camera1 = new UDPOperatorCameraDevice(0,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort1, 5000);                  
                 }
 
                 return camera1;
             }
         }
 
-        public UDPListenerCameraDevice Camera2
+        public UDPOperatorCameraDevice Camera2
         {
             get
             {
                 if (null == camera2)
-                {                  
-                    camera2 = new UDPListenerCameraDevice(RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort2);                
+                {
+                    camera2 = new UDPOperatorCameraDevice(1,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort2, 5000);                
 
                 }
 
@@ -60,13 +60,13 @@ namespace MarsRover.Streams
             }
         }
 
-        public UDPListenerCameraDevice Camera3
+        public UDPOperatorCameraDevice Camera3
         {
             get
             {
                 if (null == camera3)
                 {
-                    camera2 = new UDPListenerCameraDevice(RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort3);                
+                    camera2 = new UDPOperatorCameraDevice(2,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort3, 5000);                
                 }
 
                 return camera3;

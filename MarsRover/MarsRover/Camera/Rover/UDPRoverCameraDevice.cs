@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace MarsRover
 {
-    public class UDPSenderCameraDevice : RoverCameraDevice
+    public class UDPRoverCameraDevice : RoverCameraDevice
     {
         private UDPSender aUDPSender;        
         private ImageConverter converter;        
@@ -21,7 +21,7 @@ namespace MarsRover
         private LocalUDPStatistics aUDPStatistics;
         private Random aRandomGenerator;
 
-        public UDPSenderCameraDevice(string IpAddress, int Port, string aCameraName, string aMonikerString, int aCameraID, long ImageQuality) 
+        public UDPRoverCameraDevice(string IpAddress, int Port, string aCameraName, string aMonikerString, int aCameraID, long ImageQuality) 
             : base(aCameraName, aMonikerString, aCameraID)
         {
             aImageQuality = ImageQuality;
@@ -60,7 +60,7 @@ namespace MarsRover
                 //The best solution to reduce the lag for now is to send the data directly with SendNow method.
                 //aUDPSender.SendDataUDP(SerializedPacket, SerializedPacket.Length);
              
-                aUDPSender.SendNow(SerializedPacket, SerializedPacket.Length);
+                aUDPSender.SendBytesNow(SerializedPacket, SerializedPacket.Length);
                 
             }
 

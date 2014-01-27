@@ -15,26 +15,31 @@ using System.Threading;
 namespace MarsRover
 {
 
-    public class UDPListenerCameraDevice : OperatorCameraDevice
+    public class UDPOperatorCameraDevice : OperatorCameraDevice
     {
       
         public delegate void NewBitmapReceivedCBType(Bitmap aBitmap);
         public event NewBitmapReceivedCBType aNewBitmapReceivedEvent;
 
         private UDPListener aUDPListener;
+        private UDPSender aUDPSender;
+
         private PacketReconstructor PacketReconstructors;
         private TypeConverter ImageConverter;
-        
-        private RemoteUDPStatistics aUDPStatistics;
-        
-        public UDPListenerCameraDevice(string IpAddress, int Port)
+
+        private RemoteUDPStatistics aUDPListenerStatistics;
+        private int ID;
+
+        public UDPOperatorCameraDevice(int ID, string IpAddress, int ListeningPort, int SendingPort)
         {
             PacketReconstructors = new PacketReconstructor(new Packet().GetBytes().Length, PacketReconstructedCBHandler);
-            aUDPListener = new UDPListener(Port, ReceivedHandler);
-            aUDPStatistics = new RemoteUDPStatistics(aUDPListener, 1000);
+            aUDPListener = new UDPListener(ListeningPort, ReceivedHandler);
+            aUDPListenerStatistics = new RemoteUDPStatistics(aUDPListener, 1000);
 
+            aUDPSender = new UDPSender(IpAddress, SendingPort);
+            
             ImageConverter = TypeDescriptor.GetConverter(typeof(Bitmap));
-
+            this.ID = ID;
         }
 
         public void RegisterListener( NewBitmapReceivedCBType aNewBitmapReceivedCB)
@@ -81,6 +86,31 @@ namespace MarsRover
 
         }
 
-    
+        public void Start()
+        {
+
+            if (State == CameraState.CAMERA_STOPPED)
+            {
+                FrameNumber = 0;
+
+                aUDPSender.SendStringNow("<C" + ID + "O>");
+
+                State = CameraState.CAMERA_STARTED;
+            }
+        }
+
+        public void Stop()
+        {
+            if (State == CameraState.CAMERA_STARTED)
+            {             
+            
+                ResetFrameNumber();
+
+                aUDPSender.SendStringNow("<C" + ID + "F>");
+                
+                State = CameraState.CAMERA_STOPPED;
+            }
+
+        }
     }
 }

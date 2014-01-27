@@ -24,7 +24,7 @@ namespace MarsRover
         private IPEndPoint ep;
         private int TotalNbDataSent;
         private ConcurrentQueue<byte> cq;
-        private Thread SendingThread;
+        //private Thread SendingThread;
 
         public UDPSender (string IPAdress, int Port)
         {
@@ -33,10 +33,10 @@ namespace MarsRover
             ep = new IPEndPoint(broadcast, Port);
             cq = new ConcurrentQueue<byte>();
 
-            SendingThread = new Thread(SendDataProcess);
+            /*SendingThread = new Thread(SendDataProcess);
             SendingThread.IsBackground = false;
             SendingThread.Priority = ThreadPriority.Highest;
-            SendingThread.Start();
+            SendingThread.Start();*/
         }
         #endregion
 
@@ -47,14 +47,23 @@ namespace MarsRover
             return TotalNbDataSent;
         }
 
-        public void SendNow(byte[] Data, int Length)
+        public void SendBytesNow(byte[] Data, int Length)
         {
             TotalNbDataSent += Length;
 
             s.SendTo(Data, ep);
         }
-       
-        public void SendDataUDP(byte[] Data, int Length)
+
+        public void SendStringNow(string command)
+        {
+            byte[] sendbuf = Encoding.ASCII.GetBytes(command);
+
+            TotalNbDataSent += sendbuf.Length;           
+
+            s.SendTo(sendbuf, ep);
+        }
+
+        /*public void SendDataInQueue(byte[] Data, int Length)
         {
             TotalNbDataSent += Length;
 
@@ -95,7 +104,7 @@ namespace MarsRover
                 // logger.Debug(e.ToString());
                 Console.WriteLine(e.ToString());
             }
-        }
+        }*/
         #endregion
     }
 }

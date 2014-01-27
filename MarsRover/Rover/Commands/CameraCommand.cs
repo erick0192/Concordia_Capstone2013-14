@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MarsRover;
 using MarsRover.Commands;
 
 namespace Rover.Commands
@@ -32,6 +34,21 @@ namespace Rover.Commands
         public void Execute()
         {
             Console.WriteLine("Turning Camera {0} {1}", this.camIndex, this.status == true ? "On" : "Off");
+
+            if (this.camIndex <= RoverCameraFactory.GetInstance().GetCameras().Count - 1)
+            {
+                RoverCameraDevice c = RoverCameraFactory.GetInstance().GetCameras().ElementAt(this.camIndex);
+
+                if (this.status == true)
+                {
+                    c.Start(c.GetCapabilities(new Size(320, 240)));
+                }
+                else
+                {
+                    c.Stop();
+                }
+            }
+
         }
 
         public void UnExecute()

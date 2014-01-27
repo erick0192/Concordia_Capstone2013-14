@@ -68,8 +68,8 @@ namespace RoverOperator.Content
             }
         }
 
-        private UDPListenerCameraDevice mVideoSource;
-        public UDPListenerCameraDevice VideoSource
+        private UDPOperatorCameraDevice mVideoSource;
+        public UDPOperatorCameraDevice VideoSource
         {
             get
             {
@@ -144,18 +144,23 @@ namespace RoverOperator.Content
 
         private void ToggleCam()
         {
-            if(IsActive == true)
-            {
-                //remove the event
-                mVideoSource.aNewBitmapReceivedEvent -= new UDPListenerCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
-                IsActive = false;
+
+            //For a reason this method gets called 3 time then I press CTRL+[CamID]
+            if (IsActive == true)
+            {               
+                mVideoSource.aNewBitmapReceivedEvent -= new UDPOperatorCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
+                //Call this method to stop the camera remotly
+                //mVideoSource.Stop();
+                IsActive = false;              
             }
             else
             {
-                //add the event
-                mVideoSource.aNewBitmapReceivedEvent += new UDPListenerCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
-                IsActive = true;
+                mVideoSource.aNewBitmapReceivedEvent += new UDPOperatorCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
+                //Call this method to start the camera remotly
+                //mVideoSource.Start();
+                IsActive = true;               
             }
+   
            
         }
 
@@ -181,7 +186,9 @@ namespace RoverOperator.Content
         {
             try
             {
-
+                //This is where we are having a lot of troubles, we need to make sure that while we are updating a 
+                //image on the UI we do not overwrite the image with a new one.
+                //We will need to find a solution together?
                 if (IsUpdating == false)
                 {
                     IsUpdating = true;
@@ -202,7 +209,7 @@ namespace RoverOperator.Content
                         if (IsUpdating == false)
                         {
                             IsUpdating = true;
-                            Image = bi;
+                            Image = bi;                            
                             IsUpdating = false;
                         }
                     }));

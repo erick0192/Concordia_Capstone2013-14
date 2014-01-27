@@ -6,13 +6,13 @@ using System.Text;
 
 namespace MarsRover
 {
-    public class RemoteCameraFactory
+    public class OperatorCameraFactory
     {
-        private static RemoteCameraFactory SingletonCameraFactory;
+        private static OperatorCameraFactory SingletonCameraFactory;
 
-        private List<RemoteCameraDevice> Cameras = new List<RemoteCameraDevice>();
+        private List<OperatorCameraDevice> Cameras = new List<OperatorCameraDevice>();
 
-        private RemoteCameraFactory()
+        private OperatorCameraFactory()
         {
 
             //RemoteCameraDevice c0 = new UDPListenerCameraDevice("127.0.0.1", 3000);
@@ -23,17 +23,17 @@ namespace MarsRover
 
         }
 
-        public static RemoteCameraFactory GetInstance()
+        public static OperatorCameraFactory GetInstance()
         {
             if (SingletonCameraFactory == null)
             {
-                SingletonCameraFactory = new RemoteCameraFactory();                
+                SingletonCameraFactory = new OperatorCameraFactory();                
             }
 
             return SingletonCameraFactory;
         }
 
-        public List<RemoteCameraDevice> GetCameras()
+        public List<OperatorCameraDevice> GetCameras()
         {
             return Cameras;
         }

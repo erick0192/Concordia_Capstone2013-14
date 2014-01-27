@@ -22,12 +22,12 @@ namespace Rover
            // ConcurrentQueue<string> CommanderDispatcherMessageQueue = new ConcurrentQueue<string>();
            // ConcurrentQueue<string> DispatcherSerialMessageQueue = new ConcurrentQueue<string>();
             IQueue CommanderDispatcherMessageQueue = new PriorityQueue(30);
-            IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
-            IQueue SerialStatusMessageQueue = new PriorityQueue(30);
+            //IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
+            //IQueue SerialStatusMessageQueue = new PriorityQueue(30);
 
             Thread dispatcher = new Thread(() => Dispatcher(CommanderDispatcherMessageQueue));
-            Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
-            Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
+            //Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
+            //Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
 
             dispatcher.Start();
             //serialManager.Start();
@@ -60,6 +60,8 @@ namespace Rover
 
                     
                 }
+
+                Thread.Sleep(sleepPeriod);
                 
             }
         }
@@ -82,9 +84,11 @@ namespace Rover
                 {
                     Console.WriteLine("Could not connect to microcontroller");
                 }
+
+                Thread.Sleep(5000);
             }
 
-            Thread.Sleep(5000);
+           
         }
 
         static void StatusUpdater(IQueue SerialStatusUpdaterMessageBox)
@@ -113,10 +117,10 @@ namespace Rover
                     }
                     latestSensorData[sensorlog.Identifier] = sensorlog;
                 }
-              //  Console.WriteLine(banana);
+               // Console.WriteLine(banana);
                // gps.UpdateValues();
 
-                Thread.Sleep(50);
+                Thread.Sleep(200);
             }
 
 

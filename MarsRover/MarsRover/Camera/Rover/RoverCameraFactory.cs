@@ -14,10 +14,12 @@ namespace MarsRover
 
         private RoverCameraFactory()
         {
-
-            FilterInfo f0 = (FilterInfo)RoverCameraDetector.GetInstance().GetCameraDevices()[0];
-            RoverCameraDevice c0 = new UDPSenderCameraDevice("127.0.0.1", 3000, f0.Name, f0.MonikerString, 0, 50L);
-            Cameras.Add(c0);
+            for (int i = 0; i < RoverCameraDetector.GetInstance().GetCameraDevices().Count; i++)
+            {
+                FilterInfo fx = (FilterInfo)RoverCameraDetector.GetInstance().GetCameraDevices()[i];
+                RoverCameraDevice cx = new UDPRoverCameraDevice("127.0.0.1", 3000 + i, fx.Name, fx.MonikerString, 0, 50L);
+                Cameras.Add(cx);
+            }
 
             //FilterInfo f1 = (FilterInfo)RoverCameraDetector.GetInstance().GetCameraDevices()[1];
             //RoverCameraDevice c1 = new UDPSenderCameraDevice("127.0.0.1", 3001, f1.Name, f1.MonikerString, 0, 50L);
