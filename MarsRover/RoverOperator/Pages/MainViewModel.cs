@@ -7,11 +7,53 @@ using System.Windows.Input;
 using RoverOperator.Content;
 using System.IO;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
+using System.ComponentModel;
+using System.Windows;
+using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace RoverOperator.Pages
 {
-    public class MainViewModel
+    public class MainViewModel : Window, INotifyPropertyChanged
     {
+        #region Delegates
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Attributes
+
+        private string connectedToRover;
+        public string ConnectedToRover
+        {
+            get { return connectedToRover; }
+            set
+            {
+                if (!value.Equals(connectedToRover))
+                {
+                    connectedToRover = value;
+                    OnPropertyChanged("ConnectedToRover");
+                }
+            }
+        }
+
+        private string pingRTT;
+        public string PingRTT
+        {
+            get { return pingRTT; }
+            set
+            {
+                if (!value.Equals(pingRTT))
+                {
+                    pingRTT = value;
+                    OnPropertyChanged("PingRTT");
+                }
+            }
+        }
+
+        #endregion
+
         #region Properties
 
         public Xceed.Wpf.AvalonDock.DockingManager DockingManager { get; set; }
@@ -75,7 +117,7 @@ namespace RoverOperator.Pages
 
         public MainViewModel()
         {
-
+            StartPinging("10.10.10.10");
         }
 
         #endregion
@@ -146,6 +188,41 @@ namespace RoverOperator.Pages
 
         #endregion 
 
+        #region Methods
+
+        private void StartPinging(string host)
+        {
+            Thread t = new Thread(() => Ping(host));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void Ping(string host)
+        {
+            bool pingable = false;
+            Ping pinger = new Ping();
+
+            try
+            {
+                PingReply reply = pinger.Send(host);
+                pingable = reply.Status == IPStatus.Success;
+                PingRTT = "Ping: " + reply.RoundtripTime + " ms";
+            }
+            catch (PingException) { }
+
+            if (pingable)
+            {
+                ConnectedToRover = "Connected";
+            }
+            else
+            {
+                ConnectedToRover = "Unable to connect";
+            }
+            Thread.Sleep(200);
+        }
+
+        #endregion
+
         #region Event Handlers
 
         public void MainIsVisibleChanged(object iSender, System.Windows.DependencyPropertyChangedEventArgs iEventArgs)
@@ -158,6 +235,15 @@ namespace RoverOperator.Pages
                 {
                     ((Main)iSender).Focus();
                 }));
+            }
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
             }
         }
 

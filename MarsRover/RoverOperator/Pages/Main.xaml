@@ -27,7 +27,6 @@
                 <avalonDock:GenericTheme/>
             </avalonDock:DockingManager.Theme>
             <avalonDock:LayoutRoot>
-                
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutPanel Orientation="Vertical"  >
                         <avalonDock:LayoutAnchorablePane x:Name="PaneCam1">
@@ -89,5 +88,12 @@
                 </avalonDock:LayoutPanel>
             </avalonDock:LayoutRoot>
         </avalonDock:DockingManager>
+        <Grid VerticalAlignment="Bottom">
+            <StatusBar>
+                <TextBlock Text="{Binding Path=ConnectedToRover}"></TextBlock>
+                <Separator />
+                <TextBlock Text="{Binding Path=PingRTT}"></TextBlock>
+            </StatusBar>
+        </Grid>
     </Grid>
 </UserControl>

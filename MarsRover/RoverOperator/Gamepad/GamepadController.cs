@@ -11,7 +11,7 @@ namespace RoverOperator.Gamepad
     class GamepadController
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
-        private const int POLLING_RATE = 1000; //milliseconds
+        private const int POLLING_RATE = 200; //milliseconds
 
         public GamepadController()
         {
