@@ -55,6 +55,7 @@ namespace MarsRover
         public Motor(Motor.Location location)
         {
             LocationOnRover = location;
+            regex = @"/<MR;[MFB],[LR],\d+(\.\d{1,2})?,\d+(\.\d{1,2})?>/";
         }
 
         #endregion
@@ -82,9 +83,9 @@ namespace MarsRover
             return "";
         }
 
-        public Motor.Location GetLocationFromUpdateString(string updateString)
-        {           
-            var updateArray = updateString.Substring(2).Split(',');
+        public static Motor.Location GetLocationFromUpdateString(string updateString)
+        {                       
+            var updateArray = updateString.Substring(updateString.IndexOf(";")).Split(',');
 
             if(updateArray[0] == "F")
             {
@@ -133,7 +134,7 @@ namespace MarsRover
         {
             if(IsMatch(updateString))
             {
-                var updateArray = updateString.Substring(2).Split(',');
+                var updateArray = updateString.Substring(updateString.IndexOf(";")).Split(',');
                 this.Current = float.Parse(updateArray[2]);
                 this.Temperature = float.Parse(updateArray[3]);
             }

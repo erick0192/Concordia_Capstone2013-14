@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 using Rover.Commands;
-
+using MarsRover.Commands;
 namespace Rover
 {
-    class MicrocontrollerSingleton
+    public class MicrocontrollerSingleton
     {
         private SerialPort serialPort;
         private static volatile MicrocontrollerSingleton instance; //Using the example mentioned on the Microsoft C# guide for Singleton Implementation

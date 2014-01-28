@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="CommandFactoryTests.cs" />
     <Compile Include="CommandTests.cs" />
+    <Compile Include="ComponentUpdate\BatterCellUpdateTests.cs" />
+    <Compile Include="ComponentUpdate\BatteryUpdateTests.cs" />
+    <Compile Include="ComponentUpdate\MotorUpdateTests.cs" />
     <Compile Include="PriorityQueueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +82,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

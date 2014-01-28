@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MarsRover.Commands
 {
-    static class CommandMetadata
+    public static class CommandMetadata
     {
         public const int IdIndex = 1;
         public const int IdLength = 1; //Perhaps we will have to set the ID length to 2 in the future.
