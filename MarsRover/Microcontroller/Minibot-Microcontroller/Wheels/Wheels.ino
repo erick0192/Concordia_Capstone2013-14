@@ -7,31 +7,46 @@
 
 #define NUM_OF_WHEELS_PER_SIDE 2
 
+#define TOP_RIGHT_WHEEL_ENABLE_PIN 23
+#define TOP_RIGHT_WHEEL_FRONT_PIN 4
+#define TOP_RIGHT_WHEEL_BACK_PIN 5
+
+#define TOP_LEFT_WHEEL_ENABLE_PIN 22
+#define TOP_LEFT_WHEEL_FRONT_PIN 10
+#define TOP_LEFT_WHEEL_BACK_PIN 11
+
+#define BOTTOM_RIGHT_WHEEL_ENABLE_PIN 24
+#define BOTTOM_RIGHT_WHEEL_FRONT_PIN 7
+#define BOTTOM_RIGHT_WHEEL_BACK_PIN 6
+
+#define BOTTOM_LEFT_WHEEL_ENABLE_PIN 25
+#define BOTTOM_LEFT_WHEEL_FRONT_PIN 8
+#define BOTTOM_LEFT_WHEEL_BACK_PIN 9
+
+
 #include "Wheel.h"
 #include "CommandMetadata.h"
 
-Wheel TopRightWheel(23, 4, 5); //Enable pin, front pin, back pin
-Wheel TopLeftWheel(22, 10, 11);
-Wheel BottomRightWheel(24, 7, 6);
-Wheel BottomLeftWheel(25, 8, 9);
-
-
-Wheel rightWheels[] = {TopRightWheel, BottomRightWheel};
-Wheel leftWheels[] = {TopLeftWheel, BottomLeftWheel};
-
-
-void moveForward(Wheel sideWheels[], int duty){
-  for (int i = 0; i < NUM_OF_WHEELS_PER_SIDE; i++){
-    analogWrite(sideWheels[i].getFrontPin(), duty);
-    analogWrite(sideWheels[i].getBackPin(), 0);
-  }
+void moveForward(int turn, int duty){
+    analogWrite(TOP_RIGHT_WHEEL_FRONT_PIN, duty);
+    analogWrite(TOP_RIGHT_WHEEL_BACK_PIN, 0);
+    analogWrite(TOP_LEFT_WHEEL_FRONT_PIN, duty);
+    analogWrite(TOP_LEFT_WHEEL_BACK_PIN, 0);
+    analogWrite(BOTTOM_RIGHT_WHEEL_FRONT_PIN, duty);
+    analogWrite(BOTTOM_RIGHT_WHEEL_BACK_PIN, 0);
+    analogWrite(BOTTOM_LEFT_WHEEL_FRONT_PIN, duty);
+    analogWrite(BOTTOM_LEFT_WHEEL_BACK_PIN, 0);
 }
 
-void moveBackward(Wheel sideWheels[], int duty){
-  for (int i = 0; i < NUM_OF_WHEELS_PER_SIDE; i++){
-    analogWrite(sideWheels[i].getFrontPin(), 0);
-    analogWrite(sideWheels[i].getBackPin(), duty);
-  }
+void moveBackward(int turn, int duty){
+    analogWrite(TOP_RIGHT_WHEEL_FRONT_PIN, 0);
+    analogWrite(TOP_RIGHT_WHEEL_BACK_PIN, duty);
+    analogWrite(TOP_LEFT_WHEEL_FRONT_PIN, 0);
+    analogWrite(TOP_LEFT_WHEEL_BACK_PIN, duty);
+    analogWrite(BOTTOM_RIGHT_WHEEL_FRONT_PIN, 0);
+    analogWrite(BOTTOM_RIGHT_WHEEL_BACK_PIN, duty);
+    analogWrite(BOTTOM_LEFT_WHEEL_FRONT_PIN, 0);
+    analogWrite(BOTTOM_LEFT_WHEEL_BACK_PIN, duty);
 }
 
 void ParseCommand(char *command){
@@ -88,7 +103,7 @@ void ParseCommand(char *command){
      
 }
 
-void setup() {
+void Init_Wheels() {
   Serial.begin(9600);
   
   for(int i = 0; i < NUM_OF_WHEELS_PER_SIDE; i++){
@@ -108,7 +123,7 @@ void setup() {
   }
 }
 
-void loop() {
+void Loop_Wheels() {
   
 //Command processing
 char charRead, command[CommandMetadata::COMMAND_SIZE +1]; //+1 for null terminator

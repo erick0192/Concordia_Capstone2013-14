@@ -1,3 +1,4 @@
+#include <Wire.h>
 /* This file is part of the Razor AHRS Firmware */
 
 // I2C code to read the sensors

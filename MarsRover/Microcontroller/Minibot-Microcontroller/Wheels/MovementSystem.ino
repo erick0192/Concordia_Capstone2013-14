@@ -4,21 +4,7 @@
 //For the actual version of the code, this board should
 //instead relay its movement commands to the MSP430s
 //over I2C instead of PWMing the motor controller directly.
-
-#define NUM_OF_WHEELS_PER_SIDE 2
-
-#include "Wheel.h"
 #include "CommandMetadata.h"
-
-Wheel TopRightWheel(23, 4, 5); //Enable pin, front pin, back pin
-Wheel TopLeftWheel(22, 10, 11);
-Wheel BottomRightWheel(24, 7, 6);
-Wheel BottomLeftWheel(25, 8, 9);
-
-
-Wheel rightWheels[] = {TopRightWheel, BottomRightWheel};
-Wheel leftWheels[] = {TopLeftWheel, BottomLeftWheel};
-
 
 void moveForward(Wheel sideWheels[], int duty){
   for (int i = 0; i < NUM_OF_WHEELS_PER_SIDE; i++){
@@ -88,8 +74,7 @@ void ParseCommand(char *command){
      
 }
 
-void setup() {
-  Serial.begin(9600);
+void Init_Wheels() {
   
   for(int i = 0; i < NUM_OF_WHEELS_PER_SIDE; i++){
   //Setup enable pins on both the left and right sides of the rover
@@ -108,7 +93,7 @@ void setup() {
   }
 }
 
-void loop() {
+void Loop_Wheels() {
   
 //Command processing
 char charRead, command[CommandMetadata::COMMAND_SIZE +1]; //+1 for null terminator

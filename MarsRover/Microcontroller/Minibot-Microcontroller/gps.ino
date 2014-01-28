@@ -1,4 +1,4 @@
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 
 #include <TinyGPS.h>
 
@@ -8,7 +8,7 @@
 */
 
 TinyGPS gps;
-SoftwareSerial ss(4, 3);
+//SoftwareSerial ss(4, 3);
 
 static void smartdelay(unsigned long ms);
 static void print_float(float val, float invalid, int len, int prec);
@@ -16,24 +16,23 @@ static void print_int(unsigned long val, unsigned long invalid, int len);
 static void print_date(TinyGPS &gps);
 static void print_str(const char *str, int len);
 
-void setup()
+void Init_GPS()
 {
-  Serial.begin(115200);
-
+  /*
   Serial.println("Sats HDOP Latitude  Longitude  Fix  Date       Time     Date Alt    Course Speed Card  Distance Course Card  Chars Sentences Checksum");
   Serial.println("          (deg)     (deg)      Age                      Age  (m)    --- from GPS ----  ---- to London  ----  RX    RX        Fail");
   Serial.println("-------------------------------------------------------------------------------------------------------------------------------------");
-
-  ss.begin(4800);
+*/
+  Serial1.begin(4800);
 }
 
-void loop()
+void Loop_GPS()
 {
   float flat, flon;
   unsigned long age, date, time, chars = 0;
   unsigned short sentences = 0, failed = 0;
   static const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
-  
+  /*
   print_int(gps.satellites(), TinyGPS::GPS_INVALID_SATELLITES, 5);
   print_int(gps.hdop(), TinyGPS::GPS_INVALID_HDOP, 5);
   gps.f_get_position(&flat, &flon, &age);
@@ -54,18 +53,16 @@ void loop()
   print_int(sentences, 0xFFFFFFFF, 10);
   print_int(failed, 0xFFFFFFFF, 9);
   Serial.println();
-  
+  */
+  gps.f_get_position(&flat, &flon, &age);
+  Send_GPS(flat,flon,gps.f_altitude());
   smartdelay(1000);
 }
 
 static void smartdelay(unsigned long ms)
 {
-  unsigned long start = millis();
-  do 
-  {
-    while (ss.available())
-      gps.encode(ss.read());
-  } while (millis() - start < ms);
+    if(Serial1.available())
+      gps.encode(Serial1.read());
 }
 
 static void print_float(float val, float invalid, int len, int prec)

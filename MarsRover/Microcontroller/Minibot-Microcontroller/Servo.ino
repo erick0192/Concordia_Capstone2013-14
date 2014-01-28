@@ -1,14 +1,11 @@
 //Servo Controls
 #include <Servo.h>
-
-#define SERVO_YAW_PIN 9
-#define SERVO_PITCH_PIN 10
-#define SERVO_ROLL_PIN 11
 #define UPDATE_SERVO_INTERVAL 50
 
 Servo yawServo;
 Servo pitchServo;
 Servo rollServo;
+
 int yawMicrosec;
 int pitchMicrosec;
 int rollMicrosec;
@@ -22,6 +19,7 @@ void Servo_Init()
   yawServo.attach(SERVO_YAW_PIN);
   pitchServo.attach(SERVO_PITCH_PIN);
   rollServo.attach(SERVO_ROLL_PIN);
+  
   yawServo.writeMicroseconds(1437);
   pitchServo.writeMicroseconds(1437);
   rollServo.writeMicroseconds(1437);
@@ -55,7 +53,10 @@ void Update_Servos()
     rollServo.writeMicroseconds(rollMicrosec);
     servoUpdateTiming = millis();
    }
+   /*
       Serial.println(yawMicrosec);
       Serial.println(pitchMicrosec);
       Serial.println(rollMicrosec);
+      */
 }
+
