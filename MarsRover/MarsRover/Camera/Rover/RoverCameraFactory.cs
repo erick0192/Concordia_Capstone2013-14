@@ -17,7 +17,7 @@ namespace MarsRover
             for (int i = 0; i < RoverCameraDetector.GetInstance().GetCameraDevices().Count; i++)
             {
                 FilterInfo fx = (FilterInfo)RoverCameraDetector.GetInstance().GetCameraDevices()[i];
-                RoverCameraDevice cx = new UDPRoverCameraDevice("127.0.0.1", 3000 + i, fx.Name, fx.MonikerString, 0, 50L);
+                RoverCameraDevice cx = new UDPRoverCameraDevice(Properties.NetworkSetting.Default.OperatorIP, Properties.NetworkSetting.Default.CameraBasePort + i, fx.Name, fx.MonikerString, 0, 50L);
                 Cameras.Add(cx);
             }
 

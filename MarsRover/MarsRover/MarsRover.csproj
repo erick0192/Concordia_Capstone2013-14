@@ -141,6 +141,11 @@
     <Compile Include="IQueue.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="Motor.cs" />
+    <Compile Include="Properties\NetworkSetting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>NetworkSetting.settings</DependentUpon>
+    </Compile>
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoverStatus.cs" />
@@ -155,6 +160,11 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="app.config" />
+    <None Include="Properties\NetworkSetting.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>NetworkSetting.Designer.cs</LastGenOutput>
+    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
