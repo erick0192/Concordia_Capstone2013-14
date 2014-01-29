@@ -45,17 +45,6 @@ namespace MarsRover
         }
 
         private string regex;
-        public string RegEx
-        {
-            get
-            {
-                return regex;
-            }
-            set
-            {
-                regex = value;
-            }
-        }
 
         #endregion
 
@@ -140,14 +129,14 @@ namespace MarsRover
             return id;
         }
 
-        public bool IsMatch(string input)
+        private bool IsValidUpdateString(string input)
         {
-            return Regex.IsMatch(input, RegEx);
+            return Regex.IsMatch(input, regex);
         }
 
         public void UpdateFromString(string updateString)
         {
-            if (IsMatch(updateString))
+            if (IsValidUpdateString(updateString))
             {
                 var updateArray = updateString.Substring(2).Split(',');
                 this.voltage = float.Parse(updateArray[1]);

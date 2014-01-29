@@ -29,24 +29,15 @@ namespace MarsRover
         public const float MIN_TEMPERATURE = 0.0f;
         public const float MAX_TEMPERATYRE = 120.0f;
 
+        private string regex;
+
         #region Properties
 
         public float Current { get; set; }
         public float Temperature { get; set; }
         public Motor.Location LocationOnRover { get; set; }
 
-        private string regex;
-        public string RegEx
-        {
-            get
-            {
-                return regex;
-            }
-            set
-            {
-                regex = value;
-            }
-        }
+        
 
         #endregion
 
@@ -55,7 +46,7 @@ namespace MarsRover
         public Motor(Motor.Location location)
         {
             LocationOnRover = location;
-            regex = @"/<MR;[MFB],[LR],\d+(\.\d{1,2})?,\d+(\.\d{1,2})?>/";
+            regex = @"<MR;[MFB],[LR],\d+(\.\d{1,2})?,\d+(\.\d{1,3})?>";
         }
 
         #endregion
@@ -84,8 +75,8 @@ namespace MarsRover
         }
 
         public static Motor.Location GetLocationFromUpdateString(string updateString)
-        {                       
-            var updateArray = updateString.Substring(updateString.IndexOf(";")).Split(',');
+        {
+            var updateArray = updateString.Substring(updateString.IndexOf(";") + 1).Split(',');
 
             if(updateArray[0] == "F")
             {
@@ -125,18 +116,29 @@ namespace MarsRover
             
         }
 
-        public bool IsMatch(string input)
+        private bool IsValidUpdateString(string input)
         {
-            return Regex.IsMatch(input, RegEx);
+            return Regex.IsMatch(input, regex);
         }
 
         public void UpdateFromString(string updateString)
         {
-            if(IsMatch(updateString))
+            if (IsValidUpdateString(updateString))
             {
-                var updateArray = updateString.Substring(updateString.IndexOf(";")).Split(',');
-                this.Current = float.Parse(updateArray[2]);
-                this.Temperature = float.Parse(updateArray[3]);
+                if (Motor.GetLocationFromUpdateString(updateString) == LocationOnRover)
+                {
+                    // We dont want to include the identifier nor the last bracket
+                    int posIdentifer = updateString.IndexOf(";");                    
+                    int length = updateString.Length - posIdentifer - 2;
+
+                    var updateArray = updateString.Substring(posIdentifer + 1, length).Split(',');
+                    this.Current = float.Parse(updateArray[2]);
+                    this.Temperature = float.Parse(updateArray[3]);
+                }
+                else
+                {
+                    throw new InvalidUpdateStringException(updateString, "The motor location does not match the one indicated  by the update string.");
+                }
             }
             else
             {
@@ -176,8 +178,8 @@ namespace MarsRover
                     break;
             }
 
-            return String.Format("MR;{0},{1},{2},{3}", 
-                motorBodyLocation, motorSideLocation, Current, Temperature);
+            return String.Format("<MR;{0},{1},{2},{3}>", 
+                motorBodyLocation, motorSideLocation, Math.Round(Current, 3), Math.Round(Temperature, 3));
         }
 
         #endregion                    

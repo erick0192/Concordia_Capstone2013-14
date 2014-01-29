@@ -27,17 +27,6 @@ namespace MarsRover
         public float Current { get; set; }
 
         private string regex;
-        public string RegEx
-        {
-            get
-            {
-                return regex;
-            }
-            set
-            {
-                regex = value;
-            }
-        }
 
         public float ChargeRatio
         {
@@ -71,14 +60,14 @@ namespace MarsRover
 
         #region Methods
 
-        public bool IsMatch(string input)
+        private bool IsValidUpdateString(string input)
         {
-            return Regex.IsMatch(input, RegEx);
+            return Regex.IsMatch(input, regex);
         }
 
         public void UpdateFromString(string updateString)
         {
-            if (IsMatch(updateString))
+            if (IsValidUpdateString(updateString))
             {
                 var updateArray = updateString.Substring(1).Split(',');
                 this.ChargePerc = float.Parse(updateArray[0]);

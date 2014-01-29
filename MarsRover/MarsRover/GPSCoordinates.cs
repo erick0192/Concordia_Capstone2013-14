@@ -11,30 +11,19 @@ namespace MarsRover
     public class GPSCoordinates : IUpdateable
     {
         private string regex;
-        public string RegEx
-        {
-            get
-            {
-                return regex;
-            }
-            set
-            {
-                regex = value;
-            }
-        }
 
         public double X { get; set; }
         public double Y { get; set; }
-        public double Z { get; set; }       
+        public double Z { get; set; }
 
-        public bool IsMatch(string input)
+        private bool IsValidUpdateString(string input)
         {
-            return Regex.IsMatch(input, RegEx);
+            return Regex.IsMatch(input, regex);
         }
 
         public void UpdateFromString(string updateString)
         {
-            if (IsMatch(updateString))
+            if (IsValidUpdateString(updateString))
             {
                 var updateArray = updateString.Substring(1).Split(',');
                 this.X = float.Parse(updateArray[0]);
