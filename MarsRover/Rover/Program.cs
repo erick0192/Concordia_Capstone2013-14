@@ -7,7 +7,6 @@ using System.Collections.Concurrent;
 using Rover.Commands;
 using MarsRover;
 using MarsRover.Commands;
-using MarsRover.Communication;
 
 namespace Rover
 {

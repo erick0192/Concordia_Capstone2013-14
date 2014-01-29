@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using NLog;
 
-namespace MarsRover.Communication
+namespace MarsRover
 {
     public class MessageListener
     {
@@ -42,24 +42,17 @@ namespace MarsRover.Communication
 
         public void StartListening()
         {            
-            listener = new UDPListener(port, this.ipAddress == "" ? IPAddress.Any : IPAddress.Parse(this.ipAddress));
-            listener.Initialize();
-
-            Thread t = new Thread(CheckQueue) { IsBackground = true };
-            t.Start();
+            listener = new UDPListener(port, this.MessageReceivedHandler);
         }     
 
-        private void CheckQueue()
+        private void MessageReceivedHandler(int NumberOfAvailableData)
         {
-            while(true)
-            {
-                IEnumerable<string> messages = listener.MessagesQueue;
-                foreach(string m in messages)
-                {
-                    //logger.Debug(m);
-                    messageQueue.Enqueue(m);
-                }
-            }
+            byte[] data = new byte[NumberOfAvailableData];
+
+            listener.ReceiveData(ref data, NumberOfAvailableData);
+
+            string message = Encoding.ASCII.GetString(data, 0, data.Length);
+            messageQueue.Enqueue(message);
         }
 
         #endregion

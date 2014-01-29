@@ -86,7 +86,7 @@ namespace MarsRover
 
         }
 
-        public void Start()
+        public override void Start()
         {
 
             if (State == CameraState.CAMERA_STOPPED)
@@ -99,7 +99,7 @@ namespace MarsRover
             }
         }
 
-        public void Stop()
+        public override void Stop()
         {
             if (State == CameraState.CAMERA_STARTED)
             {             

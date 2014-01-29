@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Timers;
 using MarsRover;
-using MarsRover.Communication;
 
 namespace RoverOperator
 {

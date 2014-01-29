@@ -34,8 +34,7 @@ namespace MarsRover
             groupEP = new IPEndPoint(IPAddress.Any, port);
 
             //logger = NLog.LogManager.GetCurrentClassLogger();
-            
-            
+
             ReceivedDataCB += aReceivedDataCB;
 
             ReceivingQueue = new ConcurrentQueue<byte>();

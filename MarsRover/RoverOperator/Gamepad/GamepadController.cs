@@ -5,6 +5,7 @@ using SharpDX;
 using SharpDX.XInput;
 using System.Collections.Generic;
 using System.Text;
+using MarsRover;
 
 namespace RoverOperator.Gamepad
 {
@@ -12,6 +13,7 @@ namespace RoverOperator.Gamepad
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
         private const int POLLING_RATE = 200; //milliseconds
+        private UDPSender udpSender;
 
         public GamepadController()
         {
@@ -61,7 +63,7 @@ namespace RoverOperator.Gamepad
                 command.Append(">");
                 
                 //TODO: Send command
-                MarsRover.Communication.UDPClient.Instance.SendCommand(command.ToString(), 5000);
+                //Need to implement command sender
 
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);

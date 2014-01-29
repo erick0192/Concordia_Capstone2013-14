@@ -24,14 +24,14 @@ namespace MarsRover
             return LatestFrame;
         }
 
-        public void Start()
+        public override void Start()
         {
             FrameNumber = 0;                     
 
             State = CameraState.CAMERA_STARTED;
         }
 
-        public void Stop()
+        public override void Stop()
         {
             if (State == CameraState.CAMERA_STARTED)
             {               
