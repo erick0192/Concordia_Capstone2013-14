@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class BatteryCell : IUpdateable
+    public class BatteryCell : AbstractUpdateable
     {
         public enum CellStatus
         {
@@ -44,8 +44,6 @@ namespace MarsRover
             }
         }
 
-        private string regex;
-
         #endregion
 
         #region Delegates and Events      
@@ -66,7 +64,8 @@ namespace MarsRover
 
         public BatteryCell(int id)
         {
-            CellID = id;    
+            CellID = id;
+            regex = @"<BC;[1-7],\d+(\.\d{1,3})?>";
         }
 
         private void UpdateCellStatus()
@@ -117,9 +116,9 @@ namespace MarsRover
             }
         }
 
-        public int GetCellIDFromUpdateString(string updateString)
+        public static int GetCellIDFromUpdateString(string updateString)
         {
-            var updateArray = updateString.Substring(2).Split(',');
+            var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
             int id;
             if(!int.TryParse(updateArray[0], out id))
             {
@@ -129,27 +128,23 @@ namespace MarsRover
             return id;
         }
 
-        private bool IsValidUpdateString(string input)
-        {
-            return Regex.IsMatch(input, regex);
-        }
-
-        public void UpdateFromString(string updateString)
+        public override void UpdateFromString(string updateString)
         {
             if (IsValidUpdateString(updateString))
             {
-                var updateArray = updateString.Substring(2).Split(',');
+                // We dont want to include the identifier nor the last bracket              
+                var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
                 this.voltage = float.Parse(updateArray[1]);
             }
             else
             {
-                throw new InvalidUpdateStringException(updateString);
+                throw new InvalidUpdateStringException(updateString, "Make sure update string has the correct format and that the Cell ID is within range (1-7)");
             }
         }
 
-        public string GetUpdateString()
+        public override string GetUpdateString()
         {
-            return String.Format("BC;{0},{1}", CellID, Voltage);
+            return String.Format("<BC;{0},{1}>", CellID, Voltage);
         }
     }
 }

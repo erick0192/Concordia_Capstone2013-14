@@ -8,24 +8,18 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class GPSCoordinates : IUpdateable
+    public class GPSCoordinates : AbstractUpdateable
     {
-        private string regex;
 
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
 
-        private bool IsValidUpdateString(string input)
-        {
-            return Regex.IsMatch(input, regex);
-        }
-
-        public void UpdateFromString(string updateString)
+        public override void UpdateFromString(string updateString)
         {
             if (IsValidUpdateString(updateString))
             {
-                var updateArray = updateString.Substring(1).Split(',');
+                var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
                 this.X = float.Parse(updateArray[0]);
                 this.Y = float.Parse(updateArray[1]);
                 this.Y = float.Parse(updateArray[2]);
@@ -36,9 +30,10 @@ namespace MarsRover
             }
         }
 
-        public string GetUpdateString()
+        public override string GetUpdateString()
         {
             return String.Format("G;{0},{1},{2}", X, Y, Z);
         }
+       
     }
 }

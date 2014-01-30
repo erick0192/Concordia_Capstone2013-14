@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class Battery : IUpdateable
+    public class Battery : AbstractUpdateable
     {
         //Amperes
         public const float MIN_CURRENT = 0.0F;
@@ -17,8 +17,6 @@ namespace MarsRover
         //Celsius
         public const float MIN_TEMPERATURE = 0.0f;
         public const float MAX_TEMPERATYRE = 120.0f;
-
-        private string regex;
 
         #region Properties
 
@@ -62,19 +60,11 @@ namespace MarsRover
 
         #region Methods
 
-        private bool IsValidUpdateString(string input)
-        {
-            return Regex.IsMatch(input, regex);
-        }
-
-        public void UpdateFromString(string updateString)
+        public override void UpdateFromString(string updateString)
         {
             if (IsValidUpdateString(updateString))
             {
-                int posIdentifer = updateString.IndexOf(";");
-                int length = updateString.Length - posIdentifer - 2;
-
-                var updateArray = updateString.Substring(posIdentifer + 1, length).Split(',');
+                var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
 
                 this.ChargePerc = float.Parse(updateArray[0]);
                 this.Current = float.Parse(updateArray[1]);
@@ -86,7 +76,7 @@ namespace MarsRover
             }
         }
 
-        public string GetUpdateString()
+        public override string GetUpdateString()
         {
             return String.Format("<B;{0},{1},{2}>", Math.Round(ChargePerc, 3), Math.Round(Current, 3), Math.Round(Temperature, 3));
         }

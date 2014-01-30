@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace MarsRover
 {
-    public class Motor : IUpdateable
+    public class Motor : AbstractUpdateable
     {
         public enum Location
         {
@@ -28,8 +28,6 @@ namespace MarsRover
         //Celsius
         public const float MIN_TEMPERATURE = 0.0f;
         public const float MAX_TEMPERATYRE = 120.0f;
-
-        private string regex;
 
         #region Properties
 
@@ -76,7 +74,7 @@ namespace MarsRover
 
         public static Motor.Location GetLocationFromUpdateString(string updateString)
         {
-            var updateArray = updateString.Substring(updateString.IndexOf(";") + 1).Split(',');
+            var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
 
             if(updateArray[0] == "F")
             {
@@ -114,24 +112,16 @@ namespace MarsRover
             
             throw new InvalidUpdateStringException(updateString);
             
-        }
+        }        
 
-        private bool IsValidUpdateString(string input)
-        {
-            return Regex.IsMatch(input, regex);
-        }
-
-        public void UpdateFromString(string updateString)
+        public override void UpdateFromString(string updateString)
         {
             if (IsValidUpdateString(updateString))
             {
                 if (Motor.GetLocationFromUpdateString(updateString) == LocationOnRover)
                 {
                     // We dont want to include the identifier nor the last bracket
-                    int posIdentifer = updateString.IndexOf(";");                    
-                    int length = updateString.Length - posIdentifer - 2;
-
-                    var updateArray = updateString.Substring(posIdentifer + 1, length).Split(',');
+                    var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
                     this.Current = float.Parse(updateArray[2]);
                     this.Temperature = float.Parse(updateArray[3]);
                 }
@@ -146,7 +136,7 @@ namespace MarsRover
             }
         }
 
-        public string GetUpdateString()
+        public override string GetUpdateString()
         {
             string motorBodyLocation = string.Empty, motorSideLocation = string.Empty;
 

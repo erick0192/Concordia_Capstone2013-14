@@ -110,6 +110,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractUpdateable.cs" />
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCell.cs" />
     <Compile Include="Camera\AbstractCameraDevice.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="Exceptions\InvalidUpdateStringException.cs" />
     <Compile Include="GPSCoordinates.cs" />
     <Compile Include="IQueue.cs" />
-    <Compile Include="IUpdateable.cs" />
     <Compile Include="Motor.cs" />
     <Compile Include="Properties\NetworkSetting.Designer.cs">
       <AutoGen>True</AutoGen>
