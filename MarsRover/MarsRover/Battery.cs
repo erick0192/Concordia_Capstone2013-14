@@ -18,6 +18,8 @@ namespace MarsRover
         public const float MIN_TEMPERATURE = 0.0f;
         public const float MAX_TEMPERATYRE = 120.0f;
 
+        private string regex;
+
         #region Properties
 
         public int CurrentCharge { get; set; }
@@ -25,8 +27,6 @@ namespace MarsRover
         public float Temperature { get; set; }
         public float ChargePerc { get; set; }
         public float Current { get; set; }
-
-        private string regex;
 
         public float ChargeRatio
         {
@@ -50,6 +50,8 @@ namespace MarsRover
         {
             MaxCharge = maxCharge;
             CurrentCharge = maxCharge;
+            regex = @"<B;\d+(\.\d{1,3})?,\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
+
             for(int i = 0; i < cells.Capacity; i++)
             {
                 cells.Add(new BatteryCell(i + 1) { Voltage = 3.5f});                
@@ -69,7 +71,11 @@ namespace MarsRover
         {
             if (IsValidUpdateString(updateString))
             {
-                var updateArray = updateString.Substring(1).Split(',');
+                int posIdentifer = updateString.IndexOf(";");
+                int length = updateString.Length - posIdentifer - 2;
+
+                var updateArray = updateString.Substring(posIdentifer + 1, length).Split(',');
+
                 this.ChargePerc = float.Parse(updateArray[0]);
                 this.Current = float.Parse(updateArray[1]);
                 this.Temperature = float.Parse(updateArray[2]);
@@ -82,7 +88,7 @@ namespace MarsRover
 
         public string GetUpdateString()
         {
-            return String.Format("B;{0},{1},{2}", ChargePerc, Current, Temperature);
+            return String.Format("<B;{0},{1},{2}>", Math.Round(ChargePerc, 3), Math.Round(Current, 3), Math.Round(Temperature, 3));
         }
 
         #endregion

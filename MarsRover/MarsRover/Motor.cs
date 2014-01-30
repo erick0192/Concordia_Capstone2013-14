@@ -46,7 +46,7 @@ namespace MarsRover
         public Motor(Motor.Location location)
         {
             LocationOnRover = location;
-            regex = @"<MR;[MFB],[LR],\d+(\.\d{1,2})?,\d+(\.\d{1,3})?>";
+            regex = @"<MR;[MFB],[LR],\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
         }
 
         #endregion

@@ -13,7 +13,7 @@ namespace MarsRoverTest.ComponentUpdate
      * Naming Convention: MethodName_StateUnderTest_ExpectedResults 
      */
 
-    [TestFixture, Category("MotorUpdateTests")]
+    [TestFixture, Category("ComponentUpdateTests")]
     class MotorUpdateTests
     {
         [Test]
@@ -65,7 +65,7 @@ namespace MarsRoverTest.ComponentUpdate
         }
 
         [Test]
-        public void UpdateFromString_ValidUpdateString_UpdateObject()
+        public void UpdateFromString_ValidUpdateString_ObjectUpdated()
         {
             Motor m = new Motor(Motor.Location.MiddleRight) { Current = 23.0f, Temperature = 50.0f };
             string updateString;
@@ -78,11 +78,11 @@ namespace MarsRoverTest.ComponentUpdate
         }
 
         [Test]
-        public void GetUpdateString_ValidUpdateStringGenerated_StringContainsCorrectValues()
+        public void GetUpdateString_ValidUpdateStringGenerated_ValidUpdateStringReturned()
         {            
             Motor m = new Motor(Motor.Location.MiddleRight) { Current = 23.0239f, Temperature = 50.0423f };
 
-            Assert.AreEqual(String.Format("<MR;M,R,{0},{1}>", Math.Round(m.Current, 3), Math.Round(m.Temperature, 3)), m.GetUpdateString());
+            Assert.AreEqual(String.Format("<MR;M,R,{0},{1}>", Math.Round(m.Current, 3), Math.Round(m.Temperature, 3)), m.GetUpdateString());            
         }
     }
 }

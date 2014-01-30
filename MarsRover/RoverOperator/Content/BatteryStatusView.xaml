@@ -45,7 +45,8 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="10,0,0,0">
-            <TextBlock Text="{Binding Path=Battery.ChargePercentage, StringFormat='Charge: ({0}%)'}" />
+            <TextBlock Text="{Binding Path=Battery.ChargePerc, StringFormat='Charge: ({0}%)'}" />
+            <TextBlock Text="{Binding Path=Battery.Current, StringFormat='Current: {0} A'}" />
             <TextBlock Text="{Binding Path=Battery.Temperature, StringFormat='Temperature: {0} C'}" />            
         </StackPanel>
         
