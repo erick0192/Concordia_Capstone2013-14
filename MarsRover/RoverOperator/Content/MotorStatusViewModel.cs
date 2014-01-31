@@ -53,7 +53,7 @@ namespace RoverOperator.Content
 
         #region Event Handlers
 
-        private void UpdateMotor(Dictionary<Motor.Location, Motor> motors)
+        private void UpdateMotor(Motor motor)
         {
             if (PropertyChanged != null)
             {

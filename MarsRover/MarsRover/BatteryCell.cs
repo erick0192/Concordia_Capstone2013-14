@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class BatteryCell : AbstractUpdateable
+    public class BatteryCell : AbstractUpdateableComponent
     {
         public enum CellStatus
         {
@@ -44,6 +44,11 @@ namespace MarsRover
             }
         }
 
+        public override string UpdateIdentifier
+        {
+            get { return MarsRover.Commands.CommandMetadata.Update.BatteryCellIdentifier; }
+        }
+
         #endregion
 
         #region Delegates and Events      
@@ -65,7 +70,7 @@ namespace MarsRover
         public BatteryCell(int id)
         {
             CellID = id;
-            regex = @"<BC;[1-7],\d+(\.\d{1,3})?>";
+            regex = "<" + UpdateIdentifier + @";[1-7],\d+(\.\d{1,3})?>";
         }
 
         private void UpdateCellStatus()
@@ -144,7 +149,7 @@ namespace MarsRover
 
         public override string GetUpdateString()
         {
-            return String.Format("<BC;{0},{1}>", CellID, Voltage);
+            return CreateUpdateString(CellID, Voltage);
         }
     }
 }

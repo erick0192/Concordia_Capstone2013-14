@@ -5,15 +5,33 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using MarsRover.Commands;
 
 namespace MarsRover
 {
-    public class GPSCoordinates : AbstractUpdateable
+    public class GPSCoordinates : AbstractUpdateableComponent
     {
+        #region Properties
 
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
+
+        public override string UpdateIdentifier
+        {
+            get { return CommandMetadata.Update.GPSIdentfier; }
+        }
+
+        #endregion
+
+        #region Constructor
+
+        public GPSCoordinates()
+        {
+            regex = "<" + UpdateIdentifier + @";\d+(\.\d{1,6})?,\d+(\.\d{1,6})?,\d+(\.\d{1,6})?>";
+        }
+
+        #endregion
 
         public override void UpdateFromString(string updateString)
         {
@@ -32,7 +50,10 @@ namespace MarsRover
 
         public override string GetUpdateString()
         {
-            return String.Format("G;{0},{1},{2}", X, Y, Z);
+            return CreateUpdateString(
+                Math.Round(X, 6),
+                Math.Round(Y, 6),
+                Math.Round(Z, 6));
         }
        
     }

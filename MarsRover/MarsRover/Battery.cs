@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
-    public class Battery : AbstractUpdateable
+    public class Battery : AbstractUpdateableComponent
     {
         //Amperes
         public const float MIN_CURRENT = 0.0F;
@@ -25,6 +25,11 @@ namespace MarsRover
         public float Temperature { get; set; }
         public float ChargePerc { get; set; }
         public float Current { get; set; }
+
+        public override string UpdateIdentifier
+        {
+            get { return MarsRover.Commands.CommandMetadata.Update.BatteryIdentifier; }
+        }
 
         public float ChargeRatio
         {
@@ -48,7 +53,7 @@ namespace MarsRover
         {
             MaxCharge = maxCharge;
             CurrentCharge = maxCharge;
-            regex = @"<B;\d+(\.\d{1,3})?,\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
+            regex = "<" + UpdateIdentifier + @";\d+(\.\d{1,3})?,\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
 
             for(int i = 0; i < cells.Capacity; i++)
             {
@@ -78,7 +83,7 @@ namespace MarsRover
 
         public override string GetUpdateString()
         {
-            return String.Format("<B;{0},{1},{2}>", Math.Round(ChargePerc, 3), Math.Round(Current, 3), Math.Round(Temperature, 3));
+            return CreateUpdateString(Math.Round(ChargePerc, 3), Math.Round(Current, 3), Math.Round(Temperature, 3));
         }
 
         #endregion

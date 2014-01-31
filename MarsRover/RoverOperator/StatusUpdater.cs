@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Timers;
 using MarsRover;
+using MarsRover.Commands;
+using MarsRover.Exceptions;
 
 namespace RoverOperator
 {
@@ -12,12 +14,13 @@ namespace RoverOperator
     {
         #region Private fields
         
-        private RoverStatus roverStatus;//We might not need this class anymore, as component updates are sent separately
+        private RoverStatus roverStatus;
         private volatile bool update;
         
         private volatile System.Timers.Timer timer;
         private IQueue updatesQueue;
         private MessageListener listener;
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -42,14 +45,17 @@ namespace RoverOperator
 
         #region Delegates and Events
 
-        public delegate void MotorsUpdatedDelegate(Dictionary<Motor.Location, Motor> updateString);
+        public delegate void MotorsUpdatedDelegate(Motor motor);
         public event  MotorsUpdatedDelegate MotorsUpdated;        
 
         public delegate void BatteryUpdatedDelegate(Battery battery);
         public event BatteryUpdatedDelegate BatteryUpdated;        
 
         public delegate void GPSCoordinatesUpdatedDelegate (GPSCoordinates gpsCoordinates);
-        public event GPSCoordinatesUpdatedDelegate GPSCoordinatesUpdated;        
+        public event GPSCoordinatesUpdatedDelegate GPSCoordinatesUpdated;
+
+        public delegate void BatteryCellUpdatedDelegate(BatteryCell batteryCell);
+        public event BatteryCellUpdatedDelegate BatteryCellUpdated;  
 
 
         #endregion
@@ -87,23 +93,47 @@ namespace RoverOperator
 
         private void Update()
         {
-            int sleepPeriod = 100;           
-            string updateData = "";
+            int sleepPeriod = 200;//Half a second           
+            string updateData = string.Empty;
 
             while(update)
             {
                 if(updatesQueue.TryDequeue(out updateData))
                 {
-                    UpdateGPS("");
-                    UpdateBattery("");
-                    UpdateMotors("");    
+                    try
+                    {
+                        string updateIdentifer = AbstractUpdateableComponent.GetUpdateIdentifierFromUpdateString(updateData);
+                    
+                        if(updateIdentifer == CommandMetadata.Update.MotorIdentifier)
+                        {
+                            UpdateMotors(updateData);        
+                        }
+                        else if (updateIdentifer == CommandMetadata.Update.BatteryIdentifier)
+                        {
+                            UpdateBattery(updateData);    
+                        }
+                        else if (updateIdentifer == CommandMetadata.Update.BatteryCellIdentifier)
+                        {
+                            UpdateBatteryCell(updateData);
+                        }
+                        else if (updateIdentifer == CommandMetadata.Update.GPSIdentfier)
+                        {
+                            UpdateGPS(updateData);
+                        }
+                        else
+                        {                       
+                            logger.Error("The update string '{0}' does not contain a valid update identifier.", updateData);
+                        }    
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e.Message);
+                    }
                 }
                 else
                 {
                     Thread.Sleep(sleepPeriod); //Sleep for a bit and wait for data to fill up
-                }
-                
-                Thread.Sleep(sleepPeriod); //Sleep for a bit and wait for data to fill up
+                }                
             }
             
         }
@@ -111,44 +141,52 @@ namespace RoverOperator
         private void UpdateMotors(String updateString)
         {
             //Parse all data from the other class that gets the data from the server
-            Motor motor = roverStatus.Motors[Motor.Location.FrontLeft];
-            motor.Current += 10;
-            motor.Temperature += 1;
+            //Motor motor = roverStatus.Motors[Motor.Location.FrontLeft];
+            //motor.Current += 10;
+            //motor.Temperature += 1;
 
-            motor = roverStatus.Motors[Motor.Location.FrontRight];
-            motor.Current += 5;
-            motor.Temperature += 4;
+            //motor = roverStatus.Motors[Motor.Location.FrontRight];
+            //motor.Current += 5;
+            //motor.Temperature += 4;
 
-            motor = roverStatus.Motors[Motor.Location.MiddleLeft];
-            motor.Current += 7;
-            motor.Temperature += 3;
+            //motor = roverStatus.Motors[Motor.Location.MiddleLeft];
+            //motor.Current += 7;
+            //motor.Temperature += 3;
 
-            motor = roverStatus.Motors[Motor.Location.MiddleRight];
-            motor.Current += 7;
-            motor.Temperature += 3;
+            //motor = roverStatus.Motors[Motor.Location.MiddleRight];
+            //motor.Current += 7;
+            //motor.Temperature += 3;
 
-            motor = roverStatus.Motors[Motor.Location.BackLeft];
-            motor.Current += 7;
-            motor.Temperature += 3;
+            //motor = roverStatus.Motors[Motor.Location.BackLeft];
+            //motor.Current += 7;
+            //motor.Temperature += 3;
 
-            motor = roverStatus.Motors[Motor.Location.BackRight];
-            motor.Current += 8;
-            motor.Temperature += 2;            
+            //motor = roverStatus.Motors[Motor.Location.BackRight];
+            //motor.Current += 8;
+            //motor.Temperature += 2;     
 
-            if(MotorsUpdated != null)
-            {
-                MotorsUpdated(roverStatus.Motors);
-            }
+            
+                Motor m = roverStatus.Motors[Motor.GetLocationFromUpdateString(updateString)];
+                m.UpdateFromString(updateString);
+
+                if (MotorsUpdated != null)
+                {
+                    MotorsUpdated(m);
+                }
+            
+               
         }
 
-        private void UpdateBattery(String updateString)
+        private void UpdateBattery(string updateString)
         {
-            roverStatus.Battery.CurrentCharge -= 10;
-            roverStatus.Battery.Temperature += 1;
+            //roverStatus.Battery.CurrentCharge -= 10;
+            //roverStatus.Battery.Temperature += 1;
 
-            roverStatus.Battery.Cells.ForEach(cell => {
-                cell.Voltage += 0.1f;
-            });
+            //roverStatus.Battery.Cells.ForEach(cell => {
+            //    cell.Voltage += 0.1f;
+            //});
+
+            roverStatus.Battery.UpdateFromString(updateString);
 
             if(BatteryUpdated != null)
             {
@@ -156,8 +194,16 @@ namespace RoverOperator
             }
         }
 
-        private void UpdateGPS(String updateString)
+        private void UpdateBatteryCell(string updateString)
         {
+            var bc = roverStatus.Battery.Cells.First(c => c.CellID == BatteryCell.GetCellIDFromUpdateString(updateString));
+            bc.UpdateFromString(updateString);
+        }
+
+        private void UpdateGPS(string updateString)
+        {
+            roverStatus.GPSCoordinates.UpdateFromString(updateString);
+
             if(GPSCoordinatesUpdated != null)
             {
                 GPSCoordinatesUpdated(roverStatus.GPSCoordinates);

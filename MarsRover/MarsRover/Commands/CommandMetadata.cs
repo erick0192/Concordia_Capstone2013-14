@@ -75,5 +75,16 @@ namespace MarsRover.Commands
             public const int AngleStartIndex = 3;
             public const int AngleEndIndex = 5;
         }
+
+        public static class Update
+        {
+            public const string BatteryIdentifier = "B";
+            public const string BatteryCellIdentifier = "BC";
+            public const string MotorIdentifier = "MR";
+            public const string GPSIdentfier = "G";
+
+            public const char ValuesDelimiter = ',';
+            public const char StartOfValuesIdentifier = ';';
+        }
     }
 }

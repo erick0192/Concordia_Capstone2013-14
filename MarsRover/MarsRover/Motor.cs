@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace MarsRover
 {
-    public class Motor : AbstractUpdateable
+    public class Motor : AbstractUpdateableComponent
     {
         public enum Location
         {
@@ -35,7 +35,10 @@ namespace MarsRover
         public float Temperature { get; set; }
         public Motor.Location LocationOnRover { get; set; }
 
-        
+        public override string UpdateIdentifier
+        {
+            get { return MarsRover.Commands.CommandMetadata.Update.MotorIdentifier; }
+        }
 
         #endregion
 
@@ -44,7 +47,7 @@ namespace MarsRover
         public Motor(Motor.Location location)
         {
             LocationOnRover = location;
-            regex = @"<MR;[MFB],[LR],\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
+            regex = "<" + UpdateIdentifier + @";[MFB],[LR],\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
         }
 
         #endregion
@@ -168,8 +171,9 @@ namespace MarsRover
                     break;
             }
 
-            return String.Format("<MR;{0},{1},{2},{3}>", 
-                motorBodyLocation, motorSideLocation, Math.Round(Current, 3), Math.Round(Temperature, 3));
+            return CreateUpdateString(
+                motorBodyLocation, motorSideLocation, Math.Round(Current, 3), Math.Round(Temperature, 3)
+                );
         }
 
         #endregion                    
