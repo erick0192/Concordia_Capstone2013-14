@@ -102,7 +102,7 @@ namespace RoverOperator
                 {
                     try
                     {
-                        string updateIdentifer = AbstractUpdateableComponent.GetUpdateIdentifierFromUpdateString(updateData);
+                        string updateIdentifer = AbstractUpdateableComponent.GetUpdateIdentifierFromUpdateString(updateData);                        
                     
                         if(updateIdentifer == CommandMetadata.Update.MotorIdentifier)
                         {
@@ -165,16 +165,16 @@ namespace RoverOperator
             //motor.Current += 8;
             //motor.Temperature += 2;     
 
-            
-                Motor m = roverStatus.Motors[Motor.GetLocationFromUpdateString(updateString)];
-                m.UpdateFromString(updateString);
 
-                if (MotorsUpdated != null)
-                {
-                    MotorsUpdated(m);
-                }
-            
-               
+            Motor m = roverStatus.Motors[Motor.GetLocationFromUpdateString(updateString)];
+            m.UpdateFromString(updateString);
+
+            if (MotorsUpdated != null)
+            {
+                MotorsUpdated(m);
+            }
+
+
         }
 
         private void UpdateBattery(string updateString)

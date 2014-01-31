@@ -11,14 +11,29 @@ namespace UDPMessageSender
 {
     class Program
     {
+        public enum StubMode
+        {
+            Rover = 1,
+            Operator = 2
+        }
+
+        private static IPAddress ipAddr;
+        private static int port = 0;
+        private static int timeBetweenCommands = 0;
+        private static UdpClient udpClient;
+
         static void Main(string[] args)
         {
-            int port = 0;
+            
             string ipAddrStr;
-            string portStr = "";
-            int timeBetweenCommands = 0;
+            string portStr = "";            
             string timeStr = "";
-            IPAddress ipAddr;
+            
+            StubMode mode;
+
+            Console.WriteLine("Mode:\n1. Rover (send data to Operator)\n2. Operator (send commands to Rover)");
+            string m = Console.ReadLine();
+            mode = (StubMode)Enum.Parse(typeof(StubMode), m);
 
             Console.WriteLine("IP: ");
             ipAddrStr = Console.ReadLine();
@@ -57,18 +72,102 @@ namespace UDPMessageSender
                 timeStr = Console.ReadLine();
             }
 
-            UdpClient udpClient = new UdpClient();
+            udpClient = new UdpClient();
 
             try
             {
                 udpClient.Connect(ipAddr, port);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
 
+            if(mode == StubMode.Operator)
+            {
+                OperatorMode();
+            }
+            else if(mode == StubMode.Rover)
+            {
+                RoverMode();
+            }
+        }
 
+        private static void RoverMode()
+        {
+            string updateString;
+            string motorsId = "MR", batteryId = "B", batteryCellId = "BC", gpsId = "G";
+
+            double motorCurrent = 0.0;
+            double motorTemperature = 0.0;
+            double batteryCurrent = 0.0;
+            double batteryCharge = 0.0;
+            double batteryTemperature = 0.0;
+
+            Byte[] msgs;
+
+            while(true)
+            {
+                //Send motors update <MR;F,R,0-20,0-120>
+                updateString = CreateUpdateString(motorsId, "F", "L", (++motorCurrent) % 20, (++motorTemperature) % 120);                
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(motorsId, "F", "R", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(motorsId, "M", "L", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(motorsId, "M", "R", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(motorsId, "B", "L", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(motorsId, "B", "R", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+                
+                //Send battery update
+                batteryTemperature = (batteryTemperature + 2) % 120;
+                batteryCurrent = (batteryCurrent + 3) % 300;
+                batteryCharge = Math.Round((batteryCharge + 0.1f) % 100.0f, 3);
+                updateString = CreateUpdateString(batteryId, batteryCharge, batteryCurrent, batteryTemperature);
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                //Send battery cell update
+
+                //Send gps coordinates
+
+
+                Thread.Sleep(timeBetweenCommands);
+            }
+        }
+
+        private static string CreateUpdateString(string identifier, params object[] values)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<");
+            sb.Append(identifier + ";");
+
+            foreach (object value in values)
+            {
+                sb.Append(value.ToString() + ",");
+            }
+            sb.Remove(sb.Length - 1, 1);//Remove the last values delimiter
+            sb.Append(">");
+
+            return sb.ToString();
+        }
+
+        private static void OperatorMode()
+        {           
             //Dummy for the commander. Consider building a full test program which communicates fake data over UDP to better simulate
             //The operating environment. This will also allow us to test out the watchdog.
 

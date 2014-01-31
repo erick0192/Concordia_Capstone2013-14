@@ -110,7 +110,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractUpdateable.cs" />
+    <Compile Include="AbstractUpdateableComponent.cs" />
     <Compile Include="Battery.cs" />
     <Compile Include="BatteryCell.cs" />
     <Compile Include="Camera\AbstractCameraDevice.cs" />
