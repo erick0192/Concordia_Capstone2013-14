@@ -7,7 +7,7 @@ using System.Timers;
 
 namespace MarsRover
 {
-    public class RemoteUDPStatistics
+    public class UDPListenerStatistics
     {
         private System.Timers.Timer FpsTimer;
         private UDPListener Listener;
@@ -17,7 +17,7 @@ namespace MarsRover
         private int PreviousNumberOfFrames;
         private int TimerResolutionMiliSec;
 
-        public RemoteUDPStatistics( UDPListener aListener, int aTimerResolutionMiliSec)
+        public UDPListenerStatistics( UDPListener aListener, int aTimerResolutionMiliSec)
         {
             Listener = aListener;
             TimerResolutionMiliSec = aTimerResolutionMiliSec;
@@ -40,7 +40,7 @@ namespace MarsRover
 
             PreviousNumberOfFrames = Listener.GetTotalNbDataINOUT();
 
-            PrintInfo();
+            //PrintInfo();
         }
 
         public float GetCalculatedRateInBps()
@@ -72,9 +72,18 @@ namespace MarsRover
 
         public void PrintInfo()
         {
-            //Console.WriteLine("Rate Bps:" + RateInBps);
-            //Console.WriteLine("Rate KBbs:" + RateInKBps);
-            Console.WriteLine("Rate MBps:" + RateInMBps);
+            if (RateInBps <= 1024)
+            {
+                Console.WriteLine("Rate Bps:" + RateInBps);
+            }
+            else if (RateInBps >= 1024 && RateInBps < 1024 * 1024)
+            {
+                Console.WriteLine("Rate KBbs:" + RateInKBps);
+            }
+            else
+            {
+                Console.WriteLine("Rate MBps:" + RateInMBps);
+            }
         }
     }
 }

@@ -128,8 +128,11 @@ namespace RoverOperator.Content
         public CameraViewModel(string iCameraName)
         {
             CameraName = iCameraName;
-             
-            //logger = NLog.LogManager.GetLogger("Console");
+            toggleTimer = new System.Timers.Timer(3000);
+            toggleTimer.AutoReset = false;
+            toggleTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.EnableToggle);
+
+            logger = NLog.LogManager.GetLogger("Console");
             
         }
 
@@ -146,21 +149,24 @@ namespace RoverOperator.Content
         {
 
             //For a reason this method gets called 3 time then I press CTRL+[CamID]
-            if (IsActive == true)
+            if (mVideoSource.GetState() == CameraState.CAMERA_STARTED)
             {               
                 mVideoSource.aNewBitmapReceivedEvent -= new UDPOperatorCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
                 //Call this method to stop the camera remotly
-                //mVideoSource.Stop();
+                mVideoSource.Stop();
                 IsActive = false;              
             }
             else
             {
                 mVideoSource.aNewBitmapReceivedEvent += new UDPOperatorCameraDevice.NewBitmapReceivedCBType(HandleNewVideoFrame);
                 //Call this method to start the camera remotly
-                //mVideoSource.Start();
+                mVideoSource.Start();
                 IsActive = true;               
             }
-   
+         
+            canToggle = false;
+            toggleTimer.Start();
+
            
         }
 

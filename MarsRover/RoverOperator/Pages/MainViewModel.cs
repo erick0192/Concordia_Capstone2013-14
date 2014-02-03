@@ -117,7 +117,7 @@ namespace RoverOperator.Pages
 
         public MainViewModel()
         {
-            StartPinging("10.10.10.10");
+            StartPinging(Properties.NetworkSettings.Default.RoverIPAddress);
         }
 
         #endregion

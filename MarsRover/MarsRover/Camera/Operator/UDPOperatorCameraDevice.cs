@@ -27,14 +27,14 @@ namespace MarsRover
         private PacketReconstructor PacketReconstructors;
         private TypeConverter ImageConverter;
 
-        private RemoteUDPStatistics aUDPListenerStatistics;
+        private UDPListenerStatistics aUDPListenerStatistics;
         private int ID;
 
         public UDPOperatorCameraDevice(int ID, string IpAddress, int ListeningPort, int SendingPort)
         {
             PacketReconstructors = new PacketReconstructor(new Packet().GetBytes().Length, PacketReconstructedCBHandler);
             aUDPListener = new UDPListener(ListeningPort, ReceivedHandler);
-            aUDPListenerStatistics = new RemoteUDPStatistics(aUDPListener, 1000);
+            aUDPListenerStatistics = new UDPListenerStatistics(aUDPListener, 1000);
 
             aUDPSender = new UDPSender(IpAddress, SendingPort);
             
