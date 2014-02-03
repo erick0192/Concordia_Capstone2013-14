@@ -270,6 +270,7 @@
     <None Include="Properties\NetworkSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>NetworkSettings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>

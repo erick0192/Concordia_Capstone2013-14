@@ -54,11 +54,11 @@ namespace MarsRover
             
             if (VideoDevices.Count == 0)
             {
-                //Console.WriteLine("No camera was found");
+                Console.WriteLine("No camera was found");
             }
             else
             {
-                //Console.WriteLine(VideoDevices.Count + " Cameras were found");
+                Console.WriteLine(VideoDevices.Count + " Cameras were found");
                 
                 foreach ( FilterInfo device in VideoDevices )
                 {                    

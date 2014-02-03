@@ -66,7 +66,7 @@ namespace MarsRover.Streams
             {
                 if (null == camera3)
                 {
-                    camera2 = new UDPOperatorCameraDevice(2,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort3, 5000);                
+                    camera3 = new UDPOperatorCameraDevice(2,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort3, 5000);                
                 }
 
                 return camera3;

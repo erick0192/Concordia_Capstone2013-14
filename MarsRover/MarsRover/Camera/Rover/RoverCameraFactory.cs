@@ -9,21 +9,26 @@ namespace MarsRover
     public class RoverCameraFactory
     {
         private static RoverCameraFactory SingletonCameraFactory;
-
+        private bool isInitialized = false;
         private List<RoverCameraDevice> Cameras = new List<RoverCameraDevice>();
 
         private RoverCameraFactory()
         {
+        
+        }
+
+        public void Initialize(string Port, int BasePort)
+        {
+            Cameras.Clear();
+
             for (int i = 0; i < RoverCameraDetector.GetInstance().GetCameraDevices().Count; i++)
             {
                 FilterInfo fx = (FilterInfo)RoverCameraDetector.GetInstance().GetCameraDevices()[i];
-                RoverCameraDevice cx = new UDPRoverCameraDevice(Properties.NetworkSetting.Default.OperatorIP, Properties.NetworkSetting.Default.CameraBasePort + i, fx.Name, fx.MonikerString, 0, 50L);
+                RoverCameraDevice cx = new UDPRoverCameraDevice(Port, BasePort + i, fx.Name, fx.MonikerString, 0, 10L);
                 Cameras.Add(cx);
             }
 
-            //FilterInfo f1 = (FilterInfo)RoverCameraDetector.GetInstance().GetCameraDevices()[1];
-            //RoverCameraDevice c1 = new UDPSenderCameraDevice("127.0.0.1", 3001, f1.Name, f1.MonikerString, 0, 50L);
-            //Cameras.Add(c1);
+            isInitialized = true;
 
         }
 
@@ -36,7 +41,12 @@ namespace MarsRover
 
             return SingletonCameraFactory;
         }
-
+        
+        public bool IsInitialized()
+        {
+            return isInitialized;
+        }
+        
         public List<RoverCameraDevice> GetCameras()
         {
             return Cameras;

@@ -6,7 +6,10 @@
       <Value Profile="(Default)">5000</Value>
     </Setting>
     <Setting Name="OperatorIPAddress" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">10.10.10.11</Value>
+      <Value Profile="(Default)">10.0.10.9</Value>
+    </Setting>
+    <Setting Name="CameraBasePort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

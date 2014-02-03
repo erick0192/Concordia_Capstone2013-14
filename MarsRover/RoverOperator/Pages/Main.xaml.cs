@@ -54,8 +54,7 @@ namespace RoverOperator.Pages
             CameraViewModel cvm = this.Cam1.DataContext as CameraViewModel;
             //cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "1";
-            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera1;
-            
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera1;            
             ((MainViewModel)DataContext).VMCamera1 = cvm;
             
             cvm = this.Cam2.DataContext as CameraViewModel;
@@ -64,11 +63,11 @@ namespace RoverOperator.Pages
             cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera2;
             ((MainViewModel)DataContext).VMCamera2 = cvm;
             
-            //cvm = this.Cam3.DataContext as CameraViewModel;
+            cvm = this.Cam3.DataContext as CameraViewModel;
             //cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
-            //cvm.CameraName = "3";
-            //cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera3;       
-            //((MainViewModel)DataContext).VMCamera3 = cvm;          
+            cvm.CameraName = "3";
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera3;       
+            ((MainViewModel)DataContext).VMCamera3 = cvm;          
 
             //Need to refactor this!
             this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
@@ -97,9 +96,9 @@ namespace RoverOperator.Pages
             this.InputBindings.Add(kb);
             
             //Camera 3
-            //kb = new KeyBinding(ToggleCameraCommand, Key.D3, ModifierKeys.Control);
-            //kb.CommandParameter = "3";
-            //this.InputBindings.Add(kb);
+            kb = new KeyBinding(ToggleCameraCommand, Key.D3, ModifierKeys.Control);
+            kb.CommandParameter = "3";
+            this.InputBindings.Add(kb);
           
         }
 

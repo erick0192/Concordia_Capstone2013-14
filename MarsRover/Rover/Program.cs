@@ -28,6 +28,8 @@ namespace Rover
             //Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
             //Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
 
+            RoverCameraFactory.GetInstance().Initialize(Properties.Settings.Default.OperatorIPAddress, Properties.Settings.Default.CameraBasePort);
+            
             dispatcher.Start();
             //serialManager.Start();
             //statusUpdater.Start();

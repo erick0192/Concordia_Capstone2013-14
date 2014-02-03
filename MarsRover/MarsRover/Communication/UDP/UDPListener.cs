@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using NLog;
 
 namespace MarsRover
 {
@@ -14,8 +15,9 @@ namespace MarsRover
         private event ReceivedDataCBType ReceivedDataCB;
 
         #region Attributes
-        
-       // private Logger logger;
+
+        private Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         private int port;
         private UdpClient listener;
         private IPEndPoint groupEP;
@@ -32,9 +34,7 @@ namespace MarsRover
             
             listener = new UdpClient(port);
             groupEP = new IPEndPoint(IPAddress.Any, port);
-
-            //logger = NLog.LogManager.GetCurrentClassLogger();
-
+            
             ReceivedDataCB += aReceivedDataCB;
 
             ReceivingQueue = new ConcurrentQueue<byte>();
