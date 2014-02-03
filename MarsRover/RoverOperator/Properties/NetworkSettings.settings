@@ -15,7 +15,7 @@
       <Value Profile="(Default)">5001</Value>
     </Setting>
     <Setting Name="RoverIPAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">10.0.10.8</Value>
+      <Value Profile="(Default)">10.10.10.10</Value>
     </Setting>
     <Setting Name="CommandsPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5000</Value>

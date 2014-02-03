@@ -73,7 +73,7 @@ namespace RoverOperator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10.0.10.8")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.10.10.10")]
         public string RoverIPAddress {
             get {
                 return ((string)(this["RoverIPAddress"]));

@@ -28,7 +28,7 @@ namespace Rover
             //Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
             //Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
 
-            RoverCameraFactory.GetInstance().Initialize(Properties.Settings.Default.OperatorIPAddress, Properties.Settings.Default.CameraBasePort);
+            RoverCameraFactory.GetInstance().Initialize(Properties.NetworkSettings.Default.OperatorIPAddress, Properties.NetworkSettings.Default.CameraBasePort);
             
             dispatcher.Start();
             //serialManager.Start();
@@ -37,9 +37,9 @@ namespace Rover
            
             //Start the commands listener
             var commandsListener = new MessageListener(
-                Properties.Settings.Default.CommandsPort,
+                Properties.NetworkSettings.Default.CommandsPort,
                 CommanderDispatcherMessageQueue,
-                Properties.Settings.Default.OperatorIPAddress);
+                Properties.NetworkSettings.Default.OperatorIPAddress);
             commandsListener.StartListening();
         }
 

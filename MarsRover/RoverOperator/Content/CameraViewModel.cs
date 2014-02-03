@@ -128,7 +128,7 @@ namespace RoverOperator.Content
         public CameraViewModel(string iCameraName)
         {
             CameraName = iCameraName;
-            toggleTimer = new System.Timers.Timer(3000);
+            toggleTimer = new System.Timers.Timer(500);
             toggleTimer.AutoReset = false;
             toggleTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.EnableToggle);
 
