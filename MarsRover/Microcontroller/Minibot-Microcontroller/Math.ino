@@ -87,3 +87,4 @@ void init_rotation_matrix(float m[3][3], float yaw, float pitch, float roll)
   m[2][1] = c2 * s1;
   m[2][2] = c1 * c2;
 }
+

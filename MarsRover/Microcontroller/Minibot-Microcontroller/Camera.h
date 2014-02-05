@@ -1,18 +1,21 @@
+#ifndef Camera_h
+#define Camera_h
 #include "Arduino.h"
 #include "Servo.h"
 
-#ifndef Camera_h
-#define Camera_h
 class Camera
 {
   public:
-    Camera(int pinServoPan, int pinServoTilt);
+    Camera(int pinServoPan, int pinServoTilt, int camID);
     void Pan(int angle);
     void Tilt(int angle);
-  private:
+    int cameraID;
+    static int numCam;
+    
+    private:
     int _pinServoPan;
     int _pinServoTilt;
     Servo _servoPan;
     Servo _servoTilt;
-};
+  };
 #endif

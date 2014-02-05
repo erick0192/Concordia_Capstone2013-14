@@ -1,5 +1,5 @@
-//#ifndef IOPins_h
-//#define IOPins_h
+#ifndef Globals_h
+#define Globals_h
 
 #define TOP_RIGHT_WHEEL_ENABLE_PIN 23
 #define TOP_RIGHT_WHEEL_FRONT_PIN 4
@@ -23,7 +23,10 @@
 #define SERVO_YAW_PIN 9
 #define SERVO_PITCH_PIN 10
 #define SERVO_ROLL_PIN 11
-#define SERVO_CAM_PAN_PIN 9
-#define SERVO_CAM_TILT_PIN 27
+#define SERVO_CAM_1_ID 1
+#define SERVO_CAM_1_PAN_PIN 8
+#define SERVO_CAM_1_TILT_PIN 9
 
-//#endif
+// Set your serial port baud rate used to send out data here!
+#define OUTPUT_BAUD_RATE 115200
+#endif

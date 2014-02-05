@@ -1,13 +1,13 @@
 //#include <SoftwareSerial.h>
 
-#include <TinyGPS.h>
+
 
 /* This sample code demonstrates the normal use of a TinyGPS object.
    It requires the use of SoftwareSerial, and assumes that you have a
    4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
 */
 
-TinyGPS gps;
+
 //SoftwareSerial ss(4, 3);
 
 static void smartdelay(unsigned long ms);
@@ -16,6 +16,9 @@ static void print_int(unsigned long val, unsigned long invalid, int len);
 static void print_date(TinyGPS &gps);
 static void print_str(const char *str, int len);
 
+static const int DELAY_SERIALGPS = 10; //Delay to update the IMU
+unsigned long startSERIALGPS = 0; //Keeping track of when IMU started counting
+
 void Init_GPS()
 {
   /*
@@ -23,16 +26,21 @@ void Init_GPS()
   Serial.println("          (deg)     (deg)      Age                      Age  (m)    --- from GPS ----  ---- to London  ----  RX    RX        Fail");
   Serial.println("-------------------------------------------------------------------------------------------------------------------------------------");
 */
+  startSERIALGPS = millis();
   Serial1.begin(4800);
+  gps.encode(Serial1.read());
 }
 
 void Loop_GPS()
 {
-  float flat, flon;
+      float flat, flon;
   unsigned long age, date, time, chars = 0;
   unsigned short sentences = 0, failed = 0;
   static const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
-  /*
+   /*
+   if((millis() - startSERIALGPS) >= DELAY_SERIALGPS)
+   {
+    
   print_int(gps.satellites(), TinyGPS::GPS_INVALID_SATELLITES, 5);
   print_int(gps.hdop(), TinyGPS::GPS_INVALID_HDOP, 5);
   gps.f_get_position(&flat, &flon, &age);
@@ -53,37 +61,31 @@ void Loop_GPS()
   print_int(sentences, 0xFFFFFFFF, 10);
   print_int(failed, 0xFFFFFFFF, 9);
   Serial.println();
-  */
+
+
+  startSERIALGPS = millis();
+   }*/
   gps.f_get_position(&flat, &flon, &age);
   Send_GPS(flat,flon,gps.f_altitude());
   smartdelay(1000);
 }
 
-static void smartdelay(unsigned long ms)
+static void serialEvent1()
 {
-    if(Serial1.available())
       gps.encode(Serial1.read());
 }
-
-static void print_float(float val, float invalid, int len, int prec)
+static void smartdelay(unsigned long ms)
 {
-  if (val == invalid)
-  {
-    while (len-- > 1)
-      Serial.print('*');
-    Serial.print(' ');
-  }
-  else
-  {
-    Serial.print(val, prec);
-    int vi = abs((int)val);
-    int flen = prec + (val < 0.0 ? 2 : 1); // . and -
-    flen += vi >= 1000 ? 4 : vi >= 100 ? 3 : vi >= 10 ? 2 : 1;
-    for (int i=flen; i<len; ++i)
-      Serial.print(' ');
-  }
-  smartdelay(0);
+  /*
+     if((millis() - startSERIALGPS) >= DELAY_SERIALGPS)
+   {
+      while(Serial1.available() > 0)
+      gps.encode(Serial1.read());
+      startSERIALGPS = millis();
+   }
+   */
 }
+
 
 static void print_int(unsigned long val, unsigned long invalid, int len)
 {
@@ -127,3 +129,4 @@ static void print_str(const char *str, int len)
     Serial.print(i<slen ? str[i] : ' ');
   smartdelay(0);
 }
+

@@ -170,8 +170,6 @@
 
 // OUTPUT OPTIONS
 /*****************************************************************/
-// Set your serial port baud rate used to send out data here!
-#define OUTPUT__BAUD_RATE 115200
 
 // Sensor data output interval in milliseconds
 // This may not work, if faster than 20ms (=50Hz)
@@ -390,3 +388,4 @@ int num_magn_errors = 0;
 int num_gyro_errors = 0;
 
 #endif
+
