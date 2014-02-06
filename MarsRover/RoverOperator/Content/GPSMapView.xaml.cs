@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace RoverOperator.Content
 {
     /// <summary>
-    /// Interaction logic for IMUView.xaml
+    /// Interaction logic for GPSMapView.xaml
     /// </summary>
-    public partial class IMUView : UserControl
+    public partial class GPSMapView : UserControl
     {
-        public IMUView()
+        public GPSMapView()
         {
             InitializeComponent();
-            DataContext = new IMUViewModel();
+            DataContext = new GPSViewModel();
         }
     }
 }

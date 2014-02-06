@@ -29,6 +29,9 @@ namespace MarsRover
         public GPSCoordinates()
         {
             regex = "<" + UpdateIdentifier + @";\d+(\.\d{1,6})?,\d+(\.\d{1,6})?,\d+(\.\d{1,6})?>";
+            X = 90.0;
+            Y = 90.0;
+            Z = 90.0;
         }
 
         #endregion

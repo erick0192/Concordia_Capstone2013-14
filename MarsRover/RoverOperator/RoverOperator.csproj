@@ -120,9 +120,14 @@
       <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\GeneralSettingsViewModel.cs" />
+    <Compile Include="Content\GPSMapView.xaml.cs">
+      <DependentUpon>GPSMapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\GPSViewModel.cs" />
     <Compile Include="Content\IMUView.xaml.cs">
       <DependentUpon>IMUView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\IMUViewModel.cs" />
     <Compile Include="Content\NetworkSettingsView.xaml.cs">
       <DependentUpon>NetworkSettingsView.xaml</DependentUpon>
     </Compile>
@@ -159,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\GeneralSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\GPSMapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,6 +23,7 @@ namespace RoverOperator.Content
         public GPSView()
         {
             InitializeComponent();
+            DataContext = new GPSViewModel();
         }
     }
 }
