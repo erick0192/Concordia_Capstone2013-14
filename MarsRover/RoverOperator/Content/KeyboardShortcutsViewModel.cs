@@ -78,7 +78,7 @@ namespace RoverOperator.Content
             var appSC = new List<KeyboardShortCut>();
             appSC.Add(new KeyboardShortCut("Ctrl", "H", "Navigate to the Home/Main page."));
             appSC.Add(new KeyboardShortCut("Ctrl", "L", "Navigate to the Log page."));
-            appSC.Add(new KeyboardShortCut("Ctrl", "T", "Navigate to the Settings page."));
+            appSC.Add(new KeyboardShortCut("", "F11", "Navigate to the Settings page."));
             appSC.Add(new KeyboardShortCut("", "F12", "Navigate to the Help page."));
 
             var mainSC = new List<KeyboardShortCut>();

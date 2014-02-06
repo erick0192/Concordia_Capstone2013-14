@@ -137,6 +137,7 @@
     <Compile Include="Communication\UDP\UDPSenderStatistics.cs" />
     <Compile Include="Exceptions\InvalidUpdateStringException.cs" />
     <Compile Include="GPSCoordinates.cs" />
+    <Compile Include="IMU.cs" />
     <Compile Include="IQueue.cs" />
     <Compile Include="Motor.cs" />
     <Compile Include="PriorityQueue.cs" />

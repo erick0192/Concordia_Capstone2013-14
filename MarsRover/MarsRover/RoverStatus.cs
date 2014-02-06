@@ -11,6 +11,7 @@ namespace MarsRover
         public Battery Battery { get; set; }
         public Dictionary<Motor.Location, Motor> Motors { get; set; }
         public GPSCoordinates GPSCoordinates { get; set; }
+        public IMU IMUSensor { get; set; }
 
         public RoverStatus()
         {
@@ -24,6 +25,7 @@ namespace MarsRover
 
             Battery = new Battery(2000);
             GPSCoordinates = new GPSCoordinates();
+            IMUSensor = new IMU();
         }
     }
 }

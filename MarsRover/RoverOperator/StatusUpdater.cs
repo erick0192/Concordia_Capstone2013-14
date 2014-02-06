@@ -55,7 +55,10 @@ namespace RoverOperator
         public event GPSCoordinatesUpdatedDelegate GPSCoordinatesUpdated;
 
         public delegate void BatteryCellUpdatedDelegate(BatteryCell batteryCell);
-        public event BatteryCellUpdatedDelegate BatteryCellUpdated;  
+        public event BatteryCellUpdatedDelegate BatteryCellUpdated;
+
+        public delegate void IMUUpdatedDelegate(IMU imu);
+        public event IMUUpdatedDelegate IMUUpdated;  
 
 
         #endregion
@@ -94,35 +97,39 @@ namespace RoverOperator
         private void Update()
         {
             int sleepPeriod = 200;//Half a second           
-            string updateData = string.Empty;
+            string updateString = string.Empty;
 
             while(update)
             {
-                if(updatesQueue.TryDequeue(out updateData))
+                if(updatesQueue.TryDequeue(out updateString))
                 {
                     try
                     {
-                        string updateIdentifer = AbstractUpdateableComponent.GetUpdateIdentifierFromUpdateString(updateData);                        
+                        string updateIdentifer = AbstractUpdateableComponent.GetUpdateIdentifierFromUpdateString(updateString);                        
                     
                         if(updateIdentifer == CommandMetadata.Update.MotorIdentifier)
                         {
-                            UpdateMotors(updateData);        
+                            UpdateMotors(updateString);        
                         }
                         else if (updateIdentifer == CommandMetadata.Update.BatteryIdentifier)
                         {
-                            UpdateBattery(updateData);    
+                            UpdateBattery(updateString);    
                         }
                         else if (updateIdentifer == CommandMetadata.Update.BatteryCellIdentifier)
                         {
-                            UpdateBatteryCell(updateData);
+                            UpdateBatteryCell(updateString);
                         }
                         else if (updateIdentifer == CommandMetadata.Update.GPSIdentfier)
                         {
-                            UpdateGPS(updateData);
+                            UpdateGPS(updateString);
+                        }
+                        else if(updateIdentifer == CommandMetadata.Update.IMUIdentfier)
+                        {
+                            UpdateIMU(updateString);
                         }
                         else
                         {                       
-                            logger.Error("The update string '{0}' does not contain a valid update identifier.", updateData);
+                            logger.Error("The update string '{0}' does not contain a valid update identifier.", updateString);
                         }    
                     }
                     catch (Exception e)
@@ -138,34 +145,19 @@ namespace RoverOperator
             
         }
 
+        private void UpdateIMU(string updateString)
+        {
+            var imu = roverStatus.IMUSensor;
+            imu.UpdateFromString(updateString);
+
+            if(IMUUpdated != null)
+            {
+                IMUUpdated(imu);
+            }
+        }
+
         private void UpdateMotors(String updateString)
         {
-            //Parse all data from the other class that gets the data from the server
-            //Motor motor = roverStatus.Motors[Motor.Location.FrontLeft];
-            //motor.Current += 10;
-            //motor.Temperature += 1;
-
-            //motor = roverStatus.Motors[Motor.Location.FrontRight];
-            //motor.Current += 5;
-            //motor.Temperature += 4;
-
-            //motor = roverStatus.Motors[Motor.Location.MiddleLeft];
-            //motor.Current += 7;
-            //motor.Temperature += 3;
-
-            //motor = roverStatus.Motors[Motor.Location.MiddleRight];
-            //motor.Current += 7;
-            //motor.Temperature += 3;
-
-            //motor = roverStatus.Motors[Motor.Location.BackLeft];
-            //motor.Current += 7;
-            //motor.Temperature += 3;
-
-            //motor = roverStatus.Motors[Motor.Location.BackRight];
-            //motor.Current += 8;
-            //motor.Temperature += 2;     
-
-
             Motor m = roverStatus.Motors[Motor.GetLocationFromUpdateString(updateString)];
             m.UpdateFromString(updateString);
 
@@ -173,19 +165,10 @@ namespace RoverOperator
             {
                 MotorsUpdated(m);
             }
-
-
         }
 
         private void UpdateBattery(string updateString)
         {
-            //roverStatus.Battery.CurrentCharge -= 10;
-            //roverStatus.Battery.Temperature += 1;
-
-            //roverStatus.Battery.Cells.ForEach(cell => {
-            //    cell.Voltage += 0.1f;
-            //});
-
             roverStatus.Battery.UpdateFromString(updateString);
 
             if(BatteryUpdated != null)

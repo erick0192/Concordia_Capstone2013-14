@@ -82,6 +82,7 @@ namespace MarsRover.Commands
             public const string BatteryCellIdentifier = "BC";
             public const string MotorIdentifier = "MR";
             public const string GPSIdentfier = "G";
+            public const string IMUIdentfier = "I";
 
             public const char ValuesDelimiter = ',';
             public const char StartOfValuesIdentifier = ';';

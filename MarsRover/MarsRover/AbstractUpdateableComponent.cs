@@ -11,7 +11,16 @@ namespace MarsRover
     {
         protected string regex = string.Empty;
 
-        public abstract string UpdateIdentifier { get; }        
+        public abstract string UpdateIdentifier { get; }
+
+        #region Delegates and Events
+
+        public delegate void ComponentUpdatedDelegate(AbstractUpdateableComponent component);
+        public event ComponentUpdatedDelegate ComponentedUpdated;
+
+        #endregion
+
+        #region Methods
 
         protected bool IsValidUpdateString(string input)
         {
@@ -48,5 +57,7 @@ namespace MarsRover
 
             return sb.ToString();
         }
+
+        #endregion
     }
 }
