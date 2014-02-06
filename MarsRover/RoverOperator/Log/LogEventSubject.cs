@@ -33,7 +33,12 @@ namespace RoverOperator.Log
             }
 
             LogEvent newEvent = new LogEvent(longdate, level, callsite, message);
-            Events.Add(newEvent);
+
+            //If event is added from non-UI thread
+            App.Current.Dispatcher.Invoke((Action)delegate {
+                Events.Add(newEvent);
+            });
+
             foreach (LogEventObserver observer in observers)
             {
                 observer.RefreshLogList();
