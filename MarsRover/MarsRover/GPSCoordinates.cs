@@ -43,7 +43,7 @@ namespace MarsRover
                 var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
                 this.X = float.Parse(updateArray[0]);
                 this.Y = float.Parse(updateArray[1]);
-                this.Y = float.Parse(updateArray[2]);
+                this.Z = float.Parse(updateArray[2]);
             }
             else
             {

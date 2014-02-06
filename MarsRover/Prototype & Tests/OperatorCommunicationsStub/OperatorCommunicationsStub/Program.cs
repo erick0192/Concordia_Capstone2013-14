@@ -96,13 +96,13 @@ namespace UDPMessageSender
         private static void RoverMode()
         {
             string updateString;
-            string motorsId = "MR", batteryId = "B", batteryCellId = "BC", gpsId = "G";
+            string motorsId = "MR", batteryId = "B", batteryCellId = "BC", gpsId = "G", imuId = "I";
 
-            double motorCurrent = 0.0;
-            double motorTemperature = 0.0;
-            double batteryCurrent = 0.0;
-            double batteryCharge = 0.0;
-            double batteryTemperature = 0.0;
+            double motorCurrent = 0.0, motorTemperature = 0.0;
+            double batteryCurrent = 0.0, batteryCharge = 0.0, batteryTemperature = 0.0;
+            double batteryCellVoltage = 0.0;
+            double gpsX = 0.0, gpsY = 0.0, gpsZ = 0.0;
+            double imuYaw = 0.0, imuPitch = 0.0, imuRoll = 0.0;
 
             Byte[] msgs;
 
@@ -141,10 +141,44 @@ namespace UDPMessageSender
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
 
-                //Send battery cell update
+                //Send battery cell update, voltage 0-4.2
+                updateString = CreateUpdateString(batteryCellId, 1, Math.Round((batteryCellVoltage += 0.05) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(batteryCellId, 2, Math.Round((batteryCellVoltage += 0.05) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(batteryCellId, 3, Math.Round((batteryCellVoltage += 0.05) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(batteryCellId, 4, Math.Round((batteryCellVoltage += 0.05) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(batteryCellId, 5, Math.Round((batteryCellVoltage += 0.05) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(batteryCellId, 6, Math.Round((batteryCellVoltage += 0.05) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
+
+                updateString = CreateUpdateString(batteryCellId, 7, Math.Round((batteryCellVoltage += 0.01) % 4.2, 3));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
 
                 //Send gps coordinates
+                updateString = CreateUpdateString(gpsId, Math.Round((gpsX += 2.124) % 180, 6), Math.Round((gpsY += 5.45678) % 180, 6), Math.Round((gpsZ += 10.000248) % 180, 6));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
 
+                //Send IMU updates
+                updateString = CreateUpdateString(imuId, Math.Round((imuYaw += 7.1247) % 180, 6), Math.Round((imuPitch += 8.245678) % 180, 6), Math.Round((imuRoll += 4.000248) % 180, 6));
+                msgs = Encoding.ASCII.GetBytes(updateString);
+                udpClient.Send(msgs, msgs.Length);
 
                 Thread.Sleep(timeBetweenCommands);
             }

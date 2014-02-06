@@ -27,6 +27,7 @@ namespace RoverOperator.Content
         public GPSViewModel()
         {
             Coordinates = StatusUpdater.Instance.RoverStatus.GPSCoordinates;
+            StatusUpdater.Instance.GPSCoordinatesUpdated += new StatusUpdater.GPSCoordinatesUpdatedDelegate(this.GPSUpdatedHandler);
         }
 
         #endregion
