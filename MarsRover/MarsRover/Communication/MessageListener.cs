@@ -57,4 +57,48 @@ namespace MarsRover
 
         #endregion
     }
+
+    public class MessageSender
+    {
+        private UdpClient sender = new UdpClient();
+        private IQueue messageQueue;
+        private int port;
+        private string ipAddress;
+        private Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+        public MessageSender(int port, IQueue MessageQueue, string destinationIPAddress = "")
+        {
+            this.port = port;
+            ipAddress = destinationIPAddress;
+            messageQueue = MessageQueue;
+            try
+            {
+                this.sender.Connect(ipAddress, port);
+            }
+            catch (Exception e)
+            {
+                logger.Error("{0}  " + e.Message, DateTime.Now.ToString());
+            }
+        }
+
+        //send
+        public void Send(string message)
+        {
+            try 
+            {
+                Byte[] bytesToSend = Encoding.ASCII.GetBytes(message);
+                sender.Send(bytesToSend, bytesToSend.Length);
+            }
+            catch (Exception e)
+            {
+                logger.Error("{0}  " + e.Message, DateTime.Now.ToString());
+            }
+        }
+
+        public void Send(Byte[] bytesToSend)
+        {
+            sender.Send(bytesToSend, bytesToSend.Length);
+        }
+        
+    }
 }
