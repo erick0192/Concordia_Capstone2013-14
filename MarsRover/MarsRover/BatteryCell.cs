@@ -139,7 +139,7 @@ namespace MarsRover
             {
                 // We dont want to include the identifier nor the last bracket              
                 var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
-                this.voltage = float.Parse(updateArray[1]);
+                this.Voltage = float.Parse(updateArray[1]);
             }
             else
             {

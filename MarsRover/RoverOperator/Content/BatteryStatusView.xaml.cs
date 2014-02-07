@@ -36,6 +36,7 @@ namespace RoverOperator.Content
                 cell.NormalVoltageDetected += new BatteryCell.NormalVoltageDetectedDelegate(HandleBatteryCellNormalVoltage);
                 cell.OverVoltageDetected += new BatteryCell.OverVoltageDetectedDelegate(HandleBatteryCellOverVoltage);
                 cell.UnderVoltageDetected += new BatteryCell.UnderVoltageDetectedDelegate(HandleBatteryCellUnderVoltage);
+                cell.WarningVoltageDetected += new BatteryCell.WarningVoltageDetectedDelegate(HandleBatteryCellWarningVoltage);
             });
         }   
   
@@ -74,9 +75,23 @@ namespace RoverOperator.Content
                 this.Dispatcher.Invoke((Action)(() =>
                 {
                     var cellBar = this.FindName("cellBar" + cell.CellID) as ProgressBar;
-                    cellBar.Foreground = Brushes.Orange;
+                    cellBar.Foreground = Brushes.DarkRed;
                     var cellPanel = this.FindName("cellPanel" + cell.CellID) as StackPanel;
                     cellPanel.ToolTip = "This battery cell is currently experiencing under voltage.";
+                }));
+            }
+        }
+
+        private void HandleBatteryCellWarningVoltage(BatteryCell cell)
+        {
+            if (!this.Dispatcher.HasShutdownStarted && !this.Dispatcher.HasShutdownFinished)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    var cellBar = this.FindName("cellBar" + cell.CellID) as ProgressBar;
+                    cellBar.Foreground = Brushes.OrangeRed;
+                    var cellPanel = this.FindName("cellPanel" + cell.CellID) as StackPanel;
+                    cellPanel.ToolTip = "This battery cell is currently operating at a non-ideal voltage.";
                 }));
             }
         }
