@@ -22,7 +22,11 @@
        
     </UserControl.InputBindings>
     <Grid>
-        <avalonDock:DockingManager x:Name="dockingManager" Margin="0,10,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <avalonDock:DockingManager x:Name="dockingManager" Margin="0,10,0,0" Grid.Row="0">
             <avalonDock:DockingManager.Theme>
                 <avalonDock:GenericTheme/>
             </avalonDock:DockingManager.Theme>
@@ -96,12 +100,10 @@
                 </avalonDock:LayoutPanel>
             </avalonDock:LayoutRoot>
         </avalonDock:DockingManager>
-        <Grid VerticalAlignment="Bottom">
-            <StatusBar>
-                <TextBlock Text="{Binding Path=ConnectedToRover}"></TextBlock>
+        <StatusBar Grid.Row="1">
+            <TextBlock Text="{Binding Path=ConnectedToRover}"></TextBlock>
                 <Separator />
                 <TextBlock Text="{Binding Path=PingRTT}"></TextBlock>
             </StatusBar>
-        </Grid>
     </Grid>
 </UserControl>
