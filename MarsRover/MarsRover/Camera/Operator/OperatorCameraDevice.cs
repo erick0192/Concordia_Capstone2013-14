@@ -9,19 +9,42 @@ namespace MarsRover
     public class OperatorCameraDevice : AbstractCameraDevice
     {
 
+        protected int DoubleBufferFree = 0;
+        volatile protected Bitmap DoubleBufferFrameA;
+        volatile protected Bitmap DoubleBufferFrameB;
+
+
         public OperatorCameraDevice()
         {                                  
             State = CameraState.CAMERA_STOPPED;
         }
 
-        public void SetLatestFrame(Bitmap aBitmap)
+        public Bitmap GetLatestFrame()
         {
-            LatestFrame = aBitmap;
+            if (DoubleBufferFree == 0)
+            {
+                return DoubleBufferFrameB;
+            }
+            else
+            {
+                return DoubleBufferFrameA;
+            }
         }
 
-        public Bitmap GetLastestFrame()
+        public void SetLatestFrame(Bitmap aBitmap)
         {
-            return LatestFrame;
+            if (DoubleBufferFree == 0)
+            {
+                DoubleBufferFrameA = aBitmap;
+
+                DoubleBufferFree = 1;
+            }
+            else
+            {
+                DoubleBufferFrameB = aBitmap;
+
+                DoubleBufferFree = 0;
+            }
         }
 
         public override void Start()

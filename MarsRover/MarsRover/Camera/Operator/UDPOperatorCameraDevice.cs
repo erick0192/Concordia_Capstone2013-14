@@ -30,6 +30,7 @@ namespace MarsRover
         private UDPListenerStatistics aUDPListenerStatistics;
         private int ID;
 
+        
         public UDPOperatorCameraDevice(int ID, string IpAddress, int ListeningPort, int SendingPort)
         {
             PacketReconstructors = new PacketReconstructor(new Packet().GetBytes().Length, PacketReconstructedCBHandler);
@@ -47,9 +48,9 @@ namespace MarsRover
             aNewBitmapReceivedEvent += new NewBitmapReceivedCBType(aNewBitmapReceivedCB);
         }
        
+        //Handles the reception of 1 UDP packet of data.
         public void ReceivedHandler(int NumberOfAvailableData)
-        {           
-            
+        {                       
             int PacketSize = Packet.GetHeaderSize() + Packet.DEFAULT_PACKET_SIZE;
 
             if (NumberOfAvailableData >= PacketSize)
@@ -73,17 +74,16 @@ namespace MarsRover
         }
 
         public void PacketReconstructedCBHandler(int FileID, byte[] filebyte, int bytesRead)
-        {
-            
+        {   
             CodecUtility aCodec = new CodecUtility();
-            LatestFrame = aCodec.DecompressJPEGArrayToBpm(filebyte);
-                               
+            SetLatestFrame(aCodec.DecompressJPEGArrayToBpm(filebyte));
+
             //Call the callback
             if (aNewBitmapReceivedEvent != null)
             {
-                aNewBitmapReceivedEvent(LatestFrame);
-            }           
-
+                aNewBitmapReceivedEvent(GetLatestFrame());
+            }
+            
         }
 
         public override void Start()

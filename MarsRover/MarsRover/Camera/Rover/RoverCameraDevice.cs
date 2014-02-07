@@ -21,7 +21,7 @@ namespace MarsRover
         
         private string CameraName;
         private int CameraID;
-    
+        private int FrameRateDivider;
 
         private VideoCaptureDevice videoDevice;
         private VideoCapabilities videoDeviceCapabilities;
@@ -31,24 +31,28 @@ namespace MarsRover
         private void NewFrameAcquired(object sender, NewFrameEventArgs eventArgs)
         {
             FrameNumber++;
-
             //Console.WriteLine("[" + CameraID + "]: " + CameraName + " frame " + FrameNumber + " received");
 
-            SetLatestFrame((Bitmap)eventArgs.Frame.Clone());
+            if (FrameNumber % FrameRateDivider == 0)
+            {                
+                SetLatestFrame((Bitmap)eventArgs.Frame.Clone());
 
-            if (NewBitmapAcquiredCBHandler != null)
-            {
-                NewBitmapAcquiredCBHandler(LatestFrame);
+                if (NewBitmapAcquiredCBHandler != null)
+                {
+                    NewBitmapAcquiredCBHandler(LatestFrame);
+                }
             }
+            
             
         }
 
-        public RoverCameraDevice(string aCameraName, string MonikerString, int aCameraID)
+        public RoverCameraDevice(string aCameraName, string MonikerString, int aCameraID, int aFrameRateDivider)
         {            
             CameraName = aCameraName;
             CameraID = aCameraID;
             videoDevice = new VideoCaptureDevice(MonikerString);
-            
+            FrameRateDivider = aFrameRateDivider;
+
            // Console.WriteLine("[" + CameraID + "]: " + CameraName + " created ");
 
             videoDevice.NewFrame += new NewFrameEventHandler(NewFrameAcquired);

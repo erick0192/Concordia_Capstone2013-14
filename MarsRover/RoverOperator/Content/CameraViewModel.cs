@@ -198,8 +198,10 @@ namespace RoverOperator.Content
                 if (IsUpdating == false)
                 {
                     IsUpdating = true;
+                    
+                    //Thread.Sleep(100);
+                    
                     System.Drawing.Image img = (Bitmap)aBitmap.Clone();
-
                     MemoryStream ms = new MemoryStream();
                     img.Save(ms, ImageFormat.Bmp);
                     ms.Seek(0, SeekOrigin.Begin);
@@ -208,8 +210,9 @@ namespace RoverOperator.Content
                     bi.StreamSource = ms;
                     bi.EndInit();
                     bi.Freeze();
-                   
 
+
+                    
                     App.Current.Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
                         if (IsUpdating == false)
@@ -219,7 +222,7 @@ namespace RoverOperator.Content
                             IsUpdating = false;
                         }
                     }));
-
+                    
                     IsUpdating = false;
                 }
                 

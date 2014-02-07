@@ -21,21 +21,21 @@ namespace Rover
 
             IQueue CommanderDispatcherMessageQueue = new PriorityQueue(30);
             IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
-            IQueue SerialStatusMessageQueue = new PriorityQueue(30);
-            IQueue StatusCommanderMessageQueue = new PriorityQueue(30);
-            IQueue MicrocontrollerCommanderMessageBox = new PriorityQueue(30);
+            //IQueue SerialStatusMessageQueue = new PriorityQueue(30);
+           // IQueue StatusCommanderMessageQueue = new PriorityQueue(30);
+            //IQueue MicrocontrollerCommanderMessageBox = new PriorityQueue(30);
 
             Thread dispatcher = new Thread(() => Dispatcher(CommanderDispatcherMessageQueue));
-            Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue, MicrocontrollerCommanderMessageBox));
-            Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
-            Thread commandSender = new Thread(() => CommandSender(MicrocontrollerCommanderMessageBox));
+            //Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue, MicrocontrollerCommanderMessageBox));
+            //Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
+            //Thread commandSender = new Thread(() => CommandSender(MicrocontrollerCommanderMessageBox));
 
             RoverCameraFactory.GetInstance().Initialize(Properties.NetworkSettings.Default.OperatorIPAddress, Properties.NetworkSettings.Default.CameraBasePort);
             
             dispatcher.Start();
-            serialManager.Start();
-           // statusUpdater.Start();
-            commandSender.Start();
+            //serialManager.Start();
+            //statusUpdater.Start();
+           // commandSender.Start();
 
            
             //Start the commands listener
@@ -50,10 +50,12 @@ namespace Rover
         {
             int sleepPeriod = 150;
             string QueuedData;
+            
             MessageSender sender = new MessageSender(
                 Properties.NetworkSettings.Default.OperatorCommandsPort, 
                 Messagebox, 
                 Properties.NetworkSettings.Default.OperatorIPAddress);
+            
 
             while (true)
             {

@@ -40,6 +40,8 @@ namespace MarsRover
             ReceivingQueue = new ConcurrentQueue<byte>();
             ListeningThread = new Thread(StartListening);
 
+            //listener.Client.ReceiveBufferSize = 65535;
+
             ListeningThread.IsBackground = false;
             ListeningThread.Priority = ThreadPriority.Highest;
             ListeningThread.Start();
@@ -59,13 +61,20 @@ namespace MarsRover
         public int  ReceiveData( ref byte[] data, int size )
         {
             int NbOfDataToRead = Math.Min(size, ReceivingQueue.Count);
-          
-            if (NbOfDataToRead > 0)
+           
+            try
             {
-                for (int i = 0; i < NbOfDataToRead; i++)
+                if (NbOfDataToRead > 0)
                 {
-                    ReceivingQueue.TryDequeue(out data[i]);
+                    for (int i = 0; i < NbOfDataToRead; i++)
+                    {
+                        ReceivingQueue.TryDequeue(out data[i]);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
 
             return NbOfDataToRead;

@@ -55,6 +55,16 @@ namespace MarsRover
                 ReconstructedPackets.Count >= newPacket.aFrame.aHeader.TotalNbPackets)
             {
                // Console.WriteLine("Number of packet received:" + ReconstructedPackets.Count);
+                //Sanity check on packet 
+                for (int i = 0; i < newPacket.aFrame.aHeader.TotalNbPackets; i++)
+                {
+                    if (((Packet)ReconstructedPackets[i]).aFrame.aHeader.FileID != newPacket.aFrame.aHeader.FileID)
+                    {
+                        ReconstructedPackets.Clear();
+                        
+                        return;
+                    }
+                }
 
                 d = new byte[newPacket.aFrame.aHeader.TotalNbPackets * Packet.DEFAULT_PACKET_SIZE];
                 

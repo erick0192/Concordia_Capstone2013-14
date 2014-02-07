@@ -34,7 +34,7 @@ namespace Rover.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10.10.10.11")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.10.10.195")]
         public string OperatorIPAddress {
             get {
                 return ((string)(this["OperatorIPAddress"]));
@@ -50,6 +50,18 @@ namespace Rover.Properties {
             }
             set {
                 this["CameraBasePort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5001")]
+        public int OperatorCommandsPort {
+            get {
+                return ((int)(this["OperatorCommandsPort"]));
+            }
+            set {
+                this["OperatorCommandsPort"] = value;
             }
         }
     }

@@ -21,8 +21,8 @@ namespace MarsRover
         private LocalUDPStatistics aUDPStatistics;
         private Random aRandomGenerator;
 
-        public UDPRoverCameraDevice(string IpAddress, int Port, string aCameraName, string aMonikerString, int aCameraID, long ImageQuality) 
-            : base(aCameraName, aMonikerString, aCameraID)
+        public UDPRoverCameraDevice(string IpAddress, int Port, string aCameraName, string aMonikerString, int aCameraID, long ImageQuality, int FrameRateDivider)
+            : base(aCameraName, aMonikerString, aCameraID, FrameRateDivider)
         {
             aImageQuality = ImageQuality;
 
