@@ -5,6 +5,7 @@ using System.Text;
 using System.IO.Ports;
 using Rover.Commands;
 using MarsRover.Commands;
+using MarsRover;
 namespace Rover
 {
     public class MicrocontrollerSingleton
@@ -16,6 +17,7 @@ namespace Rover
         private static object writeLock = new Object();
         private string commandRead;
         public bool IsInitialized { get { return isInitialized; } }
+        private IQueue MessageQueue = null;
 
         public static MicrocontrollerSingleton Instance
         {
@@ -36,7 +38,6 @@ namespace Rover
             }
 
         }
-
 
         private MicrocontrollerSingleton()
         {
@@ -73,7 +74,7 @@ namespace Rover
                                         //the arduino if more than one serial device is connected.
 
                                         serialPort.PortName = port;
-                                        serialPort.BaudRate = 9600;
+                                        serialPort.BaudRate = 115200;
                                         serialPort.DataReceived += new SerialDataReceivedEventHandler(CommandReadyEvent);
                                         serialPort.Open();
                                         serialPort.DiscardOutBuffer();
@@ -93,6 +94,11 @@ namespace Rover
             }
   
             return isInitialized;
+        }
+
+        public void SetQueue(IQueue Messagebox)
+        {
+            this.MessageQueue = Messagebox;
         }
 
         public bool Initialize(string portName, int baud = 9600, int readTimeout = 500, int writeTimeout = 500)
@@ -118,6 +124,7 @@ namespace Rover
                                 serialPort.BaudRate = baud;
                                 serialPort.ReadTimeout = readTimeout;
                                 serialPort.WriteTimeout = writeTimeout;
+                                serialPort.DataReceived += new SerialDataReceivedEventHandler(CommandReadyEvent);
                                 serialPort.Open();
                                 serialPort.DiscardOutBuffer();
 
@@ -172,16 +179,24 @@ namespace Rover
         private void CommandReadyEvent(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
-            commandRead = sp.ReadTo(CommandMetadata.EndDelimiter);
-            commandRead += CommandMetadata.EndDelimiter;
-
-            Console.WriteLine(commandRead); //Replace with enqueueing data
+            commandRead = sp.ReadTo("|"); //set to const later
+            commandRead = commandRead.Replace("\n", "");
+            commandRead = commandRead.Replace("\r", "");
+            //commandRead += CommandMetadata.EndDelimiter;
+            commandRead = "<" + commandRead + ">";
+            if (MessageQueue != null)
+            {
+                MessageQueue.Enqueue(commandRead);
+                Console.WriteLine(commandRead);
+            //    Console.WriteLine("banana");
+            }
+            else
+            {
+                Console.WriteLine(commandRead); //Replace with enqueueing data
+            }
         }
 
-        public void AddReadEvent()
-        {
 
-        }
 
         public void CloseCommunications()
         {

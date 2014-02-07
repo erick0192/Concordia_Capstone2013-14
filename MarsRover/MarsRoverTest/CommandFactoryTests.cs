@@ -33,6 +33,36 @@ namespace MarsRoverTest
         }
 
         [Test]
+        public void CreateCommand_ValidCameraString_ReturnsCameraCommand()
+        {
+            string cameraString = "<C1O>";
+            CommandFactory factory = new CommandFactory();
+            ICommand command = factory.CreateCommand(cameraString);
+
+            Assert.IsInstanceOf(typeof(CameraCommand), command);
+        }
+
+        [Test]
+        public void CreateCommand_ValidPanString_ReturnsPanCommand()
+        {
+            string panString = "<P1359>";
+            CommandFactory factory = new CommandFactory();
+            ICommand command = factory.CreateCommand(panString);
+
+            Assert.IsInstanceOf(typeof(PanCommand), command);
+        }
+
+        [Test]
+        public void CreateCommand_ValidTiltString_ReturnsTiltCommand()
+        {
+            string tiltString = "<T1000>";
+            CommandFactory factory = new CommandFactory();
+            ICommand command = factory.CreateCommand(tiltString);
+
+            Assert.IsInstanceOf(typeof(TiltCommand), command);
+        }
+
+        [Test]
         public void CreateCommand_DuplicateValidCommandStrings_ReturnsNullCommandOnSecondInstantiation()
         {
             string commandString = "<MF255F255>";
@@ -89,7 +119,7 @@ namespace MarsRoverTest
 
             command = factory.CreateCommand(commandString1);
             Assert.IsInstanceOf(typeof(NullCommand), command, "Duplicate commands should return a null command");
-            
         }
+
     }
 }

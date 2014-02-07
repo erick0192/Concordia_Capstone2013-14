@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace MarsRover
@@ -27,7 +28,7 @@ namespace MarsRover
 
         public IMU()
         {
-            regex = "<" + UpdateIdentifier + @";\d+(\.\d{1,6})?,\d+(\.\d{1,6})?,\d+(\.\d{1,6})?>";
+            regex = "<" + UpdateIdentifier + @";[-]?\d+(\.\d{1,6})?,[-]?\d+(\.\d{1,6})?,[-]?\d+(\.\d{1,6})?>";
         }
 
         #endregion
@@ -39,10 +40,9 @@ namespace MarsRover
             if (IsValidUpdateString(updateString))
             {
                 var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
-
-                this.Yaw = float.Parse(updateArray[0]);
-                this.Pitch = float.Parse(updateArray[1]);
-                this.Roll = float.Parse(updateArray[2]);
+                this.Yaw = float.Parse(updateArray[0],NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
+                this.Pitch = float.Parse(updateArray[1], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
+                this.Roll = float.Parse(updateArray[2], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
             }
             else
             {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MarsRover.Commands;
@@ -28,7 +29,7 @@ namespace MarsRover
 
         public GPSCoordinates()
         {
-            regex = "<" + UpdateIdentifier + @";\d+(\.\d{1,6})?,\d+(\.\d{1,6})?,\d+(\.\d{1,6})?>";
+            regex = "<" + UpdateIdentifier + @";[-]?\d+(\.\d{1,6})?,[-]?\d+(\.\d{1,6})?,[-]?\d+(\.\d{1,6})?>";
             X = 90.0;
             Y = 90.0;
             Z = 90.0;
@@ -41,9 +42,9 @@ namespace MarsRover
             if (IsValidUpdateString(updateString))
             {
                 var updateArray = GetUpdateStringArrayWithoutIdentifier(updateString);
-                this.X = float.Parse(updateArray[0]);
-                this.Y = float.Parse(updateArray[1]);
-                this.Z = float.Parse(updateArray[2]);
+                this.X = float.Parse(updateArray[0], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
+                this.Y = float.Parse(updateArray[1], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
+                this.Z = float.Parse(updateArray[2], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
             }
             else
             {

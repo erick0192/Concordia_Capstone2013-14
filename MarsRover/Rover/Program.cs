@@ -18,21 +18,24 @@ namespace Rover
         
         static void Main(string[] args)
         {            
-           // ConcurrentQueue<string> CommanderDispatcherMessageQueue = new ConcurrentQueue<string>();
-           // ConcurrentQueue<string> DispatcherSerialMessageQueue = new ConcurrentQueue<string>();
+
             IQueue CommanderDispatcherMessageQueue = new PriorityQueue(30);
-            //IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
-            //IQueue SerialStatusMessageQueue = new PriorityQueue(30);
+            IQueue DispatcherSerialMessageQueue = new PriorityQueue(30);
+            IQueue SerialStatusMessageQueue = new PriorityQueue(30);
+            IQueue StatusCommanderMessageQueue = new PriorityQueue(30);
+            IQueue MicrocontrollerCommanderMessageBox = new PriorityQueue(30);
 
             Thread dispatcher = new Thread(() => Dispatcher(CommanderDispatcherMessageQueue));
-            //Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue));
-            //Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
+            Thread serialManager = new Thread(() => SerialManager(DispatcherSerialMessageQueue, MicrocontrollerCommanderMessageBox));
+            Thread statusUpdater = new Thread(() => StatusUpdater(SerialStatusMessageQueue));
+            Thread commandSender = new Thread(() => CommandSender(MicrocontrollerCommanderMessageBox));
 
             RoverCameraFactory.GetInstance().Initialize(Properties.NetworkSettings.Default.OperatorIPAddress, Properties.NetworkSettings.Default.CameraBasePort);
             
             dispatcher.Start();
-            //serialManager.Start();
-            //statusUpdater.Start();
+            serialManager.Start();
+           // statusUpdater.Start();
+            commandSender.Start();
 
            
             //Start the commands listener
@@ -43,6 +46,25 @@ namespace Rover
             commandsListener.StartListening();
         }
 
+        static void CommandSender(IQueue Messagebox)
+        {
+            int sleepPeriod = 150;
+            string QueuedData;
+            MessageSender sender = new MessageSender(
+                Properties.NetworkSettings.Default.OperatorCommandsPort, 
+                Messagebox, 
+                Properties.NetworkSettings.Default.OperatorIPAddress);
+
+            while (true)
+            {
+                if (Messagebox.TryDequeue(out QueuedData))
+                {
+                    sender.Send(QueuedData); //Default implementation which doesn't store state
+                   
+                }
+                Thread.Sleep(sleepPeriod);
+            }
+        }
         static void Dispatcher(IQueue MessageBox)
         {
             int sleepPeriod = 100;
@@ -58,38 +80,42 @@ namespace Rover
                 }
                 else
                 {
-
+                    Thread.Sleep(sleepPeriod);
                     
                 }
 
-                Thread.Sleep(sleepPeriod);
+                //Thread.Sleep(sleepPeriod);
                 
             }
         }
 
-        static void SerialManager(IQueue DispatcherMessageBox)
+        static void SerialManager(IQueue DispatcherMessageBox, IQueue MicrocontrollerCommanderMessageBox)
         {
             MicrocontrollerSingleton microcontroller = MicrocontrollerSingleton.Instance;
+
+            microcontroller.SetQueue(MicrocontrollerCommanderMessageBox);
+
             bool success = false;
 
-            while (microcontroller.IsInitialized == false)
+            while (true)
             {
-                microcontroller.Initialize();
-                if (microcontroller.IsInitialized == true)
+                while (microcontroller.IsInitialized == false)
                 {
-                    Console.WriteLine("Connected to microcontroller");
-                    success = microcontroller.WriteMessage("test \n");
-                    Console.WriteLine(success.ToString());
+                    microcontroller.Initialize();
+                    if (microcontroller.IsInitialized == true)
+                    {
+                        Console.WriteLine("Connected to microcontroller");
+                       // success = microcontroller.WriteMessage("test \n");
+                       // Console.WriteLine(success.ToString());
+                    }
+                    else
+                    {
+                        Console.WriteLine("Could not connect to microcontroller");
+                    }
+                    Thread.Sleep(5000);
                 }
-                else
-                {
-                    Console.WriteLine("Could not connect to microcontroller");
-                }
-
-                Thread.Sleep(5000);
-            }
-
-           
+                Thread.Sleep(100);
+            }  
         }
 
         static void StatusUpdater(IQueue SerialStatusUpdaterMessageBox)
@@ -125,10 +151,6 @@ namespace Rover
             }
 
 
-            //read values from microcontroller
-            //store in dictionary
-            //display data
-            //unupdate sensor readings
         }
 
         public static void Initialize(Dictionary<string, ISensorLog> dict)

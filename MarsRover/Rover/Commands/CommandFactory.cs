@@ -32,17 +32,21 @@ namespace Rover.Commands
 
                 else if (ID == CommandMetadata.Movement.Identifier)
                 {
-
                     return new MovementCommand(unparsedCommand);
-
                 }
 
                 else if (ID == CommandMetadata.Camera.Identifier)
                 {
                     return new CameraCommand(unparsedCommand);
                 }
-
-
+                else if (ID == CommandMetadata.Pan.Identifier)
+                {
+                    return new PanCommand(unparsedCommand);
+                }
+                else if (ID == CommandMetadata.Tilt.Identifier)
+                {
+                    return new TiltCommand(unparsedCommand);
+                }
                 //...Add other commands here
 
                 else
