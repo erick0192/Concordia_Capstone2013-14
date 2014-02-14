@@ -33,10 +33,11 @@ void Init_GPS()
 
 void Loop_GPS()
 {
-      float flat, flon;
+  float flat, flon;
   unsigned long age, date, time, chars = 0;
   unsigned short sentences = 0, failed = 0;
   static const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
+   //Commented code, shows different functions and commands from the library to get other values such as speed or time from the satellites.
    /*
    if((millis() - startSERIALGPS) >= DELAY_SERIALGPS)
    {
@@ -72,7 +73,7 @@ void Loop_GPS()
 
 static void serialEvent1()
 {
-      gps.encode(Serial1.read());
+  gps.encode(Serial1.read());
 }
 static void smartdelay(unsigned long ms)
 {

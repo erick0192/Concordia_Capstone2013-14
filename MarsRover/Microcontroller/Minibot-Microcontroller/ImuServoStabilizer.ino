@@ -1,4 +1,7 @@
-//Servo Controls
+/*
+This class deals with the IMU and Servo interactions
+enabling the servos to act as stabilizers or replicators of movement ( arm )
+*/
 #include <Servo.h>
 #define UPDATE_SERVO_INTERVAL 50
 
@@ -16,9 +19,9 @@ unsigned long servoUpdateTiming = millis();
 
 void Servo_Init()
 {
-  yawServo.attach(SERVO_YAW_PIN);
-  pitchServo.attach(SERVO_PITCH_PIN);
-  rollServo.attach(SERVO_ROLL_PIN);
+  yawServo.attach(SERVO_STABILIZER_YAW_PIN);
+  pitchServo.attach(SERVO_STABILIZER_PITCH_PIN);
+  rollServo.attach(SERVO_STABILIZER_ROLL_PIN);
   
   yawServo.writeMicroseconds(1437);
   pitchServo.writeMicroseconds(1437);
@@ -53,11 +56,6 @@ void Update_Servos()
     rollServo.writeMicroseconds(rollMicrosec);
     servoUpdateTiming = millis();
    }
-   /*
-      Serial.println(yawMicrosec);
-      Serial.println(pitchMicrosec);
-      Serial.println(rollMicrosec);
-      */
 }
 
 
