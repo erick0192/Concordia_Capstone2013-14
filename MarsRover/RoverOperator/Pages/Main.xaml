@@ -33,7 +33,7 @@
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutPanel Orientation="Vertical"  >
-                        <avalonDock:LayoutAnchorablePane x:Name="PaneCam1">
+                        <avalonDock:LayoutAnchorablePane x:Name="PaneCam1" >
                             <avalonDock:LayoutAnchorable x:Name="LayoutCam1" CanAutoHide="False" CanClose="False" Title="Camera 1">
                                     <StackPanel>
                                         <controls:CameraView x:Name="Cam1" />
@@ -66,8 +66,8 @@
                     </avalonDock:LayoutPanel>
 
                     <avalonDock:LayoutAnchorablePane x:Name="paneStatus">
-                        <avalonDock:LayoutAnchorable CanAutoHide="False" CanClose="False" CanHide="False" CanFloat="False">
-                            <ScrollViewer  Margin="0,-20,0,0">
+                        <avalonDock:LayoutAnchorable CanAutoHide="False" CanClose="False" CanHide="False" CanFloat="False" Title="Rover Status">
+                            <ScrollViewer  Margin="0,0,0,0">
                             <StackPanel>
                                 <Expander Style="{DynamicResource MuiExpander}" 
                                           Template="{DynamicResource ExpandTheTemplate}"

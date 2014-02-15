@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,157 +26,155 @@ namespace RoverOperator.Pages
     /// </summary>
     public partial class Main : UserControl
     {
-
-        private ICommand toggleCameraCommand;
-        public ICommand ToggleCameraCommand
-        {
-            get
-            {
-                if (toggleCameraCommand == null)
-                {
-                    toggleCameraCommand = new RelayCommand(
-                        p => this.ToggleCamera(p));
-                }
-
-                return toggleCameraCommand;
-            }
-        }
+        private bool isAlreadyHidingCamLayout = false;
 
         public Main()
         {
-            InitializeComponent();
-            AddKeyBoardShortcuts();
-            DataContext = new MainViewModel();
+            InitializeComponent();            
 
-            ((MainViewModel)DataContext).DockingManager = dockingManager;
+            var mainVM = new MainViewModel();
+            DataContext = mainVM;           
+
+            mainVM.DockingManager = dockingManager;
             
 
             //Instantiate VM for camera views            
             CameraViewModel cvm = this.Cam1.DataContext as CameraViewModel;
-            //cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
+            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "1";
-            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera1;            
-            ((MainViewModel)DataContext).VMCamera1 = cvm;
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera1;
+            mainVM.VMCamera1 = cvm;
             
             cvm = this.Cam2.DataContext as CameraViewModel;
-            //cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
+            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "2";
             cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera2;
-            ((MainViewModel)DataContext).VMCamera2 = cvm;
+            mainVM.VMCamera2 = cvm;
             
             cvm = this.Cam3.DataContext as CameraViewModel;
-            //cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
+            cvm.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(ShowHideCamera);
             cvm.CameraName = "3";
-            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera3;       
-            ((MainViewModel)DataContext).VMCamera3 = cvm;          
+            cvm.VideoSource = VideoStreamReceiverManager.Instance.Camera3;
+            mainVM.VMCamera3 = cvm;          
 
-            //Need to refactor this!
-            this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(((MainViewModel)DataContext).MainIsVisibleChanged);
+            this.IsVisibleChanged += new DependencyPropertyChangedEventHandler(MainIsVisibleChanged);
             
             this.FocusVisualStyle = new Style();//Get rid of dotted rectangle that indicates its focused    
            
             this.LayoutCam1.Hide();
             this.LayoutCam2.Hide();
             this.LayoutCam3.Hide();
-            
-            this.LayoutCam1.IsVisibleChanged += new EventHandler(HandleUIHide);
-            this.LayoutCam2.IsVisibleChanged += new EventHandler(HandleUIHide);
-            this.LayoutCam3.IsVisibleChanged += new EventHandler(HandleUIHide);            
+
+            this.LayoutCam1.Hiding += new EventHandler<CancelEventArgs>(HandleHiding);
+            this.LayoutCam2.Hiding += new EventHandler<CancelEventArgs>(HandleHiding);
+            this.LayoutCam3.Hiding += new EventHandler<CancelEventArgs>(HandleHiding);
+
+            AddKeyBoardShortcuts();
         }
 
         private void AddKeyBoardShortcuts()
         {
+            var mainVM = DataContext as MainViewModel;
             //Camera 1
-            var kb = new KeyBinding(ToggleCameraCommand, Key.D1, ModifierKeys.Control);
+            var kb = new KeyBinding(mainVM.VMCamera1.ToggleCamera, Key.D1, ModifierKeys.Control);
             kb.CommandParameter = "1";
             this.InputBindings.Add(kb);
 
             //Camera 2
-            kb = new KeyBinding(ToggleCameraCommand, Key.D2, ModifierKeys.Control);
+            kb = new KeyBinding(mainVM.VMCamera2.ToggleCamera, Key.D2, ModifierKeys.Control);
             kb.CommandParameter = "2";
             this.InputBindings.Add(kb);
             
             //Camera 3
-            kb = new KeyBinding(ToggleCameraCommand, Key.D3, ModifierKeys.Control);
+            kb = new KeyBinding(mainVM.VMCamera3.ToggleCamera, Key.D3, ModifierKeys.Control);
             kb.CommandParameter = "3";
-            this.InputBindings.Add(kb);
-          
+            this.InputBindings.Add(kb);            
         }
 
-        private void ToggleCamera(object cameraID)
+        private void ShowHideCamera(object sender, PropertyChangedEventArgs e)
         {
-            var camID = cameraID as String;
-            var layoutCam = this.FindName("LayoutCam" + camID) as LayoutAnchorable;
-            
-            if(layoutCam.IsVisible)
+            //MIGHT NEED TO USE THIS CODE IN CASE IT CRASHES SAYING ITS TRYING TO ACCES FROM ANOTHER THREAD
+            if (!this.Dispatcher.HasShutdownStarted && !this.Dispatcher.HasShutdownFinished)
             {
-                layoutCam.Hide();
-            }
-            else
-            {
-                layoutCam.Show();
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    if (e.PropertyName == "IsActive")
+                    {
+                        LayoutAnchorable camLayoutAnch = null;
+                        var cvm = sender as CameraViewModel;
+                        var mainVM = DataContext as MainViewModel;
+
+                        if (cvm == mainVM.VMCamera1)
+                        {
+                            camLayoutAnch = this.LayoutCam1;
+                        }
+                        else if (cvm == mainVM.VMCamera2)
+                        {
+                            camLayoutAnch = this.LayoutCam2;
+                        }
+                        else if (cvm == mainVM.VMCamera3)
+                        {
+                            camLayoutAnch = this.LayoutCam3;
+                        }
+
+                        if (cvm.IsActive)
+                        {
+                            camLayoutAnch.Show();
+                        }
+                        else if(!isAlreadyHidingCamLayout)
+                        {
+                            //We dont want to try and hide if it was already hidden through the GUI
+                            camLayoutAnch.Hide();
+                        }
+                        else
+                        {
+                            //Reset for next time
+                            isAlreadyHidingCamLayout = false;
+                        }
+                    }
+                }));
             }
         }
 
-        private void HandleUIHide(object sender, EventArgs e)
+        private void HandleHiding(object sender, EventArgs e)
         {
-            var layoutCam = sender as LayoutAnchorable;
+            var camLayoutAnch = sender as LayoutAnchorable;
+            var mainVM = DataContext as MainViewModel;
             CameraViewModel cvm = null;
-            if(layoutCam == LayoutCam1)
+
+            if (camLayoutAnch == this.LayoutCam1)
             {
-                cvm = ((MainViewModel)DataContext).VMCamera1;
+                cvm = mainVM.VMCamera1;
             }
-            else if (layoutCam == LayoutCam2)
+            else if (camLayoutAnch == this.LayoutCam2)
             {
-                cvm = ((MainViewModel)DataContext).VMCamera2;
+                cvm = mainVM.VMCamera2;
             }
-            else if (layoutCam == LayoutCam3)
+            else if (camLayoutAnch == this.LayoutCam3)
             {
-                cvm = ((MainViewModel)DataContext).VMCamera3;
+                cvm = mainVM.VMCamera3;
             }
-            
-            if (cvm.ToggleCamera.CanExecute(null))
+
+            if (cvm.IsActive && camLayoutAnch.IsVisible && cvm.ToggleCamera.CanExecute(null))
+            {
+                isAlreadyHidingCamLayout = true;
                 cvm.ToggleCamera.Execute(null);
-                       
+            }               
         }
 
-        //private void ShowHideCamera(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (!this.Dispatcher.HasShutdownStarted && !this.Dispatcher.HasShutdownFinished)
-        //    {
-        //        this.Dispatcher.Invoke((Action)(() =>
-        //        {
-        //            var cvm = sender as CameraViewModel;
-        //            if (cvm == ((MainViewModel)DataContext).VMCamera1)
-        //            {
-        //                ShowHideCamera(this.LayoutCam1, ((MainViewModel)DataContext).VMCamera1, e);
-        //            }
-        //            else if (cvm == ((MainViewModel)DataContext).VMCamera2)
-        //            {
-        //                ShowHideCamera(this.LayoutCam2, ((MainViewModel)DataContext).VMCamera2, e);
-        //            }
-        //            else if (cvm == ((MainViewModel)DataContext).VMCamera3)
-        //            {
-        //                ShowHideCamera(this.LayoutCam3, ((MainViewModel)DataContext).VMCamera3, e);
-        //            }
-        //        }));
-        //    }
-        //}
-
-        //private void ShowHideCamera(LayoutAnchorable iCameraLayoutControl, CameraViewModel iCVM, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == "IsActive")
-        //    {
-        //        if (iCVM.IsActive)
-        //        {
-        //            iCameraLayoutControl.Show();
-        //        }
-        //        else
-        //        {                    
-        //            iCameraLayoutControl.Hide();
-        //        }
-        //    }
-        //}
+        public void MainIsVisibleChanged(object iSender, System.Windows.DependencyPropertyChangedEventArgs iEventArgs)
+        {
+            if ((bool)iEventArgs.NewValue == true)
+            {
+                System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
+                    System.Windows.Threading.DispatcherPriority.ContextIdle,
+                    new Action(delegate()
+                    {
+                        ((Main)iSender).Focus();
+                    })
+                );
+            }
+        }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {

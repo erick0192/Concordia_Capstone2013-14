@@ -40,7 +40,7 @@ namespace RoverOperator.Content
             {
                 return mIsActive;
             }
-            set
+            protected set
             {
                 mIsActive = value;                
                 logger.Debug("Camera {0} is now {1}.", CameraName, IsActive ? "active": "inactive");                
@@ -103,8 +103,8 @@ namespace RoverOperator.Content
                 if (mToggleCamera == null)
                 {
                     mToggleCamera = new RelayCommand(
-                        p => this.ToggleCam(),
-                        p => this.CanToggleCamera());
+                        p => this.ToggleCam(p),
+                        p => this.CanToggleCamera(p));
                 }
                 return mToggleCamera;
             }
@@ -140,14 +140,13 @@ namespace RoverOperator.Content
 
         #region Command Methods
 
-        private bool CanToggleCamera() 
+        private bool CanToggleCamera(object param) 
         {
             return canToggle;
         }
 
-        private void ToggleCam()
+        private void ToggleCam(object param)
         {
-
             //For a reason this method gets called 3 time then I press CTRL+[CamID]
             if (mVideoSource.GetState() == CameraState.CAMERA_STARTED)
             {               
@@ -165,9 +164,7 @@ namespace RoverOperator.Content
             }
          
             canToggle = false;
-            toggleTimer.Start();
-
-           
+            toggleTimer.Start();           
         }
 
         #endregion

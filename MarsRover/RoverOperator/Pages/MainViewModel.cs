@@ -50,7 +50,11 @@ namespace RoverOperator.Pages
                     OnPropertyChanged("PingRTT");
                 }
             }
-        }
+        }     
+
+        private bool isCamActive2;
+        private bool isCamActive3;
+
 
         #endregion
 
@@ -225,18 +229,8 @@ namespace RoverOperator.Pages
 
         #region Event Handlers
 
-        public void MainIsVisibleChanged(object iSender, System.Windows.DependencyPropertyChangedEventArgs iEventArgs)
-        {
-            if ((bool)iEventArgs.NewValue == true)
-            {
-                System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.ContextIdle,
-                new Action(delegate()
-                {
-                    ((Main)iSender).Focus();
-                }));
-            }
-        }
+        //Need to refactor this
+        
 
         protected void OnPropertyChanged(string name)
         {
