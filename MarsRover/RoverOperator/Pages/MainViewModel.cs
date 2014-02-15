@@ -131,16 +131,17 @@ namespace RoverOperator.Pages
         protected bool CanToggleCamera(object iParam)
         {
             CameraViewModel cvm = null;
+            var camNum = iParam as string;
 
-            if ("1" == (string)iParam)
+            if ("1" == camNum)
             {                
                 cvm = VMCamera1;
             }
-            else if ("2" == (string)iParam)
+            else if ("2" == camNum)
             {
                 cvm = VMCamera2;
             }
-            else if ("3" == (string)iParam)
+            else if ("3" == camNum)
             {
                 cvm = VMCamera3;
             }
@@ -151,16 +152,17 @@ namespace RoverOperator.Pages
         protected void ToggleCamera(object iParam)
         {
             CameraViewModel cvm = null;
+            var camNum = iParam as string;
 
-            if ("1" == (string)iParam)
+            if ("1" == camNum)
             {
                 cvm = VMCamera1;
             }
-            else if ("2" == (string)iParam)
+            else if ("2" == camNum)
             {
                 cvm = VMCamera2;
             }
-            else if ("3" == (string)iParam)
+            else if ("3" == camNum)
             {
                 cvm = VMCamera3;
             }
@@ -228,9 +230,6 @@ namespace RoverOperator.Pages
         #endregion
 
         #region Event Handlers
-
-        //Need to refactor this
-        
 
         protected void OnPropertyChanged(string name)
         {
