@@ -28,6 +28,20 @@ namespace RoverOperator.Pages
     {
         private bool isAlreadyHidingCamLayout = false;
 
+        private ICommand toggleGPSCommand;
+        public ICommand ToggleGPSCommand
+        {
+            get
+            {
+                if (toggleGPSCommand == null)
+                {
+                    toggleGPSCommand = new RelayCommand(
+                        p => this.ToggleGPS());
+                }
+                return toggleGPSCommand;
+            }
+        }
+
         public Main()
         {
             InitializeComponent();            
@@ -84,11 +98,15 @@ namespace RoverOperator.Pages
             kb = new KeyBinding(mainVM.VMCamera2.ToggleCamera, Key.D2, ModifierKeys.Control);
             kb.CommandParameter = "2";
             this.InputBindings.Add(kb);
-            
+
             //Camera 3
             kb = new KeyBinding(mainVM.VMCamera3.ToggleCamera, Key.D3, ModifierKeys.Control);
             kb.CommandParameter = "3";
-            this.InputBindings.Add(kb);            
+            this.InputBindings.Add(kb);
+
+            //GPS
+            kb = new KeyBinding(ToggleGPSCommand, Key.G, ModifierKeys.Control);
+            this.InputBindings.Add(kb);
         }
 
         private void ShowHideCamera(object sender, PropertyChangedEventArgs e)
@@ -162,6 +180,18 @@ namespace RoverOperator.Pages
             }               
         }
 
+        private void ToggleGPS()
+        {
+            if (LayoutGPS.IsVisible)
+            {
+                LayoutGPS.Hide();
+            }
+            else
+            {
+                LayoutGPS.Show();
+            }
+        }
+
         public void MainIsVisibleChanged(object iSender, System.Windows.DependencyPropertyChangedEventArgs iEventArgs)
         {
             if ((bool)iEventArgs.NewValue == true)
@@ -178,7 +208,7 @@ namespace RoverOperator.Pages
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-
+         
         }
     }
 }
