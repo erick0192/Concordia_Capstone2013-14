@@ -22,9 +22,9 @@
        
     </UserControl.InputBindings>
     <Grid>        
-        <avalonDock:DockingManager x:Name="dockingManager" Margin="0,10,0,0" FontSize="16" FontWeight="Bold">
+        <avalonDock:DockingManager x:Name="dockingManager" Margin="0,10,0,0" FontSize="16" FontWeight="Bold" Background="White">
             <avalonDock:DockingManager.Theme>
-                <avalonDock:GenericTheme/>
+                <avalonDock:MetroTheme/>
             </avalonDock:DockingManager.Theme>
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal">

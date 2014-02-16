@@ -140,27 +140,32 @@
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
 
-                                        <!-- main menu -->
-                                        <controls:ModernMenu Grid.Row="1"
-                                                             Margin="36,0,0,0"
-                                                             SelectedSource="{Binding Source, ElementName=ContentFrame, Mode=TwoWay}"
-                                                             LinkGroups="{TemplateBinding MenuLinkGroups}"/>
-
-                                        <!-- back button -->
-                                        <controls:ModernButton IconData="F1 M 33,22L 33,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 33,22 Z"
+                                        
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <!-- back button -->
+                                            <controls:ModernButton IconData="F1 M 33,22L 33,26L 19.75,26L 27,33L 20.5,33L 11,24L 20.5,15L 27,15L 19.75,22L 33,22 Z"
                                                                Command="NavigationCommands.BrowseBack"
                                                                CommandTarget="{Binding ElementName=ContentFrame}" 
                                                                ToolTip="back"
-                                                               Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,24,0,0"
+                                                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,0,0,0"
                                                                WindowChrome.IsHitTestVisibleInChrome="True" >
-                                        </controls:ModernButton>
+                                            </controls:ModernButton>
+                                            
+                                            <!-- main menu -->
+                                            <controls:ModernMenu 
+                                                             Margin="10,-10,0,0"
+                                                             SelectedSource="{Binding Source, ElementName=ContentFrame, Mode=TwoWay}"
+                                                             LinkGroups="{TemplateBinding MenuLinkGroups}"/>
 
+                                        
+                                        
+                                        </StackPanel>
                                         <!-- content frame -->
-                                        <controls:ModernFrame x:Name="ContentFrame" Grid.Row="3" Grid.RowSpan="2" Margin="36,8,16,16" 
+                                        <controls:ModernFrame x:Name="ContentFrame" Grid.Row="3" Grid.RowSpan="2" Margin="36,8,16,16" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource Accent}"
                                                               Source="{Binding ContentSource, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
                                                               ContentLoader="{TemplateBinding ContentLoader}"
                                                               FrameTopContent="{TemplateBinding FrameTopContent}"
-                                                                FrameBottomContent="{TemplateBinding FrameBottomContent}"/>
+                                                              FrameBottomContent="{TemplateBinding FrameBottomContent}"/>
                                         
 
                                         <!-- resize grip -->

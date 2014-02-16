@@ -33,10 +33,12 @@
         <mui:Link DisplayName="help" Source="/Pages/Help.xaml" />
     </mui:ModernWindow.TitleLinks>
     <mui:ModernWindow.FrameBottomContent>
-        <StatusBar Background="Black">
+        
+        <StatusBar Background="White" Margin="0,5,0,0" BorderBrush="{DynamicResource Accent}" BorderThickness="0,1,0,0">
             <TextBlock Text="{Binding Path=ConnectedToRover}"></TextBlock>
             <Separator />
             <TextBlock Text="{Binding Path=PingRTT}"></TextBlock>
         </StatusBar>
+        
     </mui:ModernWindow.FrameBottomContent>
 </mui:ModernWindow>
