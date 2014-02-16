@@ -145,6 +145,7 @@
     <Compile Include="RoverStatus.cs" />
     <Compile Include="Streams\DummyVideoSource.cs" />
     <Compile Include="Streams\VideoStreamReceiver.cs" />
+    <Compile Include="WatchDog.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

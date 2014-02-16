@@ -58,6 +58,7 @@
     <Compile Include="ComponentUpdate\MotorUpdateTests.cs" />
     <Compile Include="PriorityQueueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WatchDogTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarsRover\MarsRover.csproj">
