@@ -86,6 +86,7 @@ namespace RoverOperator.Content
             mainSC.Add(new KeyboardShortCut("Ctrl", "2", "Show/Hide the back camera view. This will also start/stop the video source behind it."));
             mainSC.Add(new KeyboardShortCut("Ctrl", "3", "Show/Hide the left camera view. This will also start/stop the video source behind it."));
             mainSC.Add(new KeyboardShortCut("Ctrl", "4", "Show/Hide the right camera view. This will also start/stop the video source behind it."));
+            mainSC.Add(new KeyboardShortCut("Ctrl", "G", "Show/Hide the GPS map view."));
 
             MainPageShortcuts = mainSC;
             AppShortcuts = appSC;

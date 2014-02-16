@@ -20,6 +20,41 @@ namespace FirstFloor.ModernUI.Windows.Controls
         : Window
     {
         /// <summary>
+        /// Identifies the FrameTopContentProperty dependency property.
+        /// </summary>
+        public static readonly DependencyProperty FrameTopContentProperty
+                = DependencyProperty.Register("FrameTopContent",
+                typeof(object), typeof(ModernWindow),
+                new PropertyMetadata(null));
+
+        /// <summary>
+        /// Identifies the FrameTopContentProperty property.
+        /// </summary>
+        public object FrameTopContent
+        {
+            get { return (object)GetValue(FrameTopContentProperty); }
+            set { SetValue(FrameTopContentProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the FrameBottomContentProperty dependency property.
+        /// </summary>
+        public static readonly DependencyProperty FrameBottomContentProperty
+                        = DependencyProperty.Register("FrameBottomContent",
+                        typeof(object), typeof(ModernWindow),
+                        new PropertyMetadata(null));
+
+        /// <summary>
+        /// Identifies the FrameBottomContentProperty property.
+        /// </summary>
+        public object FrameBottomContent
+        {
+            get { return (object)GetValue(FrameBottomContentProperty); }
+            set { SetValue(FrameBottomContentProperty, value); }
+        }
+
+
+        /// <summary>
         /// Identifies the BackgroundContent dependency property.
         /// </summary>
         public static readonly DependencyProperty BackgroundContentProperty = DependencyProperty.Register("BackgroundContent", typeof(object), typeof(ModernWindow));

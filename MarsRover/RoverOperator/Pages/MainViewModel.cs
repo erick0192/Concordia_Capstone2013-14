@@ -24,37 +24,7 @@ namespace RoverOperator.Pages
 
         #region Attributes
 
-        private string connectedToRover;
-        public string ConnectedToRover
-        {
-            get { return connectedToRover; }
-            set
-            {
-                if (!value.Equals(connectedToRover))
-                {
-                    connectedToRover = value;
-                    OnPropertyChanged("ConnectedToRover");
-                }
-            }
-        }
-
-        private string pingRTT;
-        public string PingRTT
-        {
-            get { return pingRTT; }
-            set
-            {
-                if (!value.Equals(pingRTT))
-                {
-                    pingRTT = value;
-                    OnPropertyChanged("PingRTT");
-                }
-            }
-        }     
-
-        private bool isCamActive2;
-        private bool isCamActive3;
-
+  
 
         #endregion
 
@@ -121,7 +91,7 @@ namespace RoverOperator.Pages
 
         public MainViewModel()
         {
-            StartPinging(Properties.NetworkSettings.Default.RoverIPAddress);
+            
         }
 
         #endregion
@@ -196,50 +166,8 @@ namespace RoverOperator.Pages
 
         #region Methods
 
-        private void StartPinging(string host)
-        {
-            Thread t = new Thread(() => Ping(host));
-            t.IsBackground = true;
-            t.Start();
-        }
-
-        private void Ping(string host)
-        {
-            bool pingable = false;
-            Ping pinger = new Ping();
-
-            try
-            {
-                PingReply reply = pinger.Send(host);
-                pingable = reply.Status == IPStatus.Success;
-                PingRTT = "Ping: " + reply.RoundtripTime + " ms";
-            }
-            catch (PingException) { }
-
-            if (pingable)
-            {
-                ConnectedToRover = "Connected";
-            }
-            else
-            {
-                ConnectedToRover = "Unable to connect";
-            }
-            Thread.Sleep(200);
-        }
-
         #endregion
 
-        #region Event Handlers
-
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        #endregion
+       
     }
 }

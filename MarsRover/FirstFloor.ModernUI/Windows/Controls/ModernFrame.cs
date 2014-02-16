@@ -20,6 +20,41 @@ namespace FirstFloor.ModernUI.Windows.Controls
         : ContentControl
     {
         /// <summary>
+        /// Identifies the FrameTopContentProperty dependency property.
+        /// </summary>
+        public static readonly DependencyProperty FrameTopContentProperty
+                = DependencyProperty.Register("FrameTopContent",
+                typeof(object), typeof(ModernFrame),
+                new PropertyMetadata(null));
+
+        /// <summary>
+        /// Identifies the FrameTopContentProperty property.
+        /// </summary>
+        public object FrameTopContent
+        {
+            get { return (object)GetValue(FrameTopContentProperty); }
+            set { SetValue(FrameTopContentProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the FrameBottomContentProperty dependency property.
+        /// </summary>
+        public static readonly DependencyProperty FrameBottomContentProperty
+                        = DependencyProperty.Register("FrameBottomContent",
+                        typeof(object), typeof(ModernFrame),
+                        new PropertyMetadata(null));
+
+        /// <summary>
+        /// Identifies the FrameBottomContentProperty dependency property.
+        /// </summary>
+        public object FrameBottomContent
+        {
+            get { return (object)GetValue(FrameBottomContentProperty); }
+            set { SetValue(FrameBottomContentProperty, value); }
+        }
+
+
+        /// <summary>
         /// Identifies the KeepAlive attached dependency property.
         /// </summary>
         public static readonly DependencyProperty KeepAliveProperty = DependencyProperty.RegisterAttached("KeepAlive", typeof(bool?), typeof(ModernFrame), new PropertyMetadata(null));

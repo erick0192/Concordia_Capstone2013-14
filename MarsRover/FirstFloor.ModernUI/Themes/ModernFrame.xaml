@@ -53,13 +53,25 @@
                         <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               Margin="{TemplateBinding Padding}">
-                            <controls:TransitioningContentControl Content="{TemplateBinding Content}"
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <controls:TransitioningContentControl Grid.Row="1"
+                                                                  Content="{TemplateBinding Content}"
                                                                   ContentTemplate="{TemplateBinding ContentTemplate}"
                                                                   ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                                                   Margin="{TemplateBinding Padding}" />
 
+                            <!-- added to suport custom content -->
+                            <ContentControl Content="{TemplateBinding FrameTopContent}"/>
+                            <ContentControl Grid.Row="2" Content="{TemplateBinding FrameBottomContent}"/>
                             <!-- display progress bar while content is being loaded -->
-                            <ProgressBar IsIndeterminate="True"
+                            <ProgressBar Grid.Row="1"
+                                         IsIndeterminate="True"
                                          HorizontalAlignment="Stretch"
                                          VerticalAlignment="Top"
                                          Height="4"
