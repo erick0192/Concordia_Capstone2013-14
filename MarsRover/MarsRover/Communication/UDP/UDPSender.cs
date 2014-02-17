@@ -32,7 +32,8 @@ namespace MarsRover
             broadcast = IPAddress.Parse(IPAdress);
             ep = new IPEndPoint(broadcast, Port);
             cq = new ConcurrentQueue<byte>();
-
+            
+            s.SendBufferSize = 65535;
             /*SendingThread = new Thread(SendDataProcess);
             SendingThread.IsBackground = false;
             SendingThread.Priority = ThreadPriority.Highest;
@@ -47,11 +48,15 @@ namespace MarsRover
             return TotalNbDataSent;
         }
 
-        public void SendBytesNow(byte[] Data, int Length)
+        public bool SendBytesNow(byte[] Data, int Length)
         {
-            TotalNbDataSent += Length;
+            if (Length > s.SendBufferSize)
+                return false;
 
+            TotalNbDataSent += Length;
             s.SendTo(Data, ep);
+
+            return true;
         }
 
         public void SendStringNow(string command)
