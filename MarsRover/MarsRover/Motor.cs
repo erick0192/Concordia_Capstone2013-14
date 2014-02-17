@@ -19,26 +19,99 @@ namespace MarsRover
             MiddleRight,
             BackLeft,
             BackRight
-        }        
+        }
+
+        public enum TemperatureStatus
+        {
+            Normal,
+            Warning,
+            Dangerous
+        }
+
+        public enum CurrentStatus
+        {
+            Normal,
+            Warning,
+            Dangerous
+        }
 
         //Amperes
         public const float MIN_CURRENT = 0.0f;
+        public const float MIN_WARNING_CURRENT = 5.0f;
         public const float MAX_CURRENT = 20.0f;
+        public const float MAX_WARNING_CURRENT = 15.0f;
 
         //Celsius
         public const float MIN_TEMPERATURE = 0.0f;
-        public const float MAX_TEMPERATYRE = 120.0f;
+        public const float MIN_WARNING_TEMPERATURE = 20.0f;
+        public const float MAX_TEMPERATURE = 120.0f;
+        public const float MAX_WARNING_TEMPERATURE = 100.0f;
 
         #region Properties
 
-        public float Current { get; set; }
-        public float Temperature { get; set; }
+        private float current;
+        public Motor.CurrentStatus StatusCurrent { get; set; }
+        public float Current 
+        {
+            get
+            {
+                return current;
+            }
+            set
+            {
+                current = value;
+                CheckCurrentStatus();
+            }
+        }
+
+        private float temperature;
+        public Motor.TemperatureStatus StatusTemperature { get; set; }
+        public float Temperature
+        {
+            get
+            {
+                return temperature;
+            }
+            set
+            {
+                temperature = value;
+                CheckTemperatureStatus();
+            }
+        }
+        
+
+
+        public float Duty { get; set; }
         public Motor.Location LocationOnRover { get; set; }
 
         public override string UpdateIdentifier
         {
             get { return MarsRover.Commands.CommandMetadata.Update.MotorIdentifier; }
         }
+
+        #endregion
+
+        #region Delegates and Events
+
+        public delegate void WarningCurrentDetectedDelegate(Motor motor);
+        public event WarningCurrentDetectedDelegate WarningCurrentDetected;
+
+        public delegate void DangerousCurrentDetectedDelegate(Motor motor);
+        public event WarningCurrentDetectedDelegate DangerousCurrentDetected;
+
+        public delegate void NormalCurrentDetectedDelegate(Motor motor);
+        public event NormalCurrentDetectedDelegate NormalCurrentDetected;
+
+        public delegate void WarningTemperatureDetectedDelegate(Motor motor);
+        public event WarningTemperatureDetectedDelegate WarningTemperatureDetected;
+
+        public delegate void DangerousTemperatureDetectedDelegate(Motor motor);
+        public event DangerousTemperatureDetectedDelegate DangerousTemperatureDetected;
+
+        public delegate void NormalTemperatureDetectedDelegate(Motor motor);
+        public event NormalTemperatureDetectedDelegate NormalTemperatureDetected;
+
+        //public delegate void 
 
         #endregion
 
@@ -53,6 +126,66 @@ namespace MarsRover
         #endregion
 
         #region Methods
+
+        private void CheckCurrentStatus()
+        {
+            if ((current >= MAX_CURRENT || current <= MIN_CURRENT)
+                && StatusCurrent != CurrentStatus.Dangerous)
+            {
+                StatusCurrent = CurrentStatus.Dangerous;
+                if (DangerousCurrentDetected != null)
+                {
+                    DangerousCurrentDetected(this);
+                }
+            }
+            else if ((current > MAX_WARNING_CURRENT || current < MIN_WARNING_CURRENT)
+                && StatusCurrent != CurrentStatus.Warning)
+            {
+                StatusCurrent = CurrentStatus.Warning;
+                if (WarningCurrentDetected != null)
+                {
+                    WarningCurrentDetected(this);
+                }
+            }
+            else if (StatusCurrent != CurrentStatus.Normal)
+            {
+                StatusCurrent = CurrentStatus.Normal;
+                if (NormalCurrentDetected != null)
+                {
+                    NormalCurrentDetected(this);
+                }
+            }
+        }
+
+        private void CheckTemperatureStatus()
+        {
+            if ((temperature >= MAX_TEMPERATURE || temperature <= MIN_TEMPERATURE)
+                && StatusTemperature != TemperatureStatus.Dangerous)
+            {
+                StatusTemperature = TemperatureStatus.Dangerous;
+                if(DangerousTemperatureDetected != null)
+                {
+                    DangerousTemperatureDetected(this);
+                }
+            }
+            else if ((temperature > MAX_WARNING_TEMPERATURE || temperature < MIN_WARNING_TEMPERATURE)
+                && StatusTemperature != TemperatureStatus.Warning)
+            {
+                StatusTemperature = TemperatureStatus.Dangerous;
+                if(WarningTemperatureDetected!= null)
+                {
+                    WarningTemperatureDetected(this);
+                }
+            }
+            else if(StatusTemperature != TemperatureStatus.Normal)
+            {
+                StatusTemperature = TemperatureStatus.Normal;
+                if(NormalTemperatureDetected != null)
+                {
+                    NormalTemperatureDetected(this);
+                }
+            }
+        }
 
         public static string GetLocationFriendlyString(Motor.Location location)
         {

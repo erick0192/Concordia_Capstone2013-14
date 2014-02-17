@@ -4,21 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Width="200" Height="75">
-    <Grid>
-        <StackPanel>        
-            <StackPanel Orientation="Horizontal">
-                <Image Source="../Assets/icons/mechanicalwheel.png" Width="64" Height="64" HorizontalAlignment="Left"/>        
-                <StackPanel Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Path=Title}"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="Current" Text="{Binding StringFormat='Current: {0}', Path=Motor.Current, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="Temperature" Text="{Binding StringFormat='Temp.: {0} C', Path=Motor.Temperature, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
+             d:DesignHeight="100" d:DesignWidth="300" Width="210" >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Top" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="64"/>
+            <ColumnDefinition Width="24" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>    
+        
+        <!-- Title and Duty slider -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=Title}" Width="80" Margin="0,0,5,0" />
+        <Slider Grid.Row="0" Grid.Column="2" x:Name="DutySlider" Width="120" Value="{Binding Path=Duty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="100" LargeChange="10" SmallChange="5"/>
+
+        <!-- Row 1 Wheel and Duty -->
+        <Image Grid.Row="1" Grid.RowSpan="3" Source="../Assets/icons/mechanicalwheel.png" Width="56" Height="56" HorizontalAlignment="Left"/>
+        <TextBlock  Grid.Row="1" Grid.Column="2" x:Name="Duty" Text="{Binding StringFormat='Duty: {0}%', Path=Duty, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" />
+
+        <!-- Row 2 Current -->
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">            
+            <Image Source="../Assets/icons/error.png" Width="16" Height="16" 
+                Visibility="{Binding Path=IsDangerousCurrent, Converter={StaticResource ResourceKey=BoolVisibilityConverter }, UpdateSourceTrigger=PropertyChanged}"/>
+            <Image Source="../Assets/icons/warning.png" Width="16" Height="16" 
+                Visibility="{Binding Path=IsWarningCurrent, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
+        <TextBlock Grid.Row="2" Grid.Column="2"
+            Name="Current" Text="{Binding StringFormat='Current: {0}', Path=Motor.Current, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" />
+        
+        <!-- Row 3 Temperature -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">            
+            <Image Source="../Assets/icons/error.png" Width="16" Height="16" 
+                    Visibility="{Binding Path=IsDangerousTemperature, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+            <Image Source="../Assets/icons/warning.png" Width="16" Height="16"
+                    Visibility="{Binding Path=IsWarningTemperature, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <TextBlock Grid.Row="3" Grid.Column="2"
+            Name="Temperature" Text="{Binding StringFormat='Temp.: {0} C', Path=Motor.Temperature, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

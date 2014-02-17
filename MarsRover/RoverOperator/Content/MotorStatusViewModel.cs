@@ -32,6 +32,28 @@ namespace RoverOperator.Content
             }
         }
 
+        public float Duty
+        {
+            get
+            {
+                return Motor.Duty;
+            }
+            set
+            {
+                Motor.Duty = (float)Math.Round(value);
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Duty"));
+                }
+            }
+        }
+
+        public bool IsDangerousCurrent { get; protected set; }
+        public bool IsWarningCurrent { get; protected set; }
+
+        public bool IsDangerousTemperature { get; protected set; }
+        public bool IsWarningTemperature { get; protected set; }       
+
         #endregion
 
         #region Delegates and Events
@@ -46,6 +68,15 @@ namespace RoverOperator.Content
         {
             this.motorKey = motorKey;
             motor = StatusUpdater.Instance.RoverStatus.Motors[motorKey];
+            
+            motor.DangerousCurrentDetected += new MarsRover.Motor.WarningCurrentDetectedDelegate(CurrentStatusChanged);
+            motor.WarningCurrentDetected += new MarsRover.Motor.WarningCurrentDetectedDelegate(CurrentStatusChanged);
+            motor.NormalCurrentDetected += new MarsRover.Motor.NormalCurrentDetectedDelegate(CurrentStatusChanged);
+
+            motor.DangerousTemperatureDetected += new MarsRover.Motor.DangerousTemperatureDetectedDelegate(TemperatureStatusChanged);
+            motor.WarningTemperatureDetected += new MarsRover.Motor.WarningTemperatureDetectedDelegate(TemperatureStatusChanged);
+            motor.NormalTemperatureDetected += new MarsRover.Motor.NormalTemperatureDetectedDelegate(TemperatureStatusChanged);
+
             StatusUpdater.Instance.MotorsUpdated += new StatusUpdater.MotorsUpdatedDelegate(UpdateMotor);
         }
 
@@ -58,6 +89,56 @@ namespace RoverOperator.Content
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Motor"));
+            }
+        }
+
+        private void TemperatureStatusChanged(Motor motor)
+        {
+            if (motor.StatusTemperature == Motor.TemperatureStatus.Dangerous)
+            {
+                IsDangerousTemperature = true;
+                IsWarningTemperature = false;
+            }
+            else if(motor.StatusTemperature == Motor.TemperatureStatus.Warning)
+            {
+                IsDangerousTemperature = false;
+                IsWarningTemperature = true;
+            }
+            else
+            {
+                IsDangerousTemperature = false;
+                IsWarningTemperature = false;
+            }
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("IsDangerousTemperature"));
+                PropertyChanged(this, new PropertyChangedEventArgs("IsWarningTemperature"));
+            }
+        }
+
+        private void CurrentStatusChanged(Motor motor)
+        {
+            if(motor.StatusCurrent == Motor.CurrentStatus.Dangerous)
+            {
+                IsDangerousCurrent = true;
+                IsWarningCurrent = false;
+            }
+            else if (motor.StatusCurrent == Motor.CurrentStatus.Warning)
+            {
+                IsDangerousCurrent = false;
+                IsWarningCurrent = true;
+            }
+            else
+            {
+                IsDangerousCurrent = false;
+                IsWarningCurrent = false;
+            }
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("IsDangerousCurrent"));
+                PropertyChanged(this, new PropertyChangedEventArgs("IsWarningCurrent"));
             }
         }
 

@@ -50,7 +50,8 @@ namespace RoverOperator.Pages
             DataContext = mainVM;           
 
             mainVM.DockingManager = dockingManager;
-            
+            //dockingManager.RightSidePanel.Width = 400;
+            //leftLayoutPanel.DockWidth = new GridLength(200);
 
             //Instantiate VM for camera views            
             CameraViewModel cvm = this.Cam1.DataContext as CameraViewModel;

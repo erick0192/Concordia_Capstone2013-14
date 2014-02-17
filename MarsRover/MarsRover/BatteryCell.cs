@@ -11,7 +11,7 @@ namespace MarsRover
 {
     public class BatteryCell : AbstractUpdateableComponent
     {
-        public enum CellStatus
+        public enum VoltageStatus
         {
             UnderVoltage,
             Normal,
@@ -28,7 +28,7 @@ namespace MarsRover
         #region Properties
 
         public int CellID { get; set; }
-        public BatteryCell.CellStatus Status { get; set; }
+        public BatteryCell.VoltageStatus StatusVoltage { get; set; }
 
         private float voltage;
         public float Voltage
@@ -75,48 +75,38 @@ namespace MarsRover
 
         private void UpdateCellStatus()
         {
-            if(voltage > MAX_VOLTAGE)
+            if (voltage > MAX_VOLTAGE && StatusVoltage != VoltageStatus.OverVoltage)
             {
-                if (Status != CellStatus.OverVoltage)
+                StatusVoltage = VoltageStatus.OverVoltage;
+                if (OverVoltageDetected != null)
                 {
-                    Status = CellStatus.OverVoltage;   
-                    if(OverVoltageDetected != null)
-                    {
-                        OverVoltageDetected(this);
-                    }
+                    OverVoltageDetected(this);
                 }
             }
-            else if(voltage < MIN_VOLTAGE)
+            else if (voltage < MIN_VOLTAGE && StatusVoltage != VoltageStatus.UnderVoltage)
             {
-                if(Status != CellStatus.UnderVoltage)
+                StatusVoltage = VoltageStatus.UnderVoltage;
+                if (UnderVoltageDetected != null)
                 {
-                    Status = CellStatus.UnderVoltage;
-                    if(UnderVoltageDetected != null)
-                    {
-                        UnderVoltageDetected(this);
-                    }
-                }                
-            }
-            else if(voltage <= MIN_WARNING_VOLTAGE || voltage >= MAX_WARNING_VOLTAGE)
-            {
-                if (Status != CellStatus.Warning)
-                {                    
-                    Status = CellStatus.Warning;
-                    if (WarningVoltageDetected != null)
-                    {
-                        WarningVoltageDetected(this);
-                    }
+                    UnderVoltageDetected(this);
                 }
             }
-            else
+            else if ((voltage <= MIN_WARNING_VOLTAGE || voltage >= MAX_WARNING_VOLTAGE)
+                && StatusVoltage != VoltageStatus.Warning)
             {
-                if (Status != CellStatus.Normal)
-                {                    
-                    Status = CellStatus.Normal;
-                    if (NormalVoltageDetected != null)
-                    {
-                        NormalVoltageDetected(this);
-                    }
+                StatusVoltage = VoltageStatus.Warning;
+                if (WarningVoltageDetected != null)
+                {
+                    WarningVoltageDetected(this);
+                }
+
+            }
+            else if (StatusVoltage != VoltageStatus.Normal)
+            {
+                StatusVoltage = VoltageStatus.Normal;
+                if (NormalVoltageDetected != null)
+                {
+                    NormalVoltageDetected(this);
                 }
             }
         }
