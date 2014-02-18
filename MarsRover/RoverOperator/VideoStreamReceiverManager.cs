@@ -17,19 +17,27 @@ namespace MarsRover.Streams
         private UDPOperatorCameraDevice camera2;
         private UDPOperatorCameraDevice camera3;
 
+        private static object syncRoot = new Object();
+
         #endregion
 
         #region Properties
 
-        private static VideoStreamReceiverManager mInstance;
+        private static volatile VideoStreamReceiverManager instance;
         public static VideoStreamReceiverManager Instance
         {
             get
             {
-                if (null == mInstance)
-                    mInstance = new VideoStreamReceiverManager();
+                if (null == instance)
+                {
+                    lock (syncRoot)
+                    {
+                        if (null == instance)
+                            instance = new VideoStreamReceiverManager();
+                    }
+                }
 
-                return mInstance;
+                return instance;
             }
         }
 

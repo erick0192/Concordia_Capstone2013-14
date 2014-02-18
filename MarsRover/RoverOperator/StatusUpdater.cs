@@ -10,7 +10,7 @@ using MarsRover.Exceptions;
 
 namespace RoverOperator
 {
-    public class StatusUpdater
+    public sealed class StatusUpdater
     {
         #region Private fields
         
@@ -21,18 +21,27 @@ namespace RoverOperator
         private IQueue updatesQueue;
         private MessageListener listener;
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private static object syncRoot = new Object();
 
         #endregion
 
         #region Properties
 
-        private static StatusUpdater instance;
+        private static volatile StatusUpdater instance;
         public static StatusUpdater Instance
         {
             get
             {
                 if (null == instance)
-                    instance = new StatusUpdater();
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new StatusUpdater();
+                        }
+                    }
+                }
 
                 return instance;
             }
