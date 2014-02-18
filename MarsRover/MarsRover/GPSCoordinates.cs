@@ -44,11 +44,11 @@ namespace MarsRover
         //NMEA in X, Y, Z format methods for longitude and latitude
         private double nmeaToLatitude(double Z)
         {
-            return Math.Asin(Z / 6371); //6371 is approximate radius of the earth in km
+            return Math.Asin(Z / 6371) * 57.2957795; //6371 is approximate radius of the earth in km, 57.2957795 degrees per radian
         }
         private double nmeaToLongitude(double X, double Y)
         {
-            return Math.Atan2(Y, X);
+            return Math.Atan2(Y, X) * 57.2957795; //57.2957795 degrees per radian
         }
 
         #endregion
