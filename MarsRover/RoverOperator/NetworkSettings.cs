@@ -22,6 +22,7 @@ namespace RoverOperator
             set
             {
                 Properties.NetworkSettings.Default.RoverIPAddress = value;
+                MarsRover.Communication.Pinger.Instance.RoverIPAddress = value;
                 if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("RoverIPAddress"));
@@ -103,7 +104,7 @@ namespace RoverOperator
 
         private NetworkSettings()
         {
-            
+            RoverIPAddress = Properties.NetworkSettings.Default.RoverIPAddress;
         }
 
         public void Save()

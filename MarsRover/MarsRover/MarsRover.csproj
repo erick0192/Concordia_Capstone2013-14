@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -132,6 +133,7 @@
     <Compile Include="Communication\Packet\Packet.cs" />
     <Compile Include="Communication\Packet\PacketPartitionner.cs" />
     <Compile Include="Communication\Packet\PacketReconstructor.cs" />
+    <Compile Include="Communication\Pinger.cs" />
     <Compile Include="Communication\TCP\TCPClient.cs" />
     <Compile Include="Communication\TCP\TCPServer.cs" />
     <Compile Include="Communication\UDP\UDPListener.cs" />

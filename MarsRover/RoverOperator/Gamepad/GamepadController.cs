@@ -26,6 +26,7 @@ namespace RoverOperator.Gamepad
         {
             //TODO: Detect new controllers after start ?
             var controllers = new[] { new Controller(UserIndex.One), new Controller(UserIndex.Two) };
+            udpSender = new UDPSender(NetworkSettings.Instance.RoverIPAddress, 5000);
             StartPollingAndSendingCommands(controllers);
         }
 
@@ -73,8 +74,6 @@ namespace RoverOperator.Gamepad
                 command.Append(getPaddedInt(rightSpeed));
 
                 command.Append(">");
-                //TODO: Send command
-                //Need to implement command sender
                 udpSender.SendStringNow(command.ToString());
 
                 previousState = state;

@@ -11,14 +11,12 @@ using FirstFloor.ModernUI.Windows.Controls;
 using RoverOperator.Content;
 using NLog;
 using System.ComponentModel;
-using System.Net.NetworkInformation;
-using System.Threading;
 
 namespace RoverOperator
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        #region Properties    
+        #region Properties
     
         private string connectedToRover;
         public string ConnectedToRover
@@ -46,13 +44,14 @@ namespace RoverOperator
                     OnPropertyChanged("PingRTT");
                 }
             }
-        }     
+        }
 
         #endregion
 
-        #region Delegates
+        #region Events/Delegates
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public delegate void RTTEventHandler(long RTT);
 
         #endregion
 
@@ -62,8 +61,10 @@ namespace RoverOperator
         {
             ConnectedToRover = "Attempting to connect...";
             PingRTT = "Ping: 0 ms";
-            StartPinging(Properties.NetworkSettings.Default.RoverIPAddress);
+            MarsRover.Communication.Pinger.Instance.RTTChanged += RTTChanged;
+            MarsRover.Communication.Pinger.Instance.ConnectivityChanged += ConnectivityChanged;
         }
+
 
         #endregion
 
@@ -82,35 +83,21 @@ namespace RoverOperator
 
         #region Methods
 
-        private void StartPinging(string host)
+        private void RTTChanged(long RTT)
         {
-            Thread t = new Thread(() => Ping(host));
-            t.IsBackground = true;
-            t.Start();
+            PingRTT = "Ping: " + RTT + " ms";
         }
 
-        private void Ping(string host)
+        private void ConnectivityChanged(bool connectedToRover)
         {
-            bool pingable = false;
-            Ping pinger = new Ping();
-
-            try
-            {
-                PingReply reply = pinger.Send(host);
-                pingable = reply.Status == IPStatus.Success;
-                PingRTT = "Ping: " + reply.RoundtripTime + " ms";
-            }
-            catch (PingException) { }
-
-            if (pingable)
+            if (connectedToRover)
             {
                 ConnectedToRover = "Connected";
             }
             else
             {
-                ConnectedToRover = "Unable to connect";
+                ConnectedToRover = "Unable to connect...";
             }
-            Thread.Sleep(200);
         }
 
         #endregion
