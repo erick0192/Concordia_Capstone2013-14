@@ -49,9 +49,7 @@ namespace RoverOperator.Pages
             var mainVM = new MainViewModel();
             DataContext = mainVM;           
 
-            mainVM.DockingManager = dockingManager;
-            //dockingManager.RightSidePanel.Width = 400;
-            //leftLayoutPanel.DockWidth = new GridLength(200);
+            mainVM.DockingManager = dockingManager;           
 
             //Instantiate VM for camera views            
             CameraViewModel cvm = this.Cam1.DataContext as CameraViewModel;
@@ -209,7 +207,9 @@ namespace RoverOperator.Pages
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-         
+            //Setting width in xaml does not work cause Avalondock resizes all layouts after initialization
+            //So we must set the width after everything is loaded
+            leftLayoutPanel.DockWidth = new GridLength(360, GridUnitType.Pixel);
         }
     }
 }

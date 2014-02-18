@@ -7,7 +7,7 @@
              xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:controls="clr-namespace:RoverOperator.Content"
              mc:Ignorable="d" 
-             d:DesignWidth="1100" d:DesignHeight="800"
+             d:DesignWidth="900" d:DesignHeight="700"
              Focusable="True" x:Name="MainPage" Loaded="MainPage_Loaded">
     <UserControl.InputBindings>
         <KeyBinding Key="F1" Command="{Binding LoadLayoutCommand}" CommandParameter="F1"/>
@@ -27,8 +27,8 @@
                 <avalonDock:MetroTheme/>
             </avalonDock:DockingManager.Theme>
             <avalonDock:LayoutRoot>
-                <avalonDock:LayoutPanel Orientation="Horizontal" DockWidth="200" x:Name="mainLayoutPanel" >
-                    <avalonDock:LayoutPanel Orientation="Vertical" x:Name="leftLayoutPanel">
+                <avalonDock:LayoutPanel Orientation="Horizontal" x:Name="mainLayoutPanel" >
+                    <avalonDock:LayoutPanel Orientation="Vertical" x:Name="leftLayoutPanel" DockWidth="360">
                         <avalonDock:LayoutAnchorablePane x:Name="PaneCam1">
                             <avalonDock:LayoutAnchorable x:Name="LayoutCam1" CanClose="False" CanAutoHide="False" Title="Camera 1">
                                 <StackPanel>
@@ -58,8 +58,8 @@
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>
                     </avalonDock:LayoutPanel>
-                    <avalonDock:LayoutAnchorablePane x:Name="paneStatus">
-                        <avalonDock:LayoutAnchorable CanHide="False" CanClose="False" CanFloat="False" CanAutoHide="False" Title="Rover Status">
+                    <avalonDock:LayoutAnchorablePane x:Name="paneStatus" >
+                        <avalonDock:LayoutAnchorable CanHide="False" CanClose="False" CanFloat="True" CanAutoHide="False" Title="Rover Status"   >
                             <ScrollViewer Margin="0,0,0,0">
                                 <StackPanel>
                                     <Expander FontSize="16" Header="Sensors" IsExpanded="True" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">

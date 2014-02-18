@@ -68,6 +68,7 @@ namespace RoverOperator.Content
         {
             this.motorKey = motorKey;
             motor = StatusUpdater.Instance.RoverStatus.Motors[motorKey];
+            motor.Duty = 100.0f;
             
             motor.DangerousCurrentDetected += new MarsRover.Motor.WarningCurrentDetectedDelegate(CurrentStatusChanged);
             motor.WarningCurrentDetected += new MarsRover.Motor.WarningCurrentDetectedDelegate(CurrentStatusChanged);
