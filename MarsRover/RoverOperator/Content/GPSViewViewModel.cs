@@ -23,16 +23,8 @@ namespace RoverOperator.Content
 
         }
 
-        private GPSMap gpsMap;
-
-        private GPSCoordinates roverCoordinates;
-        public GPSCoordinates RoverCoordinates
-        {
-            get
-            {
-                return roverCoordinates;
-            }
-        }
+        public GPSCoordinates roverCoordinates { get; set; }
+        public string roverCoordinateString { get; set; }
 
         private List<GPSLocator> targetCoordinates;
 
@@ -42,29 +34,25 @@ namespace RoverOperator.Content
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        #endregion
-
-        #region Constructor
-
-        public GPSViewViewModel()
-        {
-            StatusUpdater.Instance.GPSCoordinatesUpdated += new StatusUpdater.GPSCoordinatesUpdatedDelegate(UpdateGPS);
-        }
-
-        #endregion
-
-        #region Event Handlers
-
         //Updated coordinates from status update
         private void UpdateGPS(GPSCoordinates gpsCoordinates)
         {
             roverCoordinates = gpsCoordinates;
+            roverCoordinateString = "Rover: " + gpsCoordinates.Location.ToString();
             
-            if (PropertyChanged != null)
+            OnPropertyChanged("roverCoordinates");
+            OnPropertyChanged("roverCoordinateString");
+        }
+
+        // Create the OnPropertyChanged method to raise the event 
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs("RoverCoordinates"));
+                handler(this, new PropertyChangedEventArgs(name));
             }
-        }      
+        }
 
         //User adds new target to map
         private void addTarget(double targetLatitude, double targetLongitude)
@@ -75,6 +63,15 @@ namespace RoverOperator.Content
             }
 
             targetCoordinates.Add(new GPSLocator(targetLatitude, targetLongitude));
+        }
+
+        #endregion
+
+        #region Constructor
+
+        public GPSViewViewModel()
+        {
+            StatusUpdater.Instance.GPSCoordinatesUpdated += new StatusUpdater.GPSCoordinatesUpdatedDelegate(UpdateGPS);
         }
 
         #endregion

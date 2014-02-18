@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MarsRover.Commands;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace MarsRover
 {
@@ -17,6 +18,8 @@ namespace MarsRover
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
+
+        public Location Location { get; set; }
 
         public override string UpdateIdentifier
         {
@@ -37,6 +40,19 @@ namespace MarsRover
 
         #endregion
 
+        #region Methods
+        //NMEA in X, Y, Z format methods for longitude and latitude
+        private double nmeaToLatitude(double Z)
+        {
+            return Math.Asin(Z / 6371); //6371 is approximate radius of the earth in km
+        }
+        private double nmeaToLongitude(double X, double Y)
+        {
+            return Math.Atan2(Y, X);
+        }
+
+        #endregion
+
         public override void UpdateFromString(string updateString)
         {
             if (IsValidUpdateString(updateString))
@@ -45,6 +61,14 @@ namespace MarsRover
                 this.X = float.Parse(updateArray[0], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
                 this.Y = float.Parse(updateArray[1], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
                 this.Z = float.Parse(updateArray[2], NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint);
+
+                if (this.Location == null)
+                {
+                    Location = new Location();
+                }
+
+                this.Location.Latitude = nmeaToLatitude(this.Z);
+                this.Location.Longitude = nmeaToLongitude(this.X, this.Y);
             }
             else
             {

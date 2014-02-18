@@ -93,6 +93,9 @@
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>

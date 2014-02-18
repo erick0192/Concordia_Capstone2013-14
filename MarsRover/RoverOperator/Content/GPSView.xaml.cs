@@ -31,11 +31,10 @@ namespace RoverOperator.Content
             InitializeComponent();
 
             gpsVM = new GPSViewViewModel();
+            this.DataContext = gpsVM;            
 
             //bind events
-            myMap.MouseDoubleClick += map_MouseDoubleClick;
-
-            DataContext = this;
+            myMap.MouseDoubleClick += map_MouseDoubleClick;            
         }
 
         //handle mouse click to add targets
