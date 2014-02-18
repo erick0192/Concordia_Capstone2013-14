@@ -59,6 +59,9 @@
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\FirstFloor.ModernUI\bin\Debug\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\packages\BingMapsWpfControl.1.0.0\lib\net40-client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=2.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
@@ -132,6 +135,7 @@
       <DependentUpon>NetworkSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\NetworkSettingsViewModel.cs" />
+    <Compile Include="Content\GPSViewViewModel.cs" />
     <Compile Include="NetworkSettings.cs" />
     <Compile Include="Properties\NetworkSettings.Designer.cs">
       <AutoGen>True</AutoGen>
