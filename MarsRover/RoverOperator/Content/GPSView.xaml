@@ -5,37 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="400" Height="400"  Width="400">
+             d:DesignHeight="400" d:DesignWidth="360">
     <Grid>
-        <StackPanel Orientation="Vertical" Height="400" Width="400">
-            <m:Map x:Name="myMap" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" Margin="0,0,0,0" Height="365"  Width="400" >
-                <m:Pushpin x:Name="roverPin" Location="{Binding Path=roverCoordinates.Location, UpdateSourceTrigger=PropertyChanged}">                    
-                </m:Pushpin>
-            </m:Map>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,3,0,0">
-                <TextBlock VerticalAlignment="Center">Longitude:</TextBlock>
+        <DockPanel>            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                <TextBlock VerticalAlignment="Center">Long:</TextBlock>
                 <TextBox Name="longitudeBox" TextWrapping="Wrap" Height="30" Width="80" Margin="5,0,0,0"></TextBox>
-                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Latitude:</TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Lat:</TextBlock>
                 <TextBox Name="latitudeBox" TextWrapping="Wrap" Height="30" Width="80" Margin="5,0,0,0"></TextBox>
                 <Button Name="addTargetButton" Click="addTargetButton_Click" Height="30" Width="80" Margin="30,0,0,0">Add</Button>
-                <!--<Button Name="removeTargetButton" Click="removeTargetButton_Click" Height="30" Width="80" Margin="5,0,0,0">Remove</Button>-->
-                <!--<Button Name="removeAllTargetsButton" Click="removeAllTargetsButton_Click" Height="25" Width="80" Margin="10,0,0,0">Remove All</Button>-->
             </StackPanel>
-        </StackPanel>
-        <!--<StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Path=Title}"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="TitleLong" Text="Longitude: " />
-                        <TextBlock x:Name="Longitude" Text="{Binding Path=Longitude,  UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="TitleLat" Text="Latitude: "/>
-                        <TextBlock x:Name="Latitude" Text="{Binding Path=Latitude, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel> -->
+            <m:Map x:Name="myMap" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <m:Pushpin x:Name="roverPin" Location="{Binding Path=roverCoordinates.Location, UpdateSourceTrigger=PropertyChanged}">
+                </m:Pushpin>
+            </m:Map>
+        </DockPanel>
     </Grid>
 </UserControl>
