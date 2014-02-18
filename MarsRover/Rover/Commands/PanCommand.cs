@@ -60,6 +60,11 @@ namespace Rover.Commands
 
         }
 
+        private string CreateMessage()
+        {
+            return CommandMetadata.StartDelimiter + CommandMetadata.Pan.Identifier + camIndex.ToString() + Angle.ToString() + CommandMetadata.EndDelimiter;
+        }
+
         private int ParsePanAngle(string unparsedText)
         {
             string panAngleStr;
@@ -92,7 +97,19 @@ namespace Rover.Commands
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            string message = CreateMessage();
+
+
+            //Send message to serial port / serial handler
+            if (microcontroller.IsInitialized)
+            {
+                microcontroller.WriteMessage(message);
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.WriteLine(message); //Stub. Remove for final version.
+            }
         }
 
         public void UnExecute()

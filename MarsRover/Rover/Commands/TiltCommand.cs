@@ -31,8 +31,9 @@ namespace Rover.Commands
                 camIndex = ParseCamIndex(unparsedCommand);
                 tiltAngle = ParseTiltAngle(unparsedCommand);
             }
-            catch (ArgumentException)
+            catch (ArgumentException e)
             {
+                Console.WriteLine(e.Message);
                 throw;
             }
             microcontroller = MicrocontrollerSingleton.Instance;
@@ -40,12 +41,29 @@ namespace Rover.Commands
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            string message = CreateMessage();
+
+
+            //Send message to serial port / serial handler
+            if (microcontroller.IsInitialized)
+            {
+                microcontroller.WriteMessage(message);
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.WriteLine(message); //Stub. Remove for final version.
+            }
         }
 
         public void UnExecute()
         {
             throw new NotImplementedException("There is no unexecute for tilt commands");
+        }
+
+        private string CreateMessage()
+        {
+            return CommandMetadata.StartDelimiter + CommandMetadata.Tilt.Identifier + camIndex.ToString() + Angle.ToString() + CommandMetadata.EndDelimiter;
         }
 
         private int ParseCamIndex(string unparsedCommand)
