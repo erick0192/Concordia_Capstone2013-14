@@ -123,8 +123,8 @@
       <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\GeneralSettingsViewModel.cs" />
-    <Compile Include="Content\GPSMapView.xaml.cs">
-      <DependentUpon>GPSMapView.xaml</DependentUpon>
+    <Compile Include="Content\GPSCoordinatesView.xaml.cs">
+      <DependentUpon>GPSCoordinatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\GPSViewModel.cs" />
     <Compile Include="Content\IMUView.xaml.cs">
@@ -171,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\GPSMapView.xaml">
+    <Page Include="Content\GPSCoordinatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

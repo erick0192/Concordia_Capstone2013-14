@@ -65,7 +65,9 @@
                                     <Expander FontSize="16" Header="Sensors" IsExpanded="True" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">
                                         <StackPanel Margin="20,0,0,0">
                                             <TextBlock FontSize="14" Text="IMU"/>
-                                            <controls:IMUView/>                                            
+                                            <controls:IMUView/>
+                                            <TextBlock FontSize="14" Text="GPS"/>
+                                            <controls:GPSCoordinatesView/>           
                                         </StackPanel>
                                     </Expander>
                                     <Expander FontWeight="Bold" FontSize="14" Header="Motors" IsExpanded="True" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">

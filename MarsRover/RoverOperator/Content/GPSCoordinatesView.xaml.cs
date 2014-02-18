@@ -18,12 +18,16 @@ namespace RoverOperator.Content
     /// <summary>
     /// Interaction logic for GPSMapView.xaml
     /// </summary>
-    public partial class GPSMapView : UserControl
+    public partial class GPSCoordinatesView : UserControl
     {
-        public GPSMapView()
+        GPSViewViewModel gpsVM;
+
+        public GPSCoordinatesView()
         {
             InitializeComponent();
-            DataContext = new GPSViewModel();
+
+            gpsVM = new GPSViewViewModel();
+            this.DataContext = gpsVM;
         }
     }
 }
