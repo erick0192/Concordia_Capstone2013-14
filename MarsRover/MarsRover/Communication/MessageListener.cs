@@ -19,6 +19,7 @@ namespace MarsRover
         private IQueue messageQueue;
         private int port;
         private string ipAddress;
+        private WatchDogCore wd;
         private Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         #endregion
@@ -29,11 +30,13 @@ namespace MarsRover
 
         #region Constructor
 
-        public MessageListener(int port, IQueue messageQueue, String sourceIPAddress = "")
+        public MessageListener(int port, IQueue messageQueue,
+            String sourceIPAddress = "", WatchDogCore wd = null)
         {
             this.port = port;
             ipAddress = sourceIPAddress;
             this.messageQueue = messageQueue;
+            this.wd = wd;
         }
 
         #endregion
@@ -45,7 +48,7 @@ namespace MarsRover
             listener = new UDPListener(port, this.MessageReceivedHandler);
         }     
 
-        private void MessageReceivedHandler(int NumberOfAvailableData)
+        protected void MessageReceivedHandler(int NumberOfAvailableData)
         {
             byte[] data = new byte[NumberOfAvailableData];
 
@@ -53,6 +56,7 @@ namespace MarsRover
 
             string message = Encoding.ASCII.GetString(data, 0, data.Length);
             messageQueue.Enqueue(message);
+            wd.reportActivity();
         }
 
         #endregion

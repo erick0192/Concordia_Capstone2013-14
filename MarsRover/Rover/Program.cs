@@ -42,7 +42,8 @@ namespace Rover
             var commandsListener = new MessageListener(
                 Properties.NetworkSettings.Default.CommandsPort,
                 CommanderDispatcherMessageQueue,
-                Properties.NetworkSettings.Default.OperatorIPAddress);
+                Properties.NetworkSettings.Default.OperatorIPAddress,
+                new WatchDog());
             commandsListener.StartListening();
         }
 

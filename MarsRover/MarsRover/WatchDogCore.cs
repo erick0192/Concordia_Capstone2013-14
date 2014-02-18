@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MarsRover
 {
-    public class WatchDog
+    public class WatchDogCore
     {
         #region Attributes
 
@@ -18,7 +18,7 @@ namespace MarsRover
 
         #region Constructors
 
-        public WatchDog()
+        public WatchDogCore()
         {
             _stopwatch = new Stopwatch();
             _stopwatch.Start();

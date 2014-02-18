@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
@@ -129,6 +130,7 @@
     <Compile Include="CODEC\CodecUtility.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandMetadata.cs" />
+    <Compile Include="Communication\GuardedMessageListener.cs" />
     <Compile Include="Communication\MessageListener.cs" />
     <Compile Include="Communication\Packet\Packet.cs" />
     <Compile Include="Communication\Packet\PacketPartitionner.cs" />
@@ -150,7 +152,7 @@
     <Compile Include="RoverStatus.cs" />
     <Compile Include="Streams\DummyVideoSource.cs" />
     <Compile Include="Streams\VideoStreamReceiver.cs" />
-    <Compile Include="WatchDog.cs" />
+    <Compile Include="WatchDogCore.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

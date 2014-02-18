@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CameraCommand.cs" />
+    <Compile Include="Commands\KeepAliveCommand.cs" />
     <Compile Include="Commands\MovementCommand.cs" />
     <Compile Include="Commands\PanCommand.cs" />
     <Compile Include="Commands\TiltCommand.cs" />
@@ -96,6 +97,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>NetworkSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="WatchDog\WatchDog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

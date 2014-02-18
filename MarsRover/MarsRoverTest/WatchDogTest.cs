@@ -10,12 +10,12 @@ namespace MarsRoverTest
 {
     class WatchDogTest
     {
-        MarsRover.WatchDog wd;
+        MarsRover.WatchDogCore wd;
 
         [Test]
         public void allowCommand_NotTimedOut_ReturnTrue()
         {
-            wd = new MarsRover.WatchDog();
+            wd = new MarsRover.WatchDogCore();
             wd.reportActivity();
 
             Assert.AreEqual(wd.allowCommand(), true);
@@ -25,7 +25,7 @@ namespace MarsRoverTest
         public void reportActivity_NotTimedOut_AllowCommandAlwaysTrue()
         {
             int delay = 500;
-            wd = new MarsRover.WatchDog();
+            wd = new MarsRover.WatchDogCore();
 
             int i;
             for (i = 0; i < 10000; i += delay)
@@ -40,7 +40,7 @@ namespace MarsRoverTest
         [Test]
         public void allowCommand_TimedOut_ReturnFalse()
         {
-            wd = new MarsRover.WatchDog();
+            wd = new MarsRover.WatchDogCore();
             Thread.Sleep(5000);
 
             Assert.AreEqual(wd.allowCommand(), false);
@@ -49,7 +49,7 @@ namespace MarsRoverTest
         [Test]
         public void reportActivity_TimedOut_AllowComandBecomesTrue()
         {
-            wd = new MarsRover.WatchDog();
+            wd = new MarsRover.WatchDogCore();
             Thread.Sleep(5000);
 
             bool before = wd.allowCommand();
