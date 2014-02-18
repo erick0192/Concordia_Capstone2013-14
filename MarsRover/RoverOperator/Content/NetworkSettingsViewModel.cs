@@ -144,28 +144,28 @@ namespace RoverOperator.Content
 
         private void Save()
         {
-            RoverOperator.NetworkSettings.Instance.RoverIPAddress = roverIPAddress;
-            RoverOperator.NetworkSettings.Instance.CameraPort1 = cameraPort1;
-            RoverOperator.NetworkSettings.Instance.CameraPort2 = cameraPort2;
-            RoverOperator.NetworkSettings.Instance.CameraPort3 = cameraPort3;
+            Properties.NetworkSettings.Default.RoverIPAddress = roverIPAddress;
+            Properties.NetworkSettings.Default.CameraPort1 = cameraPort1;
+            Properties.NetworkSettings.Default.CameraPort2 = cameraPort2;
+            Properties.NetworkSettings.Default.CameraPort3 = cameraPort3;
 
-            RoverOperator.NetworkSettings.Instance.Save();
+            Properties.NetworkSettings.Default.Save();
         }
 
         private void Reset()
         {
-            roverIPAddress = RoverOperator.NetworkSettings.Instance.RoverIPAddress;
-            cameraPort1 = RoverOperator.NetworkSettings.Instance.CameraPort1;
-            cameraPort2 = RoverOperator.NetworkSettings.Instance.CameraPort2;
-            cameraPort3 = RoverOperator.NetworkSettings.Instance.CameraPort3;
+            roverIPAddress = Properties.NetworkSettings.Default.RoverIPAddress;
+            cameraPort1 = Properties.NetworkSettings.Default.CameraPort1;
+            cameraPort2 = Properties.NetworkSettings.Default.CameraPort2;
+            cameraPort3 = Properties.NetworkSettings.Default.CameraPort3;
 
             FirePropertiesChanged();
         }
 
         private void Default()
         {
-            RoverOperator.NetworkSettings.Instance.ResetToDefault();            
-            RoverOperator.NetworkSettings.Instance.Save();
+            Properties.NetworkSettings.Default.Reset();
+            Properties.NetworkSettings.Default.Save();
             Reset();
         }
 

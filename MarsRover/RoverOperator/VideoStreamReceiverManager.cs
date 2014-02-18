@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using MarsRover;
 
-namespace MarsRover.Streams
+namespace RoverOperator
 {
     public class VideoStreamReceiverManager
     {
@@ -47,7 +48,10 @@ namespace MarsRover.Streams
             {
                 if (null == camera1)
                 {
-                  camera1 = new UDPOperatorCameraDevice(0,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort1, 5000);                  
+                  camera1 = new UDPOperatorCameraDevice(0, 
+                      Properties.NetworkSettings.Default.RoverIPAddress,
+                      Properties.NetworkSettings.Default.CameraPort1, 
+                      Properties.NetworkSettings.Default.CommandsPort);                  
                 }
 
                 return camera1;
@@ -60,7 +64,10 @@ namespace MarsRover.Streams
             {
                 if (null == camera2)
                 {
-                    camera2 = new UDPOperatorCameraDevice(1,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort2, 5000);                
+                    camera2 = new UDPOperatorCameraDevice(1,
+                        Properties.NetworkSettings.Default.RoverIPAddress,
+                        Properties.NetworkSettings.Default.CameraPort2, 
+                        Properties.NetworkSettings.Default.CommandsPort);                
 
                 }
 
@@ -74,7 +81,10 @@ namespace MarsRover.Streams
             {
                 if (null == camera3)
                 {
-                    camera3 = new UDPOperatorCameraDevice(2,RoverOperator.NetworkSettings.Instance.RoverIPAddress, RoverOperator.NetworkSettings.Instance.CameraPort3, 5000);                
+                    camera3 = new UDPOperatorCameraDevice(2,
+                        Properties.NetworkSettings.Default.RoverIPAddress,
+                        Properties.NetworkSettings.Default.CameraPort3, 
+                        Properties.NetworkSettings.Default.CommandsPort);                
                 }
 
                 return camera3;

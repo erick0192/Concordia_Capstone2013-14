@@ -115,6 +115,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommandBase.cs" />
+    <Compile Include="CommandSender.cs" />
     <Compile Include="Content\BatteryStatusView.xaml.cs">
       <DependentUpon>BatteryStatusView.xaml</DependentUpon>
     </Compile>

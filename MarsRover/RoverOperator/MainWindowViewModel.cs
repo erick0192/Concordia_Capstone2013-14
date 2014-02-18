@@ -61,9 +61,14 @@ namespace RoverOperator
         {
             ConnectedToRover = "Attempting to connect...";
             PingRTT = "Ping: 0 ms";
+
+            Properties.NetworkSettings.Default.PropertyChanged += new PropertyChangedEventHandler(UpdatePingAddress);
+            MarsRover.Communication.Pinger.Instance.RoverIPAddress = Properties.NetworkSettings.Default.RoverIPAddress;
             MarsRover.Communication.Pinger.Instance.RTTChanged += RTTChanged;
             MarsRover.Communication.Pinger.Instance.ConnectivityChanged += ConnectivityChanged;
         }
+
+       
 
 
         #endregion
@@ -100,7 +105,17 @@ namespace RoverOperator
             }
         }
 
+        private void UpdatePingAddress(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "RoverIPAddress")
+            {
+                MarsRover.Communication.Pinger.Instance.RoverIPAddress = Properties.NetworkSettings.Default.RoverIPAddress;
+            }
+        }
+
         #endregion
 
+
+       
     }
 }

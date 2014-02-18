@@ -12,8 +12,7 @@ namespace RoverOperator.Gamepad
     class GamepadController
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
-        private const int POLLING_RATE = 200; //milliseconds
-        private UDPSender udpSender;
+        private const int POLLING_RATE = 200; //milliseconds        
 
         protected class CameraState
         {
@@ -26,7 +25,6 @@ namespace RoverOperator.Gamepad
         {
             //TODO: Detect new controllers after start ?
             var controllers = new[] { new Controller(UserIndex.One), new Controller(UserIndex.Two) };
-            udpSender = new UDPSender(NetworkSettings.Instance.RoverIPAddress, 5000);
             StartPollingAndSendingCommands(controllers);
         }
 
@@ -74,7 +72,8 @@ namespace RoverOperator.Gamepad
                 command.Append(getPaddedInt(rightSpeed));
 
                 command.Append(">");
-                udpSender.SendStringNow(command.ToString());
+                CommandSender.Instance.UpdateCommand(command.ToString());
+                //udpSender.SendStringNow(command.ToString());
 
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);
@@ -179,7 +178,7 @@ namespace RoverOperator.Gamepad
                     //Send command
                     if (userSelected)
                     {
-                        udpSender.SendStringNow(command);
+                        CommandSender.Instance.UpdateCommand(command.ToString());
                         logger.Debug(command);
                     }
                 }
@@ -232,14 +231,14 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft) || state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight))
                 {
                     string command = "<P" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Pan) + ">";
-                    udpSender.SendStringNow(command);
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                     logger.Debug(command);
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp) || state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown))
                 {
                     string command = "<T" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Tilt) + ">";
-                    udpSender.SendStringNow(command);
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                     logger.Debug(command);
                 }
 

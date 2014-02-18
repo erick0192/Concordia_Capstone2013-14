@@ -77,7 +77,7 @@ namespace RoverOperator
             roverStatus = new RoverStatus();
             //timer = new System.Timers.Timer(Properties.Settings.Default.StatusUpdateInterval) { Enabled = false };
             updatesQueue = new PriorityQueue(100);
-            listener = new MessageListener(Properties.NetworkSettings.Default.StatusUpdatePort, updatesQueue, NetworkSettings.Instance.RoverIPAddress);
+            listener = new MessageListener(Properties.NetworkSettings.Default.StatusUpdatePort, updatesQueue, Properties.NetworkSettings.Default.RoverIPAddress);
         }       
 
         #region Update Methods
