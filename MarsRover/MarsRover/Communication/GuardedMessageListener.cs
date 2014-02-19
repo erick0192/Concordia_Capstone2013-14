@@ -9,9 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using NLog;
 
-namespace MarsRover.Communication
+namespace MarsRover
 {
-    class GuardedMessageListener : MessageListener
+    public class GuardedMessageListener : MessageListener
     {
         private WatchDogCore _wd;
 

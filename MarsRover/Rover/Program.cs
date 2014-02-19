@@ -39,7 +39,7 @@ namespace Rover
 
            
             //Start the commands listener
-            var commandsListener = new MessageListener(
+            var commandsListener = new GuardedMessageListener(
                 Properties.NetworkSettings.Default.CommandsPort,
                 CommanderDispatcherMessageQueue,
                 Properties.NetworkSettings.Default.OperatorIPAddress,
