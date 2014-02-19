@@ -56,7 +56,7 @@ namespace MarsRover
 
             string message = Encoding.ASCII.GetString(data, 0, data.Length);
             messageQueue.Enqueue(message);
-            //wd.reportActivity();
+            wd.reportActivity();
         }
 
         #endregion
