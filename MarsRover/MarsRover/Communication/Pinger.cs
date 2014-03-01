@@ -69,7 +69,7 @@ namespace MarsRover.Communication
 
         private Pinger()
         {
-            StartPinging();
+            //StartPinging();
         }
 
         public static Pinger Instance

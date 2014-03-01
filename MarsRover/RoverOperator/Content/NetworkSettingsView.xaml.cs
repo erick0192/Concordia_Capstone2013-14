@@ -25,5 +25,13 @@ namespace RoverOperator.Content
             InitializeComponent();
             DataContext = new NetworkSettingsViewModel();
         }
+
+        private void roverIPAddressLostFocus(object sender, EventArgs e)
+        {
+            var textbox = (DependencyObject)sender;
+            if (Validation.GetHasError(textbox)) this.SaveButton.IsEnabled = false;
+            else this.SaveButton.IsEnabled = true;
+        }
+
     }
 }

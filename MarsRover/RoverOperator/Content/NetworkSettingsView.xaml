@@ -1,14 +1,30 @@
 ﻿<UserControl x:Class="RoverOperator.Content.NetworkSettings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:src="clr-namespace:RoverOperator.Content"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <src:NetworkSettingsViewModel x:Key="errorTooltip"/>
+        <!--The tool tip for the TextBox to display the validation error message.-->
+        <Style x:Key="textBoxInError" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <DockPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,0,20,0">                
-                <Button Margin="0,0,20,0" Command="{Binding Path=SaveCommand}">Save</Button>
+                <Button x:Name="SaveButton" Margin="0,0,20,0" Command="{Binding Path=SaveCommand}">Save</Button>
                 <Button Margin="0,0,20,0" Command="{Binding Path=ResetCommand}">Reset</Button>
                 <Button Margin="0,0,20,0" Command="{Binding Path=DefaultCommand}">Default</Button>
             </StackPanel>
@@ -16,8 +32,11 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label >Rover IP Address</Label>
-                        <TextBox x:Name="RoverIPAddress" Width="120" Height="22"
-                             Text="{Binding Path=RoverIPAddress, Mode=TwoWay}"/>
+                        <TextBox x:Name="RoverIPAddress" Width="120" Height="22" Style="{StaticResource textBoxInError}" LostFocus="roverIPAddressLostFocus">
+                            <TextBox.Text>
+                                <Binding Path="RoverIPAddress" Mode="TwoWay" Source="{StaticResource errorTooltip}" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label >Camera Port 1</Label>

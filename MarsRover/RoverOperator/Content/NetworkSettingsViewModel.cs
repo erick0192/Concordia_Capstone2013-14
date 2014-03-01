@@ -5,13 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace RoverOperator.Content
 {
-    public class NetworkSettingsViewModel : INotifyPropertyChanged
+    public class NetworkSettingsViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Properties
 
+        private string validRoverIPAddress;
         private string roverIPAddress;
         public string RoverIPAddress
         {
@@ -80,6 +83,32 @@ namespace RoverOperator.Content
             }
         }
 
+        //Validation for Network Properties
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string property]
+        {
+            get
+            {
+                string result = null;
+                
+                if (property == "RoverIPAddress") {
+                    if (!IPAddressIsValid(roverIPAddress))
+                    {
+                        result = "Invalid IP Address";
+                    }
+                }
+
+                return result;
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -136,6 +165,19 @@ namespace RoverOperator.Content
         public NetworkSettingsViewModel()
         {
             Reset();
+            Thread t = new Thread(() => logstuff());
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void logstuff()
+        {
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+            while (true)
+            {
+                //logger.Debug(roverIPAddress);
+                Thread.Sleep(100);
+            }
         }
 
         #endregion
@@ -178,6 +220,13 @@ namespace RoverOperator.Content
                 PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
                 PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
             }
+        }
+
+        private bool IPAddressIsValid(string IPAddress)
+        {
+            Match match = Regex.Match(roverIPAddress, @"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$");
+            if (match.Success) return true;
+            return false;
         }
 
         #endregion
