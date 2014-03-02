@@ -120,6 +120,7 @@ namespace MarsRover
         public Motor(Motor.Location location)
         {
             LocationOnRover = location;
+            Duty = 100.0f;
             regex = "<" + UpdateIdentifier + @";[MFB],[LR],\d+(\.\d{1,3})?,\d+(\.\d{1,3})?>";
         }
 

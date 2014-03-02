@@ -23,14 +23,14 @@
         
         <!-- Title and Duty slider -->
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=Title}" Width="80"  />
-        <Slider Grid.Row="0" Grid.Column="2" x:Name="DutySlider" Width="120" Value="{Binding Path=Duty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="100" LargeChange="10" SmallChange="5"
+        <Slider Grid.Row="0" Grid.Column="2" x:Name="PowerSlider" Width="120" Value="{Binding Path=Power, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="100" LargeChange="10" SmallChange="5"
                 IsEnabled="{Binding ElementName=chkLockSlider, Path=IsChecked}"/>
 
         <!-- Row 1 Wheel and Duty -->
         <Image Grid.Row="1" Grid.RowSpan="3" Source="../Assets/icons/mechanicalwheel.png" Width="56" Height="56" HorizontalAlignment="Left"/>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal">
-            <TextBlock  x:Name="Duty" Text="{Binding StringFormat='Duty: {0}%', Path=Duty, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" />
-            <CheckBox x:Name="chkLockSlider" Margin="10,0,0,0" VerticalAlignment="Bottom" ToolTip="Enable duty slider"/>
+            <TextBlock  x:Name="Power" Text="{Binding StringFormat='Power: {0}%', Path=Power, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" />
+            <CheckBox x:Name="chkLockSlider" Margin="10,0,0,0" VerticalAlignment="Bottom" ToolTip="Enable power slider"/>
         </StackPanel>
 
         <!-- Row 2 Current -->
