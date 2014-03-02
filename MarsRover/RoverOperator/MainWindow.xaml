@@ -7,7 +7,7 @@
     mc:Ignorable="d" 
     x:Class="RoverOperator.MainWindow"
     Title="MRCC" IsTitleVisible="True" ContentSource="/Pages/Main.xaml" x:Name="MainWin"
-    d:DesignWidth="900" d:DesignHeight="700" Width="900" Height="700" VerticalAlignment="Bottom">
+    d:DesignWidth="1024" d:DesignHeight="768" Width="1024" Height="768" VerticalAlignment="Bottom">
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Home" GroupName="home">
             <mui:LinkGroup.Links>

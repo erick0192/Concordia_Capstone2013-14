@@ -209,7 +209,7 @@ namespace RoverOperator.Pages
         {
             //Setting width in xaml does not work cause Avalondock resizes all layouts after initialization
             //So we must set the width after everything is loaded
-            leftLayoutPanel.DockWidth = new GridLength(360, GridUnitType.Pixel);
+            //leftLayoutPanel.DockWidth = new GridLength(360, GridUnitType.Pixel);
         }
     }
 }

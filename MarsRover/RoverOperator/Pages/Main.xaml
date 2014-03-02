@@ -28,7 +28,7 @@
             </avalonDock:DockingManager.Theme>
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal" x:Name="mainLayoutPanel" >
-                    <avalonDock:LayoutPanel Orientation="Vertical" x:Name="leftLayoutPanel" DockWidth="360">
+                    <avalonDock:LayoutPanel Orientation="Vertical" x:Name="leftLayoutPanel">
                         <avalonDock:LayoutAnchorablePane x:Name="PaneCam1">
                             <avalonDock:LayoutAnchorable x:Name="LayoutCam1" CanClose="False" CanAutoHide="False" Title="Camera 1">
                                 <StackPanel>
