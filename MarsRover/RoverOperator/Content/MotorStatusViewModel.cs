@@ -69,13 +69,13 @@ namespace RoverOperator.Content
             this.motorKey = motorKey;
             motor = StatusUpdater.Instance.RoverStatus.Motors[motorKey];
             
-            motor.DangerousCurrentDetected += new MarsRover.Motor.WarningCurrentDetectedDelegate(CurrentStatusChanged);
-            motor.WarningCurrentDetected += new MarsRover.Motor.WarningCurrentDetectedDelegate(CurrentStatusChanged);
-            motor.NormalCurrentDetected += new MarsRover.Motor.NormalCurrentDetectedDelegate(CurrentStatusChanged);
+            motor.DangerousCurrentDetected += new MarsRover.DangerousCurrentDetectedDelegate<Motor>(CurrentStatusChanged);
+            motor.WarningCurrentDetected += new MarsRover.WarningCurrentDetectedDelegate<Motor>(CurrentStatusChanged);
+            motor.NormalCurrentDetected += new MarsRover.NormalCurrentDetectedDelegate<Motor>(CurrentStatusChanged);
 
-            motor.DangerousTemperatureDetected += new MarsRover.Motor.DangerousTemperatureDetectedDelegate(TemperatureStatusChanged);
-            motor.WarningTemperatureDetected += new MarsRover.Motor.WarningTemperatureDetectedDelegate(TemperatureStatusChanged);
-            motor.NormalTemperatureDetected += new MarsRover.Motor.NormalTemperatureDetectedDelegate(TemperatureStatusChanged);
+            motor.DangerousTemperatureDetected += new MarsRover.DangerousTemperatureDetectedDelegate<Motor>(TemperatureStatusChanged);
+            motor.WarningTemperatureDetected += new MarsRover.WarningTemperatureDetectedDelegate<Motor>(TemperatureStatusChanged);
+            motor.NormalTemperatureDetected += new MarsRover.NormalTemperatureDetectedDelegate<Motor>(TemperatureStatusChanged);
 
             StatusUpdater.Instance.MotorsUpdated += new StatusUpdater.MotorsUpdatedDelegate(UpdateMotor);
         }
@@ -94,12 +94,12 @@ namespace RoverOperator.Content
 
         private void TemperatureStatusChanged(Motor motor)
         {
-            if (motor.StatusTemperature == Motor.TemperatureStatus.Dangerous)
+            if (motor.StatusTemperature == TemperatureStatus.Dangerous)
             {
                 IsDangerousTemperature = true;
                 IsWarningTemperature = false;
             }
-            else if(motor.StatusTemperature == Motor.TemperatureStatus.Warning)
+            else if(motor.StatusTemperature == TemperatureStatus.Warning)
             {
                 IsDangerousTemperature = false;
                 IsWarningTemperature = true;
@@ -119,12 +119,12 @@ namespace RoverOperator.Content
 
         private void CurrentStatusChanged(Motor motor)
         {
-            if(motor.StatusCurrent == Motor.CurrentStatus.Dangerous)
+            if(motor.StatusCurrent == CurrentStatus.Dangerous)
             {
                 IsDangerousCurrent = true;
                 IsWarningCurrent = false;
             }
-            else if (motor.StatusCurrent == Motor.CurrentStatus.Warning)
+            else if (motor.StatusCurrent == CurrentStatus.Warning)
             {
                 IsDangerousCurrent = false;
                 IsWarningCurrent = true;

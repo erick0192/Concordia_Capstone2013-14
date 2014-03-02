@@ -109,33 +109,33 @@ namespace UDPMessageSender
             while(true)
             {
                 //Send motors update <MR;F,R,0-20,0-120>
-                updateString = CreateUpdateString(motorsId, "F", "L", (++motorCurrent) % 20, (++motorTemperature) % 120);                
+                updateString = CreateUpdateString(motorsId, "F", "L", (++motorCurrent) % 20, (++motorTemperature) % 140);                
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
 
-                updateString = CreateUpdateString(motorsId, "F", "R", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                updateString = CreateUpdateString(motorsId, "F", "R", (++motorCurrent) % 20, (++motorTemperature) % 140);
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
 
-                updateString = CreateUpdateString(motorsId, "M", "L", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                updateString = CreateUpdateString(motorsId, "M", "L", (++motorCurrent) % 20, (++motorTemperature) % 140);
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
 
-                updateString = CreateUpdateString(motorsId, "M", "R", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                updateString = CreateUpdateString(motorsId, "M", "R", (++motorCurrent) % 20, (++motorTemperature) % 140);
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
 
-                updateString = CreateUpdateString(motorsId, "B", "L", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                updateString = CreateUpdateString(motorsId, "B", "L", (++motorCurrent) % 20, (++motorTemperature) % 140);
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
 
-                updateString = CreateUpdateString(motorsId, "B", "R", (++motorCurrent) % 20, (++motorTemperature) % 120);
+                updateString = CreateUpdateString(motorsId, "B", "R", (++motorCurrent) % 20, (++motorTemperature) % 140);
                 msgs = Encoding.ASCII.GetBytes(updateString);
                 udpClient.Send(msgs, msgs.Length);
                 
                 //Send battery update
-                batteryTemperature = (batteryTemperature + 2) % 120;
-                batteryCurrent = (batteryCurrent + 3) % 300;
+                batteryTemperature = (batteryTemperature + 4) % 140;
+                batteryCurrent = (batteryCurrent + 5) % 320;
                 batteryCharge = Math.Round((batteryCharge + 0.1f) % 100.0f, 3);
                 updateString = CreateUpdateString(batteryId, batteryCharge, batteryCurrent, batteryTemperature);
                 msgs = Encoding.ASCII.GetBytes(updateString);

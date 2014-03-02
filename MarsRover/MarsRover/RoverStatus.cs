@@ -6,6 +6,28 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
+    public enum TemperatureStatus
+    {
+        Normal,
+        Warning,
+        Dangerous
+    }
+
+    public enum CurrentStatus
+    {
+        Normal,
+        Warning,
+        Dangerous
+    }
+
+    public delegate void WarningCurrentDetectedDelegate<T>(T roverComponent);
+    public delegate void DangerousCurrentDetectedDelegate<T>(T roverComponent);
+    public delegate void NormalCurrentDetectedDelegate<T>(T roverComponent);
+
+    public delegate void WarningTemperatureDetectedDelegate<T>(T roverComponent);
+    public delegate void DangerousTemperatureDetectedDelegate<T>(T roverComponent);
+    public delegate void NormalTemperatureDetectedDelegate<T>(T roverComponent);
+
     public class RoverStatus
     {
         public Battery Battery { get; set; }

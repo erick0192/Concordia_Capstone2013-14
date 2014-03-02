@@ -19,21 +19,7 @@ namespace MarsRover
             MiddleRight,
             BackLeft,
             BackRight
-        }
-
-        public enum TemperatureStatus
-        {
-            Normal,
-            Warning,
-            Dangerous
-        }
-
-        public enum CurrentStatus
-        {
-            Normal,
-            Warning,
-            Dangerous
-        }
+        }     
 
         //Amperes
         public const float MIN_CURRENT = 0.0f;
@@ -50,7 +36,7 @@ namespace MarsRover
         #region Properties
 
         private float current;
-        public Motor.CurrentStatus StatusCurrent { get; set; }
+        public CurrentStatus StatusCurrent { get; set; }
         public float Current 
         {
             get
@@ -65,7 +51,7 @@ namespace MarsRover
         }
 
         private float temperature;
-        public Motor.TemperatureStatus StatusTemperature { get; set; }
+        public TemperatureStatus StatusTemperature { get; set; }
         public float Temperature
         {
             get
@@ -92,24 +78,14 @@ namespace MarsRover
         #endregion
 
         #region Delegates and Events
-
-        public delegate void WarningCurrentDetectedDelegate(Motor motor);
-        public event WarningCurrentDetectedDelegate WarningCurrentDetected;
-
-        public delegate void DangerousCurrentDetectedDelegate(Motor motor);
-        public event WarningCurrentDetectedDelegate DangerousCurrentDetected;
-
-        public delegate void NormalCurrentDetectedDelegate(Motor motor);
-        public event NormalCurrentDetectedDelegate NormalCurrentDetected;
-
-        public delegate void WarningTemperatureDetectedDelegate(Motor motor);
-        public event WarningTemperatureDetectedDelegate WarningTemperatureDetected;
-
-        public delegate void DangerousTemperatureDetectedDelegate(Motor motor);
-        public event DangerousTemperatureDetectedDelegate DangerousTemperatureDetected;
-
-        public delegate void NormalTemperatureDetectedDelegate(Motor motor);
-        public event NormalTemperatureDetectedDelegate NormalTemperatureDetected;
+        
+        public event WarningCurrentDetectedDelegate<Motor> WarningCurrentDetected;      
+        public event DangerousCurrentDetectedDelegate<Motor> DangerousCurrentDetected;        
+        public event NormalCurrentDetectedDelegate<Motor> NormalCurrentDetected;
+        
+        public event WarningTemperatureDetectedDelegate<Motor> WarningTemperatureDetected;        
+        public event DangerousTemperatureDetectedDelegate<Motor> DangerousTemperatureDetected;        
+        public event NormalTemperatureDetectedDelegate<Motor> NormalTemperatureDetected;
 
         //public delegate void 
 
@@ -130,22 +106,26 @@ namespace MarsRover
 
         private void CheckCurrentStatus()
         {
-            if ((current >= MAX_CURRENT || current <= MIN_CURRENT)
-                && StatusCurrent != CurrentStatus.Dangerous)
+            if (current >= MAX_CURRENT || current <= MIN_CURRENT)
             {
-                StatusCurrent = CurrentStatus.Dangerous;
-                if (DangerousCurrentDetected != null)
+                if (StatusCurrent != CurrentStatus.Dangerous)
                 {
-                    DangerousCurrentDetected(this);
+                    StatusCurrent = CurrentStatus.Dangerous;
+                    if (DangerousCurrentDetected != null)
+                    {
+                        DangerousCurrentDetected(this);
+                    }
                 }
             }
-            else if ((current > MAX_WARNING_CURRENT || current < MIN_WARNING_CURRENT)
-                && StatusCurrent != CurrentStatus.Warning)
+            else if (current > MAX_WARNING_CURRENT || current < MIN_WARNING_CURRENT)
             {
-                StatusCurrent = CurrentStatus.Warning;
-                if (WarningCurrentDetected != null)
+                if (StatusCurrent != CurrentStatus.Warning)
                 {
-                    WarningCurrentDetected(this);
+                    StatusCurrent = CurrentStatus.Warning;
+                    if (WarningCurrentDetected != null)
+                    {
+                        WarningCurrentDetected(this);
+                    }
                 }
             }
             else if (StatusCurrent != CurrentStatus.Normal)
@@ -160,22 +140,26 @@ namespace MarsRover
 
         private void CheckTemperatureStatus()
         {
-            if ((temperature >= MAX_TEMPERATURE || temperature <= MIN_TEMPERATURE)
-                && StatusTemperature != TemperatureStatus.Dangerous)
+            if (temperature >= MAX_TEMPERATURE || temperature <= MIN_TEMPERATURE)
             {
-                StatusTemperature = TemperatureStatus.Dangerous;
-                if(DangerousTemperatureDetected != null)
+                if (StatusTemperature != TemperatureStatus.Dangerous)
                 {
-                    DangerousTemperatureDetected(this);
+                    StatusTemperature = TemperatureStatus.Dangerous;
+                    if (DangerousTemperatureDetected != null)
+                    {
+                        DangerousTemperatureDetected(this);
+                    }
                 }
             }
-            else if ((temperature > MAX_WARNING_TEMPERATURE || temperature < MIN_WARNING_TEMPERATURE)
-                && StatusTemperature != TemperatureStatus.Warning)
+            else if (temperature > MAX_WARNING_TEMPERATURE || temperature < MIN_WARNING_TEMPERATURE)
             {
-                StatusTemperature = TemperatureStatus.Dangerous;
-                if(WarningTemperatureDetected!= null)
+                if (StatusTemperature != TemperatureStatus.Warning)
                 {
-                    WarningTemperatureDetected(this);
+                    StatusTemperature = TemperatureStatus.Warning;
+                    if (WarningTemperatureDetected != null)
+                    {
+                        WarningTemperatureDetected(this);
+                    }
                 }
             }
             else if(StatusTemperature != TemperatureStatus.Normal)
