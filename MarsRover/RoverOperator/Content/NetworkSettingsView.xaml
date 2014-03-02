@@ -25,16 +25,16 @@
         <DockPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,0,20,0">                
                 <Button x:Name="SaveButton" Margin="0,0,20,0" Command="{Binding Path=SaveCommand}">Save</Button>
-                <Button Margin="0,0,20,0" Command="{Binding Path=ResetCommand}">Reset</Button>
+                <Button Margin="0,0,20,0" Command="{Binding Path=UndoCommand}">Undo</Button>
                 <Button Margin="0,0,20,0" Command="{Binding Path=DefaultCommand}">Default</Button>
             </StackPanel>
             <ScrollViewer DockPanel.Dock="Bottom">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label >Rover IP Address</Label>
-                        <TextBox x:Name="RoverIPAddress" Width="120" Height="22" Style="{StaticResource textBoxInError}" LostFocus="roverIPAddressLostFocus">
+                        <TextBox x:Name="txtRoverIPAddress" Width="120" Height="22" Style="{StaticResource textBoxInError}" LostFocus="roverIPAddressLostFocus">
                             <TextBox.Text>
-                                <Binding Path="RoverIPAddress" Mode="TwoWay" Source="{StaticResource errorTooltip}" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+                                <Binding Path="RoverIPAddress" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
                             </TextBox.Text>
                         </TextBox>
                     </StackPanel>
@@ -52,6 +52,16 @@
                         <Label >Camera Port 3</Label>
                         <TextBox x:Name="CameraPort3" Width="50" Height="22" 
                              Text="{Binding Path=CameraPort3, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label >Status Update Port</Label>
+                        <TextBox x:Name="StatusUpdatePort" Width="50" Height="22" 
+                             Text="{Binding Path=StatusUpdatePort, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label >Commands Port</Label>
+                        <TextBox x:Name="CommandsPort" Width="50" Height="22" 
+                             Text="{Binding Path=CommandsPort, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

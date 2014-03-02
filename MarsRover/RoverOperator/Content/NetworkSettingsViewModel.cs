@@ -13,8 +13,7 @@ namespace RoverOperator.Content
     public class NetworkSettingsViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Properties
-
-        private string validRoverIPAddress;
+        
         private string roverIPAddress;
         public string RoverIPAddress
         {
@@ -24,64 +23,15 @@ namespace RoverOperator.Content
             }
             set
             {
-                roverIPAddress = value;
-                //if (PropertyChanged != null)
-                //{
-                //    PropertyChanged(this, new PropertyChangedEventArgs("RoverIPAddress"));
-                //}
+                roverIPAddress = value;              
             }
         }
 
-        private int cameraPort1;
-        public int CameraPort1
-        {
-            get
-            {
-                return cameraPort1;
-            }
-            set
-            {
-                cameraPort1 = value;
-                //if(PropertyChanged != null)
-                //{
-                //    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort1"));
-                //}
-            }
-        }
-
-        private int cameraPort2;
-        public int CameraPort2
-        {
-            get
-            {
-                return cameraPort2;
-            }
-            set
-            {
-                cameraPort2 = value;
-                //if(PropertyChanged != null)
-                //{
-                //    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
-                //}
-            }
-        }
-
-        private int cameraPort3;
-        public int CameraPort3
-        {
-            get
-            {
-                return cameraPort3;
-            }
-            set
-            {
-                cameraPort3 = value;
-                //if(PropertyChanged != null)
-                //{
-                //    PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
-                //}
-            }
-        }
+        public int CameraPort1 { get; set; }
+        public int CameraPort2 { get; set; }
+        public int CameraPort3 { get; set; }
+        public int StatusUpdatePort { get; set; }
+        public int CommandsPort { get; set; }
 
         //Validation for Network Properties
         public string Error
@@ -126,16 +76,16 @@ namespace RoverOperator.Content
             }
         }
 
-        private ICommand resetCommand;
-        public ICommand ResetCommand
+        private ICommand undoCommand;
+        public ICommand UndoCommand
         {
             get
             {
-                if(resetCommand == null)
+                if(undoCommand == null)
                 {
-                    resetCommand = new RelayCommand(p => this.Reset());
+                    undoCommand = new RelayCommand(p => this.Undo());
                 }
-                return resetCommand;
+                return undoCommand;
             }           
         }
 
@@ -164,7 +114,7 @@ namespace RoverOperator.Content
 
         public NetworkSettingsViewModel()
         {
-            Reset();
+            Undo();
             Thread t = new Thread(() => logstuff());
             t.IsBackground = true;
             t.Start();
@@ -186,20 +136,24 @@ namespace RoverOperator.Content
 
         private void Save()
         {
-            Properties.NetworkSettings.Default.RoverIPAddress = roverIPAddress;
-            Properties.NetworkSettings.Default.CameraPort1 = cameraPort1;
-            Properties.NetworkSettings.Default.CameraPort2 = cameraPort2;
-            Properties.NetworkSettings.Default.CameraPort3 = cameraPort3;
+            Properties.NetworkSettings.Default.RoverIPAddress = RoverIPAddress;
+            Properties.NetworkSettings.Default.CameraPort1 = CameraPort1;
+            Properties.NetworkSettings.Default.CameraPort2 = CameraPort2;
+            Properties.NetworkSettings.Default.CameraPort3 = CameraPort3;
+            Properties.NetworkSettings.Default.StatusUpdatePort = StatusUpdatePort;
+            Properties.NetworkSettings.Default.CommandsPort = CommandsPort;
 
             Properties.NetworkSettings.Default.Save();
         }
 
-        private void Reset()
+        private void Undo()
         {
-            roverIPAddress = Properties.NetworkSettings.Default.RoverIPAddress;
-            cameraPort1 = Properties.NetworkSettings.Default.CameraPort1;
-            cameraPort2 = Properties.NetworkSettings.Default.CameraPort2;
-            cameraPort3 = Properties.NetworkSettings.Default.CameraPort3;
+            RoverIPAddress = Properties.NetworkSettings.Default.RoverIPAddress;
+            CameraPort1 = Properties.NetworkSettings.Default.CameraPort1;
+            CameraPort2 = Properties.NetworkSettings.Default.CameraPort2;
+            CameraPort3 = Properties.NetworkSettings.Default.CameraPort3;
+            StatusUpdatePort = Properties.NetworkSettings.Default.StatusUpdatePort;
+            CommandsPort = Properties.NetworkSettings.Default.CommandsPort;
 
             FirePropertiesChanged();
         }
@@ -208,7 +162,7 @@ namespace RoverOperator.Content
         {
             Properties.NetworkSettings.Default.Reset();
             Properties.NetworkSettings.Default.Save();
-            Reset();
+            Undo();
         }
 
         private void FirePropertiesChanged()
@@ -219,6 +173,8 @@ namespace RoverOperator.Content
                 PropertyChanged(this, new PropertyChangedEventArgs("CameraPort1"));
                 PropertyChanged(this, new PropertyChangedEventArgs("CameraPort2"));
                 PropertyChanged(this, new PropertyChangedEventArgs("CameraPort3"));
+                PropertyChanged(this, new PropertyChangedEventArgs("StatusUpdatePort"));
+                PropertyChanged(this, new PropertyChangedEventArgs("CommandsPort"));
             }
         }
 
