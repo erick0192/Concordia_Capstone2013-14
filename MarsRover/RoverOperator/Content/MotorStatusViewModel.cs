@@ -43,7 +43,24 @@ namespace RoverOperator.Content
                 Motor.Duty = (float)Math.Round(value);
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Duty"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("Power"));
+                }
+            }
+        }
+
+        private bool canModifyPower = false;
+        public bool CanModifyPower
+        {
+            get
+            {
+                return canModifyPower;
+            }
+            set
+            {
+                canModifyPower = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("CanModifyPower"));
                 }
             }
         }
