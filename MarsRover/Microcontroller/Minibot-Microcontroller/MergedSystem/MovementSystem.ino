@@ -64,5 +64,6 @@ void MoveBackwardRight(int mSpeed)
 
 void StopMove()
 {
-
+  MoveForwardLeft(0);
+  MoveForwardRight(0);
 }

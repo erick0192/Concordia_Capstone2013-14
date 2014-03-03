@@ -140,7 +140,11 @@ void serialEvent()
                       Serial.print(" Right speed:");
                       Serial.println(rightSpeed);
                       */
-                    }                    
+                    }
+                  if (commandString[1] == CommandMetadata::SERIAL_KEEP_ALIVE)
+					{
+					  watchdog.reportActivity();
+					}
                   commandStarted = false;
                   commandString = "";
                 }

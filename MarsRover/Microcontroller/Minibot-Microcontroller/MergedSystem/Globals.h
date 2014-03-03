@@ -9,6 +9,7 @@ namespace CommandMetadata{
   const char MOVE_BACKWARD = 'B';
   const char SERVO_PAN = 'P';
   const char SERVO_TILT = 'T';
+  const char SERIAL_KEEP_ALIVE = 'K';
   
 }
 
