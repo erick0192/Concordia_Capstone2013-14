@@ -8,12 +8,12 @@
              d:DesignHeight="400" d:DesignWidth="360">
     <Grid>
         <DockPanel>            
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-                <TextBlock VerticalAlignment="Center">Long:</TextBlock>
-                <TextBox Name="longitudeBox" TextWrapping="Wrap" Height="30" Width="80" Margin="5,0,0,0"></TextBox>
-                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Lat:</TextBlock>
-                <TextBox Name="latitudeBox" TextWrapping="Wrap" Height="30" Width="80" Margin="5,0,0,0"></TextBox>
-                <Button Name="addTargetButton" Click="addTargetButton_Click" Height="30" Width="80" Margin="30,0,0,0">Add</Button>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Bottom">                
+                <TextBlock VerticalAlignment="Center">Lat:</TextBlock>
+                <TextBox Name="latitudeBox" TextWrapping="Wrap" Height="30" Width="100" Margin="5,0,0,0" PreviewTextInput="coordinateBox_PreviewTextInput" TextChanged="coordinateBox_TextChanged"></TextBox>
+                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Long:</TextBlock>
+                <TextBox Name="longitudeBox" TextWrapping="Wrap"  Height="30" Width="100" Margin="5,0,0,0" PreviewTextInput="coordinateBox_PreviewTextInput" TextChanged="coordinateBox_TextChanged"></TextBox>
+                <Button Name="addTargetButton" Click="addTargetButton_Click" Height="30" Width="80" Margin="10,0,0,0">Add</Button>
             </StackPanel>
             <m:Map x:Name="myMap" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <m:Pushpin x:Name="roverPin" Location="{Binding Path=roverCoordinates.Location, UpdateSourceTrigger=PropertyChanged}">

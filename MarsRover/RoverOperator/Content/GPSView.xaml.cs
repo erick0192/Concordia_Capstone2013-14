@@ -26,6 +26,13 @@ namespace RoverOperator.Content
         //keep track of targets on map
         private List<Pushpin> targetPins;
 
+        //for input validation of longitude and latitude
+        private string oldEnteredCoordinateText = "";
+
+        //Coordinate values of the new target (populated by longitude and latitude text boxes)
+        private double longitude = 0;
+        private double latitude = 0;
+
         public GPSView()
         {
             InitializeComponent();
@@ -37,13 +44,17 @@ namespace RoverOperator.Content
             myMap.MouseDoubleClick += map_MouseDoubleClick;            
         }
 
-        //handle mouse click to add targets
+        /// <summary>
+        /// Handle mouse double click to add targets
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void map_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Disables the default mouse double-click action.
             e.Handled = true;
 
-            // Determin the location to place the pushpin at on the map.
+            // Determine the location to place the pushpin at on the map.
 
             //Get the mouse click coordinates
             Point mousePosition = e.GetPosition(this);
@@ -53,7 +64,10 @@ namespace RoverOperator.Content
             addTarget(targetLocation);           
         }
 
-        //Add a target to the map from the text boxes
+        /// <summary>
+        /// Add a target to the map (triggered by Add button)
+        /// </summary>
+        /// <param name="location"></param>
         private void addTarget(Location location)
         {
             //Initialize target list
@@ -70,7 +84,7 @@ namespace RoverOperator.Content
             
             //Add a tooltip to the pin
             ToolTip tt = new ToolTip();
-            tt.Content = targetPin.Location.Longitude + ", " + targetPin.Location.Latitude;
+            tt.Content = targetPin.Location.Latitude + ", " + targetPin.Location.Longitude;
             targetPin.ToolTip = tt;
 
             //remove target on rightclick event handler
@@ -98,7 +112,9 @@ namespace RoverOperator.Content
             targetPins.Remove((Pushpin)sender);
         }
 
-        //when you click the 'Remove' button
+        /// <summary>
+        /// (DEPRECATED): Remove all targets from map (triggered by 'Remove' button)
+        /// </summary>
         private void removeTarget()
         {
             //check both but they should be the same number all the time
@@ -109,7 +125,9 @@ namespace RoverOperator.Content
             }
         }
 
-        //when you click the 'Remove All' button
+        /// <summary>
+        /// (DEPRECATED): Remove all targets from map (triggered by 'Remove All' button)
+        /// </summary>
         private void removeAllTargets()
         {
             //check both but they should be the same number all the time
@@ -123,7 +141,13 @@ namespace RoverOperator.Content
             }
         }
 
-        //Add a marker to the map
+        /// <summary>
+        /// Add a marker to the map
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="name"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
         private Ellipse placeGPSPoint(Location location, string name, Color color)
         {
             Ellipse target = new Ellipse();
@@ -144,48 +168,95 @@ namespace RoverOperator.Content
             return target;
         }
 
+        /// <summary>
+        /// (DEPRECATED): Remove a target when clicking the remove button 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void removeTargetButton_Click(object sender, RoutedEventArgs e)
         {
             removeTarget();
         }
 
+        /// <summary>
+        /// (DEPRECATED): Remove a target when clicking the remove all button 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void removeAllTargetsButton_Click(object sender, RoutedEventArgs e)
         {
             removeAllTargets();
         }
 
+        /// <summary>
+        /// Add a target to the map when the Add button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addTargetButton_Click(object sender, RoutedEventArgs e)
-        {
-            Location targetLocation = new Location();
-
-            double longitude;
-            double latitude;
-
-            bool resultLong = (Double.TryParse(longitudeBox.Text, out longitude));
-            bool resultLat = (Double.TryParse(latitudeBox.Text, out latitude));
-
-            if (resultLong && resultLat)
+        {   
+            //Make sure the text boxes have text in them to avoid empty fields generating (0,0) targets
+            if (!String.IsNullOrWhiteSpace(latitudeBox.Text) && !String.IsNullOrWhiteSpace(longitudeBox.Text))
             {
-                
+                Location targetLocation = new Location();
+
                 //latitude ranges from -90 to 90 
                 targetLocation.Latitude = latitude % 90;
 
                 //longitude ranges from -180 to 180
                 targetLocation.Longitude = longitude % 180;
 
+                //add the target to the map
                 addTarget(targetLocation);
+
+                //reset values of the textboxes
+                longitudeBox.Clear();
+                latitudeBox.Clear();
+
+                //reset the data values
+                longitude = 0;
+                latitude = 0;
+            }            
+        }
+
+        /// <summary>
+        /// Save old value of the text (assumed to be a valid double value or empty)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void coordinateBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            oldEnteredCoordinateText = ((TextBox)sender).Text;
+        }
+
+        /// <summary>
+        /// Data validation on text boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void coordinateBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            double coordinate;
+
+            bool result = (Double.TryParse(((TextBox)sender).Text, out coordinate));
+
+            //Allowed text = double format or empty string
+            if (!result && !(((TextBox)sender).Text == ""))
+            {
+                ((TextBox)sender).Text = oldEnteredCoordinateText;
             }
             else
             {
-                if (!resultLong)
+                switch (((TextBox)sender).Name)
                 {
-                    Console.Out.WriteLine("Invalid longitude entered.");
-                    longitudeBox.Clear();
-                }
-                if (!resultLat)
-                {
-                    Console.Out.WriteLine("Invalid latitude entered.");
-                    latitudeBox.Clear();
+                    case "longitudeBox":
+                        longitude = coordinate;
+                        break;
+                    case "latitudeBox":
+                        latitude = coordinate;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
