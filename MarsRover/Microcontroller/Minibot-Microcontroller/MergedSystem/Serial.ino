@@ -1,3 +1,9 @@
+#include <Wire.h>
+#define LEFT_DEVICE_ADDRESS 2
+#define RIGHT_DEVICE_ADDRESS 3
+#define COMMAND_SIZE 15 //1 byte for speed (per motor), 1 byte for current (per motor), 3 bytes for temperature (per motor)
+
+
 static const int DELAY_IMU = 1000; //Delay to update the IMU
 unsigned long startIMU = 0; //Keeping track of when IMU started counting
 
@@ -63,6 +69,19 @@ void Send_GPS(float latitude, float longitude, float alt)
   }
 }
 
+  /*
+  if after 5 seconds we receive nothing from the microcontrollers
+  then we should send a reset signal.
+  */
+  int timeout = 5000;
+  int requestInterval = 3000; // request data every 3 seconds
+  unsigned long int leftLastTimeDataReceived = 0;
+  unsigned long int rightLastTimeDataReceived = 0;
+  unsigned long int time = 0;
+  String leftMovementCommand = "";
+  String rightMovementCommand = "";
+  boolean commandStarted = false;
+  char commandArr[20];
 
 void serialEvent()
 {
@@ -110,6 +129,33 @@ void serialEvent()
                       if(idCamera == '1') camera->Tilt(angle);
                     }
                     
+                    if(commandString[1] == CommandMetadata::I2C_LEFT)
+                    {
+                      leftMovementCommand = commandString.substring(2, commandString.indexOf('>'));
+                      leftMovementCommand.toCharArray(commandArr, leftMovementCommand.length() + 1);
+                      
+                      Serial.print("Left movement command received: ");
+                      Serial.println(leftMovementCommand);
+                      
+                      Wire.beginTransmission(LEFT_DEVICE_ADDRESS);
+                      Wire.write(commandArr);
+                      Wire.endTransmission();
+                    }
+                  
+                  if(commandString[1] == CommandMetadata::I2C_RIGHT)
+                    {
+                      rightMovementCommand = commandString.substring(2, commandString.indexOf('>'));
+                      rightMovementCommand.toCharArray(commandArr, leftMovementCommand.length());
+                      
+                      Serial.print("Right movement command received: ");
+                      Serial.println(rightMovementCommand);
+                      
+                      Wire.beginTransmission(RIGHT_DEVICE_ADDRESS);
+                      Wire.write(commandArr);
+                      Wire.endTransmission();
+                    }
+                    
+                  /*  
                   if(commandString[1] == CommandMetadata::MOTOR_COMMAND)
                     {
                       leftSpeed = commandString.substring(3, 6).toInt();
@@ -133,14 +179,15 @@ void serialEvent()
                       {
                         MoveBackwardRight(leftSpeed);
                         //Serial.println("Move Forward Left");
-                      }
+                      } 
                       /*
                       Serial.print("Left Speed ");
                       Serial.print(leftSpeed);
                       Serial.print(" Right speed:");
                       Serial.println(rightSpeed);
                       */
-                    }
+                    //}
+                    
                   if (commandString[1] == CommandMetadata::SERIAL_KEEP_ALIVE)
 					{
 					  watchdog.reportActivity();
@@ -149,6 +196,24 @@ void serialEvent()
                   commandString = "";
                 }
         }
+        
+          
+  //receive command
+  time = millis();
+  
+  if ((time - leftLastTimeDataReceived) >= requestInterval){
+    Wire.requestFrom(LEFT_DEVICE_ADDRESS, COMMAND_SIZE);
+    
+    while(Wire.available())
+    {
+      char input = Wire.read();
+      Serial.print(input); // to be replaced
+    }
+    
+    Serial.println();
+    
+    leftLastTimeDataReceived = millis();
+  }
 }
 
 

@@ -10,7 +10,8 @@ namespace CommandMetadata{
   const char SERVO_PAN = 'P';
   const char SERVO_TILT = 'T';
   const char SERIAL_KEEP_ALIVE = 'K';
-  
+  const char I2C_LEFT = 'L';
+  const char I2C_RIGHT = 'R';
 }
 
 #define TOP_RIGHT_WHEEL_ENABLE_PIN 4
