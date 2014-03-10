@@ -10,7 +10,8 @@ namespace CommandMetadata{
   const char SERVO_PAN = 'P';
   const char SERVO_TILT = 'T';
   const char SERIAL_KEEP_ALIVE = 'K';
-  
+  const char I2C_LEFT = 'L';
+  const char I2C_RIGHT = 'R';
 }
 
 #define TOP_RIGHT_WHEEL_ENABLE_PIN 4
@@ -38,8 +39,8 @@ namespace CommandMetadata{
 
 //Camera Servo Pan Tilt Pin
 #define SERVO_CAM_1_ID 1
-#define SERVO_CAM_1_PAN_PIN 8
-#define SERVO_CAM_1_TILT_PIN 12
+#define SERVO_CAM_1_PAN_PIN 26
+#define SERVO_CAM_1_TILT_PIN 25
 
 // Set your serial port baud rate used to send out data here:
 #define OUTPUT_BAUD_RATE 115200

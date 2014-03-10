@@ -11,6 +11,7 @@ Camera *camera;
 
 void setup() {
   // put your setup code here, to run once:
+  Wire.begin();
   Serial.begin(OUTPUT_BAUD_RATE);
   watchdog.initialize(3000000);
   Init_GPS();
