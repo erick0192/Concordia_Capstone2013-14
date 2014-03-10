@@ -68,15 +68,23 @@ namespace RoverOperator.Gamepad
                 string leftDirection = LY > 0 ? "F" : "B";
                 command.Append(leftDirection);
                 int leftSpeed = (int)Math.Abs((LY * 255 / 32768));
+                if (leftSpeed < 30) leftSpeed = 0;
+                else if (leftSpeed > 230) leftSpeed = 255;
                 command.Append(getPaddedInt(leftSpeed));
 
                 string rightDirection = RY > 0 ? "F" : "B";
                 command.Append(rightDirection);
                 int rightSpeed = (int)Math.Abs((RY * 255 / 32768));
+                if (rightSpeed < 30) rightSpeed = 0;
+                else if (rightSpeed > 230) rightSpeed = 255;
                 command.Append(getPaddedInt(rightSpeed));
 
                 command.Append(">");
-                CommandSender.Instance.UpdateCommand(command.ToString());
+                if (rightSpeed + leftSpeed != 0)
+                {
+                    CommandSender.Instance.UpdateCommand(command.ToString());
+                    logger.Debug(command.ToString());
+                }
 
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);
@@ -273,6 +281,7 @@ namespace RoverOperator.Gamepad
                         previousSelectedCamera = cameraNumber;
                         timePreviousCameraSelect = DateTime.Now;
                         CommandSender.Instance.UpdateCommand(command.ToString());
+                        logger.Debug(command.ToString());
                         Thread.Sleep(STATE_CHECK_INTERVAL);
                     }
                 }
