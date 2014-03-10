@@ -7,12 +7,14 @@ namespace RoverOperator.Content
     /// </summary>
     public partial class GPSView : UserControl
     {
+       
         GPSViewViewModel gpsVM;
 
         public GPSView()
         {
             InitializeComponent();
 
+            //instantiate viewmodel and set datacontext
             gpsVM = new GPSViewViewModel();
             this.DataContext = gpsVM;
         }

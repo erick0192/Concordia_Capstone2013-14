@@ -268,7 +268,7 @@ namespace RoverOperator.Content
             }
             else
             {
-                //avoids null tooltip content
+                //avoids null tooltip content.
                 tt.Content = "";
             }
 
