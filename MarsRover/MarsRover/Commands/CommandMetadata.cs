@@ -12,9 +12,10 @@ namespace MarsRover.Commands
         public const string StartDelimiter = "<";
         public const string EndDelimiter = ">";
 
-        public static class Movement
+        public static class OldMovement
         {
-            //Example of assumed movement command format: <MF255F255>
+            //Obselete. Old movement command format that was used. Kept in case of a required backup
+            //Example: <MF255F255>
 
             public const string Identifier = "M";
             public const string Forward = "F";
@@ -35,6 +36,35 @@ namespace MarsRover.Commands
             public const int RightSpeedEndIndex = 9;
         }
 
+        public static class Movement
+        {
+            //Example: <LF255F255F255>
+            public const string LeftIdentifier = "L";
+            public const string RightIdentifier = "R";
+            public const string Forward = "F";
+            public const string Backward = "B";
+
+            public const int MotorSideIndex = 1;
+
+            public const int MaxSpeed = 255;
+            public const int MinSpeed = 0;
+
+            public const int DirectionLength = 1;
+            public const int IdentifierLength = 1;
+
+            public const int Motor1DirectionIndex = 2;
+            public const int Motor2DirectionIndex = 6;
+            public const int Motor3DirectionIndex = 10;
+
+            public const int Motor1SpeedStartIndex = 3;
+            public const int Motor2SpeedStartIndex = 7;
+            public const int Motor3SpeedStartIndex = 11;
+
+            public const int Motor1SpeedEndIndex = 5;
+            public const int Motor2SpeedEndIndex = 9;
+            public const int Motor3SpeedEndIndex = 13;
+        }
+
         public static class Camera
         {
             //Example cam on/off command: <C1F>
@@ -52,7 +82,7 @@ namespace MarsRover.Commands
         {
             //Example command: <P0359>
             public const string Identifier = "P";
-            public const int MaxPanAngle = 359;
+            public const int MaxPanAngle = 200;
             public const int MinPanAngle = 0;
 
             public const int NumberIdentifierIndex = 2;

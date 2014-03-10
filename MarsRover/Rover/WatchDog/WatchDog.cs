@@ -12,11 +12,13 @@ namespace Rover
     {
         #region Attributes
 
-        private const string EMERGENCY_STOP = "<MF000F000>";
+        private const string EMERGENCY_LEFT_STOP = "<LF000F000F000>";
+        private const string EMERGENCY_RIGHT_STOP = "<RF000F000F000>";
         
         private int _sleepPeriod = 500;
 
-        private MovementCommand emergencyStopCommand;
+        private MovementCommand emergencyLeftStopCommand;
+        private MovementCommand emergencyRightStopCommand;
         private KeepAliveCommand keepAliveCommand;
 
         #endregion
@@ -43,12 +45,18 @@ namespace Rover
 
                 if (!allowCommand())
                 {
-                    if (emergencyStopCommand == null)
+                    if (emergencyLeftStopCommand == null)
                     {
-                        emergencyStopCommand = new MovementCommand(EMERGENCY_STOP);
+                        emergencyLeftStopCommand = new MovementCommand(EMERGENCY_LEFT_STOP);
                     }
 
-                    emergencyStopCommand.Execute();
+                    if (emergencyRightStopCommand == null)
+                    {
+                        emergencyRightStopCommand = new MovementCommand(EMERGENCY_RIGHT_STOP);
+                    }
+
+                    emergencyLeftStopCommand.Execute();
+                    emergencyRightStopCommand.Execute();
                 }
 
                 Thread.Sleep(_sleepPeriod);

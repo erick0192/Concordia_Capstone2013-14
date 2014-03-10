@@ -42,7 +42,8 @@ namespace RoverOperator
         {
             commands = new ConcurrentDictionary<string, string>();
             commands.TryAdd(CommandMetadata.Camera.Identifier, string.Empty);
-            commands.TryAdd(CommandMetadata.Movement.Identifier, string.Empty);
+            commands.TryAdd(CommandMetadata.Movement.LeftIdentifier, string.Empty);
+            commands.TryAdd(CommandMetadata.Movement.RightIdentifier, string.Empty);            
             commands.TryAdd(CommandMetadata.Pan.Identifier, string.Empty);
             commands.TryAdd(CommandMetadata.Tilt.Identifier, string.Empty);
 
