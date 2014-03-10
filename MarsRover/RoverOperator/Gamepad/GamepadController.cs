@@ -62,28 +62,50 @@ namespace RoverOperator.Gamepad
                 double RX = state.Gamepad.RightThumbX;
                 double RY = state.Gamepad.RightThumbY;
 
-                StringBuilder command = new StringBuilder();
-                command.Append("<M");
 
+
+                //Building commands for left motors
                 string leftDirection = LY > 0 ? "F" : "B";
-                command.Append(leftDirection);
                 int leftSpeed = (int)Math.Abs((LY * 255 / 32768));
+                    //Minor deadzone settings
                 if (leftSpeed < 30) leftSpeed = 0;
                 else if (leftSpeed > 230) leftSpeed = 255;
-                command.Append(getPaddedInt(leftSpeed));
 
+                if (leftSpeed != 0)
+                {
+                    StringBuilder leftCommand = new StringBuilder();
+                    leftCommand.Append("<L");
+                    string frontLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontLeftMotorVM.Power / 100);
+                    leftCommand.Append(frontLeftMotorCommand);
+                    string middleLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.MiddleLeftMotorVM.Power / 100);
+                    leftCommand.Append(middleLeftMotorCommand);
+                    string backLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.BackLeftMotorVM.Power / 100);
+                    leftCommand.Append(backLeftMotorCommand);
+                    leftCommand.Append(">");
+                    CommandSender.Instance.UpdateCommand(leftCommand.ToString());
+                    logger.Debug(leftCommand.ToString());
+                }
+
+                //Building commands for left motors
                 string rightDirection = RY > 0 ? "F" : "B";
-                command.Append(rightDirection);
                 int rightSpeed = (int)Math.Abs((RY * 255 / 32768));
+                    //Minor deadzone settings
                 if (rightSpeed < 30) rightSpeed = 0;
                 else if (rightSpeed > 230) rightSpeed = 255;
-                command.Append(getPaddedInt(rightSpeed));
 
-                command.Append(">");
-                if (rightSpeed + leftSpeed != 0)
+                if (rightSpeed != 0)
                 {
-                    CommandSender.Instance.UpdateCommand(command.ToString());
-                    logger.Debug(command.ToString());
+                    StringBuilder rightCommand = new StringBuilder();
+                    rightCommand.Append("<R");
+                    string frontRightMotorCommand = rightDirection + getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontRightMotorVM.Power / 100);
+                    rightCommand.Append(frontRightMotorCommand);
+                    string middleRightMotorCommand = rightDirection + getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.MiddleRightMotorVM.Power / 100);
+                    rightCommand.Append(middleRightMotorCommand);
+                    string backRightMotorCommand = rightDirection + getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.BackRightMotorVM.Power / 100);
+                    rightCommand.Append(backRightMotorCommand);
+                    rightCommand.Append(">");
+                    CommandSender.Instance.UpdateCommand(rightCommand.ToString());
+                    logger.Debug(rightCommand.ToString());
                 }
 
                 previousState = state;
