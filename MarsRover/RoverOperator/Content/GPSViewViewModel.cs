@@ -23,6 +23,8 @@ namespace RoverOperator.Content
 
         }
 
+        //public Map map;
+
         private Pushpin _roverPin;
         public Pushpin roverPin 
         {
@@ -53,6 +55,20 @@ namespace RoverOperator.Content
             }
         }
 
+        private string _detailsString;
+        public string detailsString
+        {
+            get
+            {
+                return _detailsString;
+            }
+            set
+            {
+                _detailsString = value;
+                OnPropertyChanged("detailsString");
+            }
+        }
+
         private GPSCoordinates _roverCoordinates;
         public GPSCoordinates roverCoordinates
         {
@@ -62,7 +78,8 @@ namespace RoverOperator.Content
             }
             set
             {
-                _roverCoordinates = value;                
+                _roverCoordinates = value;
+                //updateTargetDetails();
                 OnPropertyChanged("roverCoordinates");
             }
         }
@@ -93,6 +110,7 @@ namespace RoverOperator.Content
             set
             {
                 _pushPinCollection = value;
+                //updateTargetDetails();
                 OnPropertyChanged("pushPinCollection");
             }
         }
@@ -185,7 +203,7 @@ namespace RoverOperator.Content
         private void UpdateGPS(GPSCoordinates gpsCoordinates)
         {
             roverCoordinates = gpsCoordinates;            
-            roverCoordinateString = "Rover: " + gpsCoordinates.Location.ToString();
+            roverCoordinateString = "Rover: " + gpsCoordinates.Location.ToString();            
         }
       
 
@@ -197,7 +215,17 @@ namespace RoverOperator.Content
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
-        }       
+        }
+
+        /// <summary>
+        /// Right click event to remove target (best way to do this even though using commands seems to be more elegant)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void targetPin_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            removeTarget((Pushpin)sender);
+        }
 
         #endregion
 
@@ -216,8 +244,14 @@ namespace RoverOperator.Content
             setRoverPinLocation();         
         }
 
+        
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
-        /// This is a bit of a hack but it's reliable
+        /// Binds the rover location data being sent by StatusUpdater to PushPin on the Map
         /// </summary>
         private void setRoverPinLocation()
         {
@@ -227,6 +261,7 @@ namespace RoverOperator.Content
             roverCoordinates = new GPSCoordinates();
             roverPin = new Pushpin();
 
+            //Wait for the StatusUpdater to send the location of the rover BEFORE the pushpin is set, or else DataBinding will not occur
             while (roverCoordinates.Location == null && (DateTime.UtcNow - startTime < TimeSpan.FromSeconds(2)))
             {
                 //loop until the rover coordinates have been received, timeout after 2 seconds
@@ -240,6 +275,11 @@ namespace RoverOperator.Content
 
                 formatRoverPin();
             }
+        }
+
+        void roverPin_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            roverPin.Location = new Location(roverCoordinates.Location);
         }
 
         /// <summary>
@@ -264,6 +304,23 @@ namespace RoverOperator.Content
             //Title is not mandatory
             if (!string.IsNullOrWhiteSpace(targetTitleString))
             {
+                //to enforce unique Name
+                int counter = 0;
+
+                while (targetPin.Name == null)
+                {
+                    //Start counter at 1, stop incrementing when looping finishes
+                    counter++;
+                    try
+                    {
+                        targetPin.Name = targetTitleString;
+                    }
+                    catch
+                    {
+                        targetPin.Name = targetTitleString + "_" + counter;
+                    }                    
+                }
+
                 tt.Content = targetTitleString + ": ";
             }
             else
@@ -277,10 +334,6 @@ namespace RoverOperator.Content
 
             targetPin.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 255, 0));
         }
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Decide whether or not to allow the command to execute
@@ -303,15 +356,33 @@ namespace RoverOperator.Content
         /// </summary>
         public void updateTargetDetails()
         {
+            detailsString = "";
+
+            if(targetPins != null && targetPins.Count > 0)
             foreach (var target in targetPins)
             {
                 double targetLongitude = target.Location.Longitude;
                 double targetLatitude = target.Location.Latitude;
 
+                string targetName = target.Name;
                 string targetLongitudeString = targetLongitude.ToString();
                 string targetLatitudeString = targetLatitude.ToString();
 
                 double distance = getDistance(roverPin.Location, target.Location);
+
+                string detail = "";
+                //Show the name if it has one
+                if (targetName != null)
+                {
+                    detail += targetName + ": ";
+                }
+                else //else show the coordinates to identify it
+                {
+                    detail += targetLongitudeString + ", " + targetLatitudeString + ": ";
+                }
+
+                detail += distance;
+                detailsString += detail + "\n";
             }
         }
 
@@ -356,6 +427,12 @@ namespace RoverOperator.Content
         /// <param name="targetLocation"></param>
         private void addTarget(Location targetLocation)
         {
+            //latitude ranges from -90 to 90 
+            targetLocation.Latitude = latitude % 90;
+
+            //longitude ranges from -180 to 180
+            targetLocation.Longitude = longitude % 180;
+
             //Initialize target list
             if (targetPins == null)
             {
@@ -383,18 +460,26 @@ namespace RoverOperator.Content
             {
                 pushPinCollection = new ObservableCollection<Pushpin>();
             }
-            pushPinCollection.Add(targetPin);
-        }
 
-        /// <summary>
-        /// Right click event to remove target (best way to do this even though using commands seems to be more elegant)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void targetPin_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            removeTarget((Pushpin)sender);
+            //ObservableCollection<Pushpin> tempCollection = pushPinCollection;
+            //pushPinCollection = null;
+            //tempCollection.Add(targetPin);
+            //pushPinCollection = tempCollection;
+            pushPinCollection.Add(targetPin);
+
+            //updateTargetDetails();
+            
+            //reset values of the textboxes
+            longitudeString = "";
+            latitudeString = "";
+            targetTitleString = "";
+
+            //reset the data values
+            longitude = 0;
+            latitude = 0; 
+      
         }
+       
 
         /// <summary>
         /// Remove target from map (triggered by right clocking on a pushpin)
@@ -436,6 +521,9 @@ namespace RoverOperator.Content
 
         public bool canAddTarget;
         public RelayCommand _addTargetCommand;
+        /// <summary>
+        /// Add new target to the map
+        /// </summary>
         public ICommand AddTargetCommand
         {
             get
@@ -453,28 +541,16 @@ namespace RoverOperator.Content
         /// </summary>
         private void ExecuteAddTargetCommand()
         {           
-            Location targetLocation = new Location();
-
-            //latitude ranges from -90 to 90 
-            targetLocation.Latitude = latitude % 90;
-
-            //longitude ranges from -180 to 180
-            targetLocation.Longitude = longitude % 180;
+            Location targetLocation = new Location();            
 
             //add the target to the map
-            addTarget(targetLocation);
-
-            //reset values of the textboxes
-            longitudeString = "";
-            latitudeString = "";
-            targetTitleString = "";
-
-            //reset the data values
-            longitude = 0;
-            latitude = 0;                        
+            addTarget(targetLocation);                           
         }
 
         public RelayCommand _removeTargetCommand;
+        /// <summary>
+        /// (DEPRECATED) Remove target pin from map
+        /// </summary>
         public ICommand RemoveTargetCommand
         {
             get
@@ -488,7 +564,7 @@ namespace RoverOperator.Content
         }
 
         /// <summary>
-        /// Remove the target pin to target list
+        /// (DEPRECATED) Remove the target pin to target list
         /// </summary>
         private void ExecuteRemoveTargetCommand()
         {
@@ -497,150 +573,4 @@ namespace RoverOperator.Content
 
         #endregion
     }
-
-    #region Class Definitions
-    /// <summary>
-    /// Class which represents the map itself
-    /// </summary>
-    class GPSMap
-    {
-        #region Properties
-        private string mapImageURL;
-        private double minLongitude, maxLongitude, minLatitude, maxLatitude;
-        #endregion
-
-        #region Constructors
-        public GPSMap(string mapImageURL)
-        {
-            this.mapImageURL = mapImageURL;
-        }
-        #endregion
-
-    }
-
-    /// <summary>
-    /// Class used to define targets on the map (non-rover coordinates)
-    /// </summary>
-    class GPSLocator
-    {
-        #region Properties
-        private double longitude, latitude;
-        public double Longitude
-        {
-            get
-            {
-                return longitude;
-            }
-        }
-
-        public double Latitude
-        {
-            get
-            {
-                return latitude;
-            }
-        }
-
-        #endregion
-
-        #region Constructors
-        public GPSLocator(double latitude, double longitude)
-        {
-            this.longitude = latitude;
-            this.latitude = longitude;
-        }
-
-        public GPSLocator(GPSCoordinates gpsCoordinates)
-        {
-            //parse longitude and latitude from gpsCoordinates
-            this.longitude = nmeaToLongitude(gpsCoordinates.X, gpsCoordinates.Y);
-            this.latitude = nmeaToLatitude(gpsCoordinates.Z);
-        }
-        #endregion
-
-        #region Methods
-        //NMEA in X, Y, Z format methods for longitude and latitude
-        private double nmeaToLatitude(double Z)
-        {
-            return Math.Asin(Z / 6371); //6371 is approximate radius of the earth in km
-        }
-        private double nmeaToLongitude(double X, double Y)
-        {
-            return Math.Atan2(Y, X);
-        }
-
-        //Raw NMEA string parse method to extract longitude or latitude in decimal form
-        private double parseNmea(string nmeaCoordinates)
-        {
-            double decimalCoordinates = 0;
-
-            string degreeString;
-            string minuteString;
-
-            try
-            {
-
-                if (nmeaCoordinates.Contains('.'))
-                {
-                    if (nmeaCoordinates.Split('.').Length > 2)
-                    {
-                        //error
-                    }
-
-                    try
-                    {
-                        //get degrees
-                        degreeString = nmeaCoordinates.Substring(0, nmeaCoordinates.IndexOf('.') - 3); //split at decimal point, select degree representing characters
-                    }
-                    catch
-                    {
-                        degreeString = "0"; // 0 degrees is a rare case
-                    }
-
-                    try
-                    {
-                        minuteString = nmeaCoordinates.Substring(nmeaCoordinates.IndexOf('.') - 2); // select last 2 characters before the decimal point until the end of the string, which represent minutes (if there are 2 digits of minutes)
-                    }
-                    catch
-                    {
-                        minuteString = nmeaCoordinates.Substring(nmeaCoordinates.IndexOf('.') - 1); // if there are 1 digit of minutes (rare case)
-                    }
-
-                    decimalCoordinates = Convert.ToDouble(degreeString) + (Convert.ToDouble(minuteString) / 60); // divide minutes by 60 to give degrees
-                }
-                else
-                {
-                    if (nmeaCoordinates.Length > 2)
-                    {
-                        //get degrees
-                        degreeString = nmeaCoordinates.Remove(nmeaCoordinates.Length - 2); //remove last 2 characters which represent whole minutes
-
-                        // get minutes
-                        minuteString = nmeaCoordinates.Substring(nmeaCoordinates.Length - 2); // select last 2 characters which represent minutes
-
-                        decimalCoordinates = Convert.ToDouble(degreeString) + (Convert.ToDouble(minuteString) / 60); // divide minutes by 60 to give degrees
-                    }
-                    else
-                    {
-                        //last 2 characters are always minutes, therefore we don't have degrees
-                        minuteString = nmeaCoordinates;
-                        degreeString = "0";
-
-                        decimalCoordinates = Convert.ToDouble(minuteString) / 60; // divide minutes by 60 to give degrees
-                    }
-                }
-            }
-            catch
-            {
-                //something went wrong
-                decimalCoordinates = 0;
-            }
-
-            return decimalCoordinates;
-        }
-
-        #endregion
-    }
-     
-    #endregion
 }

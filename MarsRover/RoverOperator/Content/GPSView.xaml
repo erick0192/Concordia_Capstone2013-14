@@ -28,7 +28,7 @@
                 </StackPanel>
             </StackPanel>
             <m:Map x:Name="myMap" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <m:MapItemsControl ItemsSource="{Binding pushPinCollection}" x:Name="myMapItemsControl"></m:MapItemsControl>
+                <m:MapItemsControl ItemsSource="{Binding pushPinCollection}" x:Name="myMapItemsControl" />
             </m:Map>
         </DockPanel>
     </Grid>

@@ -16,7 +16,16 @@ namespace RoverOperator.Content
 
             //instantiate viewmodel and set datacontext
             gpsVM = new GPSViewViewModel();
-            this.DataContext = gpsVM;
+            //gpsVM.map = myMap;
+            this.DataContext = gpsVM;            
+        }
+
+        private void RefreshMap()
+        {
+            myMap.UpdateLayout();
+            var c = myMap.Center;
+            c.Latitude += 0.00001;
+            myMap.SetView(c, myMap.ZoomLevel);
         }
     }
 }

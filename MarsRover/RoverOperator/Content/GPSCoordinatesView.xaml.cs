@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace RoverOperator.Content
 {
@@ -25,7 +26,6 @@ namespace RoverOperator.Content
         public GPSCoordinatesView()
         {
             InitializeComponent();
-
             gpsVM = new GPSViewViewModel();
             this.DataContext = gpsVM;
         }
