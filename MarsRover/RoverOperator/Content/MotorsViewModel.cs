@@ -24,12 +24,12 @@ namespace RoverOperator.Content
             }
         }
 
-        public MotorStatusViewModel FrontLeftMotorVM { get; set; }
-        public MotorStatusViewModel FrontRightMotorVM { get; set; }
-        public MotorStatusViewModel MiddleLeftMotorVM { get; set; }
-        public MotorStatusViewModel MiddleRightMotorVM { get; set; }
-        public MotorStatusViewModel BackLeftMotorVM { get; set; }
-        public MotorStatusViewModel BackRightMotorVM { get; set; }
+        public static MotorStatusViewModel FrontLeftMotorVM { get; set; }
+        public static MotorStatusViewModel FrontRightMotorVM { get; set; }
+        public static MotorStatusViewModel MiddleLeftMotorVM { get; set; }
+        public static MotorStatusViewModel MiddleRightMotorVM { get; set; }
+        public static MotorStatusViewModel BackLeftMotorVM { get; set; }
+        public static MotorStatusViewModel BackRightMotorVM { get; set; }
 
         #endregion 
 

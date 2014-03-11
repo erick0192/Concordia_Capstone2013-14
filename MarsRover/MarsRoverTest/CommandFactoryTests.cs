@@ -21,15 +21,23 @@ namespace MarsRoverTest
     class CommandFactoryTests
     {
         [Test]
-        public void CreateCommand_ValidMovementString_ReturnsMovementCommand()
+        public void CreateCommand_ValidLeftMovementString_ReturnsMovementCommand()
         {
-            string commandString = "<MF255F255>";
+            string commandString = "<LF255F255F255>";
             CommandFactory factory = new CommandFactory();
             ICommand command = factory.CreateCommand(commandString);
 
             Assert.IsInstanceOf(typeof(MovementCommand), command);
+        }
 
-           
+        [Test]
+        public void CreateCommand_ValidRightMovementString_ReturnsMovementCommand()
+        {
+            string commandString = "<RF255F255F255>";
+            CommandFactory factory = new CommandFactory();
+            ICommand command = factory.CreateCommand(commandString);
+
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
         }
 
         [Test]
@@ -45,7 +53,7 @@ namespace MarsRoverTest
         [Test]
         public void CreateCommand_ValidPanString_ReturnsPanCommand()
         {
-            string panString = "<P1359>";
+            string panString = "<P1200>";
             CommandFactory factory = new CommandFactory();
             ICommand command = factory.CreateCommand(panString);
 
@@ -65,7 +73,7 @@ namespace MarsRoverTest
         [Test]
         public void CreateCommand_DuplicateValidCommandStrings_ReturnsNullCommandOnSecondInstantiation()
         {
-            string commandString = "<MF255F255>";
+            string commandString = "<LF255F255F255>";
             CommandFactory factory = new CommandFactory();
             ICommand command = factory.CreateCommand(commandString);
 
@@ -79,8 +87,8 @@ namespace MarsRoverTest
         [Test]
         public void CreateCommand_DifferentValidMovementCommandStrings_ReturnsTwoMovementCommands()
         {
-            string commandString = "<MF255F255>";
-            string commandString2 = "<MF000F000>";
+            string commandString = "<LF255F255F255>";
+            string commandString2 = "<LF200F200F200>";
             CommandFactory factory = new CommandFactory();
 
             ICommand command = factory.CreateCommand(commandString);
@@ -89,6 +97,21 @@ namespace MarsRoverTest
             command = factory.CreateCommand(commandString2);
             Assert.IsInstanceOf(typeof(MovementCommand), command);
         }
+
+        [Test]
+        public void CreateCommand_ValidLeftMovementValidRightMovementCommandStrings_ReturnsTwoMovementCommands()
+        {
+            string commandString = "<LF255F255F255>";
+            string commandString2 = "<RF000F000F000>";
+            CommandFactory factory = new CommandFactory();
+
+            ICommand command = factory.CreateCommand(commandString);
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
+
+            command = factory.CreateCommand(commandString2);
+            Assert.IsInstanceOf(typeof(MovementCommand), command);
+        }
+   
 
         [Test]
         public void CreateCommand_DifferentValidCameraCommandStrings_ReturnsTwoCameraCommands()
@@ -107,7 +130,7 @@ namespace MarsRoverTest
         [Test] 
         public void CreateCommand_SeperatedDuplicateCommands_ReturnsNullCommandOnThirdInstantiation()
         {
-            string commandString1 = "<MF255F255>";
+            string commandString1 = "<RF255F255F255>";
             string commandString2 = "<C1F>";
             CommandFactory factory = new CommandFactory();
 

@@ -101,16 +101,16 @@ namespace Rover.Commands
             }
             catch (Exception)
             {
-                throw new ArgumentException("Invalid Pan angle received in " + rawCommand);
+                throw new ArgumentException("Invalid tilt angle received in " + rawCommand);
             }
 
             if (tiltAngleNum > CommandMetadata.Tilt.MaxTiltAngle)
             {
-                throw new ArgumentException("Pan angle received higher than expected maximum in " + rawCommand);
+                throw new ArgumentException("Tilt angle received higher than expected maximum in " + rawCommand);
             }
             else if (tiltAngleNum < CommandMetadata.Tilt.MinTiltAngle)
             {
-                throw new ArgumentException("Pan angle received lower than expected minimum in" + rawCommand);
+                throw new ArgumentException("Tilt angle received lower than expected minimum in" + rawCommand);
             }
 
             return tiltAngleNum;
