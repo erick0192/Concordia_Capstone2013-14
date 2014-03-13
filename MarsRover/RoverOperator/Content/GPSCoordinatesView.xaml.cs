@@ -26,7 +26,7 @@ namespace RoverOperator.Content
         public GPSCoordinatesView()
         {
             InitializeComponent();
-            gpsVM = new GPSViewViewModel();
+            gpsVM = new GPSViewViewModel(this.Dispatcher);
             this.DataContext = gpsVM;
         }
     }

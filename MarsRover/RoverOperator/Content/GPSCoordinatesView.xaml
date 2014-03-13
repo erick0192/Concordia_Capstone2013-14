@@ -12,11 +12,7 @@
                 <TextBlock Name="longitude" Text="{Binding Path=roverCoordinates.Location.Longitude, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="5,0,0,0"/>
                 <TextBlock Margin="5,0,0,0">Latitude:</TextBlock>
                 <TextBlock Name="latitude" Text="{Binding Path=roverCoordinates.Location.Latitude, UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="5,0,0,0"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Visibility="Collapsed">
-                <TextBlock >Details:</TextBlock>
-                <TextBlock Text="{Binding Path=detailsString, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-            </StackPanel>
+            </StackPanel>            
         </StackPanel>
     </Grid>
 </UserControl>

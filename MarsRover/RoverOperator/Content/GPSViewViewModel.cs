@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Microsoft.Maps.MapControl.WPF;
 using MarsRover;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace RoverOperator.Content
 {
@@ -23,7 +24,9 @@ namespace RoverOperator.Content
 
         }
 
-        //public Map map;
+        public Map map;
+
+        private Dispatcher _dispatcher;
 
         private Pushpin _roverPin;
         public Pushpin roverPin 
@@ -60,11 +63,19 @@ namespace RoverOperator.Content
         {
             get
             {
-                return _detailsString;
+                if (!string.IsNullOrWhiteSpace(_detailsString))
+                {
+                    return _detailsString;
+                }
+                else
+                {
+                    return "---";
+                }
+                
             }
             set
             {
-                _detailsString = value;
+                _detailsString = value;                
                 OnPropertyChanged("detailsString");
             }
         }
@@ -79,10 +90,11 @@ namespace RoverOperator.Content
             set
             {
                 _roverCoordinates = value;
-                //updateTargetDetails();
+                updateRoverLocation();
+                updateTargetDetails();
                 OnPropertyChanged("roverCoordinates");
             }
-        }
+        }        
 
         private string _roverCoordinateString;
         public string roverCoordinateString
@@ -110,7 +122,6 @@ namespace RoverOperator.Content
             set
             {
                 _pushPinCollection = value;
-                //updateTargetDetails();
                 OnPropertyChanged("pushPinCollection");
             }
         }
@@ -188,7 +199,11 @@ namespace RoverOperator.Content
             }
             set
             {
-                _targetTitleString = value;
+                //Make sure first character of name is a letter, also allow the string to be empty
+                if (Char.IsLetter(value.FirstOrDefault()) || string.IsNullOrWhiteSpace(value)) 
+                {
+                    _targetTitleString = value;
+                }
                 OnPropertyChanged("targetTitleString");
             }
         }
@@ -203,7 +218,7 @@ namespace RoverOperator.Content
         private void UpdateGPS(GPSCoordinates gpsCoordinates)
         {
             roverCoordinates = gpsCoordinates;            
-            roverCoordinateString = "Rover: " + gpsCoordinates.Location.ToString();            
+            roverCoordinateString = "Rover: " + gpsCoordinates.Location.ToString();           
         }
       
 
@@ -231,17 +246,15 @@ namespace RoverOperator.Content
 
         #region Constructor
 
-        public GPSViewViewModel()
+        public GPSViewViewModel(Dispatcher d)
         {
+            _dispatcher = d;
             StatusUpdater.Instance.GPSCoordinatesUpdated += new StatusUpdater.GPSCoordinatesUpdatedDelegate(UpdateGPS);
             //Make sure list and rover pin are instantiated
             if (pushPinCollection == null)
             {
                 pushPinCollection = new ObservableCollection<Pushpin>();
-            }          
-           
-
-            setRoverPinLocation();         
+            }                 
         }
 
         
@@ -251,7 +264,7 @@ namespace RoverOperator.Content
         #region Methods
 
         /// <summary>
-        /// Binds the rover location data being sent by StatusUpdater to PushPin on the Map
+        /// (DEPRECATED) Binds the rover location data being sent by StatusUpdater to PushPin on the Map
         /// </summary>
         private void setRoverPinLocation()
         {
@@ -277,9 +290,24 @@ namespace RoverOperator.Content
             }
         }
 
-        void roverPin_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        /// <summary>
+        /// Update location of rover pin (triggered by the update of rovercoordinates
+        /// </summary>
+        private void updateRoverLocation()
         {
-            roverPin.Location = new Location(roverCoordinates.Location);
+            //MIGHT NEED TO USE THIS CODE IN CASE IT CRASHES SAYING ITS TRYING TO ACCES FROM ANOTHER THREAD
+            if (!_dispatcher.HasShutdownStarted && !_dispatcher.HasShutdownFinished)
+            {
+                _dispatcher.Invoke((Action)(() =>
+                {
+                    if (roverPin == null)
+                    {
+                        roverPin = new Pushpin();
+                        formatRoverPin();
+                    }
+                    roverPin.Location = roverCoordinates.Location;
+                }));
+            }
         }
 
         /// <summary>
@@ -307,7 +335,7 @@ namespace RoverOperator.Content
                 //to enforce unique Name
                 int counter = 0;
 
-                while (targetPin.Name == null)
+                while (String.IsNullOrWhiteSpace(targetPin.Name) && !String.IsNullOrWhiteSpace(targetTitleString))
                 {
                     //Start counter at 1, stop incrementing when looping finishes
                     counter++;
@@ -356,33 +384,46 @@ namespace RoverOperator.Content
         /// </summary>
         public void updateTargetDetails()
         {
-            detailsString = "";
-
-            if(targetPins != null && targetPins.Count > 0)
-            foreach (var target in targetPins)
+            //MIGHT NEED TO USE THIS CODE IN CASE IT CRASHES SAYING ITS TRYING TO ACCES FROM ANOTHER THREAD
+            if (!_dispatcher.HasShutdownStarted && !_dispatcher.HasShutdownFinished)
             {
-                double targetLongitude = target.Location.Longitude;
-                double targetLatitude = target.Location.Latitude;
-
-                string targetName = target.Name;
-                string targetLongitudeString = targetLongitude.ToString();
-                string targetLatitudeString = targetLatitude.ToString();
-
-                double distance = getDistance(roverPin.Location, target.Location);
-
-                string detail = "";
-                //Show the name if it has one
-                if (targetName != null)
+                _dispatcher.Invoke((Action)(() =>
                 {
-                    detail += targetName + ": ";
-                }
-                else //else show the coordinates to identify it
-                {
-                    detail += targetLongitudeString + ", " + targetLatitudeString + ": ";
-                }
+                    string detail = "";
 
-                detail += distance;
-                detailsString += detail + "\n";
+                    //only attempt to recalculate if there are targets
+                    if (targetPins != null && targetPins.Count > 0)
+                    {
+                        foreach (var target in targetPins)
+                        {
+                            double targetLongitude = target.Location.Longitude;
+                            double targetLatitude = target.Location.Latitude;
+
+                            string targetName = target.Name;
+                            string targetLongitudeString = targetLongitude.ToString();
+                            string targetLatitudeString = targetLatitude.ToString();
+
+                            double distance = getDistance(roverPin.Location, target.Location);
+
+                            //Show the name if it has one
+                            if (!string.IsNullOrWhiteSpace(targetName))
+                            {
+                                detail += targetName + ", ";
+                            }
+                            else //else show the coordinates to identify it
+                            {
+                                detail += "(" + targetLongitudeString + ", " + targetLatitudeString + "), ";
+                            }
+
+                            detail += "distance: " + distance +"km";
+                            detail += "\n";
+                        }                        
+                    }
+
+                    //Only update this once all calculations are done (or set to empty string if no targets are found), so that the property update doesnt trigger more often than needed (it would lower performance)
+                    detailsString = detail;
+                    
+                }));
             }
         }
 
@@ -460,14 +501,9 @@ namespace RoverOperator.Content
             {
                 pushPinCollection = new ObservableCollection<Pushpin>();
             }
-
-            //ObservableCollection<Pushpin> tempCollection = pushPinCollection;
-            //pushPinCollection = null;
-            //tempCollection.Add(targetPin);
-            //pushPinCollection = tempCollection;
             pushPinCollection.Add(targetPin);
 
-            //updateTargetDetails();
+            updateTargetDetails();
             
             //reset values of the textboxes
             longitudeString = "";
@@ -476,8 +512,7 @@ namespace RoverOperator.Content
 
             //reset the data values
             longitude = 0;
-            latitude = 0; 
-      
+            latitude = 0;      
         }
        
 
@@ -491,6 +526,8 @@ namespace RoverOperator.Content
             {
                 pushPinCollection.Remove(targetToRemove);
                 targetPins.Remove(targetToRemove);
+
+                updateTargetDetails();
             }
         }
 

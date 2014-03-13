@@ -15,8 +15,8 @@ namespace RoverOperator.Content
             InitializeComponent();
 
             //instantiate viewmodel and set datacontext
-            gpsVM = new GPSViewViewModel();
-            //gpsVM.map = myMap;
+            gpsVM = new GPSViewViewModel(this.Dispatcher);
+            gpsVM.map = myMap;
             this.DataContext = gpsVM;            
         }
 
