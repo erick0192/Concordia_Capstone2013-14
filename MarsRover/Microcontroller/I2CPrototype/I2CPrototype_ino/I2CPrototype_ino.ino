@@ -3,7 +3,6 @@
 #define RIGHT_DEVICE_ADDRESS 3
 #define MESSAGE_SIZE 15 //1 byte for speed (per motor), 1 byte for current (per motor), 3 bytes for temperature (per motor)
 
-  int timeout = 5000;
   int requestInterval = 3000; // request data every 3 seconds
   unsigned long int leftLastTimeDataReceived = 0;
   unsigned long int rightLastTimeDataReceived = 0;
@@ -25,14 +24,13 @@
 void setup()
 {
   Wire.begin();        // join i2c bus (address optional for master)
-  Serial.begin(9600);  // start serial for output
-  Serial.println("beginning program");
+  Serial.begin(115200);  // start serial for output
 }
 
 void loop()
 {  
   while (Serial.available() > 0) {
-                // read the incoming byte:
+                // parse the incoming command
                 incomingByte = Serial.read();
                 if(incomingByte == '<' || commandStarted == true)
                 {
@@ -46,8 +44,8 @@ void loop()
                       leftMovementCommand = commandString.substring(2, commandString.indexOf('>'));
                       leftMovementCommand.toCharArray(commandArr, leftMovementCommand.length() + 1);
                       
-                      Serial.print("Left movement command received: ");
-                      Serial.println(leftMovementCommand);
+                      //Serial.print("Left movement command received: ");
+                      //Serial.println(leftMovementCommand);
                       
                       Wire.beginTransmission(LEFT_DEVICE_ADDRESS);
                       Wire.write(commandArr);
@@ -59,8 +57,8 @@ void loop()
                       rightMovementCommand = commandString.substring(2, commandString.indexOf('>'));
                       rightMovementCommand.toCharArray(commandArr, leftMovementCommand.length());
                       
-                      Serial.print("Right movement command received: ");
-                      Serial.println(rightMovementCommand);
+                      //Serial.print("Right movement command received: ");
+                      //Serial.println(rightMovementCommand);
                       
                       Wire.beginTransmission(RIGHT_DEVICE_ADDRESS);
                       Wire.write(commandArr);
@@ -92,9 +90,9 @@ void loop()
     //Serial.println(messageFromSlave);
     CreateMovementCommand(messageFromSlave, leftMotorStatus, 'L');
     
-    Serial.println(leftMotorStatus[0]);
-    Serial.println(leftMotorStatus[1]);
-    Serial.println(leftMotorStatus[2]);
+    Serial.print(leftMotorStatus[0]);
+    Serial.print(leftMotorStatus[1]);
+    Serial.print(leftMotorStatus[2]);
     
     leftLastTimeDataReceived = millis();
   }
@@ -118,9 +116,9 @@ void loop()
     //Serial.println();
     //Serial.println(messageFromSlave);
     CreateMovementCommand(messageFromSlave, rightMotorStatus, 'R');
-    Serial.println(rightMotorStatus[0]);
-    Serial.println(rightMotorStatus[1]);
-    Serial.println(rightMotorStatus[2]);
+    Serial.print(rightMotorStatus[0]);
+    Serial.print(rightMotorStatus[1]);
+    Serial.print(rightMotorStatus[2]);
 
     rightLastTimeDataReceived = millis();
   }
@@ -191,15 +189,15 @@ void CreateMovementCommand(char* messageFromSlave, String *motorCommandArray, ch
   
   if (motorSide == 'L')
   {
-   motorCommandArray[0] = "<MR;F," + String(motorSide) + "," + String(dtostrf(current1,3,2,tempFloatConversion)) + "," + String(dtostrf(motor1AverageTemperature,3,2,tempFloatConversion)) + ">";
-   motorCommandArray[1] = "<MR;M," + String(motorSide) + "," + String(dtostrf(current2,3,2,tempFloatConversion)) + "," + String(dtostrf(motor2AverageTemperature,3,2,tempFloatConversion)) + ">";
-   motorCommandArray[2] = "<MR;B," + String(motorSide) + "," + String(dtostrf(current3,3,2,tempFloatConversion)) + "," + String(dtostrf(motor3AverageTemperature,3,2,tempFloatConversion)) + ">";
+   motorCommandArray[0] = "MR;F," + String(motorSide) + "," + String(dtostrf(current1,3,2,tempFloatConversion)) + "," + String(dtostrf(motor1AverageTemperature,3,2,tempFloatConversion)) + "" + "|";
+   motorCommandArray[1] = "MR;M," + String(motorSide) + "," + String(dtostrf(current2,3,2,tempFloatConversion)) + "," + String(dtostrf(motor2AverageTemperature,3,2,tempFloatConversion)) + "" + "|";
+   motorCommandArray[2] = "MR;B," + String(motorSide) + "," + String(dtostrf(current3,3,2,tempFloatConversion)) + "," + String(dtostrf(motor3AverageTemperature,3,2,tempFloatConversion)) + "" + "|";
   }
   else if (motorSide == 'R')
   {
-   motorCommandArray[0] = "<MR;F," + String(motorSide) + "," + String(dtostrf(current1,3,2,tempFloatConversion)) + "," + String(dtostrf(motor1AverageTemperature,3,2,tempFloatConversion)) + ">";
-   motorCommandArray[1] = "<MR;M," + String(motorSide) + "," + String(dtostrf(current2,3,2,tempFloatConversion)) + "," + String(dtostrf(motor2AverageTemperature,3,2,tempFloatConversion)) + ">";
-   motorCommandArray[2] = "<MR;B," + String(motorSide) + "," + String(dtostrf(current3,3,2,tempFloatConversion)) + "," + String(dtostrf(motor3AverageTemperature,3,2,tempFloatConversion)) + ">";
+   motorCommandArray[0] = "MR;F," + String(motorSide) + "," + String(dtostrf(current1,3,2,tempFloatConversion)) + "," + String(dtostrf(motor1AverageTemperature,3,2,tempFloatConversion)) + "" + "|";
+   motorCommandArray[1] = "MR;M," + String(motorSide) + "," + String(dtostrf(current2,3,2,tempFloatConversion)) + "," + String(dtostrf(motor2AverageTemperature,3,2,tempFloatConversion)) + "" + "|";
+   motorCommandArray[2] = "MR;B," + String(motorSide) + "," + String(dtostrf(current3,3,2,tempFloatConversion)) + "," + String(dtostrf(motor3AverageTemperature,3,2,tempFloatConversion)) + "" + "|";
   }
   return;
 }

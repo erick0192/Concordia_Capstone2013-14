@@ -41,7 +41,6 @@ void setup()
 void loop()
 {
   //Real code for the main loop to be implemented by the ECE team
-  1
   int speedDifference = targetSpeed[0] - movementSpeed[0];
   if(speedDifference != 0)
   {
@@ -102,8 +101,11 @@ void loop()
   Serial.print(movementSpeed[0]);
   Serial.print(" ");
   Serial.print(movementSpeed[1]);
-    Serial.print(" ");
+  Serial.print(" ");
   Serial.println(movementSpeed[2]);
+  
+  analogWrite(WHEEL_ONE, movementSpeed[0]);
+  analogWrite(WHEEL_TWO, movementSpeed[1]);
 
   delay(50);
 }
