@@ -46,9 +46,12 @@ namespace RoverOperator.Gamepad
                 logger.Debug("Found a XInput controller available");
                 var commandsQueue = new BlockingCollection<string>();
                 Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1], commandsQueue));
+                Thread commandsSender = new Thread(() => ProcessCommandQueue(commandsQueue));
+                commandsSender.Start();
                 t.IsBackground = true;
                 t.Start();
             }
+
         }
 
         private void PollAndSendMovementCommands(Controller controller)
@@ -71,8 +74,9 @@ namespace RoverOperator.Gamepad
                 if (leftSpeed < 30) leftSpeed = 0;
                 else if (leftSpeed > 230) leftSpeed = 255;
 
-                if (leftSpeed != 0)
+                if (RoverOperator.Content.MotorsViewModel.MotorVMActive)
                 {
+
                     StringBuilder leftCommand = new StringBuilder();
                     leftCommand.Append("<L");
                     string frontLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontLeftMotorVM.Power / 100);
@@ -83,7 +87,7 @@ namespace RoverOperator.Gamepad
                     leftCommand.Append(backLeftMotorCommand);
                     leftCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(leftCommand.ToString());
-                    //logger.Debug(leftCommand.ToString());
+                    logger.Debug(leftCommand.ToString());
                 }
 
                 //Building commands for left motors
@@ -93,7 +97,7 @@ namespace RoverOperator.Gamepad
                 if (rightSpeed < 30) rightSpeed = 0;
                 else if (rightSpeed > 230) rightSpeed = 255;
 
-                if (rightSpeed != 0)
+                if (RoverOperator.Content.MotorsViewModel.MotorVMActive)
                 {
                     StringBuilder rightCommand = new StringBuilder();
                     rightCommand.Append("<R");
@@ -105,7 +109,7 @@ namespace RoverOperator.Gamepad
                     rightCommand.Append(backRightMotorCommand);
                     rightCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(rightCommand.ToString());
-                    //logger.Debug(rightCommand.ToString());
+                    logger.Debug(rightCommand.ToString());
                 }
 
                 previousState = state;
@@ -115,8 +119,6 @@ namespace RoverOperator.Gamepad
 
         private void PollAndSendCameraCommands(Controller controller, BlockingCollection<string> commands)
         {
-            Thread commandsSender = new Thread(() => ProcessCommandQueue(commands));
-            commandsSender.Start();
 
             var previousState = controller.GetState();
             int selectedCamera = 0; //Default camera is broom
