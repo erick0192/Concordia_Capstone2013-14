@@ -114,7 +114,10 @@ void serialEvent()
                       Serial.print(idCamera);
                       Serial.print(" with angle:");
                       Serial.println(angle); */
-                      if(idCamera == '1') camera->Pan(angle);
+                      if(idCamera == '1') camera1->Pan(angle);
+                      else if(idCamera == '2') camera2->Pan(angle);
+                      else if(idCamera == '3') camera3->Pan(angle);
+                      //else if(idCamera == '4') camera4->Pan(angle);
                     }
                   
                   if(commandString[1] == CommandMetadata::SERVO_TILT)
@@ -126,7 +129,10 @@ void serialEvent()
                       Serial.print(idCamera);
                       Serial.print(" with angle:");
                       Serial.println(angle); */
-                      if(idCamera == '1') camera->Tilt(angle);
+                      if(idCamera == '1') camera1->Tilt(angle);
+                      else if(idCamera == '2') camera2->Tilt(angle);
+                      else if(idCamera == '3') camera3->Tilt(angle);
+                      //else if(idCamera == '4') camera4->Tilt(angle);
                     }
                     
                     if(commandString[1] == CommandMetadata::I2C_LEFT)

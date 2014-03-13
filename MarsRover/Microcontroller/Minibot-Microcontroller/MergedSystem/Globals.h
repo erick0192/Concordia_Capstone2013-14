@@ -39,9 +39,21 @@ namespace CommandMetadata{
 
 //Camera Servo Pan Tilt Pin
 #define SERVO_CAM_1_ID 1
-#define SERVO_CAM_1_PAN_PIN 26
-#define SERVO_CAM_1_TILT_PIN 25
+#define SERVO_CAM_1_PAN_PIN 25
+#define SERVO_CAM_1_TILT_PIN 26
 
+#define SERVO_CAM_2_ID 2
+#define SERVO_CAM_2_PAN_PIN 27
+#define SERVO_CAM_2_TILT_PIN 28
+
+#define SERVO_CAM_3_ID 3
+#define SERVO_CAM_3_PAN_PIN 29
+#define SERVO_CAM_3_TILT_PIN 30
+/*
+#define SERVO_CAM_4_ID 4
+#define SERVO_CAM_4_PAN_PIN 31
+#define SERVO_CAM_4_TILT_PIN 32
+*/
 // Set your serial port baud rate used to send out data here:
 #define OUTPUT_BAUD_RATE 115200
 #endif
