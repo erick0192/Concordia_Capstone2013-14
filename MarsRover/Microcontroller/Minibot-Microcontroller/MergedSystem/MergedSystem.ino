@@ -30,6 +30,7 @@ void setup() {
 void loop() {
   Loop_GPS();
   Loop_IMU();
+  Loop_I2C();
 }
 
 
