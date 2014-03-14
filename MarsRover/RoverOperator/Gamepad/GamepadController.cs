@@ -87,7 +87,7 @@ namespace RoverOperator.Gamepad
                     leftCommand.Append(backLeftMotorCommand);
                     leftCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(leftCommand.ToString());
-                    logger.Debug(leftCommand.ToString());
+                    //logger.Debug(leftCommand.ToString());
                 }
 
                 //Building commands for left motors
@@ -109,7 +109,7 @@ namespace RoverOperator.Gamepad
                     rightCommand.Append(backRightMotorCommand);
                     rightCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(rightCommand.ToString());
-                    logger.Debug(rightCommand.ToString());
+                    //logger.Debug(rightCommand.ToString());
                 }
 
                 previousState = state;

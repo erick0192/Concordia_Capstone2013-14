@@ -12,6 +12,8 @@ namespace RoverOperator.Content
     {
         #region Properties
 
+        public static bool MotorVMActive { get; set; }
+
         private bool enablePowerModifiers = false;
         public bool EnablePowerModifiers
         {

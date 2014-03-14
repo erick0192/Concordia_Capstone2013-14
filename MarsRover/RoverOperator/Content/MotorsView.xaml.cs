@@ -32,6 +32,8 @@ namespace RoverOperator.Content
             BackLeftMotor.DataContext = MotorsViewModel.BackLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.BackLeft);
             BackRightMotor.DataContext = MotorsViewModel.BackRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.BackRight);
 
+            MotorsViewModel.MotorVMActive = true;
+
             DataContext = mvm;
         }
     }
