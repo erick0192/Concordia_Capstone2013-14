@@ -109,30 +109,30 @@ void serialEvent()
                       idCamera = commandString[2];
                       angle = commandString.substring(3, commandString.indexOf('>')).toInt();
                       
-                      /* Commented code only used for debugging so as to not saturate serial port for no reason
+                      //Commented code only used for debugging so as to not saturate serial port for no reason
                       Serial.print("Pan camera ");
                       Serial.print(idCamera);
-                      Serial.print(" with angle:");
-                      Serial.println(angle); */
-                      if(idCamera == '1') camera1->Pan(angle);
-                      else if(idCamera == '2') camera2->Pan(angle);
-                      else if(idCamera == '3') camera3->Pan(angle);
-                      //else if(idCamera == '4') camera4->Pan(angle);
+                      Serial.print(" with speed:");
+                      Serial.println(angle); 
+                      if(idCamera == '1' && camera1 != 0) camera1->Pan(angle);
+                      else if(idCamera == '2' && camera2 != 0) camera2->Pan(angle);
+                      else if(idCamera == '3' && camera3 != 0) camera3->Pan(angle);
+                      else if(idCamera == '4' && camera4 != 0) camera4->Pan(angle);
                     }
                   
                   if(commandString[1] == CommandMetadata::SERVO_TILT)
                     {
                       idCamera = commandString[2];
                       angle = commandString.substring(3, commandString.indexOf('>')).toInt();
-/*
+
                       Serial.print("Tilt camera ");
                       Serial.print(idCamera);
                       Serial.print(" with angle:");
-                      Serial.println(angle); */
-                      if(idCamera == '1') camera1->Tilt(angle);
-                      else if(idCamera == '2') camera2->Tilt(angle);
-                      else if(idCamera == '3') camera3->Tilt(angle);
-                      //else if(idCamera == '4') camera4->Tilt(angle);
+                      Serial.println(angle);
+                      if(idCamera == '1' && camera1 != 0) camera1->Tilt(angle);
+                      else if(idCamera == '2' && camera2 != 0) camera2->Tilt(angle);
+                      else if(idCamera == '3' && camera3 != 0) camera3->Tilt(angle);
+                      else if(idCamera == '4' && camera4 != 0) camera4->Tilt(angle);
                     }
                     
                     if(commandString[1] == CommandMetadata::I2C_LEFT)

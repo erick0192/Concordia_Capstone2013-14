@@ -49,11 +49,11 @@ namespace CommandMetadata{
 #define SERVO_CAM_3_ID 3
 #define SERVO_CAM_3_PAN_PIN 29
 #define SERVO_CAM_3_TILT_PIN 30
-/*
+
 #define SERVO_CAM_4_ID 4
 #define SERVO_CAM_4_PAN_PIN 31
 #define SERVO_CAM_4_TILT_PIN 32
-*/
+
 // Set your serial port baud rate used to send out data here:
 #define OUTPUT_BAUD_RATE 115200
 #endif
