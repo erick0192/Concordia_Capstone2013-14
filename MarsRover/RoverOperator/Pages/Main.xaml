@@ -53,7 +53,9 @@
                         <avalonDock:LayoutAnchorablePane x:Name="paneGPS">
                             <avalonDock:LayoutAnchorable x:Name="LayoutGPS" CanHide="True" CanClose="False" CanFloat="True" CanAutoHide="False" Title="GPS">
                                 <DockPanel>
-                                    <controls:GPSView/>
+                                    <ScrollViewer>
+                                        <controls:GPSView/>
+                                    </ScrollViewer>
                                 </DockPanel>
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>

@@ -392,7 +392,7 @@ namespace RoverOperator.Content
                     string detail = "";
 
                     //only attempt to recalculate if there are targets
-                    if (targetPins != null && targetPins.Count > 0)
+                    if (targetPins != null && targetPins.Count > 0 && roverPin != null && roverPin.Location != null)
                     {
                         foreach (var target in targetPins)
                         {
