@@ -142,6 +142,8 @@
     <Compile Include="Communication\UDP\UDPListenerStatistics.cs" />
     <Compile Include="Communication\UDP\UDPSender.cs" />
     <Compile Include="Communication\UDP\UDPSenderStatistics.cs" />
+    <Compile Include="DD_WRT\RouterCnx.cs" />
+    <Compile Include="DD_WRT\TelnetInterface.cs" />
     <Compile Include="Exceptions\InvalidUpdateStringException.cs" />
     <Compile Include="GPSCoordinates.cs" />
     <Compile Include="IMU.cs" />
@@ -163,6 +165,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -41,6 +41,7 @@ namespace MarsRover
         {
             byte[] newBA = aCodecUtility.CompressBmpToJPEGArray(aImageQuality, aNewBitmap);
             int FileID = aRandomGenerator.Next();
+           
             //Total size of the packet to send including header  +  data.
             PacketPartitionner pp = new PacketPartitionner(FileID, newBA.Length, Packet.GetHeaderSize() + Packet.DEFAULT_PACKET_SIZE, null);
             pp.PartitionFile(newBA, newBA.Length);
