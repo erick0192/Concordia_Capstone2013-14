@@ -115,19 +115,6 @@ namespace RoverOperator.Content
         public NetworkSettingsViewModel()
         {
             Undo();
-            Thread t = new Thread(() => logstuff());
-            t.IsBackground = true;
-            t.Start();
-        }
-
-        private void logstuff()
-        {
-            var logger = NLog.LogManager.GetCurrentClassLogger();
-            while (true)
-            {
-                //logger.Debug(roverIPAddress);
-                Thread.Sleep(100);
-            }
         }
 
         #endregion

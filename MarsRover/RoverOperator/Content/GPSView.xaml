@@ -5,19 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="360">
+             d:DesignHeight="400" d:DesignWidth="400">
     <Grid>
-        <DockPanel>            
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-                <TextBlock VerticalAlignment="Center">Long:</TextBlock>
-                <TextBox Name="longitudeBox" TextWrapping="Wrap" Height="30" Width="80" Margin="5,0,0,0"></TextBox>
-                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0">Lat:</TextBlock>
-                <TextBox Name="latitudeBox" TextWrapping="Wrap" Height="30" Width="80" Margin="5,0,0,0"></TextBox>
-                <Button Name="addTargetButton" Click="addTargetButton_Click" Height="30" Width="80" Margin="30,0,0,0">Add</Button>
-            </StackPanel>
+        <DockPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" Margin="5,5,0,0" HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <TextBlock HorizontalAlignment="Left">Latitude:</TextBlock>
+                                <TextBox Name="latitudeBox" TextWrapping="Wrap" Height="30" Width="100" Margin="15,0,0,0" HorizontalAlignment="Right" Text="{Binding Path=latitudeString, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,0">
+                                <TextBlock  HorizontalAlignment="Left">Longitude:</TextBlock>
+                                <TextBox Name="longitudeBox" TextWrapping="Wrap" HorizontalAlignment="Right" Height="30" Width="100" Text="{Binding Path=longitudeString, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="30,5,0,5" HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,5">
+                                <TextBlock HorizontalAlignment="Left">Name:</TextBlock>
+                                <TextBox HorizontalAlignment="Right" x:Name="targetNameBox" TextWrapping="Wrap"  Height="30" Width="145" Margin="20,0,0,0" Text="{Binding targetTitleString, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <Button Name="addTargetButton" HorizontalAlignment="Right" Command="{Binding AddTargetCommand}" Height="30" Width="200" Margin="0,0,0,0">Add Target</Button>
+                        </StackPanel>
+                    </StackPanel>                
+                    <StackPanel Orientation="Vertical" Visibility="Visible" Margin="5,0,0,0">
+                        <TextBlock >Details:</TextBlock>
+                        <TextBlock Name="detailsTextBlock" Text="{Binding Path=detailsString}" TextWrapping="Wrap"/>
+                    </StackPanel>                
+                </StackPanel>
             <m:Map x:Name="myMap" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <m:Pushpin x:Name="roverPin" Location="{Binding Path=roverCoordinates.Location, UpdateSourceTrigger=PropertyChanged}">
-                </m:Pushpin>
+                <m:MapItemsControl ItemsSource="{Binding pushPinCollection}" x:Name="myMapItemsControl" />
             </m:Map>
         </DockPanel>
     </Grid>

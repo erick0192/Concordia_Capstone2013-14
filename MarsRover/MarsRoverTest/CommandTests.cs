@@ -21,15 +21,35 @@ namespace MarsRoverTest
     class MovementCommandTests
     {
         [Test]
-        public void CreateMovementCommand_ValidForwardLeftForwardRightMovementString_InitializesProperly()
+        public void CreateMovementCommand_ValidLeftFullForward_InitializesProperly()
         {
-            string rawCommand = "<MF255F255>";
+            string rawCommand = "<LF255F255F255>";
             MovementCommand command = new MovementCommand(rawCommand);
 
-            Assert.AreEqual(command.LeftSpeed, 255, "Should be 255");
-            Assert.AreEqual(command.RightSpeed, 255, "Should be 255");
-            Assert.AreEqual(command.LeftDirection, "F", "Should be \"F\"");
-            Assert.AreEqual(command.RightDirection, "F", "Should be \"F\"");
+            Assert.AreEqual(command.MotorSide, "L", "Should be \"L\"");
+            Assert.AreEqual(command.Motor1Speed, 255, "Should be 255");
+            Assert.AreEqual(command.Motor2Speed, 255, "Should be 255");
+            Assert.AreEqual(command.Motor3Speed, 255, "Should be 255");
+            Assert.AreEqual(command.Motor1Direction, "F", "Should be \"F\"");
+            Assert.AreEqual(command.Motor2Direction, "F", "Should be \"F\"");
+            Assert.AreEqual(command.Motor3Direction, "F", "Should be \"F\"");
+
+        }
+
+        [Test]
+        public void CreateMovementCommand_ValidRightFullForward_InitializesProperly()
+        {
+            string rawCommand = "<RF255F255F255>";
+            MovementCommand command = new MovementCommand(rawCommand);
+
+            Assert.AreEqual(command.MotorSide, "R", "Should be \"R\"");
+            Assert.AreEqual(command.Motor1Speed, 255, "Should be 255");
+            Assert.AreEqual(command.Motor2Speed, 255, "Should be 255");
+            Assert.AreEqual(command.Motor3Speed, 255, "Should be 255");
+            Assert.AreEqual(command.Motor1Direction, "F", "Should be \"F\"");
+            Assert.AreEqual(command.Motor2Direction, "F", "Should be \"F\"");
+            Assert.AreEqual(command.Motor3Direction, "F", "Should be \"F\"");
+
         }
 
         [Test]
@@ -45,70 +65,138 @@ namespace MarsRoverTest
         }
 
         [Test]
-        public void CreateMovementCommand_InvalidLeftMovementDirection_ThrowsArgumentException()
+        public void CreateMovementCommand_InvalidSideIdentifier_ThrowsArgumentException()
         {
-            string rawCommand = "<MX255F255>";
+            string rawCommand = "<XF255F255F255>";
 
             Assert.Throws<System.ArgumentException>(
                 delegate
                 {
                     MovementCommand command = new MovementCommand(rawCommand);
                 }
-            , "Command sent: <MX255F255>");
+            , "Command sent: " + rawCommand);
         }
 
         [Test]
-        public void CreateMovementCommand_InvalidRightMovementDirection_ThrowsArgumentException()
+        public void CreateMovementCommand_InvalidMotor1Direction_ThrowsArgumentException()
         {
-            string rawCommand = "<MF255X255>";
+            string rawCommand = "<RX255F255F255>";
 
             Assert.Throws<System.ArgumentException>(
                 delegate
                 {
                     MovementCommand command = new MovementCommand(rawCommand);
                 }
-            , "Command sent: <MF255X255>");
+            , "Command sent: " + rawCommand);
         }
 
         [Test]
-        public void CreateMovementCommand_LeftSpeedHigherThanMax_ThrowsArgumentException()
+        public void CreateMovementCommand_InvalidMotor2Direction_ThrowsArgumentException()
         {
-            string rawCommand = "<MF350F255>";
+            string rawCommand = "<RF255X255F255>";
 
             Assert.Throws<System.ArgumentException>(
                 delegate
                 {
                     MovementCommand command = new MovementCommand(rawCommand);
                 }
-            , "Command sent: <MF350F255>");
+            , "Command sent: " + rawCommand);
+        }
+
+        [Test]
+        public void CreateMovementCommand_InvalidMotor3Direction_ThrowsArgumentException()
+        {
+            string rawCommand = "<RF255F255X255>";
+
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    MovementCommand command = new MovementCommand(rawCommand);
+                }
+            , "Command sent: " + rawCommand);
+        }
+
+        [Test]
+        public void CreateMovementCommand_Motor1SpeedHigherThanMax_ThrowsArgumentException()
+        {
+            string rawCommand = "<LF999F255F255>";
+
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    MovementCommand command = new MovementCommand(rawCommand);
+                }
+            , "Command sent: " + rawCommand);
 
         }
 
         [Test]
-        public void CreateMovementCommand_RightSpeedHigherThanMax_ThrowsArgumentException()
+        public void CreateMovementCommand_Motor2SpeedHigherThanMax_ThrowsArgumentException()
         {
-            string rawCommand = "<MF255F350>";
+            string rawCommand = "<LF255F999F255>";
 
             Assert.Throws<System.ArgumentException>(
                 delegate
                 {
                     MovementCommand command = new MovementCommand(rawCommand);
                 }
-            , "Command sent: <MF255F350>");
+            , "Command sent: " + rawCommand);
 
         }
 
         [Test]
-        public void CreateMovementCommand_InvalidCommandIdentifier_ThrowsArgumentException()
+        public void CreateMovementCommand_Motor3SpeedHigherThanMax_ThrowsArgumentException()
         {
-            string rawCommand = "<CF255F255>";
+            string rawCommand = "<LF255F255F999>";
 
             Assert.Throws<System.ArgumentException>(
                 delegate
                 {
                     MovementCommand command = new MovementCommand(rawCommand);
                 }
-            );
+            , "Command sent: " + rawCommand);
+
+        }
+
+        [Test]
+        public void CreateMovementCommand_Motor1SpeedLowerThanMin_ThrowsArgumentException()
+        {
+            string rawCommand = "<LF-50F255F255>";
+
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    MovementCommand command = new MovementCommand(rawCommand);
+                }
+            , "Command sent: " + rawCommand);
+
+        }
+
+        [Test]
+        public void CreateMovementCommand_Motor2SpeedLowerThanMin_ThrowsArgumentException()
+        {
+            string rawCommand = "<LF255F-50F255>";
+
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    MovementCommand command = new MovementCommand(rawCommand);
+                }
+            , "Command sent: " + rawCommand);
+
+        }
+
+        [Test]
+        public void CreateMovementCommand_Motor3SpeedLowerThanMin_ThrowsArgumentException()
+        {
+            string rawCommand = "<LF255F255F-50>";
+
+            Assert.Throws<System.ArgumentException>(
+                delegate
+                {
+                    MovementCommand command = new MovementCommand(rawCommand);
+                }
+            , "Command sent: " + rawCommand);
 
         }
 
@@ -166,9 +254,9 @@ namespace MarsRoverTest
         }
 
         [Test]
-        public void CreatePanCommand_PanAngleGreaterThan359_ThrowsArgumentException()
+        public void CreatePanCommand_PanAngleGreaterThanMax_ThrowsArgumentException()
         {
-            string rawCommand = "<P1360>";
+            string rawCommand = "<P1201>";
             Assert.Throws<System.ArgumentException>(
                 delegate
                 {

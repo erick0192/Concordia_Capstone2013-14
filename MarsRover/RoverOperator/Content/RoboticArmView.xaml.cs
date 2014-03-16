@@ -12,22 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Maps.MapControl.WPF;
 
 namespace RoverOperator.Content
 {
     /// <summary>
-    /// Interaction logic for GPSMapView.xaml
+    /// Interaction logic for RoboticArmView.xaml
     /// </summary>
-    public partial class GPSCoordinatesView : UserControl
+    public partial class RoboticArmView : UserControl
     {
-        GPSViewViewModel gpsVM;
-
-        public GPSCoordinatesView()
+        public RoboticArmView()
         {
             InitializeComponent();
-            gpsVM = new GPSViewViewModel(this.Dispatcher);
-            this.DataContext = gpsVM;
+            DataContext = new RoboticArmViewModel();
         }
     }
 }

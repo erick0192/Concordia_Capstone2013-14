@@ -6,13 +6,16 @@ using SharpDX.XInput;
 using System.Collections.Generic;
 using System.Text;
 using MarsRover;
+using System.Collections.Concurrent;
 
 namespace RoverOperator.Gamepad
 {
     class GamepadController
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
-        private const int POLLING_RATE = 200; //milliseconds        
+        private const int POLLING_RATE = 200; //milliseconds
+        private const int STATE_CHECK_INTERVAL = 200;
+        private const int BUTTON_PRESS_SAFE_INTERVAL = 1000;
 
         protected class CameraState
         {
@@ -41,10 +44,14 @@ namespace RoverOperator.Gamepad
             if (controllers[1].IsConnected)
             {
                 logger.Debug("Found a XInput controller available");
-                Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1]));
+                var commandsQueue = new BlockingCollection<string>();
+                Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1], commandsQueue));
+                Thread commandsSender = new Thread(() => ProcessCommandQueue(commandsQueue));
+                commandsSender.Start();
                 t.IsBackground = true;
                 t.Start();
             }
+
         }
 
         private void PollAndSendMovementCommands(Controller controller)
@@ -58,30 +65,61 @@ namespace RoverOperator.Gamepad
                 double RX = state.Gamepad.RightThumbX;
                 double RY = state.Gamepad.RightThumbY;
 
-                StringBuilder command = new StringBuilder();
-                command.Append("<M");
 
+
+                //Building commands for left motors
                 string leftDirection = LY > 0 ? "F" : "B";
-                command.Append(leftDirection);
                 int leftSpeed = (int)Math.Abs((LY * 255 / 32768));
-                command.Append(getPaddedInt(leftSpeed));
+                    //Minor deadzone settings
+                if (leftSpeed < 30) leftSpeed = 0;
+                else if (leftSpeed > 230) leftSpeed = 255;
 
+                if (RoverOperator.Content.MotorsViewModel.MotorVMActive)
+                {
+
+                    StringBuilder leftCommand = new StringBuilder();
+                    leftCommand.Append("<L");
+                    string frontLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontLeftMotorVM.Power / 100);
+                    leftCommand.Append(frontLeftMotorCommand);
+                    string middleLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.MiddleLeftMotorVM.Power / 100);
+                    leftCommand.Append(middleLeftMotorCommand);
+                    string backLeftMotorCommand = leftDirection + getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.BackLeftMotorVM.Power / 100);
+                    leftCommand.Append(backLeftMotorCommand);
+                    leftCommand.Append(">");
+                    CommandSender.Instance.UpdateCommand(leftCommand.ToString());
+                    //logger.Debug(leftCommand.ToString());
+                }
+
+                //Building commands for left motors
                 string rightDirection = RY > 0 ? "F" : "B";
-                command.Append(rightDirection);
                 int rightSpeed = (int)Math.Abs((RY * 255 / 32768));
-                command.Append(getPaddedInt(rightSpeed));
+                    //Minor deadzone settings
+                if (rightSpeed < 30) rightSpeed = 0;
+                else if (rightSpeed > 230) rightSpeed = 255;
 
-                command.Append(">");
-                CommandSender.Instance.UpdateCommand(command.ToString());
-                //udpSender.SendStringNow(command.ToString());
+                if (RoverOperator.Content.MotorsViewModel.MotorVMActive)
+                {
+                    StringBuilder rightCommand = new StringBuilder();
+                    rightCommand.Append("<R");
+                    string frontRightMotorCommand = rightDirection + getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontRightMotorVM.Power / 100);
+                    rightCommand.Append(frontRightMotorCommand);
+                    string middleRightMotorCommand = rightDirection + getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.MiddleRightMotorVM.Power / 100);
+                    rightCommand.Append(middleRightMotorCommand);
+                    string backRightMotorCommand = rightDirection + getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.BackRightMotorVM.Power / 100);
+                    rightCommand.Append(backRightMotorCommand);
+                    rightCommand.Append(">");
+                    CommandSender.Instance.UpdateCommand(rightCommand.ToString());
+                    //logger.Debug(rightCommand.ToString());
+                }
 
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);
             }
         }
 
-        private void PollAndSendCameraCommands(Controller controller)
+        private void PollAndSendCameraCommands(Controller controller, BlockingCollection<string> commands)
         {
+
             var previousState = controller.GetState();
             int selectedCamera = 0; //Default camera is broom
             int angleIncrement = 5;
@@ -178,8 +216,8 @@ namespace RoverOperator.Gamepad
                     //Send command
                     if (userSelected)
                     {
-                        CommandSender.Instance.UpdateCommand(command.ToString());
-                        logger.Debug(command);
+                        commands.Add(command.ToString());
+                        //logger.Debug(command.ToString());
                     }
                 }
 
@@ -231,20 +269,58 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft) || state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight))
                 {
                     string command = "<P" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Pan) + ">";
-                    CommandSender.Instance.UpdateCommand(command.ToString());
-                    logger.Debug(command);
+                    commands.Add(command.ToString());
+                    //logger.Debug(command);
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp) || state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown))
                 {
                     string command = "<T" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Tilt) + ">";
-                    CommandSender.Instance.UpdateCommand(command.ToString());
-                    logger.Debug(command);
+                    commands.Add(command.ToString());
+                    //logger.Debug(command);
                 }
 
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);
             }
+        }
+
+        private void ProcessCommandQueue(BlockingCollection<string> commands)
+        {
+            var previousSelectedCamera = -1;
+            var timePreviousCameraSelect = DateTime.Now;
+
+            foreach (string command in commands.GetConsumingEnumerable())
+            {
+                if (command.Contains("<C"))
+                {
+                    var cameraNumber = getCameraNumberFromToggleCommand(command);
+                    if (previousSelectedCamera == cameraNumber && (DateTime.Now - timePreviousCameraSelect).TotalMilliseconds < BUTTON_PRESS_SAFE_INTERVAL)
+                    {
+                        logger.Debug("Ignored command " + command);
+                        continue;
+                    }
+                    else
+                    {
+                        previousSelectedCamera = cameraNumber;
+                        timePreviousCameraSelect = DateTime.Now;
+                        CommandSender.Instance.UpdateCommand(command.ToString());
+                        logger.Debug(command.ToString());
+                        Thread.Sleep(STATE_CHECK_INTERVAL);
+                    }
+                }
+                else
+                {
+                    CommandSender.Instance.UpdateCommand(command.ToString());
+                    Thread.Sleep(STATE_CHECK_INTERVAL);
+                }
+            }
+
+        }
+
+        private int getCameraNumberFromToggleCommand(string command)
+        {
+            return int.Parse(command.Substring(2, 1));
         }
 
         private string getPaddedInt(int toPad)

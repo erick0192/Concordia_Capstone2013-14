@@ -53,7 +53,9 @@
                         <avalonDock:LayoutAnchorablePane x:Name="paneGPS">
                             <avalonDock:LayoutAnchorable x:Name="LayoutGPS" CanHide="True" CanClose="False" CanFloat="True" CanAutoHide="False" Title="GPS">
                                 <DockPanel>
-                                    <controls:GPSView/>
+                                    <ScrollViewer>
+                                        <controls:GPSView/>
+                                    </ScrollViewer>
                                 </DockPanel>
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>
@@ -69,6 +71,9 @@
                                             <TextBlock FontSize="14" Text="GPS"/>
                                             <controls:GPSCoordinatesView/>           
                                         </StackPanel>
+                                    </Expander>
+                                    <Expander FontWeight="Bold" FontSize="14" Header="Robotic Arm" IsExpanded="False" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">
+                                        <controls:RoboticArmView FontSize="12"/>
                                     </Expander>
                                     <Expander FontWeight="Bold" FontSize="14" Header="Motors" IsExpanded="True" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">
                                         <controls:MotorsView FontSize="12"/>

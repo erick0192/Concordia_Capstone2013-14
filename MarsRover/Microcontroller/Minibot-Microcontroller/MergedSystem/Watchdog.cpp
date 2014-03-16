@@ -33,7 +33,7 @@ void Watchdog::timeout(void)
   }
   else
   {
-    StopMove();
+    //StopMove();
     _freeToMove = false;
   }
 }

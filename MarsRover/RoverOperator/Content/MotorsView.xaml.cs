@@ -25,12 +25,14 @@ namespace RoverOperator.Content
             InitializeComponent();
 
             var mvm = new MotorsViewModel();
-            FrontLeftMotor.DataContext = mvm.FrontLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.FrontLeft);
-            FrontRightMotor.DataContext = mvm.FrontRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.FrontRight);
-            MiddleLeftMotor.DataContext = mvm.MiddleLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.MiddleLeft);
-            MiddleRightMotor.DataContext = mvm.MiddleRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.MiddleRight);
-            BackLeftMotor.DataContext = mvm.BackLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.BackLeft);
-            BackRightMotor.DataContext = mvm.BackRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.BackRight);
+            FrontLeftMotor.DataContext = MotorsViewModel.FrontLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.FrontLeft);
+            FrontRightMotor.DataContext = MotorsViewModel.FrontRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.FrontRight);
+            MiddleLeftMotor.DataContext = MotorsViewModel.MiddleLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.MiddleLeft);
+            MiddleRightMotor.DataContext = MotorsViewModel.MiddleRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.MiddleRight);
+            BackLeftMotor.DataContext = MotorsViewModel.BackLeftMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.BackLeft);
+            BackRightMotor.DataContext = MotorsViewModel.BackRightMotorVM = new MotorStatusViewModel(MarsRover.Motor.Location.BackRight);
+
+            MotorsViewModel.MotorVMActive = true;
 
             DataContext = mvm;
         }

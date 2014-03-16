@@ -30,7 +30,7 @@ namespace Rover.Commands
                     return new NullCommand();
                 }
 
-                else if (ID == CommandMetadata.Movement.Identifier)
+                else if (ID == CommandMetadata.Movement.LeftIdentifier || ID == CommandMetadata.Movement.RightIdentifier)
                 {
                     return new MovementCommand(unparsedCommand);
                 }

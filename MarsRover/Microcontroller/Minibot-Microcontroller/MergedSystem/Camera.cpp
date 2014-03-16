@@ -23,6 +23,8 @@ void Camera::Pan(int angle)
   //For mapping functionality use
   //_servoPan.writeMicroseconds((int)map(angle,0, 90,1409,1633));
   _servoPan.writeMicroseconds(angle);
+  Serial.print("Camera Panned with speed: ");
+  Serial.println(angle);
 }
 
 void Camera::Tilt(int angle)
@@ -30,5 +32,7 @@ void Camera::Tilt(int angle)
   //For mapping functionality use
   //_servoTilt.writeMicroseconds((int)map(angle,0, 90,800,2200));
   _servoTilt.writeMicroseconds(angle);
+  Serial.print("Camera Tilted with angle: ");
+  Serial.println(angle);
 }
 
