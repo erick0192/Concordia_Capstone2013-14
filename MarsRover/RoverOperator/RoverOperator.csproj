@@ -57,7 +57,7 @@
       <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="FirstFloor.ModernUI">
-      <HintPath>..\FirstFloor.ModernUI\bin\Debug\FirstFloor.ModernUI.dll</HintPath>
+      <HintPath>..\3rdParty\bin\ModernUI\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Maps.MapControl.WPF">
       <HintPath>..\packages\BingMapsWpfControl.1.0.0\lib\net40-client\Microsoft.Maps.MapControl.WPF.dll</HintPath>

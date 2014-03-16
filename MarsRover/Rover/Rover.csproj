@@ -55,13 +55,11 @@
     <StartupObject>Rover.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\Capstone\MarsRover\3rdParty\bin\AForge.NET\Release\AForge.dll</HintPath>
+    <Reference Include="AForge">
+      <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\Capstone\MarsRover\3rdParty\bin\AForge.NET\Release\AForge.Video.dll</HintPath>
+    <Reference Include="AForge.Video">
+      <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.DirectShow.dll</HintPath>

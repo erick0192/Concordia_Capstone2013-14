@@ -10,7 +10,8 @@ namespace MinimalisticTelnet
     {       
         static void Main(string[] args)
         {
-            RouterCnx Router = new RouterCnx("10.10.10.1","admin","iloverobotics");
+            //RouterCnx Router = new RouterCnx("10.10.10.1","admin","iloverobotics");
+            RouterCnx Router = new RouterCnx("127.0.0.1", "admin", "iloverobotics");
 
             if (Router.Connect() == true)
             {
