@@ -72,6 +72,9 @@
                                             <controls:GPSCoordinatesView/>           
                                         </StackPanel>
                                     </Expander>
+                                    <Expander FontWeight="Bold" FontSize="14" Header="Robotic Arm" IsExpanded="False" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">
+                                        <controls:RoboticArmView FontSize="12"/>
+                                    </Expander>
                                     <Expander FontWeight="Bold" FontSize="14" Header="Motors" IsExpanded="True" Style="{DynamicResource MuiExpander}" Template="{DynamicResource ExpandTheTemplate}">
                                         <controls:MotorsView FontSize="12"/>
                                     </Expander>

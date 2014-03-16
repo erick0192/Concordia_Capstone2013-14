@@ -137,6 +137,10 @@
     </Compile>
     <Compile Include="Content\NetworkSettingsViewModel.cs" />
     <Compile Include="Content\GPSViewViewModel.cs" />
+    <Compile Include="Content\RoboticArmView.xaml.cs">
+      <DependentUpon>RoboticArmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\RoboticArmViewModel.cs" />
     <Compile Include="NetworkSettings.cs" />
     <Compile Include="Properties\NetworkSettings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -197,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\NetworkSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\RoboticArmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

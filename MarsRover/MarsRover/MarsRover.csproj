@@ -149,6 +149,7 @@
     <Compile Include="Motor.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoboticArm.cs" />
     <Compile Include="RoverStatus.cs" />
     <Compile Include="Streams\DummyVideoSource.cs" />
     <Compile Include="Streams\VideoStreamReceiver.cs" />

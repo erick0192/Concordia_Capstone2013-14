@@ -67,8 +67,10 @@ namespace RoverOperator
         public event BatteryCellUpdatedDelegate BatteryCellUpdated;
 
         public delegate void IMUUpdatedDelegate(IMU imu);
-        public event IMUUpdatedDelegate IMUUpdated;  
+        public event IMUUpdatedDelegate IMUUpdated;
 
+        public delegate void RoboticArmUpdatedDelegate(RoboticArm ra);
+        public event RoboticArmUpdatedDelegate RoboticArmUpdated;
 
         #endregion
 
@@ -136,6 +138,10 @@ namespace RoverOperator
                         {
                             UpdateIMU(updateString);
                         }
+                        else if(updateIdentifer == CommandMetadata.Update.RoboticArmIdentifier)
+                        {
+                            
+                        }
                         else
                         {                       
                             logger.Error("The update string '{0}' does not contain a valid update identifier.", updateString);
@@ -152,6 +158,17 @@ namespace RoverOperator
                 }                
             }
             
+        }
+
+        private void UpdateRoboticArm(string updateString)
+        {
+            var ra = roverStatus.RoboArm;
+            ra.UpdateFromString(updateString);
+
+            if(RoboticArmUpdated != null)
+            {
+                RoboticArmUpdated(ra);
+            }
         }
 
         private void UpdateIMU(string updateString)
