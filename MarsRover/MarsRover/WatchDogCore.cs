@@ -10,7 +10,7 @@ namespace MarsRover
     {
         #region Attributes
 
-        private const double BASE_TIME = 3.0f;
+        private const double BASE_TIME = 2.5f;
 
         private Stopwatch _stopwatch;
 

@@ -48,7 +48,7 @@ namespace MarsRover
             listener = new UDPListener(port, this.MessageReceivedHandler);
         }     
 
-        protected void MessageReceivedHandler(int NumberOfAvailableData)
+        protected virtual void MessageReceivedHandler(int NumberOfAvailableData)
         {
             byte[] data = new byte[NumberOfAvailableData];
 
@@ -56,7 +56,6 @@ namespace MarsRover
 
             string message = Encoding.ASCII.GetString(data, 0, data.Length);
             messageQueue.Enqueue(message);
-            //wd.reportActivity();
         }
 
         #endregion
