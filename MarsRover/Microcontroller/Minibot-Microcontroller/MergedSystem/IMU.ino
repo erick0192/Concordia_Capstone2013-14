@@ -261,7 +261,7 @@ void Loop_IMU()
     {      
       if (output_stream_on || output_single_on) output_sensors();
     }
-    Update_Servos();
+    //Update_Servos();
     output_single_on = false;
     
 #if DEBUG__PRINT_LOOP_TIME == true
