@@ -16,6 +16,7 @@ namespace RoverOperator.Gamepad
         private const int POLLING_RATE = 200; //milliseconds
         private const int STATE_CHECK_INTERVAL = 200;
         private const int BUTTON_PRESS_SAFE_INTERVAL = 1000;
+        Dictionary<int, CameraState> cameraStates;
 
         protected class CameraState
         {
@@ -29,6 +30,16 @@ namespace RoverOperator.Gamepad
             //TODO: Detect new controllers after start ?
             var controllers = new[] { new Controller(UserIndex.One), new Controller(UserIndex.Two) };
             StartPollingAndSendingCommands(controllers);
+
+            cameraStates = new Dictionary<int, CameraState>(5);
+            for (int i = 0; i < 5; i++)
+            {
+                CameraState cs = new CameraState();
+                cs.Active = false;
+                cs.Pan = 0;
+                cs.Tilt = 0;
+                cameraStates[i] = cs;
+            }
         }
 
         public void StartPollingAndSendingCommands(Controller[] controllers)
@@ -45,8 +56,8 @@ namespace RoverOperator.Gamepad
             {
                 logger.Debug("Found a XInput controller available");
                 var commandsQueue = new BlockingCollection<string>();
-                Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1], commandsQueue));
-                Thread commandsSender = new Thread(() => ProcessCommandQueue(commandsQueue));
+                Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1], commandsQueue, cameraStates));
+                Thread commandsSender = new Thread(() => ProcessCommandQueue(commandsQueue, cameraStates));
                 commandsSender.Start();
                 t.IsBackground = true;
                 t.Start();
@@ -117,22 +128,13 @@ namespace RoverOperator.Gamepad
             }
         }
 
-        private void PollAndSendCameraCommands(Controller controller, BlockingCollection<string> commands)
+        private void PollAndSendCameraCommands(Controller controller, BlockingCollection<string> commands, Dictionary<int, CameraState> cameraStates)
         {
 
             var previousState = controller.GetState();
             int selectedCamera = 0; //Default camera is broom
             int angleIncrement = 5;
-            Dictionary<int, CameraState> cameraStates = new Dictionary<int, CameraState>(5);
-            for (int i = 0; i < 5; i++) {
-                CameraState cs = new CameraState();
-                cs.Active = false;
-                cs.Pan = 0;
-                cs.Tilt = 0;
-                cameraStates[i] = cs;
-            }
-
-
+            
             while (controller.IsConnected)
             {
                 var state = controller.GetState();
@@ -224,29 +226,12 @@ namespace RoverOperator.Gamepad
                 //Actually panning/tilting
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
-                    if (selectedCamera == 0) //Broom camera - allows an angle of 000-359
-                    {
-                        if (cameraStates[selectedCamera].Pan >= 359 - angleIncrement)
-                            cameraStates[selectedCamera].Pan = 359;
-                        else
-                            cameraStates[selectedCamera].Pan += angleIncrement;
-                    }
-                    else //Any other camera - allows an angle of 000-180
-                    {
-                        if (cameraStates[selectedCamera].Pan >= 180 - angleIncrement)
-                            cameraStates[selectedCamera].Pan = 180;
-                        else
-                            cameraStates[selectedCamera].Pan += angleIncrement;
-                    }
-
+                    cameraStates[selectedCamera].Pan = 0;
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
                 {
-                    if (cameraStates[selectedCamera].Pan <= angleIncrement)
-                        cameraStates[selectedCamera].Pan = 0;
-                    else
-                        cameraStates[selectedCamera].Pan -= angleIncrement;
+                    cameraStates[selectedCamera].Pan = 200;
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
@@ -270,14 +255,12 @@ namespace RoverOperator.Gamepad
                 {
                     string command = "<P" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Pan) + ">";
                     commands.Add(command.ToString());
-                    //logger.Debug(command);
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp) || state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown))
                 {
                     string command = "<T" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Tilt) + ">";
                     commands.Add(command.ToString());
-                    //logger.Debug(command);
                 }
 
                 previousState = state;
@@ -285,7 +268,7 @@ namespace RoverOperator.Gamepad
             }
         }
 
-        private void ProcessCommandQueue(BlockingCollection<string> commands)
+        private void ProcessCommandQueue(BlockingCollection<string> commands, Dictionary<int, CameraState> cameraStates)
         {
             var previousSelectedCamera = -1;
             var timePreviousCameraSelect = DateTime.Now;
@@ -297,6 +280,7 @@ namespace RoverOperator.Gamepad
                     var cameraNumber = getCameraNumberFromToggleCommand(command);
                     if (previousSelectedCamera == cameraNumber && (DateTime.Now - timePreviousCameraSelect).TotalMilliseconds < BUTTON_PRESS_SAFE_INTERVAL)
                     {
+                        cameraStates[cameraNumber].Active = !cameraStates[cameraNumber].Active;
                         logger.Debug("Ignored command " + command);
                         continue;
                     }
@@ -305,14 +289,15 @@ namespace RoverOperator.Gamepad
                         previousSelectedCamera = cameraNumber;
                         timePreviousCameraSelect = DateTime.Now;
                         CommandSender.Instance.UpdateCommand(command.ToString());
-                        logger.Debug(command.ToString());
                         Thread.Sleep(STATE_CHECK_INTERVAL);
+                        logger.Debug(command.ToString());
                     }
                 }
                 else
                 {
                     CommandSender.Instance.UpdateCommand(command.ToString());
                     Thread.Sleep(STATE_CHECK_INTERVAL);
+                    logger.Debug(command.ToString());
                 }
             }
 
