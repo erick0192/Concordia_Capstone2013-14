@@ -22,7 +22,7 @@ namespace MarsRover
                 _wd = wd;
             }
 
-        private void MessageReceivedHandler(int NumberOfAvailableData)
+        protected override void MessageReceivedHandler(int NumberOfAvailableData)
         {
             base.MessageReceivedHandler(NumberOfAvailableData);
             _wd.reportActivity();
