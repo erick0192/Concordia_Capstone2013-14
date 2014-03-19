@@ -4,7 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Maps.MapControl.WPF;
+//using Microsoft.Maps.MapControl.WPF;
+using MapControl;
 using MarsRover;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -284,7 +285,8 @@ namespace RoverOperator.Content
             //if the message was successfully received, bind the location
             if (messageReceived)
             {
-                roverPin.Location = roverCoordinates.Location;
+                //roverPin.Location = roverCoordinates.Location;
+                MapPanel.SetLocation(roverPin, roverCoordinates.Location);
 
                 formatRoverPin();
             }
@@ -305,7 +307,7 @@ namespace RoverOperator.Content
                         roverPin = new Pushpin();
                         formatRoverPin();
                     }
-                    roverPin.Location = roverCoordinates.Location;
+                    MapPanel.SetLocation(roverPin, roverCoordinates.Location);
                 }));
             }
         }
@@ -357,7 +359,7 @@ namespace RoverOperator.Content
                 tt.Content = "";
             }
 
-            tt.Content += targetPin.Location.Latitude + ", " + targetPin.Location.Longitude;
+            tt.Content += MapPanel.GetLocation(targetPin).Latitude + ", " + MapPanel.GetLocation(targetPin).Longitude;
             targetPin.ToolTip = tt;
 
             targetPin.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 255, 0));
@@ -392,18 +394,18 @@ namespace RoverOperator.Content
                     string detail = "";
 
                     //only attempt to recalculate if there are targets
-                    if (targetPins != null && targetPins.Count > 0 && roverPin != null && roverPin.Location != null)
+                    if (targetPins != null && targetPins.Count > 0 && roverPin != null && MapPanel.GetLocation(roverPin) != null)
                     {
                         foreach (var target in targetPins)
                         {
-                            double targetLongitude = target.Location.Longitude;
-                            double targetLatitude = target.Location.Latitude;
+                            double targetLongitude = MapPanel.GetLocation(target).Longitude;
+                            double targetLatitude = MapPanel.GetLocation(target).Latitude;
 
                             string targetName = target.Name;
                             string targetLongitudeString = targetLongitude.ToString();
                             string targetLatitudeString = targetLatitude.ToString();
 
-                            double distance = getDistance(roverPin.Location, target.Location);
+                            double distance = getDistance(MapPanel.GetLocation(roverPin), MapPanel.GetLocation(target));
 
                             //Show the name if it has one
                             if (!string.IsNullOrWhiteSpace(targetName))
@@ -482,7 +484,7 @@ namespace RoverOperator.Content
 
             // The pushpin to add to the map.
             Pushpin targetPin = new Pushpin();
-            targetPin.Location = targetLocation;
+            MapPanel.SetLocation(targetPin, targetLocation);
             
             //Style the target
             formatTargetPin(targetPin);
