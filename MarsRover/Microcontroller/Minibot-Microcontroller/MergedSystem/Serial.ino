@@ -1,6 +1,4 @@
 #include <Wire.h>
-#define LEFT_DEVICE_ADDRESS 2
-#define RIGHT_DEVICE_ADDRESS 3
 #define MESSAGE_SIZE 15 //1 byte for speed (per motor), 1 byte for current (per motor), 3 bytes for temperature (per motor)
 
 static const int DELAY_IMU = 1000; //Delay to update the IMU
