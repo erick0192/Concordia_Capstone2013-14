@@ -69,6 +69,9 @@ namespace RoverOperator.Gamepad
         private void PollAndSendMovementCommands(Controller controller, BlockingCollection<string> commands)
         {
             var previousState = controller.GetState();
+            int selectedCamera = 1; //Front camera is default
+            int angleIncrement = 5;
+
             while (controller.IsConnected)
             {
                 ////////////////////////////////////////////////////////////////////////////Movement Control
@@ -124,10 +127,7 @@ namespace RoverOperator.Gamepad
                 }
 
 
-
                 ////////////////////////////////////////////////////////////////////////////Camera Control
-                int selectedCamera = 0; //Default camera is broom
-                int angleIncrement = 5;
 
                 //Selecting camera to pan/tilt
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y))
@@ -164,6 +164,7 @@ namespace RoverOperator.Gamepad
                         cameraStates[2].Active = !cameraStates[2].Active;
                         userSelected = true;
                     }
+
                     //Send command
                     if (userSelected)
                     {
@@ -223,9 +224,9 @@ namespace RoverOperator.Gamepad
                     commands.Add(command.ToString());
                 }
 
-
                 previousState = state;
                 Thread.Sleep(POLLING_RATE);
+
             }
         }
 
@@ -240,15 +241,7 @@ namespace RoverOperator.Gamepad
             {
                 var state = controller.GetState();
                 //Selecting camera to pan/tilt
-                if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y))
-                {
-                    selectedCamera = 1;
-                }
-                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.A))
-                {
-                    selectedCamera = 2;
-                }
-                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
+                if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
                 {
                     selectedCamera = 3;
                 }
@@ -266,27 +259,7 @@ namespace RoverOperator.Gamepad
                 {
                     string command = null;
                     bool userSelected = false;
-                    if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y))
-                    {
-                        selectedCamera = 1;
-                        if (cameraStates[1].Active)
-                            command = "<C" + 1 + "F>";
-                        else
-                            command = "<C" + 1 + "O>";
-                        cameraStates[1].Active = !cameraStates[1].Active;
-                        userSelected = true;
-                    }
-                    else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.A))
-                    {
-                        selectedCamera = 2;
-                        if (cameraStates[2].Active)
-                            command = "<C" + 2 + "F>";
-                        else
-                            command = "<C" + 2 + "O>";
-                        cameraStates[2].Active = !cameraStates[2].Active;
-                        userSelected = true;
-                    }
-                    else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
+                    if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
                     {
                         selectedCamera = 3;
                         if (cameraStates[3].Active) //Dectivating

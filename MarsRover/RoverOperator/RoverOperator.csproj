@@ -48,6 +48,9 @@
   <PropertyGroup>
     <StartupObject>RoverOperator.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge.Video">
       <HintPath>..\3rdParty\bin\AForge.NET\Release\AForge.Video.dll</HintPath>
@@ -309,6 +312,9 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="app.config" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\NetworkSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>NetworkSettings.Designer.cs</LastGenOutput>
