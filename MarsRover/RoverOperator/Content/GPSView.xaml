@@ -4,16 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-             xmlns:map="clr-namespace:MapControl;assembly=MapControl.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
-   <UserControl.Resources>
-        <map:TileLayerCollection x:Key="TileLayers">
-            <map:TileLayer SourceName="OpenStreetMap" Description="© {y} OpenStreetMap Contributors, CC-BY-SA" TileSource="http://{c}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-            <!--<map:TileLayer SourceName="OSM Local Files" Description="© {y} OpenStreetMap Contributors, CC-BY-SA" TileSource="file:///C:/ProgramData/MapControl/TileCache/OpenStreetMap/{z}/{x}/{y}.png"/>-->
-        </map:TileLayerCollection>
-        <CollectionViewSource x:Key="TileLayersViewSource" Source="{StaticResource TileLayers}"/>
-    </UserControl.Resources>
     <Grid>
         <DockPanel>
             <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
@@ -41,12 +33,9 @@
                         <TextBlock Name="detailsTextBlock" Text="{Binding Path=detailsString}" TextWrapping="Wrap"/>
                     </StackPanel>                
                 </StackPanel>
-            <!--<m:Map x:Name="myMap" Visibility="Collapsed" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <m:Map x:Name="myMap" CredentialsProvider="AmEmcB_flfCIGnwviWdhqvzA2K2VLgurmlcuyOrcicnsZ1yxDZJNifScbFZVuoN0" Mode="Aerial" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <m:MapItemsControl ItemsSource="{Binding pushPinCollection}" x:Name="myMapItemsControl" />
-            </m:Map>-->
-            <map:Map x:Name="myMap" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" > <!-- TileLayer="{Binding Source={StaticResource TileLayersViewSource}, Path=CurrentItem}"-->
-                <m:MapItemsControl ItemsSource="{Binding pushPinCollection}" x:Name="myMapItemsControl" />
-            </map:Map>
+            </m:Map>
         </DockPanel>
     </Grid>
 </UserControl>

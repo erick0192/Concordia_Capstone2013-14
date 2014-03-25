@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MarsRover.Commands;
-using MapControl;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace MarsRover
 {
