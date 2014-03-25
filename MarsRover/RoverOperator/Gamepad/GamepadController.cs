@@ -20,7 +20,7 @@ namespace RoverOperator.Gamepad
 
         protected class CameraState
         {
-            public int Pan;
+            public char Pan;
             public int Tilt;
             public bool Active;
         };
@@ -36,7 +36,7 @@ namespace RoverOperator.Gamepad
             {
                 CameraState cs = new CameraState();
                 cs.Active = false;
-                cs.Pan = 0;
+                cs.Pan = 'N';
                 cs.Tilt = 0;
                 cameraStates[i] = cs;
             }
@@ -44,18 +44,19 @@ namespace RoverOperator.Gamepad
 
         public void StartPollingAndSendingCommands(Controller[] controllers)
         {
+            var commandsQueue = new BlockingCollection<string>();
+
             if (controllers[0].IsConnected)
             {
-                logger.Debug("Found a XInput controller available");
-                Thread t = new Thread(() => PollAndSendMovementCommands(controllers[0]));
+                logger.Trace("Found a XInput controller available. Starting PollAndSendMovementCommands");
+                Thread t = new Thread(() => PollAndSendMovementCommands(controllers[0], commandsQueue));
                 t.IsBackground = true;
                 t.Start();
             }
 
             if (controllers[1].IsConnected)
             {
-                logger.Debug("Found a XInput controller available");
-                var commandsQueue = new BlockingCollection<string>();
+                logger.Trace("Found a XInput controller available. Starting PollAndSendCameraCommands");
                 Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1], commandsQueue, cameraStates));
                 Thread commandsSender = new Thread(() => ProcessCommandQueue(commandsQueue, cameraStates));
                 commandsSender.Start();
@@ -65,18 +66,20 @@ namespace RoverOperator.Gamepad
 
         }
 
-        private void PollAndSendMovementCommands(Controller controller)
+        private void PollAndSendMovementCommands(Controller controller, BlockingCollection<string> commands)
         {
             var previousState = controller.GetState();
+            int selectedCamera = 1; //Front camera is default
+            int angleIncrement = 5;
+
             while (controller.IsConnected)
             {
+                ////////////////////////////////////////////////////////////////////////////Movement Control
                 var state = controller.GetState();
                 double LX = state.Gamepad.LeftThumbX;
                 double LY = state.Gamepad.LeftThumbY;
                 double RX = state.Gamepad.RightThumbX;
                 double RY = state.Gamepad.RightThumbY;
-
-
 
                 //Building commands for left motors
                 string leftDirection = LY > 0 ? "F" : "B";
@@ -123,21 +126,9 @@ namespace RoverOperator.Gamepad
                     //logger.Debug(rightCommand.ToString());
                 }
 
-                previousState = state;
-                Thread.Sleep(POLLING_RATE);
-            }
-        }
 
-        private void PollAndSendCameraCommands(Controller controller, BlockingCollection<string> commands, Dictionary<int, CameraState> cameraStates)
-        {
+                ////////////////////////////////////////////////////////////////////////////Camera Control
 
-            var previousState = controller.GetState();
-            int selectedCamera = 0; //Default camera is broom
-            int angleIncrement = 5;
-            
-            while (controller.IsConnected)
-            {
-                var state = controller.GetState();
                 //Selecting camera to pan/tilt
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y))
                 {
@@ -146,18 +137,6 @@ namespace RoverOperator.Gamepad
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.A))
                 {
                     selectedCamera = 2;
-                }
-                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
-                {
-                    selectedCamera = 3;
-                }
-                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.X))
-                {
-                    selectedCamera = 4;
-                }
-                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder))
-                {
-                    selectedCamera = 0;
                 }
 
                 //De-Activating camera to pan/tilt
@@ -185,7 +164,102 @@ namespace RoverOperator.Gamepad
                         cameraStates[2].Active = !cameraStates[2].Active;
                         userSelected = true;
                     }
-                    else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
+
+                    //Send command
+                    if (userSelected)
+                    {
+                        commands.Add(command.ToString());
+                    }
+                }
+
+                bool panning = false;
+                bool tilting = false;
+
+                //Actually panning/tilting
+                if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
+                {
+                    panning = true;
+                    cameraStates[selectedCamera].Pan = 'L';
+                }
+
+                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
+                {
+                    panning = true;
+                    cameraStates[selectedCamera].Pan = 'R';
+                }
+
+                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
+                {
+                    if (cameraStates[selectedCamera].Tilt >= 90 - angleIncrement)
+                        cameraStates[selectedCamera].Tilt = 90;
+                    else
+                        cameraStates[selectedCamera].Tilt += angleIncrement;
+                    tilting = true;
+                }
+
+                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown)) //Down Tilt
+                {
+                    if (cameraStates[selectedCamera].Tilt <= angleIncrement)
+                        cameraStates[selectedCamera].Tilt = 0;
+                    else
+                        cameraStates[selectedCamera].Tilt -= angleIncrement;
+                    tilting = true;
+                }
+
+                //Sending commands
+                if (panning)
+                {
+                    string command = "<P" + selectedCamera + cameraStates[selectedCamera].Pan + ">";
+                    commands.Add(command.ToString());
+                }
+                else
+                {
+                    string command = "<P" + selectedCamera + "N>";
+                    commands.Add(command.ToString());
+                }
+
+                if (tilting)
+                {
+                    string command = "<T" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Tilt) + ">";
+                    commands.Add(command.ToString());
+                }
+
+                previousState = state;
+                Thread.Sleep(POLLING_RATE);
+
+            }
+        }
+
+        private void PollAndSendCameraCommands(Controller controller, BlockingCollection<string> commands, Dictionary<int, CameraState> cameraStates)
+        {
+
+            var previousState = controller.GetState();
+            int selectedCamera = 0; //Default camera is broom
+            int angleIncrement = 5;
+            
+            while (controller.IsConnected)
+            {
+                var state = controller.GetState();
+                //Selecting camera to pan/tilt
+                if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
+                {
+                    selectedCamera = 3;
+                }
+                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.X))
+                {
+                    selectedCamera = 4;
+                }
+                else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder))
+                {
+                    selectedCamera = 0;
+                }
+
+                //De-Activating camera to pan/tilt
+                if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftShoulder))
+                {
+                    string command = null;
+                    bool userSelected = false;
+                    if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B))
                     {
                         selectedCamera = 3;
                         if (cameraStates[3].Active) //Dectivating
@@ -230,13 +304,13 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = 0;
+                    cameraStates[selectedCamera].Pan = 'L';
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = 200;
+                    cameraStates[selectedCamera].Pan = 'R';
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
@@ -260,12 +334,12 @@ namespace RoverOperator.Gamepad
                 //Sending commands
                 if (panning)
                 {
-                    string command = "<P" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Pan) + ">";
+                    string command = "<P" + selectedCamera + cameraStates[selectedCamera].Pan + ">";
                     commands.Add(command.ToString());
                 }
                 else
                 {
-                    string command = "<P" + selectedCamera + "100>";
+                    string command = "<P" + selectedCamera + "N>";
                     commands.Add(command.ToString());
                 }
 
@@ -309,7 +383,7 @@ namespace RoverOperator.Gamepad
                 {
                     CommandSender.Instance.UpdateCommand(command.ToString());
                     Thread.Sleep(STATE_CHECK_INTERVAL);
-                    //logger.Debug(command.ToString());
+                    logger.Debug(command.ToString());
                 }
             }
 

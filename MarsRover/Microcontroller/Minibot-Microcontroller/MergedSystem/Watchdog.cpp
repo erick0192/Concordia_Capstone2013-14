@@ -1,6 +1,9 @@
+#include <Wire.h>
 #include "Arduino.h"
 #include "TimerOne.h"
 #include "Watchdog.h"
+#include "Globals.h"
+
 
 Watchdog watchdog;
 
@@ -34,6 +37,15 @@ void Watchdog::timeout(void)
   else
   {
     //StopMove();
+    
+    Wire.beginTransmission(LEFT_DEVICE_ADDRESS);
+    Wire.write("F000F000F000");
+    Wire.endTransmission();
+    
+    Wire.beginTransmission(RIGHT_DEVICE_ADDRESS);
+    Wire.write("F000F000F000");
+    Wire.endTransmission();
+    
     _freeToMove = false;
   }
 }

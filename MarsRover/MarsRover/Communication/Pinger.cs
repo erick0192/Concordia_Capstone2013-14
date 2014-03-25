@@ -73,7 +73,7 @@ namespace MarsRover.Communication
         {
             Thread t = new Thread(() => Ping());
             t.IsBackground = true;
-            t.Start();
+            //t.Start();
         }
 
         public static Pinger Instance

@@ -14,6 +14,9 @@ namespace CommandMetadata{
   const char I2C_RIGHT = 'R';
 }
 
+#define LEFT_DEVICE_ADDRESS 2
+#define RIGHT_DEVICE_ADDRESS 3
+
 #define TOP_RIGHT_WHEEL_ENABLE_PIN 4
 #define TOP_RIGHT_WHEEL_FRONT_PIN 49
 #define TOP_RIGHT_WHEEL_BACK_PIN 47
