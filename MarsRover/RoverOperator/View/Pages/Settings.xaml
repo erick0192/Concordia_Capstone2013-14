@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab Layout="List" SelectedSource="/Content/NetworkSettingsView.xaml">
+        <mui:ModernTab Layout="List" SelectedSource="/View/Content/NetworkSettingsView.xaml">
             <mui:ModernTab.Links>
                 <!--<mui:Link DisplayName="General" Source="/Content/GeneralSettingsView.xaml" />-->
-                <mui:Link DisplayName="Network" Source="/Content/NetworkSettingsView.xaml" />
-                <mui:Link DisplayName="appearance" Source="/Content/SettingsAppearance.xaml" />
+                <mui:Link DisplayName="Network" Source="/View/Content/NetworkSettingsView.xaml" />
+                <mui:Link DisplayName="appearance" Source="/View/Content/SettingsAppearance.xaml" />
                 <!--<mui:Link DisplayName="about" Source="/Content/About.xaml" />-->
             </mui:ModernTab.Links>
         </mui:ModernTab>

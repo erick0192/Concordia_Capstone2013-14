@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using FirstFloor.ModernUI.Windows;
-using FirstFloor.ModernUI.Windows.Navigation;
-using FirstFloor.ModernUI.Windows.Controls;
-using RoverOperator.Content;
-using NLog;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace RoverOperator
 {

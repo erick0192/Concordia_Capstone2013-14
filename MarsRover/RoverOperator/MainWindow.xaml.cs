@@ -51,22 +51,22 @@ namespace RoverOperator
         {
             //Settings
             var kb = new KeyBinding(GoToPageCommand, Key.F12, ModifierKeys.None);
-            kb.CommandParameter = @"/Pages/Help.xaml";
+            kb.CommandParameter = @"/View/Pages/Help.xaml";
             this.InputBindings.Add(kb);
 
             //Help
             kb = new KeyBinding(GoToPageCommand, Key.F11, ModifierKeys.None);
-            kb.CommandParameter = @"/Pages/Settings.xaml";
+            kb.CommandParameter = @"/View/Pages/Settings.xaml";
             this.InputBindings.Add(kb);
 
             //Home
             kb = new KeyBinding(GoToPageCommand, Key.H, ModifierKeys.Control);
-            kb.CommandParameter = @"/Pages/Main.xaml";
+            kb.CommandParameter = @"/View/Pages/Main.xaml";
             this.InputBindings.Add(kb);            
 
             //Log
             kb = new KeyBinding(GoToPageCommand, Key.L, ModifierKeys.Control);
-            kb.CommandParameter = @"/Pages/Log.xaml";
+            kb.CommandParameter = @"/View/Pages/Log.xaml";
             this.InputBindings.Add(kb);
         }
 

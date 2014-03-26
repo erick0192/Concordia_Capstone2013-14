@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using RoverOperator.Content;
 using System.IO;
 using Xceed.Wpf.AvalonDock.Layout.Serialization;
 using System.ComponentModel;
-using System.Windows;
-using System.Net.NetworkInformation;
-using System.Threading;
 
 namespace RoverOperator.Pages
 {
-    public class MainViewModel : Window, INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         #region Delegates
 
