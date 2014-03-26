@@ -119,31 +119,31 @@
     </Compile>
     <Compile Include="CommandBase.cs" />
     <Compile Include="CommandSender.cs" />
-    <Compile Include="Content\BatteryStatusView.xaml.cs">
+    <Compile Include="View\Content\BatteryStatusView.xaml.cs">
       <DependentUpon>BatteryStatusView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\BatteryStatusViewModel.cs" />
-    <Compile Include="Content\GeneralSettingsView.xaml.cs">
+    <Compile Include="ViewModel\BatteryStatusViewModel.cs" />
+    <Compile Include="View\Content\GeneralSettingsView.xaml.cs">
       <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\GeneralSettingsViewModel.cs" />
-    <Compile Include="Content\GPSCoordinatesView.xaml.cs">
+    <Compile Include="ViewModel\GeneralSettingsViewModel.cs" />
+    <Compile Include="View\Content\GPSCoordinatesView.xaml.cs">
       <DependentUpon>GPSCoordinatesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\GPSViewModel.cs" />
-    <Compile Include="Content\IMUView.xaml.cs">
+    <Compile Include="ViewModel\GPSViewModel.cs" />
+    <Compile Include="View\Content\IMUView.xaml.cs">
       <DependentUpon>IMUView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\IMUViewModel.cs" />
-    <Compile Include="Content\NetworkSettingsView.xaml.cs">
+    <Compile Include="ViewModel\IMUViewModel.cs" />
+    <Compile Include="View\Content\NetworkSettingsView.xaml.cs">
       <DependentUpon>NetworkSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\NetworkSettingsViewModel.cs" />
-    <Compile Include="Content\GPSViewViewModel.cs" />
-    <Compile Include="Content\RoboticArmView.xaml.cs">
+    <Compile Include="ViewModel\NetworkSettingsViewModel.cs" />
+    <Compile Include="ViewModel\GPSViewViewModel.cs" />
+    <Compile Include="View\Content\RoboticArmView.xaml.cs">
       <DependentUpon>RoboticArmView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\RoboticArmViewModel.cs" />
+    <Compile Include="ViewModel\RoboticArmViewModel.cs" />
     <Compile Include="NetworkSettings.cs" />
     <Compile Include="Properties\NetworkSettings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -167,47 +167,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Resource>
-    <Page Include="Content\BatteryStatusView.xaml">
+    <Page Include="View\Content\BatteryStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\CameraView.xaml">
+    <Page Include="View\Content\CameraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\GeneralSettingsView.xaml">
+    <Page Include="View\Content\GeneralSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\GPSCoordinatesView.xaml">
+    <Page Include="View\Content\GPSCoordinatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\GPSView.xaml">
+    <Page Include="View\Content\GPSView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\IMUView.xaml">
+    <Page Include="View\Content\IMUView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\KeyboardShortcuts.xaml">
+    <Page Include="View\Content\KeyboardShortcuts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\MotorStatusView.xaml">
+    <Page Include="View\Content\MotorStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\MotorsView.xaml">
+    <Page Include="View\Content\MotorsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\NetworkSettingsView.xaml">
+    <Page Include="View\Content\NetworkSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\RoboticArmView.xaml">
+    <Page Include="View\Content\RoboticArmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,25 +215,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Content\CameraView.xaml.cs">
+    <Compile Include="View\Content\CameraView.xaml.cs">
       <DependentUpon>CameraView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\CameraViewModel.cs" />
-    <Compile Include="Content\GPSView.xaml.cs">
+    <Compile Include="ViewModel\CameraViewModel.cs" />
+    <Compile Include="View\Content\GPSView.xaml.cs">
       <DependentUpon>GPSView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\KeyboardShortcuts.xaml.cs">
+    <Compile Include="View\Content\KeyboardShortcuts.xaml.cs">
       <DependentUpon>KeyboardShortcuts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\KeyboardShortcutsViewModel.cs" />
-    <Compile Include="Content\MotorStatusView.xaml.cs">
+    <Compile Include="ViewModel\KeyboardShortcutsViewModel.cs" />
+    <Compile Include="View\Content\MotorStatusView.xaml.cs">
       <DependentUpon>MotorStatusView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\MotorStatusViewModel.cs" />
-    <Compile Include="Content\MotorsView.xaml.cs">
+    <Compile Include="ViewModel\MotorStatusViewModel.cs" />
+    <Compile Include="View\Content\MotorsView.xaml.cs">
       <DependentUpon>MotorsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\MotorsViewModel.cs" />
+    <Compile Include="ViewModel\MotorsViewModel.cs" />
     <Compile Include="Gamepad\GamepadController.cs" />
     <Compile Include="Log\LogEvent.cs" />
     <Compile Include="Log\LogEventObserver.cs" />
@@ -242,50 +242,50 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Content\About.xaml">
+    <Page Include="View\Content\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Content\About.xaml.cs">
+    <Compile Include="View\Content\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Page Include="Content\SettingsAppearance.xaml">
+    <Page Include="View\Content\SettingsAppearance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Content\SettingsAppearance.xaml.cs">
+    <Compile Include="View\Content\SettingsAppearance.xaml.cs">
       <DependentUpon>SettingsAppearance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\SettingsAppearanceViewModel.cs" />
-    <Page Include="Pages\Help.xaml">
+    <Compile Include="ViewModel\SettingsAppearanceViewModel.cs" />
+    <Page Include="View\Pages\Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Log.xaml">
+    <Page Include="View\Pages\Log.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Main.xaml">
+    <Page Include="View\Pages\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Settings.xaml">
+    <Page Include="View\Pages\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Pages\Help.xaml.cs">
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\Pages\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Log.xaml.cs">
+    <Compile Include="View\Pages\Log.xaml.cs">
       <DependentUpon>Log.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\LogViewModel.cs" />
-    <Compile Include="Pages\Main.xaml.cs">
+    <Compile Include="ViewModel\LogViewModel.cs" />
+    <Compile Include="View\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainViewModel.cs" />
-    <Compile Include="Pages\Settings.xaml.cs">
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="View\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
