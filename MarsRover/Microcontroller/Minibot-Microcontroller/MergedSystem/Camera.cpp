@@ -26,6 +26,7 @@ void Camera::Pan(int angle)
   //_servoPan.writeMicroseconds(angle);
   Serial.print("Camera Panned with speed: ");
   Serial.println(angle);
+  panAngle = angle;
 }
 
 void Camera::Tilt(int angle)
@@ -36,5 +37,16 @@ void Camera::Tilt(int angle)
   //_servoTilt.writeMicroseconds(angle);
   Serial.print("Camera Tilted with angle: ");
   Serial.println(angle);
+  tiltAngle = angle;
 }
 
+int Camera::GetPan()
+{
+  return panAngle;
+}
+
+int Camera::GetTilt()
+{
+  return tiltAngle;
+}
+  

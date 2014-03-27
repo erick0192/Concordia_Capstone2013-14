@@ -31,8 +31,16 @@ void loop() {
   Loop_GPS();
   Loop_IMU();
   Loop_I2C();
+  Loop_Camera();
 }
 
-
-
-
+void Loop_Camera()
+{
+  if(watchdog.canMove() == false)
+  {
+    if(camera1 != 0 && camera1->GetPan() != SERVO_PAN_STOP_COMMAND) camera1->Pan(SERVO_PAN_STOP_COMMAND);
+    if(camera2 != 0 && camera2->GetPan() != SERVO_PAN_STOP_COMMAND) camera2->Pan(SERVO_PAN_STOP_COMMAND);
+    if(camera3 != 0 && camera3->GetPan() != SERVO_PAN_STOP_COMMAND) camera3->Pan(SERVO_PAN_STOP_COMMAND);
+    if(camera4 != 0 && camera4->GetPan() != SERVO_PAN_STOP_COMMAND) camera4->Pan(SERVO_PAN_STOP_COMMAND);
+  }
+}

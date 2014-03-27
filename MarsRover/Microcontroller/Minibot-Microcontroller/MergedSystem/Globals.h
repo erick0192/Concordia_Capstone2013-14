@@ -39,6 +39,7 @@ namespace CommandMetadata{
 #define SERVO_STABILIZER_YAW_PIN 9
 #define SERVO_STABILIZER_PITCH_PIN 10
 #define SERVO_STABILIZER_ROLL_PIN 11
+#define SERVO_PAN_STOP_COMMAND 1521
 
 //Camera Servo Pan Tilt Pin
 #define SERVO_CAM_1_ID 1

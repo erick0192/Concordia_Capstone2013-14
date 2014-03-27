@@ -49,4 +49,3 @@ void Watchdog::timeout(void)
     _freeToMove = false;
   }
 }
-
