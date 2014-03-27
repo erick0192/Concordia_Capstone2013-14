@@ -4,6 +4,7 @@ using System.Windows.Input;
 using NLog;
 using RoverOperator.Log;
 using System.Windows.Controls;
+using System;
 
 namespace RoverOperator.Pages
 {
@@ -64,6 +65,7 @@ namespace RoverOperator.Pages
             filteringList["Error"] = true;
             filteringList["Fatal"] = true;
 
+            LogEventSubject.Attach(this);
             logger = LogManager.GetCurrentClassLogger();
             view.Loaded += view_Loaded;
         }
@@ -91,7 +93,10 @@ namespace RoverOperator.Pages
 
         private void ApplyFiltering()
         {
-            LogMessagesControl.ItemsSource = LogEventSubject.Events.Skip(lastClear).Where(ev => filteringList[ev.Level]);
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                LogMessagesControl.ItemsSource = LogEventSubject.Events.Skip(lastClear).Where(ev => filteringList[ev.Level]);
+            });
         }
 
         private void ClearLog(object p)

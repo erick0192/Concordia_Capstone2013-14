@@ -18,6 +18,8 @@ namespace RoverOperator.Gamepad
         private const int BUTTON_PRESS_SAFE_INTERVAL = 1000;
         Dictionary<int, CameraState> cameraStates;
 
+        private bool logging = false;
+
         protected class CameraState
         {
             public char Pan;
@@ -48,7 +50,7 @@ namespace RoverOperator.Gamepad
 
             if (controllers[0].IsConnected)
             {
-                logger.Trace("Found a XInput controller available. Starting PollAndSendMovementCommands");
+                if (logging) logger.Trace("Found a XInput controller available. Starting PollAndSendMovementCommands");
                 Thread t = new Thread(() => PollAndSendMovementCommands(controllers[0], commandsQueue));
                 t.IsBackground = true;
                 t.Start();
@@ -56,7 +58,7 @@ namespace RoverOperator.Gamepad
 
             if (controllers[1].IsConnected)
             {
-                logger.Trace("Found a XInput controller available. Starting PollAndSendCameraCommands");
+                if (logging) logger.Trace("Found a XInput controller available. Starting PollAndSendCameraCommands");
                 Thread t = new Thread(() => PollAndSendCameraCommands(controllers[1], commandsQueue, cameraStates));
                 Thread commandsSender = new Thread(() => ProcessCommandQueue(commandsQueue, cameraStates));
                 commandsSender.Start();
@@ -101,7 +103,7 @@ namespace RoverOperator.Gamepad
                     leftCommand.Append(backLeftMotorCommand);
                     leftCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(leftCommand.ToString());
-                    //logger.Debug(leftCommand.ToString());
+                    if (logging) logger.Debug(leftCommand.ToString());
                 }
 
                 //Building commands for left motors
@@ -123,7 +125,7 @@ namespace RoverOperator.Gamepad
                     rightCommand.Append(backRightMotorCommand);
                     rightCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(rightCommand.ToString());
-                    //logger.Debug(rightCommand.ToString());
+                    if (logging) logger.Debug(rightCommand.ToString());
                 }
 
 
@@ -293,7 +295,6 @@ namespace RoverOperator.Gamepad
                     if (userSelected)
                     {
                         commands.Add(command.ToString());
-                        //logger.Debug(command.ToString());
                     }
                 }
 
@@ -367,7 +368,7 @@ namespace RoverOperator.Gamepad
                     if (previousSelectedCamera == cameraNumber && (DateTime.Now - timePreviousCameraSelect).TotalMilliseconds < BUTTON_PRESS_SAFE_INTERVAL)
                     {
                         cameraStates[cameraNumber].Active = !cameraStates[cameraNumber].Active;
-                        logger.Debug("Ignored command " + command);
+                        if (logging) logger.Debug("Ignored command " + command);
                         continue;
                     }
                     else
@@ -376,14 +377,14 @@ namespace RoverOperator.Gamepad
                         timePreviousCameraSelect = DateTime.Now;
                         CommandSender.Instance.UpdateCommand(command.ToString());
                         Thread.Sleep(STATE_CHECK_INTERVAL);
-                        logger.Debug(command.ToString());
+                        if (logging) logger.Debug(command.ToString());
                     }
                 }
                 else
                 {
                     CommandSender.Instance.UpdateCommand(command.ToString());
                     Thread.Sleep(STATE_CHECK_INTERVAL);
-                    logger.Debug(command.ToString());
+                    if (logging) logger.Debug(command.ToString());
                 }
             }
 
