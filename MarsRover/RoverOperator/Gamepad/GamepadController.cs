@@ -18,11 +18,11 @@ namespace RoverOperator.Gamepad
         private const int BUTTON_PRESS_SAFE_INTERVAL = 1000;
         Dictionary<int, CameraState> cameraStates;
 
-        private bool logging = false;
+        private bool logging = true;
 
         protected class CameraState
         {
-            public char Pan;
+            public String Pan;
             public int Tilt;
             public bool Active;
         };
@@ -38,7 +38,7 @@ namespace RoverOperator.Gamepad
             {
                 CameraState cs = new CameraState();
                 cs.Active = false;
-                cs.Pan = 'N';
+                cs.Pan = "N";
                 cs.Tilt = 0;
                 cameraStates[i] = cs;
             }
@@ -103,7 +103,7 @@ namespace RoverOperator.Gamepad
                     leftCommand.Append(backLeftMotorCommand);
                     leftCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(leftCommand.ToString());
-                    if (logging) logger.Debug(leftCommand.ToString());
+                    if (logging) logger.Trace(leftCommand.ToString());
                 }
 
                 //Building commands for left motors
@@ -125,7 +125,7 @@ namespace RoverOperator.Gamepad
                     rightCommand.Append(backRightMotorCommand);
                     rightCommand.Append(">");
                     CommandSender.Instance.UpdateCommand(rightCommand.ToString());
-                    if (logging) logger.Debug(rightCommand.ToString());
+                    if (logging) logger.Trace(rightCommand.ToString());
                 }
 
 
@@ -181,13 +181,13 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = '0';
+                    cameraStates[selectedCamera].Pan = "0";
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = '200';
+                    cameraStates[selectedCamera].Pan = "200";
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
@@ -305,13 +305,13 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = '0';
+                    cameraStates[selectedCamera].Pan = "0";
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = '200';
+                    cameraStates[selectedCamera].Pan = "200";
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
@@ -368,7 +368,7 @@ namespace RoverOperator.Gamepad
                     if (previousSelectedCamera == cameraNumber && (DateTime.Now - timePreviousCameraSelect).TotalMilliseconds < BUTTON_PRESS_SAFE_INTERVAL)
                     {
                         cameraStates[cameraNumber].Active = !cameraStates[cameraNumber].Active;
-                        if (logging) logger.Debug("Ignored command " + command);
+                        if (logging) logger.Trace("Ignored command " + command);
                         continue;
                     }
                     else
@@ -377,14 +377,14 @@ namespace RoverOperator.Gamepad
                         timePreviousCameraSelect = DateTime.Now;
                         CommandSender.Instance.UpdateCommand(command.ToString());
                         Thread.Sleep(STATE_CHECK_INTERVAL);
-                        if (logging) logger.Debug(command.ToString());
+                        if (logging) logger.Trace(command.ToString());
                     }
                 }
                 else
                 {
                     CommandSender.Instance.UpdateCommand(command.ToString());
                     Thread.Sleep(STATE_CHECK_INTERVAL);
-                    if (logging) logger.Debug(command.ToString());
+                    if (logging) logger.Trace(command.ToString());
                 }
             }
 
