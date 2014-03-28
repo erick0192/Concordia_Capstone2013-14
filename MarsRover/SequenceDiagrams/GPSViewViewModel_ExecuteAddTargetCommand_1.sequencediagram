@@ -1,0 +1,1054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="6688ad3d-731e-4d48-8ed4-ad51a66ce0a3" name="GPSViewViewModel_ExecuteAddTargetCommand" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="79b530c2-166a-4e38-85bd-f14a3fdb965e" name="GPSViewViewModel_ExecuteAddTargetCommand" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="e9680064-a3d4-4505-bd9f-6238d245fd99" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="03f9d522-15b2-4d3c-8532-0009308ead0a" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="2f7c113a-3a48-4651-8fe9-991eefff0afa" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="aef1c6fa-3451-4c40-a6ac-740f96b72c6e" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="c4a6530c-2bf8-4200-807e-3fe4386c4e3d" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="045f6e14-df1f-4473-8150-2581ef801d6d" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e2064178-55d4-402e-a9cc-5aa62304aea2" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="8f7e362b-5e1e-40e3-ab0a-131d17113070" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="0ceedaf0-0410-494c-a9ec-ed6e75ef55ec" LastKnownName="ExecutionOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="2f7c113a-3a48-4651-8fe9-991eefff0afa" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fd888fc9-4af8-4b39-a86e-cc73b7b4818f" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="19869d9a-2054-4f83-80ad-0179bf3509a2" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="aef1c6fa-3451-4c40-a6ac-740f96b72c6e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="576e92e9-3a45-404c-a6e9-ed9094f28293" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="ae4dff39-196d-4d3c-8e27-33e5c20eea6c" LastKnownName="targetLocation : Location" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="ca5eb8a0-1ac7-4d97-8885-9fd4a3eaa420" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="5cb46f5a-3deb-465f-b623-4799fddffb12" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="a82e4890-ab7b-44c1-8873-b57925a8cc7f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="5b1ba77e-7ed9-42cb-a98e-e13d6302b9e7" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="5cb46f5a-3deb-465f-b623-4799fddffb12" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="c6b30f68-3aca-46ce-9e4a-7434bcd4c7ef" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="ae4dff39-196d-4d3c-8e27-33e5c20eea6c" LastKnownName="targetLocation : Location" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c4a6530c-2bf8-4200-807e-3fe4386c4e3d" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a82e4890-ab7b-44c1-8873-b57925a8cc7f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="ae4dff39-196d-4d3c-8e27-33e5c20eea6c" LastKnownName="targetLocation : Location" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="045f6e14-df1f-4473-8150-2581ef801d6d" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5b1ba77e-7ed9-42cb-a98e-e13d6302b9e7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="ae4dff39-196d-4d3c-8e27-33e5c20eea6c" LastKnownName="targetLocation : Location" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="ca5eb8a0-1ac7-4d97-8885-9fd4a3eaa420" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="82af2059-1c18-4b07-bdf6-dfc8331b97f6" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="ae4dff39-196d-4d3c-8e27-33e5c20eea6c" LastKnownName="targetLocation : Location" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e2064178-55d4-402e-a9cc-5aa62304aea2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="90763b2e-5d93-472f-ac77-77c39fb703ff" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="0ceedaf0-0410-494c-a9ec-ed6e75ef55ec" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="8f7e362b-5e1e-40e3-ab0a-131d17113070" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="78836424-eb7d-43fe-9272-3ef9b03d66a4" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="449835a8-2934-453e-867e-1d65e2bec4a7" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0818209d-4e23-41ba-986f-38af474e7283" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="f53026f1-907f-41e3-91dc-7ffe58ff9f70" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="5d5bae24-ec66-420a-b651-ef6dc7de264f" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="fb9e5bcb-aa58-4831-b122-ccf1a558625b" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="042f7192-e67f-4790-9ee0-6ed1807be841" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b3a0f372-7d44-43f4-8939-00cdf9ba2a06" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="26333714-1d92-451f-bc87-f254b5b63c8c" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c2ed016b-d2a2-4fa5-9d4b-6e8a12d27244" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="c1565bb5-7aad-4d76-9813-36eeb91a953d" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a4cc2fb9-b26e-4097-9d07-1d25b516eed8" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="bc8be21f-018f-4939-91e7-fd7c6e62e2f1" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="28e7b847-a973-4b37-b0ab-11035dc2d62f" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="24241ed5-89fc-49ae-83e6-1de5fcc1144f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="9988cf6b-540d-45ea-9f47-8945999d8241" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="34d784b7-b4b1-4358-adad-74d80436c515" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2c54a67d-4a99-4909-908a-a272b683a5d6" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b8a832ed-20f0-47cb-b8dd-61a429dc9ac5" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="eace74ca-07fb-4226-986e-1f1b731bd70b" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6bdba74b-2ebb-4961-b992-39dd2e4bddec" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="afffcc68-a147-49e2-a44b-2039933b1093" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0823ba7b-c2a9-4d48-9fd6-77c23b7367de" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="223197e1-529e-4fc4-b3dc-8239c73aadfc" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="6def278a-02e8-406a-8150-badb82930eb2" LastKnownName="ExecutionOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="8f7e362b-5e1e-40e3-ab0a-131d17113070" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="d41e09bd-6ae5-4bb5-bfa2-0247fa30e309" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="78836424-eb7d-43fe-9272-3ef9b03d66a4" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="31e8f3eb-2987-475b-97f1-8a7af7b51b50" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="91a35af8-d166-4c31-bc67-cee538c35ce3" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+                  <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="ced7bda3-4cf8-4e12-99b3-ee773c7986cc" guardText="if (targetPins == null)" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="449835a8-2934-453e-867e-1d65e2bec4a7" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="5d5bae24-ec66-420a-b651-ef6dc7de264f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="db724055-4f87-46cb-ac14-5c5fa1175ae9" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="c4ea3d6d-714c-4193-84b8-028c29cde508" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="db724055-4f87-46cb-ac14-5c5fa1175ae9" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="449835a8-2934-453e-867e-1d65e2bec4a7" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="0a027fc9-ffc8-450c-9e71-9d7116b5aa35" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="661b3382-333e-4347-af15-8931f5b13493" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="af2035d1-9afd-4422-8e91-1e6e60ef4b22" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="7e7d4c65-486c-42ff-abda-1ec5acc52055" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="42ea0e1d-3c48-468c-8565-c5348338b7fc" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="af2035d1-9afd-4422-8e91-1e6e60ef4b22" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="9e1ec940-f3b4-4d67-8851-702bd154b536" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7e7d4c65-486c-42ff-abda-1ec5acc52055" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0818209d-4e23-41ba-986f-38af474e7283" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="f53026f1-907f-41e3-91dc-7ffe58ff9f70" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="42ea0e1d-3c48-468c-8565-c5348338b7fc" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="661b3382-333e-4347-af15-8931f5b13493" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="1c127a0d-3a76-4b2e-8456-74e8d5e853c4" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="5d5bae24-ec66-420a-b651-ef6dc7de264f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="c4ea3d6d-714c-4193-84b8-028c29cde508" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="0d8fc4f7-4465-4341-ac61-a6f5f2b2a8ac" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="8fad6fba-8343-448d-85ef-a3f4e7066061" LastKnownName="targetPin : Pushpin" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="3aa9764d-8012-4815-b013-4680f28891a3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="72b67e5d-00fc-4070-a594-f277ae0de5f3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="b6aba515-b312-4b72-aef8-7b5be893bd8b" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b3c9b4d9-1206-432d-9268-20726e276c76" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="72b67e5d-00fc-4070-a594-f277ae0de5f3" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="93547de9-98ca-473e-aaa9-6db7aaad52c7" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8fad6fba-8343-448d-85ef-a3f4e7066061" LastKnownName="targetPin : Pushpin" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="fb9e5bcb-aa58-4831-b122-ccf1a558625b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b6aba515-b312-4b72-aef8-7b5be893bd8b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fad6fba-8343-448d-85ef-a3f4e7066061" LastKnownName="targetPin : Pushpin" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b3c9b4d9-1206-432d-9268-20726e276c76" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="8fad6fba-8343-448d-85ef-a3f4e7066061" LastKnownName="targetPin : Pushpin" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="042f7192-e67f-4790-9ee0-6ed1807be841" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="3aa9764d-8012-4815-b013-4680f28891a3" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="23692e06-24c6-4c8d-b2cd-1a266f6c5e95" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="8fad6fba-8343-448d-85ef-a3f4e7066061" LastKnownName="targetPin : Pushpin" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b3a0f372-7d44-43f4-8939-00cdf9ba2a06" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="144edbb6-61d8-4d40-a975-5c4927564458" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="c2ed016b-d2a2-4fa5-9d4b-6e8a12d27244" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="26333714-1d92-451f-bc87-f254b5b63c8c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="ec66485d-1596-43ab-9498-c1cb9c13b8fb" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="26333714-1d92-451f-bc87-f254b5b63c8c" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="854d739b-d055-4891-8fdd-042492cbe7ad" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ec66485d-1596-43ab-9498-c1cb9c13b8fb" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="c2ed016b-d2a2-4fa5-9d4b-6e8a12d27244" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2a26f1a4-942c-426a-9034-a728addb5999" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <combinedFragment Id="04a673b9-06a0-4353-8048-ff2d0c039d97" name="CombinedFragment2" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="3e3f987e-f952-4dcb-9770-2a867ab8c6d5" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+                  <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="25e5a011-fac2-444c-b213-01cc8a98e874" guardText="if (targetPins == null)" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="c1565bb5-7aad-4d76-9813-36eeb91a953d" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="28e7b847-a973-4b37-b0ab-11035dc2d62f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="1a3ffeee-39ce-4191-963e-a7414a988b77" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="bdd54404-1106-4e09-b3c7-686298466608" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="1a3ffeee-39ce-4191-963e-a7414a988b77" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="c1565bb5-7aad-4d76-9813-36eeb91a953d" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="2b7e9cf1-5c6f-4d3d-9159-fe2db0fb7fc7" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="7df7487f-fccb-4590-b9ee-38def271ad1a" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="572960fc-a34f-4311-8ed0-9ce00568e7ab" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="b5508d1a-6d82-48f0-9804-5bf2bcdce49e" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="bb7ddfb0-0fc6-4c50-9dc5-1fee8d547eb9" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="572960fc-a34f-4311-8ed0-9ce00568e7ab" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="4623379c-7b6c-4ee4-861c-55dbb2903feb" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a4cc2fb9-b26e-4097-9d07-1d25b516eed8" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b5508d1a-6d82-48f0-9804-5bf2bcdce49e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bb7ddfb0-0fc6-4c50-9dc5-1fee8d547eb9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bc8be21f-018f-4939-91e7-fd7c6e62e2f1" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="7df7487f-fccb-4590-b9ee-38def271ad1a" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="7e49a318-32c6-4fde-b132-f2915cae2f2c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="28e7b847-a973-4b37-b0ab-11035dc2d62f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="bdd54404-1106-4e09-b3c7-686298466608" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="223f85b9-487b-43ca-988f-bcdcd8650f5c" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="6b113480-059d-443b-a014-5e5a19317b6e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="eedb3445-05ba-4ace-921a-632e3c07e9b0" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="2d291c4c-e943-4ff4-98e4-92e74934a6d4" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e1ae8a21-d104-46e0-8449-3b8ee5f4d233" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="eedb3445-05ba-4ace-921a-632e3c07e9b0" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e84f0ace-29b7-478b-9ddb-c346f8274c34" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="24241ed5-89fc-49ae-83e6-1de5fcc1144f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2d291c4c-e943-4ff4-98e4-92e74934a6d4" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9988cf6b-540d-45ea-9f47-8945999d8241" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e1ae8a21-d104-46e0-8449-3b8ee5f4d233" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="6b113480-059d-443b-a014-5e5a19317b6e" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="787dea0f-3fb8-48a9-854c-8951856e295b" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="7c625763-7157-442a-a3d0-12832ca29b96" LastKnownName="this.targetPins : List&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <combinedFragment Id="3fca0ed5-213b-413c-8b8d-3b47bf988526" name="CombinedFragment3" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="447f8d9c-8706-46e4-ad23-58980da5322d" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+                  <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="c3bc4e4e-36da-45bb-a8b4-1291be1ef6fe" guardText="if (pushPinCollection == null)" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="34d784b7-b4b1-4358-adad-74d80436c515" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="eace74ca-07fb-4226-986e-1f1b731bd70b" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="5d2dbd7e-d9a8-40f0-8b1e-cc02a7cfaa28" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="6baafb35-5f1a-4f0a-95fd-0d27df4e6a7f" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="5d2dbd7e-d9a8-40f0-8b1e-cc02a7cfaa28" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="34d784b7-b4b1-4358-adad-74d80436c515" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="84aafe41-e3ba-420f-a130-2e9f228da8d5" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="2ca7c53b-3750-4e9a-8750-5c7442fbf208" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="e6bbd259-4606-45cb-9a30-8917584bba2d" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="4579adba-a22c-4460-a0dc-37369bbdd28a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="262a7d8d-36b5-43e9-a80a-aa189a753f97" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="e6bbd259-4606-45cb-9a30-8917584bba2d" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fc0d3a48-a249-4fb2-9264-aa1b253dc75e" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2c54a67d-4a99-4909-908a-a272b683a5d6" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4579adba-a22c-4460-a0dc-37369bbdd28a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="262a7d8d-36b5-43e9-a80a-aa189a753f97" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b8a832ed-20f0-47cb-b8dd-61a429dc9ac5" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="2ca7c53b-3750-4e9a-8750-5c7442fbf208" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="3e50ecd7-1096-475c-ac7b-2ed1e662ac8a" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="6baafb35-5f1a-4f0a-95fd-0d27df4e6a7f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="eace74ca-07fb-4226-986e-1f1b731bd70b" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="b7b89759-551c-4757-bb3e-4d0eee0e1b46" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="863e664c-2367-4954-9bce-790eaeb324a1" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="8568e8b0-d105-4bef-8df0-dcb4fba22df5" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="529ed16d-97ea-4883-8d45-382ed91d3a8f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4c8255f8-6908-4207-926f-932158aacb7f" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="8568e8b0-d105-4bef-8df0-dcb4fba22df5" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a76ae700-3fba-49d5-941f-81128abf8d26" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6bdba74b-2ebb-4961-b992-39dd2e4bddec" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="529ed16d-97ea-4883-8d45-382ed91d3a8f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="afffcc68-a147-49e2-a44b-2039933b1093" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4c8255f8-6908-4207-926f-932158aacb7f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="863e664c-2367-4954-9bce-790eaeb324a1" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="d5f49ff4-0285-4c5b-bba2-e11823f38085" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" LastKnownName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="0823ba7b-c2a9-4d48-9fd6-77c23b7367de" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="f31c49df-4a4b-4b2e-b30d-babae367b920" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="6def278a-02e8-406a-8150-badb82930eb2" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="223197e1-529e-4fc4-b3dc-8239c73aadfc" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="a461f83e-2471-4c36-92cb-c68180e41add" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="223197e1-529e-4fc4-b3dc-8239c73aadfc" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a1719c3f-24fb-4372-b220-efa089b6ec60" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a461f83e-2471-4c36-92cb-c68180e41add" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="6def278a-02e8-406a-8150-badb82930eb2" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="b73be588-7068-4fa0-a1aa-7db5de411038" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="0ceedaf0-0410-494c-a9ec-ed6e75ef55ec" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="33a500fd-b19e-4999-b13a-8a59416ac0a0" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="03f9d522-15b2-4d3c-8532-0009308ead0a" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e6f996bc-d11b-4def-a6eb-d4e7adcf0480" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="597c059b-a84d-4057-8455-46133bcca4e3" LastKnownName="this : GPSViewViewModel" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="597c059b-a84d-4057-8455-46133bcca4e3" name="this : GPSViewViewModel" isActor="false" lifelineDisplayName="this : GPSViewViewModel" referencedInstance="(Assembly=$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri) Namespace=RoverOperator.Content Type=GPSViewViewModel ObjectInstance=&quot;Object instance 1&quot;)" referencedType="RoverOperator‎.Content‎.GPSViewViewModel">
+            <referencesInternal>
+              <reference Id="94d5b93b-5787-4c73-a9f2-c1bfce9f0861" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Content)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel)&quot;)" tag="DGQL" />
+              <reference Id="5ba82b29-a3e3-4df7-a132-033b6f83d842" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Content Type=GPSViewViewModel)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="2f7c113a-3a48-4651-8fe9-991eefff0afa" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="03f9d522-15b2-4d3c-8532-0009308ead0a" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="ae4dff39-196d-4d3c-8e27-33e5c20eea6c" name="targetLocation : Location" isActor="false" lifelineDisplayName="targetLocation : Location" referencedInstance="(Assembly=$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll Namespace=Microsoft.Maps.MapControl.WPF Type=Location ObjectInstance=&quot;Object instance 2&quot;)" referencedType="Microsoft‎.Maps‎.MapControl‎.WPF‎.Location">
+            <referencesInternal>
+              <reference Id="89ebd9fd-ae63-4a3a-b9f6-9f64e63d491e" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Microsoft.Maps.MapControl.WPF)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location)&quot;)" tag="DGQL" />
+              <reference Id="a7af208d-292b-4155-ae05-6cb1f4bc7236" handle="(Assembly=&quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="5cb46f5a-3deb-465f-b623-4799fddffb12" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="ca5eb8a0-1ac7-4d97-8885-9fd4a3eaa420" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="1c4ea98a-96a2-4de9-ab2d-ae89e8ea483a" name="this.targetPins : List&lt;Pushpin&gt;" isActor="false" lifelineDisplayName="this.targetPins : List&lt;Pushpin&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1 GenericArguments=[(Assembly=$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)]) ObjectInstance=&quot;Object instance 10&quot;)" referencedType="System‎.Collections‎.Generic‎.List‎&lt;Pushpin‎&gt;">
+            <referencesInternal>
+              <reference Id="3124a6cd-6947-4d1c-adfe-3d11ec126d32" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="5c0d0f23-9b38-4802-89c7-ac9e9aa4d3ad" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="db724055-4f87-46cb-ac14-5c5fa1175ae9" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="af2035d1-9afd-4422-8e91-1e6e60ef4b22" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="661b3382-333e-4347-af15-8931f5b13493" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="c4ea3d6d-714c-4193-84b8-028c29cde508" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="8fad6fba-8343-448d-85ef-a3f4e7066061" name="targetPin : Pushpin" isActor="false" lifelineDisplayName="targetPin : Pushpin" referencedInstance="(Assembly=$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin ObjectInstance=&quot;Object instance 11&quot;)" referencedType="Microsoft‎.Maps‎.MapControl‎.WPF‎.Pushpin">
+            <referencesInternal>
+              <reference Id="1589997b-98c2-484e-8096-a39ca223cdf6" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Microsoft.Maps.MapControl.WPF)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)&quot;)" tag="DGQL" />
+              <reference Id="8baad87d-dfb4-48f6-971e-6442f96e714c" handle="(Assembly=&quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="72b67e5d-00fc-4070-a594-f277ae0de5f3" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="3aa9764d-8012-4815-b013-4680f28891a3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="7c625763-7157-442a-a3d0-12832ca29b96" name="this.targetPins : List&lt;Pushpin&gt;" isActor="false" lifelineDisplayName="this.targetPins : List&lt;Pushpin&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1 GenericArguments=[(Assembly=$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)]) ObjectInstance=&quot;Object instance 40&quot;)" referencedType="System‎.Collections‎.Generic‎.List‎&lt;Pushpin‎&gt;">
+            <referencesInternal>
+              <reference Id="0bbf6339-4217-4822-a0da-a49da1ae1bb6" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="1fbb6015-3edf-477e-924a-e20f55bda09b" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="1a3ffeee-39ce-4191-963e-a7414a988b77" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="572960fc-a34f-4311-8ed0-9ce00568e7ab" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="7df7487f-fccb-4590-b9ee-38def271ad1a" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="bdd54404-1106-4e09-b3c7-686298466608" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="eedb3445-05ba-4ace-921a-632e3c07e9b0" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="6b113480-059d-443b-a014-5e5a19317b6e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="37b42b59-dd65-4e43-a0ab-d66d8c652b8c" name="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" isActor="false" lifelineDisplayName="this._pushPinCollection : ObservableCollection&lt;Pushpin&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&quot; Namespace=System.Collections.ObjectModel Type=(Name=ObservableCollection GenericParameterCount=1 GenericArguments=[(Assembly=$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)]) ObjectInstance=&quot;Object instance 44&quot;)" referencedType="System‎.Collections‎.ObjectModel‎.ObservableCollection‎&lt;Pushpin‎&gt;">
+            <referencesInternal>
+              <reference Id="43464510-87e1-453f-947f-c8907fa9de2d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.ObjectModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&amp;quot; Namespace=System.Collections.ObjectModel Type=(Name=ObservableCollection GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="c7c95f8c-9bed-4af8-963b-5781adf6dded" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&quot; Namespace=System.Collections.ObjectModel Type=(Name=ObservableCollection GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="5d2dbd7e-d9a8-40f0-8b1e-cc02a7cfaa28" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="e6bbd259-4606-45cb-9a30-8917584bba2d" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="2ca7c53b-3750-4e9a-8750-5c7442fbf208" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="6baafb35-5f1a-4f0a-95fd-0d27df4e6a7f" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="8568e8b0-d105-4bef-8df0-dcb4fba22df5" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="863e664c-2367-4954-9bce-790eaeb324a1" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="fb9744e1-eb52-4567-a5ed-900de066eec1" name="ExecuteAddTargetCommand" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="76010416-7bb7-4f96-841b-f035d80db32a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Content)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=ExecuteAddTargetCommand)&quot;)" tag="DGQL" />
+              <reference Id="72c31e64-f31c-474e-858f-933520c549c6" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=ExecuteAddTargetCommand)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="19869d9a-2054-4f83-80ad-0179bf3509a2" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="aef1c6fa-3451-4c40-a6ac-740f96b72c6e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="77bbbcd7-c309-4712-a9f4-4a62ab75ce20" name="Create Location" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new Location()">
+            <referencesInternal>
+              <reference Id="a1e33dd5-ba7f-4740-84e9-368fa9adb9e4" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Microsoft.Maps.MapControl.WPF)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="34edfa8a-8f17-46ea-bd95-7eda3fc40e16" handle="(Assembly=&quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="c4a6530c-2bf8-4200-807e-3fe4386c4e3d" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="a82e4890-ab7b-44c1-8873-b57925a8cc7f" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="c0be7bb6-20f8-4165-9181-44764c26df30" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="5b1ba77e-7ed9-42cb-a98e-e13d6302b9e7" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="045f6e14-df1f-4473-8150-2581ef801d6d" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="83deacb4-20ba-4896-aed0-51ed27058f0c" name="addTarget" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="addTarget(targetLocation)">
+            <referencesInternal>
+              <reference Id="64574036-6d1e-44a0-ae41-5e46346f7b7d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Content)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=(Name=addTarget OverloadingParameters=[(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location)]))&quot;)" tag="DGQL" />
+              <reference Id="876568be-7877-407e-a5b7-66724408ddcd" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=(Name=addTarget OverloadingParameters=[(Assembly=&quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Location)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e2064178-55d4-402e-a9cc-5aa62304aea2" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="78836424-eb7d-43fe-9272-3ef9b03d66a4" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="5995fc58-2e95-4fb9-89d5-6a843bce4ce6" name="Create List‎&lt;Pushpin‎&gt;" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new List&lt;Pushpin&gt;()">
+            <referencesInternal>
+              <reference Id="9745f16f-ced8-4803-b816-08a7c976e76a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="03133257-2755-4cc2-a3a5-50c49b4e78a5" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0818209d-4e23-41ba-986f-38af474e7283" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="7e7d4c65-486c-42ff-abda-1ec5acc52055" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="300851c7-bfd3-448a-b5f2-6bd6622e798a" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="42ea0e1d-3c48-468c-8565-c5348338b7fc" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="f53026f1-907f-41e3-91dc-7ffe58ff9f70" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="e016a494-8bfc-4f29-9fc4-8a0d34f2046a" name="Create Pushpin" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new Pushpin()">
+            <referencesInternal>
+              <reference Id="d0cd9ab8-c6fa-4f33-9c3d-fbe857f09687" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Microsoft.Maps.MapControl.WPF)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="f8d48593-3488-4c7e-807b-698e132ee980" handle="(Assembly=&quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="fb9e5bcb-aa58-4831-b122-ccf1a558625b" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b6aba515-b312-4b72-aef8-7b5be893bd8b" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="fbc8cbbf-11a7-42e4-bf92-db9ce3ecc428" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b3c9b4d9-1206-432d-9268-20726e276c76" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="042f7192-e67f-4790-9ee0-6ed1807be841" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="1016ed0d-4caf-40ed-8d09-63bdae366537" name="formatTargetPin" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="formatTargetPin(targetPin)">
+            <referencesInternal>
+              <reference Id="08853520-12c9-4111-acdf-4944cfd49fb3" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Content)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=(Name=formatTargetPin OverloadingParameters=[(Assembly=&amp;quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&amp;quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)]))&quot;)" tag="DGQL" />
+              <reference Id="b287ce35-ff1c-4364-97ab-ac5c7439bc5e" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=(Name=formatTargetPin OverloadingParameters=[(Assembly=&quot;$(VsSolutionUri)/packages/BingMapsWpfControl.1.0.0/lib/net40-client/Microsoft.Maps.MapControl.WPF.dll&quot; Namespace=Microsoft.Maps.MapControl.WPF Type=Pushpin)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b3a0f372-7d44-43f4-8939-00cdf9ba2a06" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="ec66485d-1596-43ab-9498-c1cb9c13b8fb" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="327d72df-22a1-48b0-9453-e44dfec51387" name="Create List‎&lt;Pushpin‎&gt;" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new List&lt;Pushpin&gt;()">
+            <referencesInternal>
+              <reference Id="0a0b7821-c173-4816-8289-b16d83404693" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="c1aa28de-c47c-4039-8772-9e44c6cb259c" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a4cc2fb9-b26e-4097-9d07-1d25b516eed8" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b5508d1a-6d82-48f0-9804-5bf2bcdce49e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="f5ee253e-fe4f-4de4-8b89-ad1a980adbc1" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="bb7ddfb0-0fc6-4c50-9dc5-1fee8d547eb9" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="bc8be21f-018f-4939-91e7-fd7c6e62e2f1" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="337fc990-f9a9-4fa6-bb42-a0da517b412a" name="Add" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="targetPins.Add(targetPin)">
+            <referencesInternal>
+              <reference Id="ddf7d46d-f2a6-4ebb-8e0c-571de7e28679" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.Generic)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=(Name=Add OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) ParameterIdentifier=0)]))&quot;)" tag="DGQL" />
+              <reference Id="0165b0d4-dd6c-4e31-9625-140513192119" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) Member=(Name=Add OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.Generic Type=(Name=List GenericParameterCount=1) ParameterIdentifier=0)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="24241ed5-89fc-49ae-83e6-1de5fcc1144f" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="2d291c4c-e943-4ff4-98e4-92e74934a6d4" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="7259f352-dfa1-4f86-a6cf-553ac946c0e0" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e1ae8a21-d104-46e0-8449-3b8ee5f4d233" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="9988cf6b-540d-45ea-9f47-8945999d8241" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="76eb0f5e-ed5e-4748-8bf7-f1c10b78d906" name="Create ObservableCollection‎&lt;Pushpin‎&gt;" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new ObservableCollection&lt;Pushpin&gt;()">
+            <referencesInternal>
+              <reference Id="30b3739d-47ac-4e99-9012-0c9cb06b5c73" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.ObjectModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&amp;quot; Namespace=System.Collections.ObjectModel Type=(Name=ObservableCollection GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&amp;quot; Namespace=System.Collections.ObjectModel Type=(Name=ObservableCollection GenericParameterCount=1) Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="aa84a1e1-ea1b-4368-a950-110cd9d03a56" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&quot; Namespace=System.Collections.ObjectModel Type=(Name=ObservableCollection GenericParameterCount=1) Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2c54a67d-4a99-4909-908a-a272b683a5d6" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4579adba-a22c-4460-a0dc-37369bbdd28a" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="f22602b5-58a2-4738-bf5f-65d788943d8e" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="262a7d8d-36b5-43e9-a80a-aa189a753f97" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b8a832ed-20f0-47cb-b8dd-61a429dc9ac5" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="0286144b-fe88-46b0-8bbf-464ff6e128f7" name="Add" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="pushPinCollection.Add(targetPin)">
+            <referencesInternal>
+              <reference Id="8ab59857-2b50-4d7d-b34c-dfd05d8a87de" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Collections.ObjectModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.ObjectModel Type=(Name=Collection GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.ObjectModel Type=(Name=Collection GenericParameterCount=1) Member=(Name=Add OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System.Collections.ObjectModel Type=(Name=Collection GenericParameterCount=1) ParameterIdentifier=0)]))&quot;)" tag="DGQL" />
+              <reference Id="8c3c186f-214d-4eb6-9bab-ea6df62d0a4b" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.ObjectModel Type=(Name=Collection GenericParameterCount=1) Member=(Name=Add OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System.Collections.ObjectModel Type=(Name=Collection GenericParameterCount=1) ParameterIdentifier=0)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6bdba74b-2ebb-4961-b992-39dd2e4bddec" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="529ed16d-97ea-4883-8d45-382ed91d3a8f" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="4fc86656-c5b6-47b2-97e4-ba062bb7a8b7" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4c8255f8-6908-4207-926f-932158aacb7f" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="afffcc68-a147-49e2-a44b-2039933b1093" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="20297ad3-9f27-47c1-aabb-e6e16c0d50b5" name="updateTargetDetails" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="updateTargetDetails()">
+            <referencesInternal>
+              <reference Id="74eddb61-f231-41ed-95f9-805c17b9ee18" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Content)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=updateTargetDetails)&quot;)" tag="DGQL" />
+              <reference Id="8160d787-a08c-4346-999a-ae8861b63caf" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Content Type=GPSViewViewModel Member=updateTargetDetails)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0823ba7b-c2a9-4d48-9fd6-77c23b7367de" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="a461f83e-2471-4c36-92cb-c68180e41add" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fd888fc9-4af8-4b39-a86e-cc73b7b4818f" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e6f996bc-d11b-4def-a6eb-d4e7adcf0480" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="c6b30f68-3aca-46ce-9e4a-7434bcd4c7ef" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="82af2059-1c18-4b07-bdf6-dfc8331b97f6" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="d41e09bd-6ae5-4bb5-bfa2-0247fa30e309" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="33a500fd-b19e-4999-b13a-8a59416ac0a0" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="9e1ec940-f3b4-4d67-8851-702bd154b536" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="1c127a0d-3a76-4b2e-8456-74e8d5e853c4" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="93547de9-98ca-473e-aaa9-6db7aaad52c7" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="23692e06-24c6-4c8d-b2cd-1a266f6c5e95" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="854d739b-d055-4891-8fdd-042492cbe7ad" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2a26f1a4-942c-426a-9034-a728addb5999" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="4623379c-7b6c-4ee4-861c-55dbb2903feb" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="7e49a318-32c6-4fde-b132-f2915cae2f2c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e84f0ace-29b7-478b-9ddb-c346f8274c34" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="787dea0f-3fb8-48a9-854c-8951856e295b" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fc0d3a48-a249-4fb2-9264-aa1b253dc75e" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="3e50ecd7-1096-475c-ac7b-2ed1e662ac8a" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a76ae700-3fba-49d5-941f-81128abf8d26" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="d5f49ff4-0285-4c5b-bba2-e11823f38085" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a1719c3f-24fb-4372-b220-efa089b6ec60" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="b73be588-7068-4fa0-a1aa-7db5de411038" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

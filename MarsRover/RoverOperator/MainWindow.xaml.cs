@@ -43,7 +43,9 @@ namespace RoverOperator
             InitializeComponent();
             FirstFloor.ModernUI.Presentation.AppearanceManager.Current.AccentColor = Color.FromRgb(0xa2, 0x00, 0x25);
             AddKeyBoardShortcuts();
-            DataContext = new MainWindowViewModel(); 
+            var mwVM = new MainWindowViewModel();
+            ViewModelManager.Instance.MainWindowVM = mwVM;
+            DataContext = mwVM;
            
         }
 

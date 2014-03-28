@@ -34,6 +34,7 @@ namespace RoverOperator.Pages
             InitializeComponent();            
 
             var mainVM = new MainViewModel();
+            ViewModelManager.Instance.MainWindowVM.MainVM = mainVM;
             DataContext = mainVM;           
 
             mainVM.DockingManager = dockingManager;           

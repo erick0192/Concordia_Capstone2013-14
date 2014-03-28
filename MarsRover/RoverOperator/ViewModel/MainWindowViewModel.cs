@@ -34,6 +34,8 @@ namespace RoverOperator
             }
         }
 
+        public RoverOperator.Pages.MainViewModel MainVM { get; set; }
+
         #endregion
 
         #region Events/Delegates

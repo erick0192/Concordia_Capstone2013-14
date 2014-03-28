@@ -1,0 +1,1051 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="30cf3ac6-89cf-4a53-bb3f-c92e74bc6939" name="GamepadController_PollAndSendMovementCommands" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="365047af-00bf-4d05-bf04-1f74a5060765" name="GamepadController_PollAndSendMovementCommands" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="2887b5b2-137c-4064-a9c3-a908c24fdebb" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="e42f3384-d742-4e89-b872-70887999816e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="445bc865-6354-41a8-be18-31e75f748823" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="a6dc7022-709b-4053-9d1b-b1fecca87607" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="aa18a64f-699b-41c3-961d-768ac97ba556" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="f5674118-b5d3-49c9-a943-6603bf94bf6e" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="af57c116-923c-45db-8d97-3833e98ab077" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="52b1c377-d698-4791-b8ee-1b3ca7e61405" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c35f2bcf-4287-47a9-9e12-98b675531999" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="47eb549b-c2f9-43c8-964f-665a941f4606" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="a85ca2e9-b034-448b-82a1-33a38f0e7c18" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="433c3552-e318-41d1-af53-777ec0cfda22" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="54b5ed99-ff6f-4aca-aa82-a969c9d2e8d5" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="07372ddb-af2d-40b0-bcc8-dc79c8ced777" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="9fca378d-6f10-4f82-bb4c-f0effe11c5dd" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d898c56d-dfbc-4ef2-bbd6-aa00eb5aff2e" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="53f4d8d6-3a9e-4ddc-8c7a-41ad1cfedafe" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="5ca5430b-a730-477d-8802-7312d3a27967" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e73ca8b4-1100-4ae9-8ef4-6d8f30a0c91e" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e0edac52-2a1c-4686-bfee-7015149066fd" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="1a6872ec-de0d-4991-ace6-4dc332b76747" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="7659027d-bf1e-4a2f-bf72-434d3608744d" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="59bd73c1-d5a4-44b7-9cd2-ec62cdefb370" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="134b9b4e-3341-4eda-837b-7fca7db67d81" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="60ddfdf9-d492-4d57-8968-6d05ad2a2694" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="589e6e16-977f-4d62-935e-72f4987ca974" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="15979c4b-1258-4ee5-ae3f-288aeca8ee53" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="84b90a0c-9143-4f01-a427-57c53df9c918" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1e5cd445-2822-4459-9bb1-f0ff3dd7a992" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="55ce63fc-0e32-4dc6-a2ca-53011fc0007e" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="f41c4651-fd1e-4fc5-ab91-85883053c3cd" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d4c58e6c-fa7a-4f02-be96-2d83dc166930" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="365dc5dc-0c21-4876-876a-a263e9dd9fec" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c349bb57-bc5f-4b0e-8649-560cdaebd5d6" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="14e896a2-bf8e-4847-a4f6-c006585e3d26" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="75422d3c-ea4c-4a94-a9b6-25a19d84ed2a" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="33954589-99d9-4571-8359-f12681414864" LastKnownName="OperandOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="445bc865-6354-41a8-be18-31e75f748823" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="576bcf79-5a90-4438-98e2-8bcec8acaa66" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="0f951fef-f81b-4e89-a610-8cee90056e59" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="a6dc7022-709b-4053-9d1b-b1fecca87607" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="0e2acacd-de21-434a-b737-3a21609c7021" name="CombinedFragment1" interactionOperator="Loop" customInteractionOperator="Loop">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="b3b8f95d-6db8-46fd-8233-8fad15eb631d" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                  <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+                  <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+                </coveredLifelines>
+                <fragments>
+                  <combinedFragment Id="9a911d03-7fd1-4fb9-965c-0ba9b74007f5" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="If">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                      <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="92a99d4f-bea1-4b27-96d9-6cd3b0ae49ba" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                          <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="40af684b-b806-43e1-a4ac-56d0abf38e09" guardText="if (RoverOperator.Content.MotorsViewModel.MotorVMActive)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="f5674118-b5d3-49c9-a943-6603bf94bf6e" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="5ca5430b-a730-477d-8802-7312d3a27967" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="1a8af7ab-5378-4e5a-b8da-057a878675aa" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="24788b6a-b4bb-4208-b8e2-cfccff8ff216" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                  <combinedFragment Id="7b0d1ead-9112-4736-a99d-68ac6a51d800" name="CombinedFragment2" interactionOperator="Opt" customInteractionOperator="If">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                      <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="5e6a2e37-7575-43f4-b45e-0ad30a8d0509" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                          <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="ba43d49a-a878-4f10-90ff-08b8f1bdc021" guardText="if (RoverOperator.Content.MotorsViewModel.MotorVMActive)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="e73ca8b4-1100-4ae9-8ef4-6d8f30a0c91e" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="f41c4651-fd1e-4fc5-ab91-85883053c3cd" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="1eb2dab1-1b46-4d35-bfcc-eea3a57e13f6" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="8229a189-20af-4ac3-95ff-e92bfcfcfde4" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                  <combinedFragment Id="3e546e6a-6241-45a5-b8b7-b93440c571ba" name="CombinedFragment3" interactionOperator="Opt" customInteractionOperator="If">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="5aa42bba-9c69-4fb5-b599-be2bb5b7d290" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="6258fcae-364a-41a8-9a96-017bbd0e2e99" guardText="if (tilting)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="d4c58e6c-fa7a-4f02-be96-2d83dc166930" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="75422d3c-ea4c-4a94-a9b6-25a19d84ed2a" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                </fragments>
+                <guard>
+                  <interactionConstraint Id="5a05aedf-af40-49d2-9160-211ccfa639d3" guardText="while (controller.IsConnected)">
+                    <maxInt>
+                      <literalString Id="1c9db31c-aac3-4476-8c07-eec5a0b2af35" name="LiteralString1" />
+                    </maxInt>
+                    <minInt>
+                      <literalString Id="7572cf6d-8c00-41aa-82f5-21942a415864" name="LiteralString2" />
+                    </minInt>
+                  </interactionConstraint>
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="aa18a64f-699b-41c3-961d-768ac97ba556" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="33954589-99d9-4571-8359-f12681414864" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="9308c8bc-9d78-414a-a78d-4f007a151cef" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="d0c2d42b-4436-4760-8b85-1eebe169c62f" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="4ef6de90-1927-4b44-8dc8-346c395004a4" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="a4a97f35-56b7-420d-8acd-01d37cd32b91" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="4ef6de90-1927-4b44-8dc8-346c395004a4" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="aa18a64f-699b-41c3-961d-768ac97ba556" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="9308c8bc-9d78-414a-a78d-4f007a151cef" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="1a8af7ab-5378-4e5a-b8da-057a878675aa" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="f5674118-b5d3-49c9-a943-6603bf94bf6e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="af57c116-923c-45db-8d97-3833e98ab077" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="9c228509-b01c-44ca-a310-2ee739bdae71" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="c35f2bcf-4287-47a9-9e12-98b675531999" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="52b1c377-d698-4791-b8ee-1b3ca7e61405" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="e33495bc-84a7-4844-aef9-e93510c9664c" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="52b1c377-d698-4791-b8ee-1b3ca7e61405" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="f3006143-0d27-45c9-9f4a-efde525405b4" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e33495bc-84a7-4844-aef9-e93510c9664c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="c35f2bcf-4287-47a9-9e12-98b675531999" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="015c8787-d691-413b-94f4-e7e011ddcdaa" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="47eb549b-c2f9-43c8-964f-665a941f4606" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="21aa2d4e-bcb1-43c8-b356-3bd195ca22a7" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="433c3552-e318-41d1-af53-777ec0cfda22" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="a85ca2e9-b034-448b-82a1-33a38f0e7c18" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="522cae18-8c8f-46c5-bf1a-e2a2b165be1b" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="a85ca2e9-b034-448b-82a1-33a38f0e7c18" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="19c0cfe6-2cb0-4d04-a23d-6225f5d526c5" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="522cae18-8c8f-46c5-bf1a-e2a2b165be1b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="433c3552-e318-41d1-af53-777ec0cfda22" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="13dcc8a0-9eee-4a7b-9963-8459e29d4c6d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="54b5ed99-ff6f-4aca-aa82-a969c9d2e8d5" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="7c048d7d-42df-4fb9-9209-dc71f6e399f5" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="9fca378d-6f10-4f82-bb4c-f0effe11c5dd" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="07372ddb-af2d-40b0-bcc8-dc79c8ced777" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="71f3830a-4c95-4658-82db-b885f7ee1ef7" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="07372ddb-af2d-40b0-bcc8-dc79c8ced777" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="38f08999-5be5-4b91-a440-ba2eaa8e33bb" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="71f3830a-4c95-4658-82db-b885f7ee1ef7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="9fca378d-6f10-4f82-bb4c-f0effe11c5dd" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e0e69574-fbf2-4c03-8314-9281b6f62aad" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="7e20e72b-871b-4768-83b4-c95b4b85fd77" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="6a2c25d3-54a3-42af-baf6-6ff1d9dd9852" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="10deddbd-f278-4792-a7be-82956c4156f6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="cf058b14-49bb-405c-aa91-19daab531599" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a922dda7-a43e-4d26-b2c1-da21d46ec9ac" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="89338e94-9bc9-4f87-98f9-e9b60a10a09c" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="3dc4dd5a-a127-41e2-a1cb-d89aeb36b0ac" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="514ad8db-11f7-4f9f-85e3-dbd006e17e33" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="10deddbd-f278-4792-a7be-82956c4156f6" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="23551e90-2471-4e45-aac8-eb6a41037851" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d898c56d-dfbc-4ef2-bbd6-aa00eb5aff2e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="cf058b14-49bb-405c-aa91-19daab531599" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a922dda7-a43e-4d26-b2c1-da21d46ec9ac" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="0287af19-c219-422a-8d10-e219730a4c2a" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="3dc4dd5a-a127-41e2-a1cb-d89aeb36b0ac" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="89338e94-9bc9-4f87-98f9-e9b60a10a09c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="fea45736-8ffb-433c-97b5-5697ce944dc2" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="89338e94-9bc9-4f87-98f9-e9b60a10a09c" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="f31492f4-521f-4f7a-9185-973750245394" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="fea45736-8ffb-433c-97b5-5697ce944dc2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="3dc4dd5a-a127-41e2-a1cb-d89aeb36b0ac" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="8514de65-f0f3-4a11-a06e-747daa1601d5" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="514ad8db-11f7-4f9f-85e3-dbd006e17e33" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="53f4d8d6-3a9e-4ddc-8c7a-41ad1cfedafe" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="6a2c25d3-54a3-42af-baf6-6ff1d9dd9852" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="1226ca00-6429-4be8-a6ac-801887297ffa" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="24788b6a-b4bb-4208-b8e2-cfccff8ff216" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="5ca5430b-a730-477d-8802-7312d3a27967" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e73ca8b4-1100-4ae9-8ef4-6d8f30a0c91e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="1eb2dab1-1b46-4d35-bfcc-eea3a57e13f6" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e0edac52-2a1c-4686-bfee-7015149066fd" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="d7405168-4e49-4263-8693-b04efa19bb7c" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="7659027d-bf1e-4a2f-bf72-434d3608744d" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="1a6872ec-de0d-4991-ace6-4dc332b76747" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="58038e9f-36fc-4872-8307-94a7081dee68" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="1a6872ec-de0d-4991-ace6-4dc332b76747" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="86815f56-1943-4d07-82a9-5373edc59b92" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="58038e9f-36fc-4872-8307-94a7081dee68" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="7659027d-bf1e-4a2f-bf72-434d3608744d" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="d6bfb9ae-95a7-4f45-a511-f668cc5f716c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="59bd73c1-d5a4-44b7-9cd2-ec62cdefb370" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="551ff2e1-f30a-4e79-9f09-03ba255c63c5" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="60ddfdf9-d492-4d57-8968-6d05ad2a2694" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="134b9b4e-3341-4eda-837b-7fca7db67d81" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="4549265f-684b-4a78-b374-bd1dd426fc99" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="134b9b4e-3341-4eda-837b-7fca7db67d81" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="8a683cf2-2cef-4e51-9c55-3b15f8a60360" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4549265f-684b-4a78-b374-bd1dd426fc99" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="60ddfdf9-d492-4d57-8968-6d05ad2a2694" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fd58ef95-97cd-4d31-98be-8919cb9d041b" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="589e6e16-977f-4d62-935e-72f4987ca974" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="f02a77c6-5c0a-4ac7-adf4-f47f000ac2c0" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="84b90a0c-9143-4f01-a427-57c53df9c918" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="15979c4b-1258-4ee5-ae3f-288aeca8ee53" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="6d2bf778-3e30-4e1f-b112-4f0c57b404c2" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="15979c4b-1258-4ee5-ae3f-288aeca8ee53" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fe925b10-56ff-4110-be1b-f81031f4802f" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6d2bf778-3e30-4e1f-b112-4f0c57b404c2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="84b90a0c-9143-4f01-a427-57c53df9c918" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="f6414e68-ebb1-4941-b4a6-f39afc905772" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="0810d9f6-3dc0-48e9-9670-006d07ec6635" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="c1e7eefc-2222-49b7-876b-01615a29a941" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="bce98043-1dab-45a8-9538-d657ec3798b6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="dd9cd040-f8b6-4e6a-95bb-84607096cced" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4906ac27-98e8-44df-b2e3-81cf84d7b9b1" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="24b0773a-b943-4dd2-8fa8-9d63adb50731" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="a4b3cc01-e247-4931-9f33-99a00dbd7f7e" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="ff4b13c8-66e1-4a76-bb65-5498e12fdc5a" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="bce98043-1dab-45a8-9538-d657ec3798b6" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="bf5b33df-cd63-4ae0-8e9e-e95ddc2e7892" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1e5cd445-2822-4459-9bb1-f0ff3dd7a992" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="dd9cd040-f8b6-4e6a-95bb-84607096cced" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4906ac27-98e8-44df-b2e3-81cf84d7b9b1" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="a9fc4713-0b67-4069-be89-8f3f8ce08204" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="a4b3cc01-e247-4931-9f33-99a00dbd7f7e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="24b0773a-b943-4dd2-8fa8-9d63adb50731" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="5e2b8456-47fd-4e58-a852-ceb454d1d090" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="24b0773a-b943-4dd2-8fa8-9d63adb50731" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="58f164a8-0106-4889-a3bc-abe52406362c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5e2b8456-47fd-4e58-a852-ceb454d1d090" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="a4b3cc01-e247-4931-9f33-99a00dbd7f7e" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="fd556b13-cf08-4cef-bf5c-ad6e0e6b552c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="55ce63fc-0e32-4dc6-a2ca-53011fc0007e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ff4b13c8-66e1-4a76-bb65-5498e12fdc5a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="c1e7eefc-2222-49b7-876b-01615a29a941" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="dcbe9c7e-62e3-4f2d-b829-26da7d5447ac" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="f41c4651-fd1e-4fc5-ab91-85883053c3cd" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="8229a189-20af-4ac3-95ff-e92bfcfcfde4" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d4c58e6c-fa7a-4f02-be96-2d83dc166930" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="365dc5dc-0c21-4876-876a-a263e9dd9fec" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="4a64899d-5502-4326-a4c2-e74ab420a2d1" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="14e896a2-bf8e-4847-a4f6-c006585e3d26" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="c349bb57-bc5f-4b0e-8649-560cdaebd5d6" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="246f4364-b4d9-47a9-b1d6-0b7c9c3f25f9" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="c349bb57-bc5f-4b0e-8649-560cdaebd5d6" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="65540677-f19e-4436-85b0-f8bac8bf199d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="246f4364-b4d9-47a9-b1d6-0b7c9c3f25f9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="14e896a2-bf8e-4847-a4f6-c006585e3d26" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="d1f31812-a7cc-475a-889c-324a0dc7d66a" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="75422d3c-ea4c-4a94-a9b6-25a19d84ed2a" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d0c2d42b-4436-4760-8b85-1eebe169c62f" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="47ea3c77-4896-428d-ae53-0f1352f1c072" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="33954589-99d9-4571-8359-f12681414864" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="a4a97f35-56b7-420d-8acd-01d37cd32b91" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" LastKnownName="CommandSender.instance : CommandSender" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="e42f3384-d742-4e89-b872-70887999816e" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="4764d7ef-1011-4efa-9db3-2fe97ffaf10c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" LastKnownName="this : GamepadController" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="0bfecb71-f702-4d2d-9aa2-606d3221ec58" name="this : GamepadController" isActor="false" lifelineDisplayName="this : GamepadController" referencedInstance="(Assembly=$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri) Namespace=RoverOperator.Gamepad Type=GamepadController ObjectInstance=&quot;Object instance 3&quot;)" referencedType="RoverOperator‎.Gamepad‎.GamepadController">
+            <referencesInternal>
+              <reference Id="64d71aad-0c3b-4b2c-8432-b6fb72f71070" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)" tag="DGQL" />
+              <reference Id="2d4c6bc0-f169-4a00-8d4d-e4e4727bf138" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="445bc865-6354-41a8-be18-31e75f748823" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="e42f3384-d742-4e89-b872-70887999816e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="47ea3c77-4896-428d-ae53-0f1352f1c072" name="CommandSender.instance : CommandSender" isActor="false" lifelineDisplayName="CommandSender.instance : CommandSender" referencedInstance="(Assembly=$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri) Namespace=RoverOperator Type=CommandSender ObjectInstance=&quot;Object instance 82&quot;)" referencedType="RoverOperator‎.CommandSender">
+            <referencesInternal>
+              <reference Id="879d7c8a-b9dd-413d-ab0d-5a6c8865ff1b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender)&quot;)" tag="DGQL" />
+              <reference Id="92abf9f4-8be4-4644-b476-3afcb4e4ec35" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator Type=CommandSender)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="9308c8bc-9d78-414a-a78d-4f007a151cef" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="1a8af7ab-5378-4e5a-b8da-057a878675aa" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="10deddbd-f278-4792-a7be-82956c4156f6" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="6a2c25d3-54a3-42af-baf6-6ff1d9dd9852" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="24788b6a-b4bb-4208-b8e2-cfccff8ff216" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d0c2d42b-4436-4760-8b85-1eebe169c62f" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="0393af1f-6fc3-4a25-b2e0-47e095a0066c" name="CommandSender.instance : CommandSender" isActor="false" lifelineDisplayName="CommandSender.instance : CommandSender" referencedInstance="(Assembly=$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri) Namespace=RoverOperator Type=CommandSender ObjectInstance=&quot;Object instance 189&quot;)" referencedType="RoverOperator‎.CommandSender">
+            <referencesInternal>
+              <reference Id="99d9bd3b-7c3b-4c69-ae5b-101deab7d9a0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender)&quot;)" tag="DGQL" />
+              <reference Id="beebf132-250c-482a-9c43-cd225a5b2c4f" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator Type=CommandSender)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <operandOccurrenceSpecificationMoniker Id="4ef6de90-1927-4b44-8dc8-346c395004a4" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="1eb2dab1-1b46-4d35-bfcc-eea3a57e13f6" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="bce98043-1dab-45a8-9538-d657ec3798b6" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c1e7eefc-2222-49b7-876b-01615a29a941" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="8229a189-20af-4ac3-95ff-e92bfcfcfde4" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="a4a97f35-56b7-420d-8acd-01d37cd32b91" LastKnownName="OperandOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="a0c10617-9385-44df-8e0c-ea0867ab57a4" name="PollAndSendMovementCommands" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="45fc7aa3-a200-43d1-b78f-e466bfa5d4e0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=PollAndSendMovementCommands OverloadingParameters=[(Assembly=&amp;quot;$(VsSolutionUri)/packages/SharpDX.XInput.2.5.0/lib/net40/SharpDX.XInput.dll&amp;quot; Namespace=SharpDX.XInput Type=Controller),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&amp;quot; Namespace=System.Collections.Concurrent Type=(Name=BlockingCollection GenericParameterCount=1 GenericArguments=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))]))&quot;)" tag="DGQL" />
+              <reference Id="e77e01ab-fece-41ad-b440-5087a5f6452f" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=PollAndSendMovementCommands OverloadingParameters=[(Assembly=&quot;$(VsSolutionUri)/packages/SharpDX.XInput.2.5.0/lib/net40/SharpDX.XInput.dll&quot; Namespace=SharpDX.XInput Type=Controller),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/System.dll&quot; Namespace=System.Collections.Concurrent Type=(Name=BlockingCollection GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="0f951fef-f81b-4e89-a610-8cee90056e59" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="a6dc7022-709b-4053-9d1b-b1fecca87607" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="636ad422-9bf5-4fd6-acb1-eeffdba05df9" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontLeftMotorVM.Power / 100)">
+            <referencesInternal>
+              <reference Id="b0c36778-4dc2-46c3-9510-34b50efbbd65" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="40b1a0ef-360f-470d-aa0a-0d415e326449" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="af57c116-923c-45db-8d97-3833e98ab077" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="e33495bc-84a7-4844-aef9-e93510c9664c" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="191a1cc8-d110-4112-b639-7f6db9e305ea" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.MiddleLeftMotorVM.Power / 100)">
+            <referencesInternal>
+              <reference Id="0b7616f8-06ae-4665-8e97-93ba5f907898" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="be9f6f33-0a16-4a4b-8423-3fd837059f15" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="47eb549b-c2f9-43c8-964f-665a941f4606" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="522cae18-8c8f-46c5-bf1a-e2a2b165be1b" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="c87613ec-e531-4059-a5ed-fba591391ccc" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(leftSpeed * (int)RoverOperator.Content.MotorsViewModel.BackLeftMotorVM.Power / 100)">
+            <referencesInternal>
+              <reference Id="78c8f04f-c018-4b42-850a-547b6877d4de" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="09113405-5164-4dbd-afe5-0d2af4a3880f" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="54b5ed99-ff6f-4aca-aa82-a969c9d2e8d5" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="71f3830a-4c95-4658-82db-b885f7ee1ef7" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="1b187014-e832-4ccd-a6fe-c1e79c6d276f" name="UpdateCommand" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="CommandSender.Instance.UpdateCommand(leftCommand.ToString())">
+            <referencesInternal>
+              <reference Id="f3a55df2-10a2-4ef0-92d2-824afe4df609" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender Member=(Name=UpdateCommand OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="5946ca18-53e5-4379-90ef-291eaa2ef9bc" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator Type=CommandSender Member=(Name=UpdateCommand OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="d898c56d-dfbc-4ef2-bbd6-aa00eb5aff2e" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="cf058b14-49bb-405c-aa91-19daab531599" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="2510a32e-9434-417d-9ef1-95ec4cd496cc" name="GetCommandId" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="GetCommandId(command)">
+            <referencesInternal>
+              <reference Id="ffecaa03-0e10-4f3c-832a-769eb3e23f79" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender Member=(Name=GetCommandId OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="90852580-abd1-4780-a872-7b135bd3fb36" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator Type=CommandSender Member=(Name=GetCommandId OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a922dda7-a43e-4d26-b2c1-da21d46ec9ac" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="fea45736-8ffb-433c-97b5-5697ce944dc2" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="504cee1a-793c-4328-a5d3-785f011d71f6" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="514ad8db-11f7-4f9f-85e3-dbd006e17e33" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="53f4d8d6-3a9e-4ddc-8c7a-41ad1cfedafe" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="9a43bdc3-8790-4eff-a853-2739871e0024" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.FrontRightMotorVM.Power / 100)">
+            <referencesInternal>
+              <reference Id="939e3820-f966-4b29-9db8-bb99f2b8f1dd" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="bd4c84fb-7714-46b5-b9d8-3dcff552d839" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e0edac52-2a1c-4686-bfee-7015149066fd" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="58038e9f-36fc-4872-8307-94a7081dee68" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="6798db3d-9992-4c67-861b-8ee160516d71" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.MiddleRightMotorVM.Power / 100)">
+            <referencesInternal>
+              <reference Id="bc17cc8a-cf03-47da-baec-06d9e11d7554" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="537f589e-79da-4dc6-843c-8e577cecdd9c" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="59bd73c1-d5a4-44b7-9cd2-ec62cdefb370" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4549265f-684b-4a78-b374-bd1dd426fc99" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="9d3ba85d-8b46-45bc-9741-aa79e465bfd0" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(rightSpeed * (int)RoverOperator.Content.MotorsViewModel.BackRightMotorVM.Power / 100)">
+            <referencesInternal>
+              <reference Id="95c898fc-0a1e-4e2a-92e0-f17c0a0e3d42" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="4df436b4-aace-40f6-bb59-ffc8f0b30620" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="589e6e16-977f-4d62-935e-72f4987ca974" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="6d2bf778-3e30-4e1f-b112-4f0c57b404c2" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="b7835d87-7b66-4dae-a4f0-49981affdc29" name="UpdateCommand" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="CommandSender.Instance.UpdateCommand(rightCommand.ToString())">
+            <referencesInternal>
+              <reference Id="5a4579eb-8a36-441c-9ec4-500972fb0552" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender Member=(Name=UpdateCommand OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="2013b096-e7ef-4dd4-a87c-29d9a50b865b" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator Type=CommandSender Member=(Name=UpdateCommand OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1e5cd445-2822-4459-9bb1-f0ff3dd7a992" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="dd9cd040-f8b6-4e6a-95bb-84607096cced" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="13e7c509-2c92-4a60-a279-d744fe7826c8" name="GetCommandId" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="GetCommandId(command)">
+            <referencesInternal>
+              <reference Id="90917017-6449-461c-9b3c-7f157aa9527a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator Type=CommandSender Member=(Name=GetCommandId OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="3a8e6538-816a-49be-bc76-ecc0ea41b5ce" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator Type=CommandSender Member=(Name=GetCommandId OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4906ac27-98e8-44df-b2e3-81cf84d7b9b1" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="5e2b8456-47fd-4e58-a852-ceb454d1d090" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="b507b69c-7885-4da0-b165-6707cda07576" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="ff4b13c8-66e1-4a76-bb65-5498e12fdc5a" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="55ce63fc-0e32-4dc6-a2ca-53011fc0007e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="d06857c0-8b63-419a-972a-dc75eb8d5223" name="getPaddedInt" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="getPaddedInt(cameraStates[selectedCamera].Tilt)">
+            <referencesInternal>
+              <reference Id="feec46ad-6c5f-43b6-8897-f28b3ea5b4d6" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=RoverOperator.Gamepad)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&amp;quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="d9bf45c2-453d-4fbb-bbca-105505936e3a" handle="(Assembly=&quot;$(5f2880e4-71ba-4b95-9a09-0368872daeda.OutputPathUri)&quot; Namespace=RoverOperator.Gamepad Type=GamepadController Member=(Name=getPaddedInt OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="365dc5dc-0c21-4876-876a-a263e9dd9fec" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="246f4364-b4d9-47a9-b1d6-0b7c9c3f25f9" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="576bcf79-5a90-4438-98e2-8bcec8acaa66" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="4764d7ef-1011-4efa-9db3-2fe97ffaf10c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="f3006143-0d27-45c9-9f4a-efde525405b4" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="015c8787-d691-413b-94f4-e7e011ddcdaa" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="19c0cfe6-2cb0-4d04-a23d-6225f5d526c5" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="13dcc8a0-9eee-4a7b-9963-8459e29d4c6d" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="38f08999-5be5-4b91-a440-ba2eaa8e33bb" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e0e69574-fbf2-4c03-8314-9281b6f62aad" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="23551e90-2471-4e45-aac8-eb6a41037851" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="1226ca00-6429-4be8-a6ac-801887297ffa" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="f31492f4-521f-4f7a-9185-973750245394" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="8514de65-f0f3-4a11-a06e-747daa1601d5" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="86815f56-1943-4d07-82a9-5373edc59b92" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="d6bfb9ae-95a7-4f45-a511-f668cc5f716c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="8a683cf2-2cef-4e51-9c55-3b15f8a60360" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fd58ef95-97cd-4d31-98be-8919cb9d041b" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fe925b10-56ff-4110-be1b-f81031f4802f" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="f6414e68-ebb1-4941-b4a6-f39afc905772" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="bf5b33df-cd63-4ae0-8e9e-e95ddc2e7892" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="dcbe9c7e-62e3-4f2d-b829-26da7d5447ac" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="58f164a8-0106-4889-a3bc-abe52406362c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="fd556b13-cf08-4cef-bf5c-ad6e0e6b552c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="65540677-f19e-4436-85b0-f8bac8bf199d" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="d1f31812-a7cc-475a-889c-324a0dc7d66a" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

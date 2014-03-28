@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="CommandBase.cs" />
     <Compile Include="CommandSender.cs" />
+    <Compile Include="ViewModel\ViewModelManager.cs" />
     <Compile Include="View\Content\BatteryStatusView.xaml.cs">
       <DependentUpon>BatteryStatusView.xaml</DependentUpon>
     </Compile>
