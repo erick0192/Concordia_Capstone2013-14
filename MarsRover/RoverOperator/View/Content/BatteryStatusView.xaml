@@ -51,16 +51,16 @@
             <TextBlock Text="{Binding Path=Battery.ChargePerc, StringFormat='Charge: ({0}%)'}" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Battery.Current, StringFormat='Current: {0} A'}" Margin="0,0,5,0" />
-                <Image Source="../Assets/icons/error.png" Width="16" Height="16" 
+                <Image Source="../../Assets/icons/error.png" Width="16" Height="16" 
                     Visibility="{Binding Path=IsDangerousCurrent, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
-                <Image Source="../Assets/icons/warning.png" Width="16" Height="16"
+                <Image Source="../../Assets/icons/warning.png" Width="16" Height="16"
                     Visibility="{Binding Path=IsWarningCurrent, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Battery.Temperature, StringFormat='Temperature: {0} C'}" Margin="0,0,5,0" />
-                <Image Source="../Assets/icons/error.png" Width="16" Height="16" 
+                <Image Source="../../Assets/icons/error.png" Width="16" Height="16" 
                     Visibility="{Binding Path=IsDangerousTemperature, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
-                <Image Source="../Assets/icons/warning.png" Width="16" Height="16"
+                <Image Source="../../Assets/icons/warning.png" Width="16" Height="16"
                     Visibility="{Binding Path=IsWarningTemperature, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>            
         </StackPanel>

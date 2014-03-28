@@ -27,15 +27,15 @@
                 IsEnabled="{Binding Path=CanModifyPower}"/>
 
         <!-- Row 1 Wheel and Duty -->
-        <Image Grid.Row="1" Grid.RowSpan="3" Source="../Assets/icons/mechanicalwheel.png" Width="56" Height="56" HorizontalAlignment="Left"/>
+        <Image Grid.Row="1" Grid.RowSpan="3" Source="../../Assets/icons/mechanicalwheel.png" Width="56" Height="56" HorizontalAlignment="Left"/>
         <TextBlock  Grid.Row="1" Grid.Column="2" 
                 x:Name="Power" Text="{Binding StringFormat='Power: {0}%', Path=Power, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" />            
 
         <!-- Row 2 Current -->
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">            
-            <Image Source="../Assets/icons/error.png" Width="16" Height="16" 
+            <Image Source="../../Assets/icons/error.png" Width="16" Height="16" 
                 Visibility="{Binding Path=IsDangerousCurrent, Converter={StaticResource ResourceKey=BoolVisibilityConverter }, UpdateSourceTrigger=PropertyChanged}"/>
-            <Image Source="../Assets/icons/warning.png" Width="16" Height="16" 
+            <Image Source="../../Assets/icons/warning.png" Width="16" Height="16" 
                 Visibility="{Binding Path=IsWarningCurrent, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <TextBlock Grid.Row="2" Grid.Column="2"
@@ -43,9 +43,9 @@
         
         <!-- Row 3 Temperature -->
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">            
-            <Image Source="../Assets/icons/error.png" Width="16" Height="16" 
+            <Image Source="../../Assets/icons/error.png" Width="16" Height="16" 
                     Visibility="{Binding Path=IsDangerousTemperature, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
-            <Image Source="../Assets/icons/warning.png" Width="16" Height="16"
+            <Image Source="../../Assets/icons/warning.png" Width="16" Height="16"
                     Visibility="{Binding Path=IsWarningTemperature, Converter={StaticResource ResourceKey=BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <TextBlock Grid.Row="3" Grid.Column="2"
