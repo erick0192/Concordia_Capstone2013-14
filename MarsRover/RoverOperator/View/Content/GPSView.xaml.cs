@@ -20,12 +20,12 @@ namespace RoverOperator.Content
             this.DataContext = gpsVM;            
         }
 
-        private void RefreshMap()
-        {
-            myMap.UpdateLayout();
-            var c = myMap.Center;
-            c.Latitude += 0.00001;
-            myMap.SetView(c, myMap.ZoomLevel);
-        }
+        //private void RefreshMap()
+        //{
+        //    myMap.UpdateLayout();
+        //    var c = myMap.Center;
+        //    c.Latitude += 0.00001;
+        //    myMap.SetView(c, myMap.ZoomLevel);
+        //}
     }
 }
