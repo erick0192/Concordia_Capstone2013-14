@@ -341,11 +341,11 @@ namespace RoverOperator.Content
                     counter++;
                     try
                     {
-                        targetPin.Name = targetTitleString;
+                        targetPin.Name = targetTitleString.Replace(" ", "");
                     }
                     catch
                     {
-                        targetPin.Name = targetTitleString + "_" + counter;
+                        targetPin.Name = targetTitleString.Replace(" ", "") +"_" + counter;
                     }                    
                 }
 
@@ -399,9 +399,10 @@ namespace RoverOperator.Content
                             double targetLongitude = target.Location.Longitude;
                             double targetLatitude = target.Location.Latitude;
 
-                            string targetName = target.Name;
-                            string targetLongitudeString = targetLongitude.ToString();
-                            string targetLatitudeString = targetLatitude.ToString();
+                            ToolTip tt = (ToolTip)(target.ToolTip);
+                            string targetName = tt.Content.ToString();
+                            //string targetLongitudeString = targetLongitude.ToString();
+                            //string targetLatitudeString = targetLatitude.ToString();
 
                             double distance = getDistance(roverPin.Location, target.Location);
 
@@ -410,10 +411,10 @@ namespace RoverOperator.Content
                             {
                                 detail += targetName + ", ";
                             }
-                            else //else show the coordinates to identify it
-                            {
-                                detail += "(" + targetLongitudeString + ", " + targetLatitudeString + "), ";
-                            }
+                            //else //else show the coordinates to identify it
+                            //{
+                            //    detail += "(" + targetLongitudeString + ", " + targetLatitudeString + "), ";
+                            //}
 
                             detail += "distance: " + distance +"km";
                             detail += "\n";
@@ -449,6 +450,7 @@ namespace RoverOperator.Content
             double a = Math.Sin(lateralDistanceRadians / 2) * Math.Sin(lateralDistanceRadians / 2) + Math.Cos(degreesToRadians(latitude1)) * Math.Cos(degreesToRadians(latitude2)) * Math.Sin(longitudinalDistanceRadians / 2) * Math.Sin(longitudinalDistanceRadians / 2);
             double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             double distance = radiusOfEarth * c;
+            distance = Math.Round(distance, 4);
             return distance;
         }
 
