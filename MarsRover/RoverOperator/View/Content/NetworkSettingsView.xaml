@@ -32,7 +32,7 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label >Rover IP Address</Label>
-                        <TextBox x:Name="txtRoverIPAddress" Width="120" Height="22" Style="{StaticResource textBoxInError}" LostFocus="roverIPAddressLostFocus">
+                        <TextBox x:Name="txtRoverIPAddress" Width="120" Height="22" Style="{StaticResource textBoxInError}" KeyUp="roverIPAddressLostFocus">
                             <TextBox.Text>
                                 <Binding Path="RoverIPAddress" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
                             </TextBox.Text>
