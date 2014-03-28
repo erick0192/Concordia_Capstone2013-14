@@ -181,13 +181,13 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = 'L';
+                    cameraStates[selectedCamera].Pan = '0';
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = 'R';
+                    cameraStates[selectedCamera].Pan = '200';
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
@@ -216,7 +216,7 @@ namespace RoverOperator.Gamepad
                 }
                 else
                 {
-                    string command = "<P" + selectedCamera + "N>";
+                    string command = "<P" + selectedCamera + "100>";
                     commands.Add(command.ToString());
                 }
 
@@ -305,13 +305,13 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = 'L';
+                    cameraStates[selectedCamera].Pan = '0';
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = 'R';
+                    cameraStates[selectedCamera].Pan = '200';
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) //Up Tilt
@@ -340,7 +340,7 @@ namespace RoverOperator.Gamepad
                 }
                 else
                 {
-                    string command = "<P" + selectedCamera + "N>";
+                    string command = "<P" + selectedCamera + "100>";
                     commands.Add(command.ToString());
                 }
 
