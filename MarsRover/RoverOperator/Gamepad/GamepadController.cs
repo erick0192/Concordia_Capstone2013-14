@@ -376,6 +376,8 @@ namespace RoverOperator.Gamepad
                         previousSelectedCamera = cameraNumber;
                         timePreviousCameraSelect = DateTime.Now;
                         CommandSender.Instance.UpdateCommand(command.ToString());
+                        if (ViewModelManager.Instance.MainWindowVM.MainVM.ToggleCameraCommand.CanExecute(""+cameraNumber))
+                            ViewModelManager.Instance.MainWindowVM.MainVM.ToggleCameraCommand.Execute(""+cameraNumber);
                         Thread.Sleep(STATE_CHECK_INTERVAL);
                         if (logging) logger.Trace(command.ToString());
                     }

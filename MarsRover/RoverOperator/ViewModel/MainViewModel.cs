@@ -108,7 +108,8 @@ namespace RoverOperator.Pages
                 cvm = VMCamera3;
             }
 
-            return cvm.ToggleCamera.CanExecute(null) ;
+            if (cvm != null) return cvm.ToggleCamera.CanExecute(null);
+            return false;
         }
 
         protected void ToggleCamera(object iParam)
