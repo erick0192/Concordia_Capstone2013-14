@@ -291,6 +291,20 @@ namespace RoverOperator.Content
         }
 
         /// <summary>
+        /// Force map refresh when the rover pin gets updated.
+        /// </summary>
+        private void RefreshMap()
+        {
+            if (map != null)
+            {
+                map.UpdateLayout();
+                var c = map.Center;
+                c.Latitude += 0.00001;
+                map.SetView(c, map.ZoomLevel);
+            }
+        }
+
+        /// <summary>
         /// Update location of rover pin (triggered by the update of rovercoordinates
         /// </summary>
         private void updateRoverLocation()
@@ -303,9 +317,10 @@ namespace RoverOperator.Content
                     if (roverPin == null)
                     {
                         roverPin = new Pushpin();
-                        formatRoverPin();
+                        formatRoverPin();                        
                     }
                     roverPin.Location = roverCoordinates.Location;
+                    RefreshMap();
                 }));
             }
         }
