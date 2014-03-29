@@ -360,8 +360,10 @@ namespace RoverOperator.Content
                     }
                     catch
                     {
-                        targetPin.Name = targetTitleString.Replace(" ", "") +"_" + counter;
-                    }                    
+                        //targetPin.Name = targetTitleString.Replace(" ", "") + "_" + counter;
+                        targetPin.Name = "";
+                        break;
+                    }
                 }
 
                 tt.Content = targetTitleString + ": ";
