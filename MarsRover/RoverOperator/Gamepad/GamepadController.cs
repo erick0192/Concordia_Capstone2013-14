@@ -38,7 +38,7 @@ namespace RoverOperator.Gamepad
             {
                 CameraState cs = new CameraState();
                 cs.Active = false;
-                cs.Pan = "N";
+                cs.Pan = "100";
                 cs.Tilt = 0;
                 cameraStates[i] = cs;
             }
@@ -181,7 +181,7 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = "0";
+                    cameraStates[selectedCamera].Pan = "000";
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
@@ -212,18 +212,23 @@ namespace RoverOperator.Gamepad
                 if (panning)
                 {
                     string command = "<P" + selectedCamera + cameraStates[selectedCamera].Pan + ">";
-                    commands.Add(command.ToString());
+                    if (logging) logger.Trace(command.ToString());
+                    //commands.Add(command.ToString());
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                 }
                 else
                 {
                     string command = "<P" + selectedCamera + "100>";
-                    commands.Add(command.ToString());
+                    if (logging) logger.Trace(command.ToString());
+                   // commands.Add(command.ToString());
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                 }
 
                 if (tilting)
                 {
                     string command = "<T" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Tilt) + ">";
-                    commands.Add(command.ToString());
+                    //commands.Add(command.ToString());
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                 }
 
                 previousState = state;
@@ -305,7 +310,7 @@ namespace RoverOperator.Gamepad
                 if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) //Left Pan
                 {
                     panning = true;
-                    cameraStates[selectedCamera].Pan = "0";
+                    cameraStates[selectedCamera].Pan = "000";
                 }
 
                 else if (state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) //Right Pan
@@ -336,18 +341,21 @@ namespace RoverOperator.Gamepad
                 if (panning)
                 {
                     string command = "<P" + selectedCamera + cameraStates[selectedCamera].Pan + ">";
-                    commands.Add(command.ToString());
+                    //commands.Add(command.ToString());
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                 }
                 else
                 {
                     string command = "<P" + selectedCamera + "100>";
-                    commands.Add(command.ToString());
+                    //commands.Add(command.ToString());
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                 }
 
                 if (tilting)
                 {
                     string command = "<T" + selectedCamera + getPaddedInt(cameraStates[selectedCamera].Tilt) + ">";
-                    commands.Add(command.ToString());
+                   // commands.Add(command.ToString());
+                    CommandSender.Instance.UpdateCommand(command.ToString());
                 }
 
                 previousState = state;

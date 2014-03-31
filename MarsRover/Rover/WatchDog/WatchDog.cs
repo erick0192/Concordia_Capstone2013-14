@@ -45,6 +45,7 @@ namespace Rover
 
                 if (!allowCommand())
                 {
+                    //Console.WriteLine("***Emergency stop enabled***");
                     if (emergencyLeftStopCommand == null)
                     {
                         emergencyLeftStopCommand = new MovementCommand(EMERGENCY_LEFT_STOP);
